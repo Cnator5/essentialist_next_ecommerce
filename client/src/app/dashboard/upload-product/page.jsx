@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useRef } from 'react'
 import { FaCloudUploadAlt } from 'react-icons/fa'
-import uploadImage from '../../../utils/UploadImage'
+import uploadImage from './../../../utils/UploadImage';
 import Loading from '../../../components/Loading'
 import ViewImage from '../../../components/ViewImage'
 import { MdDelete } from 'react-icons/md'
@@ -11,7 +11,7 @@ import AddFieldComponent from '../../../components/AddFieldComponent'
 import Axios from '../../../utils/Axios'
 import SummaryApi from '../../../common/SummaryApi'
 import AxiosToastError from '../../../utils/AxiosToastError'
-import successAlert from '../../../utils/SuccessAlert'
+import successAlert from './../../../utils/SuccessAlert'
 import AdminPermission from '../../../components/AdminPermission'
 import dynamic from 'next/dynamic'
 

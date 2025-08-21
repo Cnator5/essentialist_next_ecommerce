@@ -265,14 +265,14 @@ export default async function Home() {
             <div className="font-bold text-[20px] md:text-[40px] text-center">
               <h1>
                 {topCategoryNames
-                  ? `Shop ${topCategoryNames} & More`
-                  : 'Shop by Category'}
+                  ? 'Shop by Category'
+                    : `Shop ${topCategoryNames} & More`}
               </h1>
             </div>
           </div>
         </div>
 
-        <div className="container mx-auto px-4 my-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 cursor-pointer justify-center items-center">
+        <div className="container mx-auto px-4 my-2 grid grid-cols-7 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 gap-2 cursor-pointer justify-center items-center">
           {Array.isArray(categoryData) && categoryData.length ? (
             categoryData.map((cat) => {
               const subcategory =
