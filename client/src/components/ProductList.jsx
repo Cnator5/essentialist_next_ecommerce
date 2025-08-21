@@ -1,33 +1,30 @@
-'use client';
-
-import * as React from 'react'
-import { useEffect, useState } from 'react'
-import Axios from '@/utils/Axios'
-import SummaryApi from '@/common/SummaryApi'
-import Link from 'next/link'
-import AxiosToastError from '@/utils/AxiosToastError'
-import Loading from '@/components/Loading'
-import CardProduct from '@/components/CardProduct'
+"use client";
+import React, { useEffect, useState } from 'react'
+import Axios from '../utils/Axios'
+import SummaryApi from '../common/SummaryApi'
+import { Link, useParams } from 'react-router-dom'
+import AxiosToastError from '../utils/AxiosToastError'
+import Loading from '../components/Loading'
+import CardProduct from '../components/CardProduct'
 import { useSelector } from 'react-redux'
-import { valideURLConvert } from '@/utils/valideURLConvert'
-import Head from 'next/head'
+import { valideURLConvert } from '../utils/valideURLConvert'
 
-const ProductListPage = ({ params: paramsPromise }) => {
-  const params = React.use(paramsPromise)
+const ProductListPage = () => {
   const [data, setData] = useState([])
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
   const [totalPage, setTotalPage] = useState(1)
+  const params = useParams()
   const AllSubCategory = useSelector(state => state.product.allSubCategory)
   const [DisplaySubCatory, setDisplaySubCategory] = useState([])
 
-  const { category, subCategory } = params
+  console.log(AllSubCategory)
 
-  const subCategoryParts = subCategory?.split("-")
-  const subCategoryName = subCategoryParts?.slice(0, subCategoryParts?.length - 1)?.join(" ")
+  const subCategory = params?.subCategory?.split("-")
+  const subCategoryName = subCategory?.slice(0, subCategory?.length - 1)?.join(" ")
 
-  const categoryId = category.split("-").slice(-1)[0]
-  const subCategoryId = subCategory.split("-").slice(-1)[0]
+  const categoryId = params.category.split("-").slice(-1)[0]
+  const subCategoryId = params.subCategory.split("-").slice(-1)[0]
 
   const fetchProductdata = async () => {
     try {
@@ -61,36 +58,24 @@ const ProductListPage = ({ params: paramsPromise }) => {
 
   useEffect(() => {
     fetchProductdata()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryId, subCategoryId, page])
+  }, [params])
 
   useEffect(() => {
     const sub = AllSubCategory.filter(s => {
       const filterData = s.category.some(el => {
         return el._id == categoryId
       })
+
       return filterData ? filterData : null
     })
     setDisplaySubCategory(sub)
-  }, [categoryId, AllSubCategory])
-
-  const pageTitle = `${subCategoryName}`
-  const pageDescription = `Discover the best of ${subCategoryName} at Essentialist Makeup Store. Shop quality makeup essentials in the ${subCategoryName} category.`
-  const canonicalUrl = `https://www.esmakeupstore.com/${valideURLConvert(subCategoryName)}-${subCategoryId}`
-  const pageKeywords = `${subCategoryName}, beauty, cosmetics, makeup, ${subCategoryName} products, face makeup, eye makeup, lipsticks, foundations, concealers, blush, bronzer, highlighter, mascara, eyeliner, eyeshadow, makeup brushes, makeup tools, setting spray, primer, makeup remover, cruelty-free makeup, waterproof makeup, vegan makeup, makeup kits, contour, makeup trends, affordable makeup, professional makeup, makeup palette, skin care, glowing skin, natural makeup, glam makeup, long lasting makeup, matte lipstick, liquid foundation, makeup tutorial, bridal makeup, makeup sale, makeup deals, makeup online Cameroon`
-  // SEO data
+  }, [params, AllSubCategory])
 
   return (
-    <>
-      <Head>
-        <title>{pageTitle}</title>
-        <meta name="description" content={pageDescription} />
-        <link rel="canonical" href={canonicalUrl} />
-        <meta name="keywords" content={pageKeywords} />
-      </Head>
-      
+    <>      
       <section className='sticky top-24 lg:top-20'>
         <div className='container sticky top-24 mx-auto grid grid-cols-[90px,1fr] md:grid-cols-[200px,1fr] lg:grid-cols-[280px,1fr]'>
+          {/**sub category **/}
           <div className='min-h-[88vh] max-h-[88vh] overflow-y-scroll grid gap-1 shadow-md scrollbarCustom bg-white py-2'>
             {
               DisplaySubCatory.map((s, index) => {
@@ -98,7 +83,7 @@ const ProductListPage = ({ params: paramsPromise }) => {
                 return (
                   <Link 
                     key={s._id + index}
-                    href={link} 
+                    to={link} 
                     className={`w-full p-2 lg:flex items-center lg:w-full lg:h-16 box-border lg:gap-4 border-b 
                       hover:bg-green-100 cursor-pointer
                       ${subCategoryId === s._id ? "bg-green-100" : ""}
@@ -117,6 +102,8 @@ const ProductListPage = ({ params: paramsPromise }) => {
               })
             }
           </div>
+
+          {/**Product **/}
           <div className='sticky top-20'>
             <div className='bg-white shadow-md p-4 z-10'>
               <h3 className='font-semibold'>{subCategoryName}</h3>
@@ -136,6 +123,7 @@ const ProductListPage = ({ params: paramsPromise }) => {
                   }
                 </div>
               </div>
+
               {
                 loading && (
                   <Loading />

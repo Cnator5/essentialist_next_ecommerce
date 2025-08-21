@@ -26,7 +26,7 @@ export async function POST(request) {
     }
 
     // Make request to backend API
-    const backendResponse = await fetch(`${process.env.BACKEND_URL}/api/product/get-product-details`, {
+    const backendResponse = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/product/get-product-details`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

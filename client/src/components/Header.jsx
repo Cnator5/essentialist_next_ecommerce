@@ -158,7 +158,7 @@ const Header = () => {
                                 height={40}
                                 alt="logo"
                                 className="hidden lg:block"
-                                style={{ maxWidth: "100%", objectFit: "contain" }}
+                                style={{ maxWidth: "100%", objectFit: "contain", height: "auto" }}
                                 priority
                             />
                             <Image
@@ -167,10 +167,10 @@ const Header = () => {
                                 height={60}
                                 alt="logo"
                                 className="lg:hidden"
-                                style={{ maxWidth: "100%", objectFit: "contain" }}
+                                style={{ maxWidth: "100%", objectFit: "contain", height: "auto" }}
                                 priority
                             />
-                        </Link>
+                        </Link> 
                     </div>
                     {!(isSearchPage && isMobile) && (
                         <div 
@@ -326,7 +326,7 @@ const Header = () => {
                                 width={120}
                                 height={60}
                                 alt="logo"
-                                style={{ maxWidth: "100%", objectFit: "contain" }}
+                                style={{ maxWidth: "100%", objectFit: "contain", height: "auto" }}
                                 priority
                             />
                         </Link>

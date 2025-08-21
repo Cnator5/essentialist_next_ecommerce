@@ -1,11 +1,14 @@
-// /** @type {import('next').NextConfig} */
+/**
+ * @type {import('next').NextConfig}
+ */
 const nextConfig = {
-     images: {
-    domains: ['res.cloudinary.com'], // Add your image host domains
+  experimental: {
+    optimizeRouterScrolling: true,
+  },
+  reactStrictMode: true,
+  images: {
+    domains: ['res.cloudinary.com'],
   },
 };
 
 export default nextConfig;
-
-
-
