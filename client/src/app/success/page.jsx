@@ -2,7 +2,6 @@
 import Link from 'next/link'
 
 // Server Component: Next.js passes `searchParams` to page components.
-// No client hooks or Suspense needed.
 export default function SuccessPage({ searchParams }) {
   const text =
     typeof searchParams?.text === 'string' && searchParams.text.trim()

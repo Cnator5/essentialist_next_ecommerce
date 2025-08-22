@@ -74,7 +74,6 @@ export const metadata = {
   },
 }
 
-// Per generateViewport docs, move theme and viewport-related settings here.
 export const viewport = {
   themeColor: '#faf6f3',
   width: 'device-width',

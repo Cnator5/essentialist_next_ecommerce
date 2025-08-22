@@ -1,3 +1,4 @@
+// app/partials/ClientLayoutShell.jsx
 'use client'
 
 import { Provider } from 'react-redux'

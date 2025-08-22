@@ -1,5 +1,7 @@
+// app/partials/ShellWithRedux.jsx
 'use client'
 
+import { Suspense, useEffect, useState } from 'react'
 import { Toaster } from 'react-hot-toast'
 import GlobalProvider from '../../providers/GlobalProvider'
 import Header from '../../components/Header'
@@ -10,7 +12,6 @@ import Modal from '../../components/Modal'
 import Login from '../(auth)/login/page'
 import { usePathname } from 'next/navigation'
 import useMobile from '../../hooks/useMobile'
-import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import fetchUserDetails from '../../utils/fetchUserDetails'
 import { setUserDetails } from '../../store/userSlice'
@@ -18,10 +19,35 @@ import { setAllCategory, setAllSubCategory, setLoadingCategory } from '../../sto
 import Axios from '../../utils/Axios'
 import SummaryApi from '../../common/SummaryApi'
 
-export default function ShellWithRedux({ children }) {
-  const dispatch = useDispatch()
+// Small wrapper so hooks that trigger CSR bailout (like usePathname) are isolated
+function PathAwareShell({ children }) {
   const pathname = usePathname()
   const [isMobile] = useMobile()
+  const showSidebar = !pathname?.includes('/dashboard') && !isMobile
+
+  return (
+    <>
+      <main className="min-h-[78vh]">
+        <div className="container mx-auto py-1">
+          <div className="flex flex-col md:flex-row gap-4">
+            {showSidebar && (
+              <div className="w-full md:w-1/4 lg:w-1/5">
+                <SideBar />
+              </div>
+            )}
+            <div className={`w-full ${showSidebar ? 'md:w-3/4 lg:w-4/5' : 'w-full'}`}>
+              {children}
+            </div>
+          </div>
+        </div>
+      </main>
+      {pathname !== '/checkout' && <CartMobileLink />}
+    </>
+  )
+}
+
+export default function ShellWithRedux({ children }) {
+  const dispatch = useDispatch()
   const [showLoginModal, setShowLoginModal] = useState(false)
 
   const fetchUser = async () => {
@@ -86,31 +112,19 @@ export default function ShellWithRedux({ children }) {
     return () => window.removeEventListener('show-login', handler)
   }, [])
 
-  const showSidebar = !pathname?.includes('/dashboard') && !isMobile
-
   return (
     <GlobalProvider>
       <Header />
-      <main className="min-h-[78vh]">
-        <div className="container mx-auto py-1">
-          <div className="flex flex-col md:flex-row gap-4">
-            {showSidebar && (
-              <div className="w-full md:w-1/4 lg:w-1/5">
-                <SideBar />
-              </div>
-            )}
-            <div className={`w-full ${showSidebar ? 'md:w-3/4 lg:w-4/5' : 'w-full'}`}>
-              {children}
-            </div>
-          </div>
-        </div>
-      </main>
+      {/* Wrap the subtree that uses usePathname/useSearchParams in Suspense */}
+      <Suspense>
+        <PathAwareShell>{children}</PathAwareShell>
+      </Suspense>
+
       <Modal open={showLoginModal} onClose={() => setShowLoginModal(false)}>
         <Login onSuccess={() => setShowLoginModal(false)} />
       </Modal>
       <Footer />
       <Toaster />
-      {pathname !== '/checkout' && <CartMobileLink />}
     </GlobalProvider>
   )
 }
