@@ -1,8 +1,11 @@
 // app/_not-found/page.js
-import Link from "next/link"
-// Server Component: read search params from props (no useSearchParams)
+
+import Link from "next/link";
+
+// Server Component: only uses searchParams from props
 export default function NotFound({ searchParams }) {
-  const from = typeof searchParams?.from === 'string' ? searchParams.from : null
+  const from =
+    typeof searchParams?.from === "string" ? searchParams.from : null;
 
   return (
     <div className="container mx-auto px-4 py-10">
@@ -20,5 +23,5 @@ export default function NotFound({ searchParams }) {
         Go home
       </Link>
     </div>
-  )
+  );
 }
