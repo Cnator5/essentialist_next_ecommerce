@@ -2,17 +2,17 @@
 import React, { useRef, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { FaCloudUploadAlt } from 'react-icons/fa'
-import uploadImage from '../utils/UploadImage'
+import uploadImage from './../utils/UploadImage'
 import Loading from '../components/Loading'
 import ViewImage from '../components/ViewImage'
 import { MdDelete } from 'react-icons/md'
 import { useSelector } from 'react-redux'
 import { IoClose } from 'react-icons/io5'
 import AddFieldComponent from '../components/AddFieldComponent'
-import Axios from '../utils/Axios'
-import SummaryApi from '../common/SummaryApi'
-import AxiosToastError from '../utils/AxiosToastError'
-import successAlert from '../utils/successAlert'
+import Axios from './../utils/Axios';
+import SummaryApi from './../common/SummaryApi'
+import AxiosToastError from './../utils/AxiosToastError'
+import successAlert from './../utils/SuccessAlert';
 
 const MDEditor = dynamic(() => import('@uiw/react-md-editor'), { ssr: false })
 

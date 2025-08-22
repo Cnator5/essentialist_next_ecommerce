@@ -1,11 +1,11 @@
 "use client";
 import React, { useState } from 'react'
 import { IoClose } from "react-icons/io5";
-import uploadImage from '../utils/UploadImage';
-import Axios from '../utils/Axios';
+import uploadImage from './../utils/UploadImage';
 import SummaryApi from '../common/SummaryApi';
 import toast from 'react-hot-toast'
-import AxiosToastError from '../utils/AxiosToastError';
+import AxiosToastError from './../utils/AxiosToastError';
+import Axios from './../utils/Axios';
 
 const EditCategory = ({close, fetchData,data : CategoryData}) => {
     const [data,setData] = useState({

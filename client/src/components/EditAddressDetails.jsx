@@ -1,10 +1,10 @@
 "use client";
 import React from 'react'
 import { useForm } from "react-hook-form"
-import Axios from '../utils/Axios'
+import Axios from './../utils/Axios'
 import SummaryApi from '../common/SummaryApi'
 import toast from 'react-hot-toast'
-import AxiosToastError from '../utils/AxiosToastError'
+import AxiosToastError from './../utils/AxiosToastError'
 import { IoClose } from "react-icons/io5";
 import { useGlobalContext } from '../provider/GlobalProvider'
 

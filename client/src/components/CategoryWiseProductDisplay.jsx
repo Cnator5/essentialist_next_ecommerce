@@ -1,15 +1,16 @@
 "use client"
 import React, { useEffect, useRef, useState } from 'react';
 import AxiosToastError from '../utils/AxiosToastError';
-import Axios from '../utils/Axios';
+import Axios from './../utils/Axios';
 import SummaryApi from '../common/SummaryApi';
 import CardLoading from './CardLoading';
 import CardProduct from './CardProduct';
 import { FaAngleLeft, FaAngleRight } from 'react-icons/fa6';
 import { useSelector } from 'react-redux';
-import { valideURLConvert } from '../utils/valideURLConvert';
+import { valideURLConvert } from './../utils/valideURLConvert';
 import Link from 'next/link';
 import Head from 'next/head';
+import AxiosToastError from './../utils/AxiosToastError';
 
 const CategoryWiseProductDisplay = ({ id, name }) => {
   const [data, setData] = useState([]);
