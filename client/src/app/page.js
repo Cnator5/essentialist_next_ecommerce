@@ -1,4 +1,4 @@
-// app/page.tsx or app/page.js
+// app/page.js
 import Image from 'next/image'
 import Link from 'next/link'
 import bannern from '/public/assets/fbb4343f-2d39-4c25-ac2f-1ab5037f50da.avif'
@@ -55,7 +55,7 @@ async function getSubCategories() {
   }
 }
 
-// Dynamic SEO: keep ONLY this for per-page metadata
+// Dynamic SEO
 export async function generateMetadata() {
   const categories = await getCategories()
   const top = Array.isArray(categories)
@@ -249,7 +249,8 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="container mx-auto px-4 my-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 cursor-pointer justify-center items-center">
+        {/* Categories Grid: EXACT classes requested */}
+        <div className="container mx-auto px-4 my-2 grid grid-cols-7 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 gap-2 cursor-pointer justify-center items-center">
           {Array.isArray(categoryData) && categoryData.length ? (
             categoryData.map((cat) => {
               const subcategory =
@@ -268,13 +269,16 @@ export default async function Home() {
                   className="w-full h-full block focus:outline-none focus:ring-2 focus:ring-pink-300 rounded"
                   aria-label={`Shop ${cat?.name}`}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={cat?.image}
-                    alt={`${cat?.name} makeup category - Shop ${cat?.name} products`}
-                    className="w-full h-full object-scale-down"
-                    loading="lazy"
-                  />
+                  <div className="relative w-full h-24 sm:h-28 md:h-28 lg:h-28">
+                    <Image
+                      src={cat?.image || '/placeholder.png'}
+                      alt={`${cat?.name} makeup category - Shop ${cat?.name} products`}
+                      fill
+                      sizes="(max-width: 640px) 14vw, (max-width: 768px) 14vw, (max-width: 1024px) 14vw, 14vw"
+                      className="object-contain"
+                      loading="lazy"
+                    />
+                  </div>
                   <div className="text-center text-xs sm:text-sm md:text-base font-semibold text-gray-700 mt-2">
                     {cat?.name}
                   </div>
