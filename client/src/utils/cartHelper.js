@@ -20,7 +20,7 @@ export const fetchCartItems = async () => {
     if (!isLoggedIn()) {
         return {
             success: true,
-            data: getGuestCart() // Make sure the structure matches what the server returns
+            data: getGuestCart()
         }
     }
     try {
@@ -49,7 +49,7 @@ export const addToCartProduct = async (product, qty = 1) => {
                 _id: product._id,
                 productId: product._id,
                 quantity: qty,
-                product // store full product details for guest cart
+                product
             })
         }
         setGuestCart(cart)
@@ -134,31 +134,5 @@ export const deleteCartProduct = async (cartItemId, product) => {
     }
 }
 
-// In utils/cartHelpers.js
-const GUEST_CART_KEY = 'guest_cart'
-
-export const getGuestCart = () => {
-    const cart = localStorage.getItem(GUEST_CART_KEY)
-    return cart ? JSON.parse(cart) : []
-}
-
-export const addToGuestCart = (productId, quantity = 1) => {
-    const cart = getGuestCart()
-    const existingItem = cart.find(item => item.productId === productId)
-    
-    if(existingItem) {
-        existingItem.quantity += quantity
-    } else {
-        cart.push({ productId, quantity })
-    }
-    
-    localStorage.setItem(GUEST_CART_KEY, JSON.stringify(cart))
-    return cart
-}
-
-export const clearGuestCart = () => {
-    localStorage.removeItem(GUEST_CART_KEY)
-}
-
-// -- Helper to clear guest cart (optional, e.g. on login) --
-// export const clearGuestCart = () => setGuestCart([])
+// -- Optionally, helper to clear guest cart --
+export const clearGuestCart = () => setGuestCart([])
