@@ -1,3 +1,4 @@
+'use client'
 // app/success/page.jsx
 import React, { Suspense } from 'react'
 import Link from 'next/link'
@@ -24,7 +25,7 @@ function Skeleton() {
 }
 
 // This is the only Client Component that uses useSearchParams
-'use client'
+
 import { useSearchParams } from 'next/navigation'
 
 function SearchParamsClient() {
