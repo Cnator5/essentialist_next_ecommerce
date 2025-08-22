@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
+// app/sitemap.xml/route.js
+import { NextResponse } from 'next/server';
+
+export async function GET() {
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset 
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
     xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
@@ -478,6 +482,7 @@
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669259/essentialist%20makeup%20store/drdqhcx1caoguoobymhc.jpg</image:loc>
         </image:image>
     </url>
+    <!-- Product-level URLs with multiple images -->
     <url>
         <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-gloss-681921099e1c9b273a48a0b6/nyx-professional-makeup-duo-chromatic-illuminating-powder-snow-rose-6831ccc8c0c2ebc2246abee1</loc>
         <lastmod>2025-07-19</lastmod>
@@ -1283,4 +1288,12 @@
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753671063/essentialist%20makeup%20store/fau6tkpyptiknnlbmwa7.jpg</image:loc>
         </image:image>
     </url>
-</urlset>
+</urlset>`;
+
+  return new NextResponse(xml, {
+    headers: {
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
+    },
+  });
+}
