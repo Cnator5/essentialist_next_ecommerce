@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Axios from "@/utils/Axios";
-import SummaryApi from "@/common/SummaryApi";
+import Axios from "../utils/Axios";
+import SummaryApi from "../common/SummaryApi";
 import CardProduct from "./CardProduct";
 
 // --- LOCAL STORAGE HELPERS ---

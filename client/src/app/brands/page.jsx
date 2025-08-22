@@ -2,7 +2,7 @@
 // Server Component (SSR) Product List page with dynamic SEO via generateMetadata
 
 import Link from 'next/link'
-import { valideURLConvert } from '@/utils/valideURLConvert'
+import { valideURLConvert } from '../utils/valideURLConvert'
 
 const SITE_URL = 'https://www.esmakeupstore.com/brands'
 const SITE_NAME = 'Essentialist Makeup Store'
