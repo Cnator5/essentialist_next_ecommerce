@@ -76,7 +76,7 @@
 
 
 import axios from "axios";
-import SummaryApi from "@/common/SummaryApi";
+import SummaryApi from "../common/SummaryApi";
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL || '';
 

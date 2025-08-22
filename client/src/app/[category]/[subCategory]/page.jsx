@@ -2,9 +2,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import CardProduct from '@/components/CardProduct'
-import Loading from '@/components/Loading' // kept referenced in case you wrap with Suspense
-import { valideURLConvert } from '@/utils/valideURLConvert'
+import CardProduct from '../../../components/CardProduct'
+import Loading from '../../../components/Loading' // kept referenced in case you wrap with Suspense
+import { valideURLConvert } from '../../../utils/valideURLConvert'
 
 // ---------- API config ----------
 const baseURL = process.env.NEXT_PUBLIC_API_URL

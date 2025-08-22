@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { FaRegEyeSlash, FaRegEye } from "react-icons/fa6";
 import toast from 'react-hot-toast';
-import SummaryApi from '@/common/SummaryApi';
+import SummaryApi from './../../../common/SummaryApi';
 import AxiosToastError from './../../../utils/AxiosToastError';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
