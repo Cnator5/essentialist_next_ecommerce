@@ -8,23 +8,15 @@ import SideBar from '../../components/SideBar'
 import CartMobileLink from '../../components/CartMobile'
 import Modal from '../../components/Modal'
 import Login from '../(auth)/login/page'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import useMobile from '../../hooks/useMobile'
-import { useEffect, useState, Suspense } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import fetchUserDetails from '../../utils/fetchUserDetails'
 import { setUserDetails } from '../../store/userSlice'
 import { setAllCategory, setAllSubCategory, setLoadingCategory } from '../../store/productSlice'
 import Axios from '../../utils/Axios'
 import SummaryApi from '../../common/SummaryApi'
-
-function RouteContent({ children }) {
-  // Using useSearchParams inside a component wrapped by Suspense
-  // prevents the page from de-opting to full CSR.
-  const searchParams = useSearchParams()
-  // example: const q = searchParams.get('q')
-  return children
-}
 
 export default function ShellWithRedux({ children }) {
   const dispatch = useDispatch()
@@ -108,9 +100,7 @@ export default function ShellWithRedux({ children }) {
               </div>
             )}
             <div className={`w-full ${showSidebar ? 'md:w-3/4 lg:w-4/5' : 'w-full'}`}>
-              <Suspense fallback={null}>
-                <RouteContent>{children}</RouteContent>
-              </Suspense>
+              {children}
             </div>
           </div>
         </div>

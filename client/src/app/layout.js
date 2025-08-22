@@ -5,8 +5,6 @@ import ClientLayoutShell from './partials/ClientLayoutShell'
 
 const inter = Inter({ subsets: ['latin'] })
 
-// Keep only supported metadata fields here.
-// themeColor and viewport were moved to the viewport export as required.
 export const metadata = {
   metadataBase: new URL('https://www.esmakeupstore.com'),
   title: {
@@ -76,8 +74,7 @@ export const metadata = {
   },
 }
 
-// Move viewport-related settings here per Next.js generateViewport docs.
-// If you need dynamic values, you can export a function named generateViewport instead.
+// Per generateViewport docs, move theme and viewport-related settings here.
 export const viewport = {
   themeColor: '#faf6f3',
   width: 'device-width',

@@ -1,12 +1,8 @@
-'use client'
-
-import { Suspense } from 'react'
-import { useSearchParams } from 'next/navigation'
+// app/_not-found/page.js
 import Link from "next/link"
-
-function NotFoundInner() {
-  const searchParams = useSearchParams()
-  const from = searchParams?.get('from') || null
+// Server Component: read search params from props (no useSearchParams)
+export default function NotFound({ searchParams }) {
+  const from = typeof searchParams?.from === 'string' ? searchParams.from : null
 
   return (
     <div className="container mx-auto px-4 py-10">
@@ -24,13 +20,5 @@ function NotFoundInner() {
         Go home
       </Link>
     </div>
-  )
-}
-
-export default function NotFound() {
-  return (
-    <Suspense fallback={null}>
-      <NotFoundInner />
-    </Suspense>
   )
 }
