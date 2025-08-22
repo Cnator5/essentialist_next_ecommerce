@@ -1,4 +1,3 @@
-// app/partials/ShellWithRedux.jsx
 'use client'
 
 import { Suspense, useEffect, useState } from 'react'
@@ -19,7 +18,6 @@ import { setAllCategory, setAllSubCategory, setLoadingCategory } from '../../sto
 import Axios from '../../utils/Axios'
 import SummaryApi from '../../common/SummaryApi'
 
-// Small wrapper so hooks that trigger CSR bailout (like usePathname) are isolated
 function PathAwareShell({ children }) {
   const pathname = usePathname()
   const [isMobile] = useMobile()
@@ -115,8 +113,8 @@ export default function ShellWithRedux({ children }) {
   return (
     <GlobalProvider>
       <Header />
-      {/* Wrap the subtree that uses usePathname/useSearchParams in Suspense */}
-      <Suspense>
+      {/* Any subtree that reads usePathname/useSearchParams must be inside Suspense */}
+      <Suspense fallback={null}>
         <PathAwareShell>{children}</PathAwareShell>
       </Suspense>
 

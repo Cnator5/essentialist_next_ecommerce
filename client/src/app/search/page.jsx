@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, Suspense } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import SummaryApi from './../../common/SummaryApi'
 import Axios from './../../utils/Axios'
@@ -9,62 +9,56 @@ import CardProduct from './../../components/CardProduct'
 import InfiniteScroll from 'react-infinite-scroll-component'
 import noDataImage from '/public/assets/nothing here yet.webp'
 import Search from './../../components/Search'
-import CardLoading from './../../components/CardLoading'
+import CardLoading from './../../components/CardLoading';
 
-function SearchContent() {
-  const [data, setData] = useState([])
-  const [loading, setLoading] = useState(true)
+export default function SearchPage() {
+  const [data,setData] = useState([])
+  const [loading,setLoading] = useState(true)
   const loadingArrayCard = new Array(10).fill(null)
-  const [page, setPage] = useState(1)
-  const [totalPage, setTotalPage] = useState(1)
+  const [page,setPage] = useState(1)
+  const [totalPage,setTotalPage] = useState(1)
   const searchParams = useSearchParams()
   const searchText = searchParams.get('q')
 
-  const fetchData = async () => {
+  const fetchData = async() => {
     try {
       setLoading(true)
-      const response = await Axios({
-        ...SummaryApi.searchProduct,
-        data: {
-          search: searchText,
-          page: page,
-        }
-      })
+        const response = await Axios({
+            ...SummaryApi.searchProduct,
+            data : {
+              search : searchText ,
+              page : page,
+            }
+        })
 
-      const { data: responseData } = response
+        const { data : responseData } = response
 
-      if (responseData.success) {
-        if (responseData.page == 1) {
-          setData(responseData.data)
-        } else {
-          setData((preve) => [
-            ...preve,
-            ...responseData.data
-          ])
+        if(responseData.success){
+            if(responseData.page == 1){
+              setData(responseData.data)
+            }else{
+              setData((preve)=>{
+                return[
+                  ...preve,
+                  ...responseData.data
+                ]
+              })
+            }
+            setTotalPage(responseData.totalPage)
         }
-        setTotalPage(responseData.totalPage)
-      }
     } catch (error) {
-      AxiosToastError(error)
-    } finally {
+        AxiosToastError(error)
+    }finally{
       setLoading(false)
     }
   }
 
-  useEffect(() => {
+  useEffect(()=>{
     fetchData()
-    // Reset to first page if searchText changes
-    setPage(1)
-  }, [searchText])
+  },[page,searchText])
 
-  useEffect(() => {
-    if (page !== 1) {
-      fetchData()
-    }
-  }, [page])
-
-  const handleFetchMore = () => {
-    if (totalPage > page) {
+  const handleFetchMore = ()=>{
+    if(totalPage > page){
       setPage(preve => preve + 1)
     }
   }
@@ -73,56 +67,49 @@ function SearchContent() {
     <section className='bg-white'>
       <div className='container mx-auto p-4'>
         <div className="block sm:hidden mb-4">
-          {/* Search uses useSearchParams, so it's safe in this client Suspense subtree */}
           <Search />
         </div>
 
         <p className='font-semibold'>Search Results: {data.length}  </p>
 
         <InfiniteScroll
-          dataLength={data.length}
-          hasMore={page < totalPage}
-          next={handleFetchMore}
+              dataLength={data.length}
+              hasMore={true}
+              next={handleFetchMore}
         >
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-4 gap-4'>
-            {
-              data.map((p, index) => (
-                <CardProduct data={p} key={p?._id + "searchProduct" + index} />
-              ))
-            }
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 py-4 gap-4'>
+              {
+                data.map((p,index)=>{
+                  return(
+                    <CardProduct data={p} key={p?._id+"searchProduct"+index}/>
+                  )
+                })
+              }
 
             {
               loading && (
-                loadingArrayCard.map((_, index) => (
-                  <CardLoading key={"loadingsearchpage" + index} />
-                ))
+                loadingArrayCard.map((_,index)=>{
+                  return(
+                    <CardLoading key={"loadingsearchpage"+index}/>
+                  )
+                })
               )
             }
-          </div>
+        </div>
         </InfiniteScroll>
 
-        {
-          !data[0] && !loading && (
-            <div className='flex flex-col justify-center items-center w-full mx-auto'>
-              <img
-                src={noDataImage}
-                className='w-full h-full max-w-xs max-h-xs block'
-                alt="No results"
-              />
-              <p className='font-semibold my-2'>No Data found</p>
-            </div>
-          )
-        }
+              {
+                !data[0] && !loading && (
+                  <div className='flex flex-col justify-center items-center w-full mx-auto'>
+                    <img
+                      src={noDataImage} 
+                      className='w-full h-full max-w-xs max-h-xs block'
+                    />
+                    <p className='font-semibold my-2'>No Data found</p>
+                  </div>
+                )
+              }
       </div>
     </section>
-  )
-}
-
-// Page-level Suspense boundary for useSearchParams usage
-export default function SearchPage() {
-  return (
-    <Suspense>
-      <SearchContent />
-    </Suspense>
   )
 }
