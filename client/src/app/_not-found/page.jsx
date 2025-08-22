@@ -1,12 +1,11 @@
 'use client'
 
-import Link from 'next/link'
 import { Suspense } from 'react'
+import Link from 'next/link'
 import { useSearchParams } from 'next/navigation'
 
-function NotFoundContent() {
+function NotFoundInner() {
   const searchParams = useSearchParams()
-  // Use .get() for URLSearchParams from useSearchParams
   const from = searchParams?.get('from') || null
 
   return (
@@ -30,9 +29,8 @@ function NotFoundContent() {
 
 export default function NotFoundPage() {
   return (
-    // Wrap the component that calls useSearchParams in Suspense
     <Suspense>
-      <NotFoundContent />
+      <NotFoundInner />
     </Suspense>
   )
 }
