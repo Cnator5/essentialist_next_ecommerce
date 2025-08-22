@@ -19,9 +19,10 @@ import Axios from '../../utils/Axios'
 import SummaryApi from '../../common/SummaryApi'
 
 function RouteContent({ children }) {
-  // If any child uses search params, keeping this inside Suspense avoids CSR de-opt.
+  // Using useSearchParams inside a component wrapped by Suspense
+  // prevents the page from de-opting to full CSR.
   const searchParams = useSearchParams()
-  // Example: const q = searchParams.get('q')
+  // example: const q = searchParams.get('q')
   return children
 }
 

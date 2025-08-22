@@ -1,10 +1,12 @@
-// app/layout.tsx or app/layout.js
+// app/layout.js
 import { Inter } from 'next/font/google'
 import './globals.css'
 import ClientLayoutShell from './partials/ClientLayoutShell'
 
 const inter = Inter({ subsets: ['latin'] })
 
+// Keep only supported metadata fields here.
+// themeColor and viewport were moved to the viewport export as required.
 export const metadata = {
   metadataBase: new URL('https://www.esmakeupstore.com'),
   title: {
@@ -66,19 +68,22 @@ export const metadata = {
     icon: [{ url: '/icon.avif', type: 'image/avif' }],
     apple: [{ url: '/icon.avif' }],
   },
-  themeColor: '#faf6f3',
-  viewport: {
-    width: 'device-width',
-    initialScale: 1,
-    maximumScale: 5,
-    viewportFit: 'cover',
-  },
   other: {
     'msvalidate.01': '1D7D3FCABB171743A8EB32440530AC76',
     'al:android:package': 'com.fsn.esmakeupstore',
     'al:android:app_name': 'EssentialisMakeupStore: Makeup Shopping App',
     'al:ios:app_name': 'EssentialisMakeupStore -- Makeup Shopping',
   },
+}
+
+// Move viewport-related settings here per Next.js generateViewport docs.
+// If you need dynamic values, you can export a function named generateViewport instead.
+export const viewport = {
+  themeColor: '#faf6f3',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
+  viewportFit: 'cover',
 }
 
 export default function RootLayout({ children }) {

@@ -1,10 +1,8 @@
-'use client'
 // app/success/page.jsx
 import React, { Suspense } from 'react'
 import Link from 'next/link'
 
-// Keep the page as a Server Component,
-// and only the part that reads search params as a Client Component.
+// Server Component page that renders a Client Component inside Suspense
 export default function SuccessPage() {
   return (
     <main className="px-4 py-10">
@@ -24,11 +22,8 @@ function Skeleton() {
   )
 }
 
-// This is the only Client Component that uses useSearchParams
-
-import { useSearchParams } from 'next/navigation'
-
-function SearchParamsClient() {
+function SearchParamsClientInner() {
+  const { useSearchParams } = require('next/navigation')
   const searchParams = useSearchParams()
   const text = searchParams.get('text') || 'Payment'
 
@@ -45,4 +40,10 @@ function SearchParamsClient() {
       </Link>
     </div>
   )
+}
+
+// Make the component that uses hooks a Client Component.
+function SearchParamsClient() {
+  'use client'
+  return <SearchParamsClientInner />
 }
