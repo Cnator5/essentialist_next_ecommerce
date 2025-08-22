@@ -1,6 +1,4 @@
-// src/app/page.js
-// Server Component (SSR) Home page with dynamic SEO via generateMetadata
-
+// app/page.tsx or app/page.js
 import Image from 'next/image'
 import Link from 'next/link'
 import bannern from '/public/assets/fbb4343f-2d39-4c25-ac2f-1ab5037f50da.avif'
@@ -13,28 +11,22 @@ import ProductRecommendations from '@/components/ProductRecommendations'
 import TikTokGallery from '@/components/TikTokGallery'
 import { valideURLConvert } from '@/utils/valideURLConvert'
 
-// API config
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 const SummaryApi = {
   getCategory: { url: '/api/category/get', method: 'get' },
   getSubCategory: { url: '/api/subcategory/get', method: 'post' },
 }
 
-// Defaults for SEO
 const DEFAULT_TITLE = 'Makeup: Beauty & Personal Care - EssentialisMakeupStore'
 const DEFAULT_DESC =
   'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more. Shop top brands, enjoy exclusive deals, and experience free shipping & cash on delivery!'
 const OG_IMAGE = 'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'
 
-// ---------------------------
-// Server-side data fetchers
-// ---------------------------
 async function getCategories() {
   try {
     const res = await fetch(`${baseURL}${SummaryApi.getCategory.url}`, {
       method: SummaryApi.getCategory.method.toUpperCase(),
       headers: { 'Content-Type': 'application/json' },
-      // Cache with ISR-style revalidation. Use cache: 'no-store' if you need always-fresh.
       next: { revalidate: 300 },
     })
     if (!res.ok) throw new Error('Failed to fetch categories')
@@ -51,7 +43,7 @@ async function getSubCategories() {
     const res = await fetch(`${baseURL}${SummaryApi.getSubCategory.url}`, {
       method: SummaryApi.getSubCategory.method.toUpperCase(),
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({}), // Add filters if your API expects them
+      body: JSON.stringify({}),
       next: { revalidate: 300 },
     })
     if (!res.ok) throw new Error('Failed to fetch subcategories')
@@ -63,9 +55,7 @@ async function getSubCategories() {
   }
 }
 
-// --------------------------------------------
-// Dynamic SEO: generateMetadata (keep ONLY this)
-// --------------------------------------------
+// Dynamic SEO: keep ONLY this for per-page metadata
 export async function generateMetadata() {
   const categories = await getCategories()
   const top = Array.isArray(categories)
@@ -131,9 +121,7 @@ export async function generateMetadata() {
   }
 }
 
-// ---------------------------
-// Schema.org JSON-LD (SSR)
-// ---------------------------
+// Schema.org JSON-LD
 function StructuredData() {
   const websiteJsonLd = {
     '@context': 'https://schema.org',
@@ -164,12 +152,7 @@ function StructuredData() {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://www.esmakeupstore.com/',
-      },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.esmakeupstore.com/' },
     ],
   }
 
@@ -212,17 +195,11 @@ function StructuredData() {
   )
 }
 
-// ---------------------------
-// Helpers
-// ---------------------------
 function buildCategoryUrl(catId, catName, subCategory) {
   if (!subCategory) return '#'
   return `/${valideURLConvert(catName)}-${catId}/${valideURLConvert(subCategory.name)}-${subCategory._id}`
 }
 
-// ---------------------------
-// Page (SSR)
-// ---------------------------
 export default async function Home() {
   const [categoryData, subCategoryData] = await Promise.all([
     getCategories(),
@@ -266,13 +243,13 @@ export default async function Home() {
               <h1>
                 {topCategoryNames
                   ? 'Shop by Category'
-                    : `Shop ${topCategoryNames} & More`}
+                  : 'Shop Makeup Categories & More'}
               </h1>
             </div>
           </div>
         </div>
 
-        <div className="container mx-auto px-4 my-2 grid grid-cols-7 sm:grid-cols-7 md:grid-cols-7 lg:grid-cols-7 gap-2 cursor-pointer justify-center items-center">
+        <div className="container mx-auto px-4 my-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2 cursor-pointer justify-center items-center">
           {Array.isArray(categoryData) && categoryData.length ? (
             categoryData.map((cat) => {
               const subcategory =
