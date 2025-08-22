@@ -6,10 +6,10 @@ import bannern2 from '/public/assets/56e20d4e-2643-4edb-b3fd-7762b81a7658.avif'
 import bannerp from '/public/assets/lipstick-cosmetics-makeup-beauty-product-ad-banner_33099-1533.jpg'
 import bannerMobile from '/public/assets/cosmetics-beauty-products-for-make-up-sale-banner-vector-25170220.avif'
 
-import CategoryWiseProductDisplay from '@/components/CategoryWiseProductDisplay'
-import ProductRecommendations from '@/components/ProductRecommendations'
-import TikTokGallery from '@/components/TikTokGallery'
-import { valideURLConvert } from '@/utils/valideURLConvert'
+import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay'
+import ProductRecommendations from '../components/ProductRecommendations'
+import TikTokGallery from '../components/TikTokGallery'
+import { valideURLConvert } from '../utils/valideURLConvert'
 
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 const SummaryApi = {
