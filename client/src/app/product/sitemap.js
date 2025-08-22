@@ -1,5 +1,5 @@
-import { BASE_URL } from '@/app/lib/constants'
  
+import { BASE_URL } from '@/app/lib/constants';
 export async function generateSitemaps() {
   // Fetch the total number of products and calculate the number of sitemaps needed
   return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }]
