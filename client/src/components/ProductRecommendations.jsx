@@ -4,7 +4,6 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Axios from "@/utils/Axios";
 import SummaryApi from "@/common/SummaryApi";
-import { valideURLConvert } from "@/utils/valideURLConvert";
 import CardProduct from "./CardProduct";
 
 // --- LOCAL STORAGE HELPERS ---
@@ -36,7 +35,7 @@ const CompactHistoryCard = ({ product, onClick }) => {
       className="flex-shrink-0 w-36 cursor-pointer group"
       onClick={() => onClick(product)}
     >
-      <div className="h-36 bg-slate-100 rounded-lg flex items-center justify-center p-2 overflow-hidden border border-gray-200">
+      <div className="h-36 bg-slate-100 rounded-lg md:rounded-lg sm:rounded-full flex items-center justify-center p-2 overflow-hidden border border-gray-200">
         <img
           src={product.image && product.image[0]}
           alt={product.name}
@@ -108,10 +107,14 @@ const ProductRecommendations = ({ currentProductId, currentProductData }) => {
   }, [isHomePage, currentProductData, currentProductId]); // Rerun when page or product changes.
 
   const handleClickProduct = (product) => {
-    // Ensure the product has the necessary data before navigating.
-    if (!product?.category?.[0] || !product?.subCategory?.[0]) return;
-    const url = `/${valideURLConvert(product.category[0].name)}-${product.category[0]._id}/${valideURLConvert(product.subCategory[0].name)}-${product.subCategory[0]._id}/${valideURLConvert(product.name)}-${product._id}`;
-    router.push(url);
+    // Fixed routing - use the product/[slug] format instead of category/subcategory/product
+    if (!product?._id || !product?.name) return;
+    
+    // Create a URL-friendly slug from the product name
+    const slug = product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + product._id;
+    
+    // Navigate to the product page using the new format
+    router.push(`/product/${slug}`);
   };
   
   // Filter out the currently viewed product from the history list when on the detail page.
@@ -177,7 +180,11 @@ const ProductRecommendations = ({ currentProductId, currentProductData }) => {
                           overflow-x-auto scrollbar-none scroll-smooth">
               {displayHistory.map((product) => (
                 <div key={`history-${product._id}`} className="flex-shrink-0 w-full sm:w-auto md:w-52">
-                  <CardProduct data={product} onClick={() => handleClickProduct(product)} />
+                  <CardProduct 
+                    data={product} 
+                    onClick={() => handleClickProduct(product)} 
+                    className="sm:rounded-full md:rounded-lg"
+                  />
                 </div>
               ))}
             </div>
