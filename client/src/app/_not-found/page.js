@@ -2,6 +2,7 @@
 
 import { Suspense } from 'react'
 import { useSearchParams } from 'next/navigation'
+import Link from "next/link"
 
 function NotFoundInner() {
   const searchParams = useSearchParams()
@@ -16,12 +17,12 @@ function NotFoundInner() {
           You were redirected from: <code>{from}</code>
         </p>
       )}
-      <a
+      <Link
         href="/"
         className="inline-block mt-6 rounded bg-blue-600 px-4 py-2 text-white hover:bg-blue-700"
       >
         Go home
-      </a>
+      </Link>
     </div>
   )
 }
