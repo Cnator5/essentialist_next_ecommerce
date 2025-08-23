@@ -17,6 +17,7 @@ import { setUserDetails } from '../../store/userSlice'
 import { setAllCategory, setAllSubCategory, setLoadingCategory } from '../../store/productSlice'
 import Axios from '../../utils/Axios'
 import SummaryApi from '../../common/SummaryApi'
+import { SparklesCore } from '../../components/ui/sparkles'
 
 function PathAwareShell({ children }) {
   const pathname = usePathname()
@@ -25,15 +26,15 @@ function PathAwareShell({ children }) {
 
   return (
     <>
-      <main className="min-h-[78vh]">
+      <main className="min-h-[78vh] bg-[#faf6f3] relative">
         <div className="container mx-auto py-1">
           <div className="flex flex-col md:flex-row gap-4">
             {showSidebar && (
-              <div className="w-full md:w-1/4 lg:w-1/5">
+              <div className="w-full md:w-1/4 lg:w-1/5 bg-white/70 rounded-xl shadow-sm p-2">
                 <SideBar />
               </div>
             )}
-            <div className={`w-full ${showSidebar ? 'md:w-3/4 lg:w-4/5' : 'w-full'}`}>
+            <div className={`w-full ${showSidebar ? 'md:w-3/4 lg:w-4/5' : 'w-full'} bg-white/80 rounded-xl shadow p-3`}>
               {children}
             </div>
           </div>
@@ -112,12 +113,47 @@ export default function ShellWithRedux({ children }) {
 
   return (
     <GlobalProvider>
+      {/* Sparkles effect as elegant background */}
+      <div
+        aria-hidden="true"
+        className="fixed inset-0 z-0 pointer-events-none w-full h-full overflow-hidden sparkle-bg"
+      >
+        {/* Sparkles Layer */}
+        <div className="absolute inset-0 w-full h-full">
+          <SparklesCore className="w-full h-full mix-blend-screen opacity-80 blur-[1px]" />
+        </div>
+        {/* Gradient Overlay Layer */}
+        <div
+          className="
+            absolute inset-0
+            bg-gradient-to-br from-[#faf6f3]/90 via-transparent to-[#e9d7c4]/70
+            dark:from-[#0f172a]/90 dark:via-transparent dark:to-[#6366f1]/70
+            pointer-events-none
+            z-10
+          "
+          style={{
+            mixBlendMode: 'soft-light',
+            opacity: 0.85,
+          }}
+        />
+        {/* Subtle Vignette */}
+        <div
+          className="
+            absolute inset-0
+            pointer-events-none
+            z-20
+          "
+          style={{
+            background: 'radial-gradient(ellipse at center, transparent 60%, rgba(0,0,0,0.05) 100%)',
+            opacity: 0.5,
+          }}
+        />
+      </div>
+
       <Header />
-      {/* Any subtree that reads usePathname/useSearchParams must be inside Suspense */}
       <Suspense fallback={null}>
         <PathAwareShell>{children}</PathAwareShell>
       </Suspense>
-
       <Modal open={showLoginModal} onClose={() => setShowLoginModal(false)}>
         <Login onSuccess={() => setShowLoginModal(false)} />
       </Modal>

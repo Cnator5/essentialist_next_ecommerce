@@ -398,3 +398,11 @@ body {
   margin-bottom: 0;
 }
 
+
+/* For subtle background blur and pointer safety */
+.sparkle-bg {
+  backdrop-filter: blur(2px) brightness(1.02);
+  -webkit-backdrop-filter: blur(2px) brightness(1.02);
+  pointer-events: none;
+  user-select: none;
+}

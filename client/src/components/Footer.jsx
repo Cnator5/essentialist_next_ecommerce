@@ -1,4 +1,6 @@
-"use client";
+// components/Footer.js
+'use client'
+
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -9,21 +11,70 @@ import stripe from '/public/assets/stipe.png';
 import google_play from '/public/assets/google_play.png';
 import app_store from '/public/assets/app_store.jpeg';
 import Globe from './Globe';
+import { motion } from 'framer-motion';
+
+// Local copy of FloatingPaths (JS) for footer background
+function FloatingPaths({ position }) {
+  const paths = Array.from({ length: 36 }, (_, i) => ({
+    id: i,
+    d: `M-${380 - i * 5 * position} -${189 + i * 6}C-${380 - i * 5 * position} -${189 + i * 6} -${312 - i * 5 * position} ${216 - i * 6} ${152 - i * 5 * position} ${343 - i * 6}C${616 - i * 5 * position} ${470 - i * 6} ${684 - i * 5 * position} ${875 - i * 6} ${684 - i * 5 * position} ${875 - i * 6}`,
+    width: 0.5 + i * 0.03,
+  }));
+
+  return (
+    <div className="absolute inset-0 pointer-events-none opacity-60">
+      <svg className="w-full h-full text-slate-950/70 dark:text-white/70" viewBox="0 0 696 316" fill="none">
+        <title>Footer Background Paths</title>
+        {paths.map((path) => (
+          <motion.path
+            key={path.id}
+            d={path.d}
+            stroke="currentColor"
+            strokeWidth={path.width}
+            strokeOpacity={0.08 + path.id * 0.015}
+            initial={{ pathLength: 0.3, opacity: 0.5 }}
+            animate={{
+              pathLength: 1,
+              opacity: [0.25, 0.5, 0.25],
+              pathOffset: [0, 1, 0],
+            }}
+            transition={{
+              duration: 22 + Math.random() * 10,
+              repeat: Number.POSITIVE_INFINITY,
+              ease: 'linear',
+            }}
+          />
+        ))}
+      </svg>
+    </div>
+  );
+}
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   return (
     <footer className="relative bg-white text-black font-bold md:font-normal mt-10 overflow-hidden">
-       {/* Biggle Globe absolutely at the bottom of the footer */}
-      <div className="pointer-events-none absolute left-1/2 -translate-x-1/2 w-full flex justify-center z-0"
-        style={{minHeight:320}}>
+      {/* Animated background (behind everything) */}
+      <div className="absolute inset-0 -z-10">
+        <FloatingPaths position={1} />
+        <FloatingPaths position={-1} />
+      </div>
+
+      {/* Big Globe absolutely at the bottom of the footer */}
+      <div
+        className="pointer-events-none absolute left-1/2 -translate-x-1/2 w-full flex justify-center z-0"
+        style={{ minHeight: 320, bottom: 0 }}
+      >
         <div className="relative w-full max-w-[900px] aspect-square opacity-60">
           <Globe className="!static w-full h-full" />
         </div>
       </div>
-      <div className="bg-black border-b border-gray-800">
-        <div className="flex flex-wrap justify-between px-2 sm:px-4 md:px-8"
-          style={{ minHeight: 0 }}>
+
+      <div className="bg-black border-b border-gray-800 relative z-10">
+        <div
+          className="flex flex-wrap justify-between px-2 sm:px-4 md:px-8"
+          style={{ minHeight: 0 }}
+        >
           <div className="flex items-center flex-shrink-0 space-x-2 sm:space-x-3 mb-2 sm:mb-0 min-w-[160px] w-[49%] sm:w-auto">
             <div className="min-w-8 sm:min-w-14">
               <svg className="w-8 h-8 sm:w-14 sm:h-14" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,7 +126,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="px-2 sm:px-4 md:px-8 py-6 sm:py-10 md:py-12 text-black">
+
+      <div className="px-2 sm:px-4 md:px-8 py-6 sm:py-10 md:py-12 text-black relative z-10">
         <div className="flex flex-wrap md:grid md:grid-cols-4 gap-4 sm:gap-6 md:gap-10">
           <div className="flex-[1_1_220px] min-w-[180px] max-w-full mb-4 md:mb-0">
             <h2 className="text-black uppercase font-bold mb-4 sm:mb-6 relative after:content-[''] after:absolute after:left-0 after:-bottom-3 after:h-0.5 after:w-10 sm:after:w-12 after:bg-gray-700 text-base sm:text-lg">ABOUT US</h2>
@@ -97,6 +149,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
           <div className="flex-[1_1_180px] min-w-[150px] max-w-full mb-4 md:mb-0">
             <h2 className="text-black uppercase font-bold mb-4 sm:mb-6 relative after:content-[''] after:absolute after:left-0 after:-bottom-3 after:h-0.5 after:w-10 sm:after:w-12 after:bg-gray-700 text-base sm:text-lg">QUICK NAVIGATION</h2>
             <ul className="block space-y-2 sm:space-y-3 mb-3 sm:mb-5 text-xs sm:text-base">
@@ -116,6 +169,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
           <div className="flex-[1_1_180px] min-w-[150px] max-w-full mb-4 md:mb-0">
             <h2 className="text-black uppercase font-bold mb-4 sm:mb-6 relative after:content-[''] after:absolute after:left-0 after:-bottom-3 after:h-0.5 after:w-10 sm:after:w-12 after:bg-gray-700 text-base sm:text-lg">USEFUL LINKS</h2>
             <ul className="block space-y-2 sm:space-y-3 mb-3 sm:mb-5 text-xs sm:text-base">
@@ -147,6 +201,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
+
           <div className="flex-[1_1_200px] min-w-[170px] max-w-full">
             <h2 className="text-black uppercase font-bold mb-3 sm:mb-4 relative after:content-[''] after:absolute after:left-0 after:-bottom-3 after:h-0.5 after:w-10 sm:after:w-12 after:bg-gray-700 text-base sm:text-lg">DOWNLOAD OUR APP</h2>
             <p className="text-black mb-2 sm:mb-4 font-bold md:font-normal text-xs sm:text-base">Download our app for the best shopping experience.</p>
@@ -174,9 +229,9 @@ const Footer = () => {
             </div>
             <h2 className="text-black uppercase font-bold mb-2 sm:mb-4 text-xs sm:text-base">JOIN NEWSLETTER!</h2>
             <div className="flex mb-2 sm:mb-4">
-              <input 
-                type="email" 
-                placeholder="Your email address" 
+              <input
+                type="email"
+                placeholder="Your email address"
                 className="py-1.5 sm:py-2.5 px-2 sm:px-4 w-full rounded-l bg-white text-black border border-gray-300 focus:outline-none focus:ring-2 focus:ring-pink-500 transition duration-300 text-xs sm:text-base"
               />
               <button className="bg-pink-400 flex text-white w-auto px-3 sm:px-5 py-1 sm:py-1.5 rounded-r font-bold border border-white hover:bg-gray-900 transition duration-300 text-xs sm:text-base">
@@ -188,6 +243,7 @@ const Footer = () => {
             </p>
           </div>
         </div>
+
         <div className="mt-6 sm:mt-10 text-center text-xs sm:text-sm text-gray-700">
           &copy; {currentYear} EssentialistMakeupStore. All rights reserved.
         </div>
