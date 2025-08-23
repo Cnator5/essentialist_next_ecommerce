@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   metadataBase: new URL('https://www.esmakeupstore.com'),
   title: {
-    default: 'Best Makeup: Beauty & Personal Care',
+    default: 'Best Makeup in Cameroon: Beauty & Personal Care',
     template: '%s | EssentialisMakeupStore',
   },
   description:
