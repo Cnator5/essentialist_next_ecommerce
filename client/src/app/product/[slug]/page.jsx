@@ -1,21 +1,14 @@
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { FaAngleRight, FaAngleLeft } from 'react-icons/fa6'
 import Divider from '../../../components/Divider'
 import AddToCartButton from '../../../components/AddToCartButton'
 import ProductRecommendations from '../../../components/ProductRecommendations'
 import { DisplayPriceInRupees } from '../../../utils/DisplayPriceInRupees'
 import { pricewithDiscount } from '../../../utils/PriceWithDiscount'
-
-import image1 from '/public/assets/minute_delivery.jpeg'
-import image2 from '/public/assets/Best_Prices_Offers.png'
-import image3 from '/public/assets/Wide_Assortment.avif'
-
-// -------- API config ----------
-const baseURL = process.env.NEXT_PUBLIC_API_URL
-const SummaryApi = {
-  getProductDetails: { url: '/api/product/get-product-details', method: 'post' },
-}
+import RatingBlock from './RatingBlock.client'
+import ProductGallery from './ProductGallery.client'
+import ReviewsSection from './ReviewsSection.client'
+import SummaryApi, { baseURL } from '../../../common/SummaryApi'
 
 // -------- Helpers ----------
 function extractProductId(slug) {
@@ -24,12 +17,12 @@ function extractProductId(slug) {
   return parts[parts.length - 1]
 }
 
-// Basic HTML-safe fallback
 function stripHtml(html) {
   if (!html) return ''
   return html.replace(/<[^>]*>?/gm, '').trim()
 }
 
+// Styles
 const tabularStyles = `
   .tabular-content {
     white-space: pre-wrap;
@@ -56,14 +49,24 @@ const tabularStyles = `
   .product-description-content h5, .product-description-content h6 {
     font-weight: 600; margin-bottom: 0.5rem; margin-top: 1rem;
   }
+  .zoomable { cursor: zoom-in; }
+  .zoomable:focus {
+    outline: 2px solid #38bdf8;
+    outline-offset: 2px;
+  }
+  .scrollbar-none { -ms-overflow-style: none; scrollbar-width: none; }
+  .scrollbar-none::-webkit-scrollbar { display: none; }
+  .thumb-item:focus-visible {
+    outline: 2px solid #4f46e5;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
 `
 
-// Skeletons (kept minimal; SSR won't show loading states, but fine for suspense/streaming)
-function ImageSkeleton() {
-  return <div className="aspect-square rounded-lg bg-gray-200"></div>
-}
+// Skeletons
+function ImageSkeleton() { return <div className="aspect-square rounded-lg bg-slate-200"></div> }
 function TextSkeleton({ width = '100%', height = 'h-4' }) {
-  return <div className={`bg-gray-200 rounded ${height}`} style={{ width }} />
+  return <div className={`bg-slate-200 rounded ${height}`} style={{ width }} />
 }
 function ProductSkeleton() {
   return (
@@ -73,7 +76,7 @@ function ProductSkeleton() {
           <ImageSkeleton />
           <div className="flex space-x-2">
             {[...Array(4)].map((_, i) => (
-              <div key={i} className="w-20 h-20 bg-gray-200 rounded-lg"></div>
+              <div key={i} className="w-20 h-20 bg-slate-200 rounded-lg"></div>
             ))}
           </div>
         </div>
@@ -93,7 +96,7 @@ function ProductSkeleton() {
             <TextSkeleton height="h-6" width="25%" />
           </div>
           <div className="border-b pb-6">
-            <div className="w-full h-12 bg-gray-200 rounded-lg"></div>
+            <div className="w-full h-12 bg-slate-200 rounded-lg"></div>
           </div>
           <div className="space-y-3">
             <TextSkeleton height="h-6" width="30%" />
@@ -108,7 +111,7 @@ function ProductSkeleton() {
 }
 
 // ------------------------
-// Server data fetcher (SSR)
+// Server data fetchers (SSR)
 // ------------------------
 async function getProduct(productId) {
   try {
@@ -116,7 +119,6 @@ async function getProduct(productId) {
       method: SummaryApi.getProductDetails.method.toUpperCase(),
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ productId }),
-      // Revalidate periodically; adjust as needed
       next: { revalidate: 300 },
     })
     if (!res.ok) throw new Error('Failed to fetch product details')
@@ -126,6 +128,22 @@ async function getProduct(productId) {
   } catch (e) {
     console.error('getProduct error:', e)
     return null
+  }
+}
+
+async function getRatingsSSR(productId) {
+  try {
+    const res = await fetch(`${baseURL}${SummaryApi.ratingsGet.url(productId)}`, {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json' },
+      next: { revalidate: 300 },
+    })
+    if (!res.ok) return { average: 0, count: 0, myRating: null }
+    const json = await res.json()
+    return json?.data || { average: 0, count: 0, myRating: null }
+  } catch (e) {
+    console.error('getRatingsSSR error:', e)
+    return { average: 0, count: 0, myRating: null }
   }
 }
 
@@ -175,7 +193,6 @@ export async function generateMetadata({ params }) {
     ],
     alternates: { canonical: url },
     openGraph: {
-      // Fix: use a valid Open Graph type per Next.js metadata API
       type: 'website',
       siteName: 'EssentialisMakeupStore',
       url,
@@ -197,15 +214,13 @@ export async function generateMetadata({ params }) {
 // ------------------------
 // Schema.org JSON-LD (SSR)
 // ------------------------
-function StructuredData({ product, slug }) {
+function StructuredData({ product, slug, rating }) {
   const url = `https://www.esmakeupstore.com/product/${slug}`
   const imgList = Array.isArray(product?.image) ? product.image : [product?.image].filter(Boolean)
   const offers = {
     '@type': 'Offer',
     priceCurrency: 'XAF',
-    price: String(
-      pricewithDiscount(product?.price || 0, product?.discount || 0)
-    ),
+    price: String(pricewithDiscount(product?.price || 0, product?.discount || 0)),
     availability:
       product?.stock && product.stock > 0
         ? 'https://schema.org/InStock'
@@ -220,34 +235,26 @@ function StructuredData({ product, slug }) {
     description: stripHtml(product?.description),
     image: imgList,
     sku: product?._id || product?.sku,
-    brand: product?.brand
-      ? { '@type': 'Brand', name: product.brand }
-      : undefined,
+    brand: product?.brand ? { '@type': 'Brand', name: product.brand } : undefined,
     offers,
+    ...(rating && rating.count > 0
+      ? {
+          aggregateRating: {
+            '@type': 'AggregateRating',
+            ratingValue: String(rating.average),
+            reviewCount: String(rating.count),
+          },
+        }
+      : {}),
   }
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
     itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Home',
-        item: 'https://www.esmakeupstore.com/',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Products',
-        item: 'https://www.esmakeupstore.com/product',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: product?.name,
-        item: url,
-      },
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.esmakeupstore.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Products', item: 'https://www.esmakeupstore.com/product' },
+      { '@type': 'ListItem', position: 3, name: product?.name, item: url },
     ],
   }
 
@@ -308,71 +315,31 @@ export default async function ProductDisplayPage({ params }) {
   const productId = extractProductId(slug)
   if (!productId) return notFound()
 
-  const productData = await getProduct(productId)
+  const [productData, ratingSSR] = await Promise.all([
+    getProduct(productId),
+    getRatingsSSR(productId),
+  ])
+
   if (!productData) return notFound()
 
-  // SSR default image (no client state here)
-  const currentImageIndex = 0
-  const images = Array.isArray(productData.image) ? productData.image : [productData.image].filter(Boolean)
-  const currentImage = images[currentImageIndex] || '/default-image.jpg'
+  const images = Array.isArray(productData.image)
+    ? productData.image
+    : [productData.image].filter(Boolean)
 
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: tabularStyles }} />
-      <StructuredData product={productData} slug={slug} />
+      <StructuredData product={productData} slug={slug} rating={ratingSSR} />
 
-      <section className="container mx-auto p-4 grid lg:grid-cols-2 text-black font-bold md:font-normal">
+      <section className="container mx-auto p-4 grid lg:grid-cols-2 text-slate-900 font-bold md:font-normal gap-6">
         <div>
-          <div className="bg-white lg:min-h-[65vh] lg:max-h-[65vh] rounded min-h-56 max-h-56 h-full w-full">
-            <Image
-              src={currentImage}
-              alt={productData.name}
-              width={600}
-              height={600}
-              className="w-full h-full object-scale-down scale-100"
-              priority
-            />
-          </div>
+          <ProductGallery images={images} productName={productData.name} />
 
-          <div className="flex items-center justify-center gap-3 my-2">
-            {images.map((img, index) => (
-              <div
-                key={`point-${index}`}
-                className={`bg-slate-200 w-3 h-3 lg:w-5 lg:h-5 rounded-full ${currentImageIndex === index ? 'bg-slate-300' : ''}`}
-                title={`Image ${index + 1}`}
-              />
-            ))}
-          </div>
-
-          <div className="grid relative">
-            <div className="flex gap-4 z-10 relative w-full overflow-x-auto scrollbar-none">
-              {images.map((img, index) => (
-                <div className="w-20 h-20 min-h-20 min-w-20 shadow-md" key={`thumb-${index}`}>
-                  <Image
-                    src={img}
-                    alt={`Product image ${index + 1} of ${productData.name}`}
-                    width={80}
-                    height={80}
-                    className="w-full h-full object-scale-down"
-                  />
-                </div>
-              ))}
-            </div>
-            <div className="w-full -ml-3 h-full hidden lg:flex justify-between absolute items-center">
-              <button className="z-10 bg-white relative p-1 rounded-full shadow-lg" aria-label="Scroll left">
-                <FaAngleLeft />
-              </button>
-              <button className="z-10 bg-white relative p-1 rounded-full shadow-lg" aria-label="Scroll right">
-                <FaAngleRight />
-              </button>
-            </div>
-          </div>
-
-          <div className="my-4 hidden lg:grid gap-3 p-4 rounded-lg shadow-sm border border-gray-100 hover:shadow-md transition-shadow">
+          <div className="my-4 hidden lg:grid gap-3 p-4 rounded-lg shadow-sm border border-slate-200 hover:shadow-md transition-shadow">
             <div>
               <p className="font-semibold">Description</p>
               <div
-                className="text-base text-justify text-black product-description-content"
+                className="text-base text-justify text-slate-900 product-description-content"
                 dangerouslySetInnerHTML={{ __html: productData.description || '' }}
               />
             </div>
@@ -398,15 +365,29 @@ export default async function ProductDisplayPage({ params }) {
         </div>
 
         <div className="p-4 lg:pl-7 text-base lg:text-lg">
-          <p className="bg-green-300 w-fit px-2 rounded-full">10 Minutes</p>
+          <p className="bg-emerald-200 w-fit px-2 rounded-full">10 Minutes</p>
           <h1 className="text-lg font-semibold lg:text-3xl">{productData.name}</h1>
           <p>{productData.unit}</p>
+
+          {/* Ratings */}
+          <div className="mt-2">
+            <div className="flex items-center gap-2 text-sm text-slate-800">
+              <span className="font-semibold">{Number(ratingSSR?.average || 0).toFixed(2)}</span>
+              <span>/ 5</span>
+              <span className="text-slate-700">
+                ({ratingSSR?.count || 0} {Number(ratingSSR?.count) === 1 ? 'rating' : 'ratings'})
+              </span>
+            </div>
+            <RatingBlock productId={productId} />
+          </div>
+
           <Divider />
 
+          {/* Bulk Price */}
           <div>
             <p>Bulk Price</p>
             <div className="flex items-center gap-2 lg:gap-4">
-              <div className="border border-green-600 px-4 py-2 rounded bg-green-50 w-fit">
+              <div className="border border-emerald-600 px-4 py-2 rounded bg-emerald-50 w-fit">
                 <p className="font-semibold text-lg lg:text-xl">
                   {DisplayPriceInRupees(
                     pricewithDiscount(
@@ -420,17 +401,18 @@ export default async function ProductDisplayPage({ params }) {
                 <p className="line-through">{DisplayPriceInRupees(productData.price)}</p>
               )}
               {productData.discount > 0 && (
-                <p className="font-bold text-green-600 lg:text-2xl">
-                  {productData.discount}% <span className="text-base text-black">Discount</span>
+                <p className="font-bold text-emerald-600 lg:text-2xl">
+                  {productData.discount}% <span className="text-base text-slate-900">Discount</span>
                 </p>
               )}
             </div>
           </div>
 
+          {/* Price */}
           <div>
             <p>Price</p>
             <div className="flex items-center gap-2 lg:gap-4">
-              <div className="border border-green-600 px-4 py-2 rounded bg-green-50 w-fit">
+              <div className="border border-emerald-600 px-4 py-2 rounded bg-emerald-50 w-fit">
                 <p className="font-semibold text-lg lg:text-xl">
                   {DisplayPriceInRupees(
                     pricewithDiscount(productData.price, productData.discount || 0)
@@ -441,44 +423,46 @@ export default async function ProductDisplayPage({ params }) {
                 <p className="line-through">{DisplayPriceInRupees(productData.price)}</p>
               )}
               {productData.discount > 0 && (
-                <p className="font-bold text-green-600 lg:text-2xl">
-                  {productData.discount}% <span className="text-base text-black">Discount</span>
+                <p className="font-bold text-emerald-600 lg:text-2xl">
+                  {productData.discount}% <span className="text-base text-slate-900">Discount</span>
                 </p>
               )}
             </div>
           </div>
 
+          {/* Stock/Add to Cart */}
           {productData.stock === 0 ? (
-            <p className="text-lg text-red-500 my-2">Out of Stock</p>
+            <p className="text-lg text-rose-600 my-2">Out of Stock</p>
           ) : (
             <div className="my-4">
               <AddToCartButton data={productData} />
             </div>
           )}
 
-          <h2 className="font-semibold">Why shop from Essentialist Makeup Store?</h2>
+          {/* Reviews - always after prices */}
+          <ReviewsSection productId={productId} />
+
+          <h2 className="font-semibold mt-8">Why shop from Essentialist Makeup Store?</h2>
           <div>
             <div className="flex items-center gap-4 my-4">
-              <Image src={image1} alt="Superfast delivery" width={80} height={80} className="w-20 h-20" />
+              <Image src="/assets/minute_delivery.jpeg" alt="Superfast delivery" width={80} height={80} className="w-20 h-20" />
               <div className="text-sm">
                 <div className="font-semibold">Superfast Delivery</div>
                 <p>Get your order delivered to your doorstep at the earliest from dark stores near you.</p>
               </div>
             </div>
             <div className="flex items-center gap-4 my-4">
-              <Image src={image2} alt="Best prices and offers" width={80} height={80} className="w-20 h-20" />
+              <Image src="/assets/Best_Prices_Offers.png" alt="Best prices and offers" width={80} height={80} className="w-20 h-20" />
               <div className="text-sm">
                 <div className="font-semibold">Best Prices and Offers</div>
                 <p>Best price destination with offers directly from the manufacturers.</p>
               </div>
             </div>
             <div className="flex items-center gap-4 my-4">
-              <Image src={image3} alt="Wide assortment" width={80} height={80} className="w-20 h-20" />
+              <Image src="/assets/Wide_Assortment.avif" alt="Wide assortment" width={80} height={80} className="w-20 h-20" />
               <div className="text-sm">
                 <div className="font-semibold">Wide Assortment</div>
-                <p>
-                  Choose from over five thousand makeup products including foundations, lipsticks, eyeshadows, and more.
-                </p>
+                <p>Choose from over five thousand makeup products including foundations, lipsticks, eyeshadows, and more.</p>
               </div>
             </div>
           </div>
@@ -487,7 +471,7 @@ export default async function ProductDisplayPage({ params }) {
             <div>
               <p className="font-semibold">Description</p>
               <div
-                className="text-base text-justify text-black product-description-content"
+                className="text-base text-justify text-slate-900 product-description-content"
                 dangerouslySetInnerHTML={{ __html: productData.description || '' }}
               />
             </div>

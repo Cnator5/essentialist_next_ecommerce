@@ -161,7 +161,40 @@ const SummaryApi = {
     getProductsByIds: {
         url: '/api/product/get-by-ids',
         method: 'post'
-    }
+    },
+    // ratings
+    ratingsGet: {
+        // GET /api/ratings/:productId
+        url: (productId) => `/api/ratings/${productId}`,
+        method: 'get'
+    },
+    ratingsUpsert: {
+        // POST /api/ratings { productId, value }
+        url: '/api/ratings',
+        method: 'post'
+    },
+    ratingsDelete: {
+        // DELETE /api/ratings/:productId
+        url: (productId) => `/api/ratings/${productId}`,
+        method: 'delete'
+    },
+
+    //reviews apis
+    reviewsList: {
+  // GET /api/reviews/:productId?limit=&page=
+  url: (productId, q='') => `/api/reviews/${productId}${q}`,
+  method: 'get'
+},
+reviewsUpsert: {
+  // POST /api/reviews { productId, rating, title?, comment? }
+  url: '/api/reviews',
+  method: 'post'
+},
+reviewsDelete: {
+  // DELETE /api/reviews/:productId
+  url: (productId) => `/api/reviews/${productId}`,
+  method: 'delete'
+},
 }
 
 export default SummaryApi;
