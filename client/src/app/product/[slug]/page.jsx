@@ -7,7 +7,6 @@ import { DisplayPriceInRupees } from '../../../utils/DisplayPriceInRupees'
 import { pricewithDiscount } from '../../../utils/PriceWithDiscount'
 import RatingBlock from './RatingBlock.client'
 import ProductGallery from './ProductGallery.client'
-import ReviewsSection from './ReviewsSection.client'
 import SummaryApi, { baseURL } from '../../../common/SummaryApi'
 
 // -------- Helpers ----------
@@ -438,9 +437,6 @@ export default async function ProductDisplayPage({ params }) {
               <AddToCartButton data={productData} />
             </div>
           )}
-
-          {/* Reviews - always after prices */}
-          <ReviewsSection productId={productId} />
 
           <h2 className="font-semibold mt-8">Why shop from Essentialist Makeup Store?</h2>
           <div>

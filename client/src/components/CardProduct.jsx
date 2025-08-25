@@ -185,7 +185,7 @@ export default function CardProduct({ data }) {
   return (
     <div
       onClick={handleProductClick}
-      className={`relative flex flex-col border border-gray-200 overflow-hidden transition-all duration-300 ease-in-out py-3 lg:p-4 rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-md ${isNavigating ? 'opacity-75' : ''}`}
+      className={`relative flex flex-col border border-gray-200 overflow-hidden transition-all duration-300 ease-in-out py-1 lg:p-2 rounded-lg cursor-pointer bg-white shadow-sm hover:shadow-md ${isNavigating ? 'opacity-75' : ''}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
