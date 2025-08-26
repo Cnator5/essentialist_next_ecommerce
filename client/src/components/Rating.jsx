@@ -5,8 +5,8 @@ import { useId, useMemo, useState } from 'react'
 const clamp = (n, min, max) => Math.min(max, Math.max(min, n))
 
 export default function Rating({
-  value = 0,                // current user rating (or null)
-  onChange,                 // (val:number|null) => void
+  value = 0,
+  onChange,
   size = 20,
   readOnly = false,
   allowHalf = true,

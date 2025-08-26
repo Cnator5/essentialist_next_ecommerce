@@ -17,7 +17,7 @@ const SummaryApi = {
   getSubCategory: { url: '/api/subcategory/get', method: 'post' },
 }
 
-const DEFAULT_TITLE = 'Makeup: Beauty & Personal Care - EssentialisMakeupStore'
+const DEFAULT_TITLE = 'Makeup: Beauty & Personal Care - Best cosmetic shop in Douala Cameroon'
 const DEFAULT_DESC =
   'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more. Shop top brands, enjoy exclusive deals, and experience free shipping & cash on delivery!'
 const OG_IMAGE = 'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'
@@ -63,8 +63,8 @@ export async function generateMetadata() {
     : ''
 
   const dynTitle = top
-    ? `Shop ${top} & More - Best Makeup Store in Cameroon`
-    : DEFAULT_TITLE
+    ? DEFAULT_TITLE
+    :  `Shop ${top} & More - Best Makeup Store in Cameroon`
 
   const dynDesc = top
     ? `Discover the best in ${top} and more. Authentic makeup, cosmetics, and beauty essentials in Cameroon at EssentialisMakeupStore.`
@@ -75,7 +75,7 @@ export async function generateMetadata() {
     title: dynTitle,
     description: dynDesc,
     keywords: [
-      'makeup', 'makeup Cameroon', 'makeup Douala', 'African makeup', 'Cameroon beauty', 'Douala beauty',
+      'makeup', 'Best makeup store in Cameroon', 'best makeup essentials', 'makeup essentials', 'makeup in Douala', 'African makeup', 'Cameroon beauty', 'Douala beauty',
       'buy makeup Cameroon', 'makeup brands Cameroon', 'makeup store Douala', 'cosmetics Cameroon',
       'EssentialisMakeupStore', 'makeup artist Douala', 'beauty shop Douala', 'foundation', 'concealer',
       'contour', 'bronzer', 'blush', 'highlighter', 'pressed powder', 'setting spray', 'primer', 'eyeshadow',

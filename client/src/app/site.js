@@ -1,14 +1,3 @@
-// app/sitemap.js
-
-/**
- * Generates the sitemap for your Next.js e-commerce makeup website.
- * This implementation fetches categories, subcategories, and products from your backend API,
- * generating SEO-friendly URLs for each.
- *
- * Ensure NEXT_PUBLIC_API_URL is set in your .env file, e.g.
- * NEXT_PUBLIC_API_URL="http://localhost:1010"
- */
-
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.esmakeupstore.com';
 
 function slugify(str) {

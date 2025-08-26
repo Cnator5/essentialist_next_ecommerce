@@ -154,7 +154,7 @@ export async function generateMetadata({ params }) {
   const productId = extractProductId(slug)
   if (!productId) {
     return {
-      title: 'Product not found - EssentialisMakeupStore',
+      title: 'Product not found',
       description: 'Invalid product URL',
       robots: { index: false, follow: false },
     }
@@ -163,7 +163,7 @@ export async function generateMetadata({ params }) {
   const product = await getProduct(productId)
   if (!product) {
     return {
-      title: 'Product not found - EssentialisMakeupStore',
+      title: 'Product not found',
       description: 'Product could not be found.',
       robots: { index: false, follow: true },
     }

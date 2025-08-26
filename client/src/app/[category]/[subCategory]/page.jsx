@@ -110,7 +110,7 @@ export async function generateMetadata({ params, searchParams }) {
 
   if (!categoryId || !subCategoryId) {
     return {
-      title: 'Products - EssentialisMakeupStore',
+      title: 'Products',
       description: 'Explore our curated selection of makeup and beauty products.',
       robots: { index: false, follow: true },
     }
