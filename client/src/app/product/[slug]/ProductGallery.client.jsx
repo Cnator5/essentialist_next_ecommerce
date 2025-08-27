@@ -28,7 +28,7 @@ export default function ProductGallery({ images = [], productName = '' }) {
 
   return (
     <div className="w-full">
-      <div className="bg-white lg:minh-[65vh] lg:max-h-[65vh] rounded min-h-56 max-h-56 h-full w-full zoomable">
+      <div className="bg-white rounded min-h-10 max-h-26 h-full w-full zoomable">
         <ImageZoomWrapper
           src={currentSrc}
           alt={productName}

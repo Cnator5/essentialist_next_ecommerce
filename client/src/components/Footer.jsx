@@ -192,9 +192,9 @@ const Footer = () => {
                 <Link href="https://www.youtube.com/Essentialistmakeupstore" target="_blank" rel="noopener noreferrer" className="bg-rose-600 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center hover:opacity-90 transition duration-300">
                   <FaYoutube size={18} color="white" />
                 </Link>
-                <Link href="https://www.whatsapp.com/Essentialistmakeupstore" target="_blank" rel="noopener noreferrer" className="bg-green-600 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center hover:opacity-90 transition duration-300">
+                {/* <Link href="https://www.whatsapp.com/Essentialistmakeupstore" target="_blank" rel="noopener noreferrer" className="bg-green-600 w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center hover:opacity-90 transition duration-300">
                   <FaWhatsapp size={18} color="white" />
-                </Link>
+                </Link> */}
                 <Link href="https://www.tiktok.com/@essentialistmakeupstore" target="_blank" rel="noopener noreferrer" className="bg-black w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center hover:opacity-90 transition duration-300">
                   <FaTiktok size={18} color="white" />
                 </Link>

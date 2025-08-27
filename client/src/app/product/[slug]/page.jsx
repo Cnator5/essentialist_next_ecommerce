@@ -277,6 +277,7 @@ function StructuredData({ product, slug, rating }) {
     sameAs: [
       'https://www.facebook.com/Essentialistmakeupstore',
       'https://www.tiktok.com/@essentialistmakeupstore',
+      'https://www.instagram.com/Essentialistmakeupstore',
     ],
     address: {
       '@type': 'PostalAddress',
