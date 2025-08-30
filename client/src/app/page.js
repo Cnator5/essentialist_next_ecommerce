@@ -17,7 +17,8 @@ const SummaryApi = {
   getSubCategory: { url: '/api/subcategory/get', method: 'post' },
 }
 
-const DEFAULT_TITLE = 'Makeup: Beauty & Personal Care - Best cosmetic shop in Douala Cameroon'
+const DEFAULT_TITLE = 'Makeup: Best Online Makeup Store in Douala, Cameroon | Beauty & Personal Care'
+
 const DEFAULT_DESC =
   'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more. Shop top brands, enjoy exclusive deals, and experience free shipping & cash on delivery!'
 const OG_IMAGE = 'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'

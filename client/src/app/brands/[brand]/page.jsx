@@ -1,15 +1,13 @@
-// src/app/brands/page.jsx
-// Server Component (SSR) Product List page with dynamic SEO via generateMetadata
-
+// src/app/brands/[brand]/page.jsx
 import Link from 'next/link'
-import { valideURLConvert } from '../../utils/valideURLConvert'
-import BrandSearch from '../../components/BrandSearch'
-
-const SITE_URL = 'https://www.esmakeupstore.com/brands'
+import { notFound } from 'next/navigation'
+import { valideURLConvert } from '../../../utils/valideURLConvert'
+// 
+const SITE_URL = 'https://www.esmakeupstore.com'
 const SITE_NAME = 'Essentialist Makeup Store'
 const OG_IMAGE = 'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'
 
-// Static product data (can be moved to a DB/API later)
+// Your existing product data (same as in brands/page.jsx)
 const makeupProducts = [
   { product: 'Total control drop', genre: 'foundation', brand: 'NYX', bulk: 9000, sell: 13000 },
   { product: 'Dou chromatic', genre: 'lip gloss', brand: 'NYX', bulk: 4000, sell: 6000 },
@@ -102,7 +100,41 @@ const makeupProducts = [
   { product: 'THE ROYALTY', genre: 'LOOSE HIGHLIGHTER', brand: 'JUVIA', qty: 2, bulk: 11000, sell: 13000 },
 ]
 
-// API config (SSR fetch -- no Redux, no client hooks)
+// Get unique brands
+const getAllBrands = () => {
+  return Array.from(new Set(makeupProducts.map(p => p.brand))).sort()
+}
+
+// Get products by brand
+const getProductsByBrand = (brandName) => {
+  return makeupProducts.filter(p => 
+    p.brand.toLowerCase() === brandName.toLowerCase()
+  )
+}
+
+// Brand name formatting
+const formatBrandName = (brand) => {
+  const brandMap = {
+    'nyx': 'NYX',
+    'la-girl': 'LA girl',
+    'elf': 'ELF',
+    'smashbox': 'SMASHBOX',
+    'bobbi-brown': 'BOBBI BROWN',
+    'too-faced': 'TOO FACED',
+    'estee-lauder': 'ESTEE LAUDER',
+    'mac': 'MAC',
+    'clinic': 'CLINIC',
+    'one-size': 'ONE SIZE',
+    'juvia': 'JUVIA'
+  }
+  return brandMap[brand.toLowerCase()] || brand.toUpperCase()
+}
+
+const createBrandSlug = (brand) => {
+  return brand.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
+}
+
+// API functions (same as your existing ones)
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 const SummaryApi = {
   getCategory: { url: '/api/category/get', method: 'get' },
@@ -142,12 +174,7 @@ async function getSubCategories() {
   }
 }
 
-// Helper function to create brand slug
-function createBrandSlug(brand) {
-  return brand.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
-}
-
-// Helpers
+// Helper functions
 function FCFA(amount) {
   if (typeof amount !== 'number' || Number.isNaN(amount)) return '-'
   return `${amount.toLocaleString()} FCFA`
@@ -176,242 +203,217 @@ function buildSubCatUrl(mainCat, subCat) {
   return `/${valideURLConvert(mainCat.name)}-${mainCat._id}/${valideURLConvert(subCat.name)}-${subCat._id}`
 }
 
-// Brand Summary Component
-function BrandSummary() {
-  const allBrands = Array.from(new Set(makeupProducts.map(p => p.brand))).sort()
+// Generate static params for all brands
+export async function generateStaticParams() {
+  const brands = getAllBrands()
+  return brands.map((brand) => ({
+    brand: createBrandSlug(brand)
+  }))
+}
+
+// Dynamic metadata
+export async function generateMetadata({ params }) {
+  const brandSlug = params?.brand
+  const brandName = formatBrandName(brandSlug)
+  const products = getProductsByBrand(brandName)
+  
+  if (products.length === 0) {
+    return {
+      title: 'Brand not found',
+      description: 'This brand is not available in our store.',
+      robots: { index: false, follow: false },
+    }
+  }
+
+  const productCount = products.length
+  const genres = Array.from(new Set(products.map(p => p.genre))).slice(0, 5).join(', ')
+  
+  const title = `${brandName} Makeup Products - ${productCount} Items | ${SITE_NAME}`
+  const description = `Shop authentic ${brandName} makeup in Cameroon. ${productCount} products available including ${genres}. Best prices, fast delivery in Douala & nationwide.`
+  
+  const canonical = `${SITE_URL}/brands/${brandSlug}`
+
+  return {
+    metadataBase: new URL(SITE_URL),
+    title,
+    description,
+    keywords: [
+      `${brandName} makeup`,
+      `${brandName} Cameroon`,
+      `${brandName} price list`,
+      'authentic makeup',
+      'Douala makeup store',
+      ...genres.split(', ').map(g => `${brandName} ${g}`),
+    ],
+    robots: { index: true, follow: true },
+    alternates: { canonical },
+    openGraph: {
+      type: 'website',
+      siteName: SITE_NAME,
+      url: canonical,
+      title,
+      description,
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `${brandName} makeup products` }],
+      locale: 'en_US',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [OG_IMAGE],
+    },
+  }
+}
+
+// Structured data for brand page
+function BrandStructuredData({ brandName, products }) {
+  const brandJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Brand',
+    name: brandName,
+    url: `${SITE_URL}/brands/${createBrandSlug(brandName)}`,
+  }
+
+  const productListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${brandName} Makeup Products`,
+    numberOfItems: products.length,
+    itemListElement: products.slice(0, 20).map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        name: product.product,
+        brand: { '@type': 'Brand', name: product.brand },
+        category: product.genre,
+        offers: {
+          '@type': 'Offer',
+          priceCurrency: 'XAF',
+          price: String(product.sell || product.price || 0),
+          availability: 'https://schema.org/InStock',
+        },
+      },
+    })),
+  }
+
+  return (
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(brandJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productListJsonLd) }} />
+    </>
+  )
+}
+
+// Brand navigation component
+function BrandNavigation({ currentBrand }) {
+  const allBrands = getAllBrands()
   
   return (
-    <div className="mb-8 bg-white rounded-lg shadow-md p-6">
-      <h2 className="text-2xl font-bold text-pink-600 mb-4 text-center">Shop by Individual Brand</h2>
-      <p className="text-center text-gray-600 mb-6">Click on any brand to see their complete product catalog with prices</p>
-      
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-        {allBrands.map((brand) => {
-          const productCount = makeupProducts.filter(p => p.brand === brand).length
-          const brandSlug = createBrandSlug(brand)
-          const avgPrice = Math.round(
-            makeupProducts
-              .filter(p => p.brand === brand)
-              .reduce((sum, p) => sum + (p.sell || p.price || 0), 0) / productCount
-          )
-          
-          return (
-            <Link
-              key={brand}
-              href={`/brands/${brandSlug}`}
-              className="group p-4 bg-gradient-to-br from-pink-50 to-pink-100 rounded-lg border border-pink-200 hover:border-pink-400 transition-all hover:shadow-md transform hover:scale-105"
-            >
-              <h3 className="font-bold text-gray-900 group-hover:text-pink-600 transition-colors text-center">
-                {brand}
-              </h3>
-              <div className="text-xs text-gray-600 mt-2 text-center">
-                <p>{productCount} products</p>
-                <p className="font-semibold text-pink-600">Avg: {FCFA(avgPrice)}</p>
-              </div>
-            </Link>
-          )
-        })}
-      </div>
-      
-      <div className="mt-6 p-4 bg-pink-50 rounded-lg border border-pink-200">
-        <h3 className="font-semibold text-gray-800 mb-2">Quick Brand Facts:</h3>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-gray-600">
-          <div>
-            <span className="font-medium text-pink-600">{allBrands.length}</span> Total Brands
-          </div>
-          <div>
-            <span className="font-medium text-pink-600">{makeupProducts.length}</span> Total Products
-          </div>
-          <div>
-            <span className="font-medium text-pink-600">100%</span> Authentic Products
-          </div>
-        </div>
+    <div className="mb-8 bg-white rounded-lg shadow-md p-4">
+      <h3 className="text-lg font-semibold text-gray-800 mb-4">Shop by Brand:</h3>
+      <div className="flex flex-wrap gap-2">
+        <Link
+          href="/brands"
+          className="px-4 py-2 rounded-full border transition-colors bg-gray-100 text-gray-700 border-gray-300 hover:bg-pink-50 hover:border-pink-300"
+        >
+          All Brands
+        </Link>
+        {allBrands.map((brand) => (
+          <Link
+            key={brand}
+            href={`/brands/${createBrandSlug(brand)}`}
+            className={`px-4 py-2 rounded-full border transition-colors ${
+              currentBrand === brand 
+                ? 'bg-pink-500 text-white border-pink-500' 
+                : 'bg-white text-gray-700 border-gray-300 hover:bg-pink-50 hover:border-pink-300'
+            }`}
+          >
+            {brand}
+          </Link>
+        ))}
       </div>
     </div>
   )
 }
 
-// Dynamic SEO
-export async function generateMetadata() {
-  const categories = await getCategories()
-
-  const allProductNames = makeupProducts.map((p) => p.product).join(', ')
-  const allBrands = Array.from(new Set(makeupProducts.map((p) => p.brand))).join(', ')
-  const allGenres = Array.from(new Set(makeupProducts.map((p) => p.genre))).join(', ')
-
-  const topCats = Array.isArray(categories)
-    ? categories.slice(0, 5).map((c) => c?.name).filter(Boolean).join(', ')
-    : ''
-
-  const dynTitle =
-    `Best Makeup Brands: NYX, JUVIA, ONE SIZE, BOBBI BROWN, SMASHBOX, ELF, ESTEE LAUDER, MAC, CLINIC, LA Girl | ${SITE_NAME}`
-
-  const dynDesc = `Discover authentic makeup in Cameroon. Brands: ${allBrands}. Categories: ${allGenres}. Browse individual brand pages for detailed pricing. Best FCFA prices, fast delivery in Douala & nationwide.`
-
-  return {
-    metadataBase: new URL('https://www.esmakeupstore.com'),
-    title: dynTitle,
-    description: dynDesc,
-    keywords: [
-      'makeup brands',
-      'Cameroon makeup',
-      'Douala makeup store',
-      'NYX Cameroon',
-      'LA Girl makeup',
-      'authentic makeup Cameroon',
-      'foundation price list',
-      'lipstick price',
-      'powder price',
-      'cosmetics Cameroon',
-      'brand comparison',
-      'makeup price list',
-      ...allBrands.split(', ').slice(0, 20),
-      ...allGenres.split(', ').slice(0, 20),
-    ],
-    robots: { index: true, follow: true },
-    alternates: { canonical: SITE_URL },
-    openGraph: {
-      type: 'website',
-      siteName: SITE_NAME,
-      url: SITE_URL,
-      title: dynTitle,
-      description: dynDesc,
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: 'Makeup brands in Cameroon -- price list' }],
-      locale: 'en_US',
-    },
-    twitter: {
-      card: 'summary_large_image',
-      title: dynTitle,
-      description: dynDesc,
-      images: [OG_IMAGE],
-    },
-    icons: {
-      icon: [{ url: '/icon.avif', type: 'image/avif' }],
-      apple: [{ url: '/icon.avif' }],
-    },
-    themeColor: '#faf6f3',
-  }
-}
-
-// Schema.org JSON-LD (SSR)
-function StructuredData({ allCategory, allSubCategory }) {
-  const structuredProducts = makeupProducts.slice(0, 20).map((item) => {
-    const price = item.sell ?? item.price ?? '-'
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'Product',
-      name: item.product,
-      brand: { '@type': 'Brand', name: item.brand },
-      category: item.genre,
-      offers: {
-        '@type': 'Offer',
-        priceCurrency: 'XAF',
-        price: typeof price === 'number' ? String(price) : undefined,
-        availability: 'https://schema.org/InStock',
-      },
-    }
-  })
-
-  const itemList = {
-    '@context': 'https://schema.org',
-    '@type': 'ItemList',
-    name: 'Makeup Brand Price List',
-    itemListElement: structuredProducts.map((prod, i) => ({
-      '@type': 'ListItem',
-      position: i + 1,
-      item: prod,
-    })),
+// Main brand page component
+export default async function BrandPage({ params }) {
+  const brandSlug = params?.brand
+  const brandName = formatBrandName(brandSlug)
+  const products = getProductsByBrand(brandName)
+  
+  if (products.length === 0) {
+    return notFound()
   }
 
-  const storeJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Store',
-    name: SITE_NAME,
-    url: SITE_URL,
-    logo: OG_IMAGE,
-    image: [
-      OG_IMAGE,
-      'https://www.esmakeupstore.com/assets/NYX-PMU-Makeup-Lips-Liquid-Lipstick-LIP-LINGERIE-XXL-LXXL28-UNTAMABLE-0800897132187-OpenSwatch.webp',
-      'https://www.esmakeupstore.com/assets/800897085421_duochromaticilluminatingpowder_twilighttint_alt2.jpg',
-    ],
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: 'Douala',
-      addressLocality: 'Douala',
-      addressCountry: 'CM',
-    },
-    contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+237655225569',
-      contactType: 'customer support',
-      areaServed: 'CM',
-    },
-    sameAs: [
-      'https://www.facebook.com/esmakeupstore',
-      'https://www.instagram.com/esmakeupstore',
-    ],
-  }
-
-  const ld = [storeJsonLd, itemList]
-
-  return (
-    <>
-      {ld.map((obj, i) => (
-        <script
-          key={i}
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(obj) }}
-        />
-      ))}
-    </>
-  )
-}
-
-// Page (SSR)
-export default async function BrandPage() {
   const [allCategory, allSubCategory] = await Promise.all([getCategories(), getSubCategories()])
-
-  const allBrands = Array.from(new Set(makeupProducts.map((p) => p.brand))).join(', ')
-  const allGenres = Array.from(new Set(makeupProducts.map((p) => p.genre))).join(', ')
+  
+  const genres = Array.from(new Set(products.map(p => p.genre)))
+  const totalProducts = products.length
+  const avgPrice = Math.round(products.reduce((sum, p) => sum + (p.sell || p.price || 0), 0) / products.length)
+  const totalValue = products.reduce((sum, p) => sum + (p.sell || p.price || 0), 0)
 
   return (
     <main className="bg-gradient-to-b from-pink-50 to-white min-h-screen py-10 px-2 md:px-10">
-      <StructuredData allCategory={allCategory} allSubCategory={allSubCategory} />
+      <BrandStructuredData brandName={brandName} products={products} />
+      
+      <header className="text-center mb-8">
+        <h1 className="text-4xl md:text-6xl font-extrabold text-pink-500 mb-2 tracking-tight">
+          {brandName} MAKEUP
+        </h1>
+        <p className="text-lg md:text-2xl text-gray-700 font-semibold">
+          Authentic {brandName} Products in Cameroon
+        </p>
+        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto">
+          <div className="bg-white rounded-lg p-4 shadow-sm border border-pink-200">
+            <p className="text-2xl font-bold text-pink-600">{totalProducts}</p>
+            <p className="text-sm text-gray-600">Products Available</p>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm border border-pink-200">
+            <p className="text-2xl font-bold text-green-600">{FCFA(avgPrice)}</p>
+            <p className="text-sm text-gray-600">Average Price</p>
+          </div>
+          <div className="bg-white rounded-lg p-4 shadow-sm border border-pink-200">
+            <p className="text-2xl font-bold text-blue-600">{genres.length}</p>
+            <p className="text-sm text-gray-600">Categories</p>
+          </div>
+        </div>
+        <p className="text-gray-600 mt-4">
+          Categories: {genres.slice(0, 8).join(', ')}{genres.length > 8 ? '...' : ''}
+        </p>
+      </header>
 
-      {/* Brand Search Component */}
-      <div className="mb-8">
-        <BrandSearch />
-      </div>
+      <BrandNavigation currentBrand={brandName} />
 
-      {/* Brand Summary Component - NEW */}
-      <BrandSummary />
-
-      {/* Complete Product Table */}
-      <section aria-labelledby="product-table-heading" className="overflow-x-auto rounded-lg border border-pink-200 shadow-lg bg-white">
-        <h2 id="product-table-heading" className="text-xl font-bold text-pink-600 p-4 border-b border-pink-200">
-          Complete Product Price List - All Brands
-        </h2>
+      <section aria-labelledby="brand-products" className="overflow-x-auto rounded-lg border border-pink-200 shadow-lg bg-white">
+        <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4">
+          <h2 id="brand-products" className="text-xl font-bold">
+            Complete {brandName} Product Catalog
+          </h2>
+          <p className="text-pink-100 text-sm mt-1">
+            All {totalProducts} authentic {brandName} products with current pricing
+          </p>
+        </div>
+        
         <table className="min-w-full text-sm md:text-base">
           <thead>
             <tr className="bg-pink-100 text-black">
               <th scope="col" className="py-3 px-2 md:px-4 font-bold text-left">Product</th>
-              <th scope="col" className="py-3 px-2 md:px-4 font-bold text-left">Subcategory</th>
-              <th scope="col" className="py-3 px-2 md:px-4 font-bold text-left">Brand</th>
-              <th scope="col" className="py-3 px-2 md:px-4 font-bold text-right">Bulk Price (FCFA)</th>
-              <th scope="col" className="py-3 px-2 md:px-4 font-bold text-right">Selling Price (FCFA)</th>
+              <th scope="col" className="py-3 px-2 md:px-4 font-bold text-left">Category</th>
+              <th scope="col" className="py-3 px-2 md:px-4 font-bold text-right">Bulk Price</th>
+              <th scope="col" className="py-3 px-2 md:px-4 font-bold text-right">Selling Price</th>
             </tr>
           </thead>
           <tbody>
-            {makeupProducts.map((item, idx) => {
+            {products.map((item, idx) => {
               const found = getMainAndSubCat(allCategory, allSubCategory, item.genre)
               const isLink = !!found
               const rowClass = idx % 2 === 0 ? 'bg-white' : 'bg-pink-50'
-              const brandSlug = createBrandSlug(item.brand)
-              
               return (
                 <tr key={`${item.product}-${idx}`} className={rowClass}>
-                  <td className="py-2 px-2 md:px-4 font-semibold text-gray-900">{item.product}</td>
-                  <td className="py-2 px-2 md:px-4">
+                  <td className="py-3 px-2 md:px-4 font-semibold text-gray-900">{item.product}</td>
+                  <td className="py-3 px-2 md:px-4">
                     {isLink ? (
                       <Link
                         href={buildSubCatUrl(found.mainCat, found.subCat)}
@@ -424,17 +426,8 @@ export default async function BrandPage() {
                       <span className="text-gray-500">{item.genre}</span>
                     )}
                   </td>
-                  <td className="py-2 px-2 md:px-4">
-                    <Link
-                      href={`/brands/${brandSlug}`}
-                      className="text-gray-900 hover:text-pink-600 font-medium transition-colors underline"
-                      aria-label={`View all ${item.brand} products`}
-                    >
-                      {item.brand}
-                    </Link>
-                  </td>
-                  <td className="py-2 px-2 md:px-4 text-right font-bold text-green-600">{FCFA(item.bulk)}</td>
-                  <td className="py-2 px-2 md:px-4 text-right font-bold text-pink-600">
+                  <td className="py-3 px-2 md:px-4 text-right font-bold text-green-600">{FCFA(item.bulk)}</td>
+                  <td className="py-3 px-2 md:px-4 text-right font-bold text-pink-600">
                     {FCFA(item.sell ?? item.price)}
                   </td>
                 </tr>
@@ -444,50 +437,50 @@ export default async function BrandPage() {
         </table>
       </section>
 
-       <section className="text-center mb-8 ">
-        <h1 className="text-4xl md:text-6xl font-extrabold text-pink-500 mb-2 tracking-tight">
-          ESSENTIALIST MAKEUP STORE
-        </h1>
-        <p className="text-lg md:text-2xl text-gray-700 font-semibold">
-          Build & Brand -- Makeup Brands Price List
-        </p>
-        <p className="text-pink-600 font-bold mt-2">
-          Discover authentic brands at the best prices in Cameroon!
-        </p>
-        <p className="text-gray-600 mt-1">
-          Brands: {allBrands}. Categories: {allGenres}.
-        </p>
-      </section>
-
-      <section className="mt-12 md:mt-16 bg-pink-100 rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto text-center">
+      <section className="mt-12 bg-pink-100 rounded-lg shadow-lg p-6 md:p-10 max-w-3xl mx-auto text-center">
         <h2 className="text-2xl font-bold text-pink-600 mb-2">
-          Contact Us -- Buy Top Makeup Brands in Cameroon
+          Order {brandName} Products Now
         </h2>
         <p className="text-gray-700 mb-4">
-          For orders, enquiries, or partnership with authentic brands (NYX, LA Girl, JUVIA, ONE SIZE, BOBBI BROWN,
-          SMASHBOX, ELF, ESTEE LAUDER, MAC, CLINIC, and more), reach out to {SITE_NAME}. We supply genuine products
-          at the best FCFA prices in Douala and nationwide.
+          Get authentic {brandName} makeup delivered to your doorstep in Cameroon. 
+          All products are genuine with best prices guaranteed. Fast delivery nationwide.
         </p>
-        <div className="flex flex-col items-center gap-2">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div className="bg-white rounded-lg p-4 border border-pink-200">
+            <h3 className="font-semibold text-gray-800 mb-2">Why Choose Us?</h3>
+            <ul className="text-sm text-gray-600 space-y-1">
+              <li>✓ 100% Authentic {brandName} products</li>
+              <li>✓ Best prices in Cameroon</li>
+              <li>✓ Fast delivery in Douala</li>
+              <li>✓ Secure payment options</li>
+            </ul>
+          </div>
+          <div className="bg-white rounded-lg p-4 border border-pink-200">
+            <h3 className="font-semibold text-gray-800 mb-2">Contact Info</h3>
+            <div className="text-sm text-gray-600 space-y-1">
+              <p>📞 +237 655 22 55 69</p>
+              <p>📧 info@esmakeupstore.com</p>
+              <p>📍 Douala, Cameroon</p>
+              <p>🕐 Mon-Fri: 9am-5:30pm</p>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
             href="tel:+237655225569"
-            className="font-bold text-pink-600 hover:text-pink-500 underline"
-            title="Call Essentialist Makeup Store"
+            className="w-full sm:w-auto bg-pink-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-pink-700 transition-colors"
+            title={`Call to order ${brandName} products`}
           >
-            Call/WhatsApp: +237 655 22 55 69
+            📞 Call Now: +237 655 22 55 69
           </a>
           <a
             href="mailto:info@esmakeupstore.com"
-            className="font-bold text-pink-600 hover:text-pink-500 underline"
-            title="Email Essentialist Makeup Store"
+            className="w-full sm:w-auto bg-white text-pink-600 px-6 py-3 rounded-lg font-bold border-2 border-pink-600 hover:bg-pink-50 transition-colors"
+            title={`Email about ${brandName} products`}
           >
-            Email: info@esmakeupstore.com
+            📧 Send Email
           </a>
         </div>
-        <p className="mt-4 text-gray-600 text-sm">
-          Visit us in Douala or shop online for the widest range of makeup and beauty products. Fast delivery, secure
-          payment, and expert advice on all major makeup brands!
-        </p>
       </section>
     </main>
   )

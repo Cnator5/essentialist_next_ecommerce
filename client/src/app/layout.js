@@ -8,8 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   metadataBase: new URL('https://www.esmakeupstore.com'),
   title: {
-    default: 'Best Makeup in Cameroon: Beauty & Personal Care',
-    template: '%s | EssentialisMakeupStore',
+    default: 'Best Makeup store in Cameroon: Beauty & Personal Care',
   },
   description:
     'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more. Shop top brands, enjoy exclusive deals, and experience free shipping & cash on delivery!',
