@@ -244,7 +244,7 @@ export async function generateMetadata() {
     : ''
 
   const dynTitle =
-    `Best Makeup Brands: NYX, JUVIA, ONE SIZE, BOBBI BROWN, SMASHBOX, ELF, ESTEE LAUDER, MAC, CLINIC, LA Girl | ${SITE_NAME}`
+    `Best Makeup Brands: NYX, JUVIA, ONE SIZE, BOBBI BROWN, SMASHBOX, ELF, ESTEE LAUDER, MAC, CLINIC, LA Girl`
 
   const dynDesc = `Discover authentic makeup in Cameroon. Brands: ${allBrands}. Categories: ${allGenres}. Browse individual brand pages for detailed pricing. Best FCFA prices, fast delivery in Douala & nationwide.`
 

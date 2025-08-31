@@ -228,7 +228,7 @@ export async function generateMetadata({ params }) {
   const productCount = products.length
   const genres = Array.from(new Set(products.map(p => p.genre))).slice(0, 5).join(', ')
   
-  const title = `${brandName} Makeup Products - ${productCount} Items | ${SITE_NAME}`
+  const title = `${brandName} Makeup Products - ${productCount} Items`
   const description = `Shop authentic ${brandName} makeup in Cameroon. ${productCount} products available including ${genres}. Best prices, fast delivery in Douala & nationwide.`
   
   const canonical = `${SITE_URL}/brands/${brandSlug}`
