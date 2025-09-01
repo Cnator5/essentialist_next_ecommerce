@@ -1,224 +1,471 @@
-import Link from 'next/link'
-import Image from 'next/image'
-import { notFound } from 'next/navigation'
-import { Suspense } from 'react'
+// src/app/[category]/page.jsx
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import CardProduct from '../../components/CardProduct';
+import { valideURLConvert } from '../../utils/valideURLConvert';
+import SummaryApi, { baseURL } from '../../common/SummaryApi';
 
-// Components
-import BackgroundPaths from '../../components/BackgroundPaths'
-import CategoryClientBlock from './shared/CategoryClientBlock'
+const PAGE_SIZE = 12;
 
-// Utils
-import { valideURLConvert } from '../../utils/valideURLConvert'
-
-const SITE_URL = 'https://www.esmakeupstore.com'
-const SITE_NAME = 'Essentialist Makeup Store'
-
-// Fallback data for static generation
-const fallbackCategories = [
-  { name: 'Foundation', slug: 'foundation' },
-  { name: 'Lipstick', slug: 'lipstick' },
-  { name: 'Mascara', slug: 'mascara' },
-  { name: 'Powder', slug: 'powder' },
-  { name: 'Concealer', slug: 'concealer' },
-  { name: 'Blush', slug: 'blush' },
-  { name: 'Eyeshadow', slug: 'eyeshadow' },
-  { name: 'Primer', slug: 'primer' },
-  { name: 'Setting Spray', slug: 'setting-spray' },
-]
-
-// Generate static params
-export async function generateStaticParams() {
-  // Use fallback categories for static generation
-  return fallbackCategories.map((category) => ({
-    category: category.slug
-  }))
+/* ----------------------- Helpers ----------------------- */
+function parseIdFromSlug(slug) {
+  if (!slug) return null;
+  const parts = String(slug).split('-');
+  return parts[parts.length - 1];
+}
+function parseNameFromSlug(slug) {
+  if (!slug) return '';
+  const parts = String(slug).split('-');
+  return parts.slice(0, parts.length - 1).join(' ');
+}
+function safeArray(v) {
+  return Array.isArray(v) ? v : [];
+}
+function stripHtml(html) {
+  if (!html) return '';
+  return html.replace(/<[^>]*>?/gm, '').trim();
 }
 
-// Generate metadata
-export async function generateMetadata({ params }) {
-  const categorySlug = params?.category || ''
-  
-  const fallbackCategory = fallbackCategories.find(cat => 
-    cat.slug === categorySlug
-  )
+/* ----------------------- Data Fetch ----------------------- */
+async function fetchCategories() {
+  try {
+    const res = await fetch(`${baseURL}${SummaryApi.getCategory.url}`, {
+      method: SummaryApi.getCategory.method.toUpperCase(),
+      headers: { 'Content-Type': 'application/json' },
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) {
+      console.warn(`getCategory failed with status ${res.status}:`, res.statusText);
+      return [];
+    }
+    const j = await res.json();
+    return safeArray(j?.data || j);
+  } catch (e) {
+    console.error('fetchCategories', e);
+    return [];
+  }
+}
 
-  if (!fallbackCategory) {
-    return {
-      title: 'Category not found',
-      description: 'This category is not available in our store.',
-      robots: { index: false, follow: false },
+// Strictly fetch subcategories of a given categoryId.
+async function fetchSubCategoriesOfCategory(categoryId) {
+  try {
+    const res = await fetch(`${baseURL}${SummaryApi.getSubCategory.url}`, {
+      method: SummaryApi.getSubCategory.method.toUpperCase(),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ categoryId }),
+      next: { revalidate: 300 },
+    });
+    if (!res.ok) {
+      console.warn(`getSubCategory failed with status ${res.status}:`, res.statusText);
+      return [];
+    }
+    const j = await res.json();
+    // Safety filter even if backend already filtered
+    return safeArray(j?.data || j).filter((s) =>
+      safeArray(s?.category).some((c) => String(c?._id) === String(categoryId))
+    );
+  } catch (e) {
+    console.error('fetchSubCategoriesOfCategory', e);
+    return [];
+  }
+}
+
+async function fetchProductsByCategory({ categoryId, page }) {
+  try {
+    const res = await fetch(`${baseURL}${SummaryApi.getProductByCategory.url}`, {
+      method: SummaryApi.getProductByCategory.method.toUpperCase(),
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ categoryId, page, limit: PAGE_SIZE }),
+      next: { revalidate: 120 },
+    });
+    
+    // Better error handling - don't throw, just return empty result
+    if (!res.ok) {
+      console.warn(`getProductByCategory failed with status ${res.status}:`, res.statusText);
+      return { products: [], totalCount: 0 };
+    }
+    
+    const j = await res.json();
+    if (!j?.success) return { products: [], totalCount: 0 };
+    return { products: safeArray(j.data), totalCount: Number(j.totalCount || 0) };
+  } catch (e) {
+    console.error('fetchProductsByCategory', e);
+    return { products: [], totalCount: 0 };
+  }
+}
+
+// Fallback: aggregate products across all subcategories of this category
+async function fetchProductsAcrossSubcategories({ categoryId, subcats, page }) {
+  const per = PAGE_SIZE;
+  const start = (page - 1) * per;
+  const acc = [];
+  let totalCount = 0;
+
+  for (const s of subcats) {
+    try {
+      const res = await fetch(`${baseURL}${SummaryApi.getProductByCategoryAndSubCategory.url}`, {
+        method: SummaryApi.getProductByCategoryAndSubCategory.method.toUpperCase(),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          categoryId,
+          subCategoryId: s?._id,
+          page: 1,
+          limit: 100,
+        }),
+        next: { revalidate: 120 },
+      });
+      if (!res.ok) continue;
+      const j = await res.json();
+      const list = safeArray(j?.data);
+      acc.push(...list);
+      totalCount += Number(j?.totalCount || list.length || 0);
+    } catch (e) {
+      console.error('fetchProductsAcrossSubcategories (one subcat)', e);
     }
   }
 
-  const title = `${fallbackCategory.name} Makeup Products | ${SITE_NAME}`
-  const description = `Shop premium ${fallbackCategory.name.toLowerCase()} makeup products in Cameroon. Best quality cosmetics with fast delivery in Douala & nationwide. Essentialist Makeup Store.`
+  // Sort newest first if timestamps exist
+  acc.sort((a, b) => new Date(b?.updatedAt || b?.createdAt || 0) - new Date(a?.updatedAt || a?.createdAt || 0));
+  const products = acc.slice(start, start + per);
+  if (!totalCount) totalCount = acc.length;
+
+  return { products, totalCount };
+}
+
+/* ----------------------- Metadata ----------------------- */
+export async function generateMetadata({ params, searchParams }) {
+  const categorySlug = params?.category;
+  const page = Number(searchParams?.page || 1);
+  const name = parseNameFromSlug(categorySlug) || 'Category';
+
+  const title = `Shop ${name} | EssentialistMakeupStore${page > 1 ? ` | Page ${page}` : ''}`;
+  const description = `Explore ${name} at EssentialistMakeupStore. Nationwide shipping in Cameroon, secure online payment, great prices, and courteous support.`;
+  const canonical = `https://www.esmakeupstore.com/${categorySlug}${page > 1 ? `?page=${page}` : ''}`;
 
   return {
+    metadataBase: new URL('https://www.esmakeupstore.com'),
     title,
-    description,
-    keywords: [
-      fallbackCategory.name,
-      `${fallbackCategory.name} Cameroon`,
-      `${fallbackCategory.name} makeup`,
-      'cosmetics Cameroon',
-      'Douala makeup store',
-      'beauty products'
-    ],
+    description: stripHtml(description).slice(0, 300),
+    alternates: { canonical },
+    robots: { index: true, follow: true },
     openGraph: {
       type: 'website',
-      siteName: SITE_NAME,
-      url: `${SITE_URL}/${categorySlug}`,
+      siteName: 'EssentialistMakeupStore',
+      url: canonical,
       title,
       description,
+      images: [
+        {
+          url: 'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg',
+          width: 1200,
+          height: 630,
+          alt: title,
+        },
+      ],
+      locale: 'en_US',
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+      images: ['https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'],
     },
-  }
+    keywords: [name, 'makeup', 'beauty', 'Cameroon', 'Douala', 'EssentialistMakeupStore'],
+  };
 }
 
-// Loading component
-function CategoryLoading() {
+/* ----------------------- JSON-LD ----------------------- */
+function StructuredData({ categorySlug, categoryName }) {
+  const url = `https://www.esmakeupstore.com/${categorySlug}`;
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.esmakeupstore.com/' },
+      { '@type': 'ListItem', position: 2, name: categoryName || 'Category', item: url },
+    ],
+  };
+
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: `${categoryName || 'Category'} - EssentialistMakeupStore`,
+    url,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'EssentialistMakeupStore',
+      url: 'https://www.esmakeupstore.com/',
+    },
+  };
+
   return (
-    <div className="relative min-h-screen">
-      <div className="fixed inset-0 pointer-events-none">
-        <BackgroundPaths title="" />
-      </div>
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
+    </>
+  );
+}
 
-      <main className="relative z-10 py-10 px-2 md:px-10">
-        {/* Header Skeleton */}
-        <header className="text-center mb-8 bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg border border-pink-200">
-          <div className="w-32 h-32 mx-auto mb-6 rounded-full bg-pink-100 animate-pulse"></div>
-          <div className="h-12 bg-pink-100 animate-pulse rounded-lg mb-4 max-w-md mx-auto"></div>
-          <div className="h-6 bg-pink-100 animate-pulse rounded-lg mb-6 max-w-lg mx-auto"></div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-2xl mx-auto mb-6">
-            {[1, 2, 3].map(i => (
-              <div key={i} className="bg-white/80 backdrop-blur-sm rounded-xl p-4 shadow-sm border border-pink-200">
-                <div className="h-8 bg-pink-100 animate-pulse rounded mb-2"></div>
-                <div className="h-4 bg-pink-100 animate-pulse rounded"></div>
-              </div>
-            ))}
-          </div>
-        </header>
+/* ----------------------- Page ----------------------- */
+export default async function CategoryPage({ params, searchParams }) {
+  const categorySlug = params?.category;
+  const page = Number(searchParams?.page || 1);
+  const categoryId = parseIdFromSlug(categorySlug);
+  const categoryName = parseNameFromSlug(categorySlug);
 
-        {/* Products Grid Skeleton */}
-        <section className="bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-pink-200 overflow-hidden">
-          <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-6">
-            <div className="h-6 bg-pink-400 animate-pulse rounded mb-2 max-w-xs"></div>
-            <div className="h-4 bg-pink-400 animate-pulse rounded max-w-md"></div>
-          </div>
+  if (!categoryId) return notFound();
 
-          <div className="p-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-              {Array.from({ length: 8 }).map((_, i) => (
-                <div key={i} className="bg-white rounded-xl shadow-md border border-pink-100">
-                  <div className="aspect-square bg-pink-50 animate-pulse"></div>
-                  <div className="p-4">
-                    <div className="h-4 bg-pink-100 animate-pulse rounded mb-2"></div>
-                    <div className="h-3 bg-pink-100 animate-pulse rounded mb-3 w-2/3"></div>
-                    <div className="flex items-center justify-between">
-                      <div className="h-5 bg-pink-100 animate-pulse rounded w-1/3"></div>
-                      <div className="h-8 bg-pink-100 animate-pulse rounded w-1/3"></div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+  const [categories, subcats] = await Promise.all([
+    fetchCategories(),
+    fetchSubCategoriesOfCategory(categoryId),
+  ]);
+
+  const category = categories.find((c) => String(c?._id) === String(categoryId));
+  if (!category) return notFound();
+
+  // Try direct category listing
+  let { products, totalCount } = await fetchProductsByCategory({ categoryId, page });
+
+  // Fallback: aggregate across subcategories if nothing returns
+  if (products.length === 0 && subcats.length > 0) {
+    const agg = await fetchProductsAcrossSubcategories({ categoryId, subcats, page });
+    products = agg.products;
+    totalCount = agg.totalCount;
+  }
+
+  const totalPages = Math.max(1, Math.ceil((Number(totalCount) || 0) / PAGE_SIZE));
+  const hasMore = page < totalPages;
+  const nextHref = hasMore ? `/${categorySlug}?page=${page + 1}` : null;
+
+  return (
+    <>
+      <StructuredData categorySlug={categorySlug} categoryName={categoryName} />
+
+      <style
+        dangerouslySetInnerHTML={{
+          __html: `
+          .e-hero {
+            background: linear-gradient(135deg, #fff 0%, #f8fafc 40%, #f1f5f9 100%);
+            border: 1px solid #e2e8f0;
+          }
+          .e-card {
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+          }
+          .e-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(2, 6, 23, 0.12);
+          }
+          .e-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(93, 92, 222, 0.05), rgba(236, 254, 255, 0.1));
+            opacity: 0;
+            transition: opacity .3s ease;
+          }
+          .e-card:hover::before {
+            opacity: 1;
+          }
+          .e-subcat-card {
+            transition: all .3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+          }
+          .e-subcat-card:hover {
+            transform: translateY(-6px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(93, 92, 222, 0.15);
+          }
+          .e-subcat-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(93, 92, 222, 0.08), rgba(14, 116, 144, 0.05));
+            opacity: 0;
+            transition: opacity .3s ease;
+          }
+          .e-subcat-card:hover::after {
+            opacity: 1;
+          }
+          .e-subcat-image {
+            transition: transform .3s ease;
+          }
+          .e-subcat-card:hover .e-subcat-image {
+            transform: scale(1.05);
+          }
+          .e-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background:#ecfeff;
+            color:#0e7490;
+            border:1px solid #a5f3fc;
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+          }
+          .e-gradient-text {
+            background: linear-gradient(135deg, #5d5cde 0%, #0e7490 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        `,
+        }}
+      />
+
+      <main className="container mx-auto px-4 pb-10">
+        {/* Hero */}
+        <section className="e-hero rounded-2xl mt-6 p-6 md:p-8 bg-white">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <h1 className="text-2xl md:text-3xl font-semibold tracking-tight">
+                {category?.name || categoryName || 'Category'}
+              </h1>
+              <p className="text-slate-600 mt-2 max-w-2xl">
+                Shop premium makeup at great prices. Nationwide shipping in Cameroon. One hundred percent secure online payment and friendly support.
+              </p>
+            </div>
+            <div className="e-chip">
+              <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 12a9 9 0 1118 0A9 9 0 013 12zm9-7a7 7 0 100 14A7 7 0 0012 5zm1 3v4l3 2-.8 1.2L11 13V8h2z"/></svg>
+              Fast & Reliable Shipping
             </div>
           </div>
         </section>
-      </main>
-    </div>
-  )
-}
 
-// Error component
-function CategoryError({ categorySlug }) {
-  return (
-    <div className="relative min-h-screen">
-      <div className="fixed inset-0 pointer-events-none">
-        <BackgroundPaths title="" />
-      </div>
-      
-      <main className="relative z-10 py-10 px-2 md:px-10 flex items-center justify-center">
-        <div className="text-center bg-white/90 backdrop-blur-sm rounded-xl p-8 shadow-lg border border-pink-200 max-w-md">
-          <div className="text-6xl mb-4">😞</div>
-          <h1 className="text-3xl font-bold text-gray-800 mb-4">Category Not Found</h1>
-          <p className="text-gray-600 mb-6">
-            The category "{categorySlug}" doesn't exist or is not available at the moment.
-          </p>
-          <div className="space-y-3">
-            <Link 
-              href="/category" 
-              className="block w-full bg-pink-600 text-white px-6 py-3 rounded-lg font-bold hover:bg-pink-700 transition-colors"
-            >
-              Browse All Categories
-            </Link>
-            <Link 
-              href="/" 
-              className="block w-full bg-white text-pink-600 px-6 py-3 rounded-lg font-bold border-2 border-pink-600 hover:bg-pink-50 transition-colors"
-            >
-              Go to Homepage
-            </Link>
+        {/* Subcategories - Now Big and Beautiful */}
+        <section aria-label="Subcategories" className="mt-10">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-2xl font-bold e-gradient-text">Browse Subcategories</h2>
+              <p className="text-slate-600 mt-1">Discover our curated collections</p>
+            </div>
+            {subcats.length > 0 && (
+              <span className="text-sm text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                {subcats.length} collections
+              </span>
+            )}
           </div>
-        </div>
-      </main>
-    </div>
-  )
-}
 
-// Main Server Component
-export default async function CategoryPage({ params }) {
-  const categorySlug = params?.category || ''
-  
-  // Check if category exists in our fallback list
-  const fallbackCategory = fallbackCategories.find(cat => 
-    cat.slug === categorySlug
-  )
-
-  if (!fallbackCategory) {
-    return <CategoryError categorySlug={categorySlug} />
-  }
-
-  return (
-    <div className="relative min-h-screen">
-      <div className="fixed inset-0 pointer-events-none">
-        <BackgroundPaths title="" />
-      </div>
-
-      <main className="relative z-10 py-10 px-2 md:px-10">
-        <Suspense fallback={<CategoryLoading />}>
-          <CategoryClientBlock 
-            categorySlug={categorySlug}
-            fallbackTitle={fallbackCategory.name}
-            fallbackDesc={`Discover premium ${fallbackCategory.name.toLowerCase()} products`}
-          />
-        </Suspense>
-
-        {/* Contact Section */}
-        <section className="mt-12 bg-gradient-to-r from-pink-100/90 to-purple-100/90 backdrop-blur-sm rounded-xl shadow-lg p-8 md:p-12 max-w-4xl mx-auto text-center border border-pink-200">
-          <h2 className="text-3xl font-bold text-pink-600 mb-4">Need Help Finding Products?</h2>
-          <p className="text-gray-700 mb-6 text-lg">
-            Contact us for personalized makeup recommendations and product availability.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a 
-              href="tel:+237655225569" 
-              className="w-full sm:w-auto bg-pink-600 text-white px-8 py-4 rounded-lg font-bold hover:bg-pink-700 transition-colors shadow-lg hover:shadow-xl"
-            >
-              📞 Call: +237 655 22 55 69
-            </a>
-            <a 
-              href="mailto:esssmakeup@gmail.com" 
-              className="w-full sm:w-auto bg-white text-pink-600 px-8 py-4 rounded-lg font-bold border-2 border-pink-600 hover:bg-pink-50 transition-colors shadow-lg hover:shadow-xl"
-            >
-              📧 Send Email
-            </a>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {subcats.length === 0 ? (
+              <div className="col-span-full border-2 border-dashed border-slate-200 rounded-2xl p-12 text-center">
+                <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center mb-4">
+                  <svg width="24" height="24" viewBox="0 0 24 24" className="text-slate-400" aria-hidden="true">
+                    <path fill="currentColor" d="M3 7a2 2 0 012-2h3l2-2h4l2 2h3a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm2 0v11h14V7h-2.586l-2-2H9.586l-2 2H5z"/>
+                  </svg>
+                </div>
+                <h3 className="font-semibold text-slate-700 mb-2">No subcategories found</h3>
+                <p className="text-slate-500">We're working on adding more collections for this category.</p>
+              </div>
+            ) : (
+              subcats.map((s) => {
+                const href = `/${valideURLConvert(category.name)}-${category._id}/${valideURLConvert(s.name)}-${s._id}`;
+                return (
+                  <Link
+                    key={s._id}
+                    href={href}
+                    className="e-subcat-card block bg-white border-2 border-slate-100 rounded-2xl overflow-hidden group"
+                  >
+                    <div className="relative overflow-hidden">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={s?.image || '/placeholder.png'}
+                        alt={s?.name || 'Subcategory'}
+                        className="e-subcat-image w-full h-48 object-cover bg-gradient-to-br from-slate-50 to-slate-100"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute top-4 right-4 w-8 h-8 bg-white/80 backdrop-blur-sm rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        <svg width="16" height="16" viewBox="0 0 24 24" className="text-slate-600" aria-hidden="true">
+                          <path fill="currentColor" d="M7 7h10v2l4-3-4-3v2H5v6h2V7zm10 10H7v-2l-4 3 4 3v-2h12v-6h-2v4z"/>
+                        </svg>
+                      </div>
+                    </div>
+                    <div className="p-6">
+                      <h3 className="font-bold text-lg text-slate-800 mb-2 line-clamp-2 group-hover:text-indigo-600 transition-colors">
+                        {s?.name}
+                      </h3>
+                      <div className="flex items-center justify-between">
+                        <span className="text-sm text-slate-500 font-medium">Explore Collection</span>
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center transform group-hover:scale-110 transition-transform">
+                          <svg width="12" height="12" viewBox="0 0 24 24" className="text-white" aria-hidden="true">
+                            <path fill="currentColor" d="M7 7h10v2l4-3-4-3v2H5v6h2V7zm10 10H7v-2l-4 3 4 3v-2h12v-6h-2v4z"/>
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </Link>
+                );
+              })
+            )}
           </div>
         </section>
+
+        {/* Products */}
+        <section className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <div>
+              <h2 className="text-2xl font-bold e-gradient-text">Featured Products</h2>
+              <p className="text-slate-600 mt-1">Premium quality makeup essentials</p>
+            </div>
+            {products.length > 0 && (
+              <span className="text-sm text-slate-600 bg-slate-100 px-3 py-1 rounded-full">
+                {Math.min(products.length, PAGE_SIZE)} of {totalCount} products
+              </span>
+            )}
+          </div>
+
+          {products.length === 0 ? (
+            <div className="border-2 border-dashed border-slate-200 rounded-2xl p-12 text-center">
+              <div className="mx-auto w-16 h-16 rounded-full bg-gradient-to-br from-slate-100 to-slate-200 flex items-center justify-center mb-4">
+                <svg width="24" height="24" viewBox="0 0 24 24" className="text-slate-400" aria-hidden="true">
+                  <path fill="currentColor" d="M3 7a2 2 0 012-2h3l2-2h4l2 2h3a2 2 0 012 2v11a2 2 0 01-2 2H5a2 2 0 01-2-2V7zm2 0v11h14V7h-2.586l-2-2H9.586l-2 2H5z"/>
+                </svg>
+              </div>
+              <h3 className="font-semibold text-slate-700 mb-2">No products found</h3>
+              <p className="text-slate-500 mb-4">We're working on adding more products to this category.</p>
+              {subcats.length > 0 && (
+                <p className="text-sm text-indigo-600">Try browsing our subcategories above for more options.</p>
+              )}
+            </div>
+          ) : (
+            <>
+              <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6" role="list">
+                {products.map((p, i) => (
+                  <li key={`${p?._id}-cat-${i}`}>
+                    <CardProduct data={p} />
+                  </li>
+                ))}
+              </ul>
+
+              {hasMore && (
+                <div className="text-center mt-10">
+                  <Link
+                    href={nextHref}
+                    className="inline-flex items-center gap-3 px-8 py-3 rounded-xl bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-lg hover:shadow-xl"
+                  >
+                    Load More Products
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fill="currentColor" d="M7 10l5 5 5-5z"/>
+                    </svg>
+                  </Link>
+                </div>
+              )}
+            </>
+          )}
+        </section>
       </main>
-    </div>
-  )
+    </>
+  );
 }
