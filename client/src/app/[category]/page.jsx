@@ -134,11 +134,15 @@ async function fetchProductsAcrossSubcategories({ categoryId, subcats, page }) {
 
 /* ----------------------- Metadata ----------------------- */
 export async function generateMetadata({ params, searchParams }) {
-  const categorySlug = params?.category;
-  const page = Number(searchParams?.page || 1);
+  // Await the async params and searchParams
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+  
+  const categorySlug = resolvedParams?.category;
+  const page = Number(resolvedSearchParams?.page || 1);
   const name = parseNameFromSlug(categorySlug) || 'Category';
 
-  const title = `Shop ${name} | EssentialistMakeupStore${page > 1 ? ` | Page ${page}` : ''}`;
+  const title = `Buy Best ${name?.toString().trim() || 'All Makeup'} online for all skin types`;
   const description = `Explore ${name} at EssentialistMakeupStore. Nationwide shipping in Cameroon, secure online payment, great prices, and courteous support.`;
   const canonical = `https://www.esmakeupstore.com/${categorySlug}${page > 1 ? `?page=${page}` : ''}`;
 
@@ -175,7 +179,7 @@ export async function generateMetadata({ params, searchParams }) {
 }
 
 /* ----------------------- JSON-LD ----------------------- */
-function StructuredData({ categorySlug, categoryName }) {
+function StructuredData({ categorySlug, categoryName, products = [] }) {
   const url = `https://www.esmakeupstore.com/${categorySlug}`;
 
   const breadcrumbJsonLd = {
@@ -199,18 +203,48 @@ function StructuredData({ categorySlug, categoryName }) {
     },
   };
 
+  const productListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${categoryName} Makeup Products Collection`,
+    description: `Explore our selection of high-quality ${categoryName} makeup products at Essentialist Makeup Store.`,
+    numberOfItems: products.length,
+    itemListElement: products.map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        name: product.name,
+        image: Array.isArray(product.image) ? product.image[0] : product.image,
+        offers: {
+          '@type': 'Offer',
+          price: product.price,
+          priceCurrency: 'XAF',
+          availability: product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock'
+        }
+      }
+    }))
+  };
+
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
+      {products.length > 0 && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(productListJsonLd) }} />
+      )}
     </>
   );
 }
 
 /* ----------------------- Page ----------------------- */
 export default async function CategoryPage({ params, searchParams }) {
-  const categorySlug = params?.category;
-  const page = Number(searchParams?.page || 1);
+  // Await the async params and searchParams in Next.js 15
+  const resolvedParams = await params;
+  const resolvedSearchParams = await searchParams;
+  
+  const categorySlug = resolvedParams?.category;
+  const page = Number(resolvedSearchParams?.page || 1);
   const categoryId = parseIdFromSlug(categorySlug);
   const categoryName = parseNameFromSlug(categorySlug);
 
@@ -240,11 +274,17 @@ export default async function CategoryPage({ params, searchParams }) {
 
   return (
     <>
-      <StructuredData categorySlug={categorySlug} categoryName={categoryName} />
+      <StructuredData categorySlug={categorySlug} categoryName={categoryName} products={products} />
 
       <style
         dangerouslySetInnerHTML={{
           __html: `
+          .line-clamp-2 {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+          }
           .e-hero {
             background: linear-gradient(135deg, #fff 0%, #f8fafc 40%, #f1f5f9 100%);
             border: 1px solid #e2e8f0;
@@ -366,7 +406,7 @@ export default async function CategoryPage({ params, searchParams }) {
                   </svg>
                 </div>
                 <h3 className="font-semibold text-slate-700 mb-2">No subcategories found</h3>
-                <p className="text-slate-500">We're working on adding more collections for this category.</p>
+                <p className="text-slate-500">We&apos;re working on adding more collections for this category.</p>
               </div>
             ) : (
               subcats.map((s) => {
@@ -434,7 +474,7 @@ export default async function CategoryPage({ params, searchParams }) {
                 </svg>
               </div>
               <h3 className="font-semibold text-slate-700 mb-2">No products found</h3>
-              <p className="text-slate-500 mb-4">We're working on adding more products to this category.</p>
+              <p className="text-slate-500 mb-4">We&apos;re working on adding more products to this category.</p>
               {subcats.length > 0 && (
                 <p className="text-sm text-indigo-600">Try browsing our subcategories above for more options.</p>
               )}
