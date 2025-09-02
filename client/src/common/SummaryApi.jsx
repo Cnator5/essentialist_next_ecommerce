@@ -195,6 +195,27 @@ reviewsDelete: {
   url: (productId) => `/api/reviews/${productId}`,
   method: 'delete'
 },
+ // Add IndexNow API endpoints
+    indexNowSubmitUrl: {
+        url: '/api/indexnow/submit-url',
+        method: 'post'
+    },
+    indexNowSubmitUrls: {
+        url: '/api/indexnow/submit-urls',
+        method: 'post'
+    },
+    indexNowNotifyContentChange: {
+        url: '/api/indexnow/notify-content-change',
+        method: 'post'
+    },
+    indexNowGetKey: {
+        url: '/api/indexnow/key',
+        method: 'get'
+    },
+    indexNowRegenerateKey: {
+        url: '/api/indexnow/regenerate-key',
+        method: 'post'
+    },
 }
 
 export default SummaryApi;

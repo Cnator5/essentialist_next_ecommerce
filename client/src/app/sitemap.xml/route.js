@@ -4,15 +4,11 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset 
-  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://www.esmakeupstore.com/</loc>
         <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://www.esmakeupstore.com/about</loc>
-        <changefreq>monthly</changefreq>
     </url>
     <url>
         <loc>https://www.esmakeupstore.com/contact</loc>
@@ -27,7 +23,7 @@ export async function GET() {
         <changefreq>monthly</changefreq>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299</loc>
         <lastmod>2025-05-24</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -35,7 +31,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8</loc>
         <lastmod>2025-05-24</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -43,7 +39,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb</loc>
         <lastmod>2025-07-07</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -51,7 +47,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/blush-makeup</loc>
+        <loc>https://www.esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0</loc>
         <lastmod>2025-07-07</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -59,7 +55,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/foundation-makeup</loc>
+        <loc>https://www.esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753</loc>
         <lastmod>2025-08-22</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -67,7 +63,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/makeup-sets</loc>
+        <loc>https://www.esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -75,7 +71,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/setting-powder</loc>
+        <loc>https://www.esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec</loc>
         <lastmod>2025-08-22</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -83,7 +79,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/face-primer</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/face-primer-680553c5764e6d332bd162c2</loc>
         <lastmod>2025-04-20</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -91,7 +87,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eyeliner</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eyeliner-680554de764e6d332bd162f3</loc>
         <lastmod>2025-04-20</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -99,7 +95,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lipstick</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lipstick-6806ba02bca41016c4406fa0</loc>
         <lastmod>2025-04-21</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -107,7 +103,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/concealer</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealer-6806c684bca41016c440701c</loc>
         <lastmod>2025-04-21</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -115,7 +111,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -123,7 +119,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/compact</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/compact-6806c76abca41016c440702e</loc>
         <lastmod>2025-04-21</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -131,7 +127,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/contour</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/contour-6806c7a5bca41016c4407032</loc>
         <lastmod>2025-04-21</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -139,7 +135,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/loose-powder</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/loose-powder-6806c7fabca41016c4407036</loc>
         <lastmod>2025-04-21</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -147,7 +143,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/tinted-moisturizer</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/tinted-moisturizer-6806c85abca41016c440703a</loc>
         <lastmod>2025-04-21</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -155,7 +151,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/kajal</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/kajal-6806c94bbca41016c4407076</loc>
         <lastmod>2025-04-21</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -163,7 +159,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/mascara</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/mascara-68078c85bca41016c4407588</loc>
         <lastmod>2025-04-22</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -171,7 +167,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/liquid-lipstick</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/liquid-lipstick-6808ba4bd61d997618c9a809</loc>
         <lastmod>2025-04-23</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -179,7 +175,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/makeup-sets/makeup-kits</loc>
+        <loc>https://www.esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf/makeup-kits-6808f477d61d997618c9aa42</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -187,7 +183,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-shadow</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-6808fac0d61d997618c9abd6</loc>
         <lastmod>2025-04-23</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -195,7 +191,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-crayon</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-crayon-681920859e1c9b273a48a09c</loc>
         <lastmod>2025-05-11</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -203,7 +199,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-gloss</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-gloss-681921099e1c9b273a48a0b6</loc>
         <lastmod>2025-05-05</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -211,7 +207,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-liner</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-liner-6819215f9e1c9b273a48a0ba</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -219,7 +215,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-plumper</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-plumper-681921a09e1c9b273a48a0be</loc>
         <lastmod>2025-05-11</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -227,7 +223,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-tint</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-tint-681921f29e1c9b273a48a0d0</loc>
         <lastmod>2025-05-11</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -235,7 +231,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-brow-enhancers</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-brow-enhancers-68192e789e1c9b273a48a108</loc>
         <lastmod>2025-05-09</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -243,7 +239,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/total-control-drop-foundation</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/total-control-drop-foundation-682b89064d22a2bf839f6fa8</loc>
         <lastmod>2025-07-05</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -251,7 +247,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/powder-foundation</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/powder-foundation-68322f0764d72c3a8f531bbc</loc>
         <lastmod>2025-05-24</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -259,7 +255,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-brow-cake-powder</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-brow-cake-powder-6832336ee1f06493c6738d98</loc>
         <lastmod>2025-05-24</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -267,7 +263,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/bronzy</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/bronzy-683239a95247169fee818f99</loc>
         <lastmod>2025-05-24</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -275,7 +271,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/highlighters-and-luminizers</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/highlighters-and-luminizers-68326107ad3c362a575353e7</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -283,7 +279,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-cream</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-cream-6832ee6feac2bef97c54882d</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -291,7 +287,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lipeye-liner-pencil-3-in-1</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lipeye-liner-pencil-3-in-1-68337acb6e352fdd6a8034b7</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -299,7 +295,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/liquid-foundation</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/liquid-foundation-68337bac7435b8a0a884a7f4</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -307,7 +303,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/stick-foundation</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/stick-foundation-68337cc01c2f524355d4ed90</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -315,7 +311,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/matte-bronzer</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/matte-bronzer-68337d871c2f524355d4ed9d</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -323,7 +319,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/dark-circle-concealer</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/dark-circle-concealer-68337f4a6e352fdd6a8034d3</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -331,7 +327,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/liquid-highlighter</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/liquid-highlighter-68338c9663dd0ab705d75200</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -339,7 +335,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/illuminator</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/illuminator-68338fd4dc8d6588a8f80930</loc>
         <lastmod>2025-07-05</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -347,7 +343,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/high-definition-blush</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/high-definition-blush-6833930163dd0ab705d75236</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -355,7 +351,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/blush-makeup/all-blush</loc>
+        <loc>https://www.esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0/all-blush-6833963293c0a92c8e769d20</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -363,7 +359,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-lacquer</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-lacquer-6834240f4743a53c13f20308</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -371,7 +367,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/matte-lip-sticks</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/matte-lip-sticks-683425c57d9df2f3db8cb2f8</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -379,7 +375,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-shadow-palette</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-palette-683429664c507b316566ee13</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -387,7 +383,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/bronzy-powder</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/bronzy-powder-68345327f78c045cbfac0c3a</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -395,7 +391,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-cream-pallette</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-cream-pallette-6834587ee6658ea6bc18330a</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -403,7 +399,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/foundation-makeup/foundation-primers</loc>
+        <loc>https://www.esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753/foundation-primers-6886aefc31c5811a6d69b958</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -411,7 +407,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/setting-spray</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/setting-spray-6886b5602a5acb976a3eea55</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -419,7 +415,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/concealers-and-neutralizers</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealers-and-neutralizers-6886ba8ba2b7da842299894a</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -427,7 +423,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-cream-and-treatment</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-cream-and-treatment-6886d0bfd23397cf96998bcb</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -435,7 +431,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/creams-and-moisturizers</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/creams-and-moisturizers-6886d414d23397cf96998c7d</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -443,7 +439,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-serum</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-serum-6886d713d23397cf96998c95</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -451,7 +447,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-cream</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-cream-6886d7e9d23397cf96998cd5</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -459,7 +455,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/setting-powder/all-setting-powder</loc>
+        <loc>https://www.esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec/all-setting-powder-6886db24d23397cf96998cfa</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -467,7 +463,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/makeup-palettes</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/makeup-palettes-6886de09d23397cf96998d33</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -475,7 +471,15 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-gloss/nyx-professional-makeup-duo-chromatic-illuminating-powder-snow-rose</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/highlighters-and-luminizers-6886de8fd23397cf96998d4d</loc>
+        <lastmod>2025-08-22</lastmod>
+        <changefreq>weekly</changefreq>
+        <image:image>
+            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669259/essentialist%20makeup%20store/drdqhcx1caoguoobymhc.jpg</image:loc>
+        </image:image>
+    </url>
+    <url>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-gloss-681921099e1c9b273a48a0b6/nyx-professional-makeup-duo-chromatic-illuminating-powder-snow-rose-6831ccc8c0c2ebc2246abee1</loc>
         <lastmod>2025-07-19</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -489,7 +493,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/mascara/nyx-professional-makeup-worth-the-hype-volumizing-and-lengthening-mascara-black</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/mascara-68078c85bca41016c4407588/nyx-professional-makeup-worth-the-hype-volumizing-and-lengthening-mascara-black-6831d20a29361bedb252f0f4</loc>
         <lastmod>2025-07-19</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -497,7 +501,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lipeye-liner-pencil-3-in-1/la-girl-glide-eye-liner-pencil-351-very-black</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lipeye-liner-pencil-3-in-1-68337acb6e352fdd6a8034b7/la-girl-glide-eye-liner-pencil-351-very-black-6831d48e46fe00dd6c9e836d</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -508,7 +512,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/powder-foundation/nyx-professional-makeup-stay-matte-but-not-flat-powder-foundation-natural</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/powder-foundation-68322f0764d72c3a8f531bbc/nyx-professional-makeup-stay-matte-but-not-flat-powder-foundation-natural-6832303c4b5cd28eb829bcad</loc>
         <lastmod>2025-07-19</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -516,7 +520,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/nyx-professional-makeup-stay-matte-but-not-flat-liquid-foundation-ivory-118-ounce</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/nyx-professional-makeup-stay-matte-but-not-flat-liquid-foundation-ivory-118-ounce-683231fda35e6630b5dcdc0c</loc>
         <lastmod>2025-07-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -533,7 +537,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-brow-cake-powder/nyx-professional-makeup-eyebrow-cake-powder-blackgray</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-brow-cake-powder-6832336ee1f06493c6738d98/nyx-professional-makeup-eyebrow-cake-powder-blackgray-683234ce308cc86035e2c624</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -556,7 +560,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/nyx-nyx-mineral-foundation-stick-msf09-caramel</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/nyx-nyx-mineral-foundation-stick-msf09-caramel-68323792aa1c99871d874dde</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -570,7 +574,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/bronzy/matte-bronzer</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/bronzy-683239a95247169fee818f99/matte-bronzer-68323ab1308cc86035e2c63a</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -587,7 +591,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/nyx-professional-makeup-born-to-glow-liquid-illuminator-liquid-shimmer-makeup-highlighter-foundation-base-vegan-formula-shade-pure-gold</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/nyx-professional-makeup-born-to-glow-liquid-illuminator-liquid-shimmer-makeup-highlighter-foundation-base-vegan-formula-shade-pure-gold-68323c25aa1c99871d874dfb</loc>
         <lastmod>2025-05-24</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -604,7 +608,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/highlighters-and-luminizers/nyx-professional-makeup-away-we-glow-liquid-highlighter-golden-hour-022-fluid-ounce</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/highlighters-and-luminizers-68326107ad3c362a575353e7/nyx-professional-makeup-away-we-glow-liquid-highlighter-golden-hour-022-fluid-ounce-683260e7ad3c362a575353e3</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -618,7 +622,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/liquid-lipstick/lip-lingerie-xxl-matte-liquid-lipstick</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/liquid-lipstick-6808ba4bd61d997618c9a809/lip-lingerie-xxl-matte-liquid-lipstick-6832746794b23d7bce190111</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -635,7 +639,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-cream/nyx-professional-makeup-liquid-suede-cream-lipstick-downtown-beauty-walnut-brown</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-cream-6832ee6feac2bef97c54882d/nyx-professional-makeup-liquid-suede-cream-lipstick-downtown-beauty-walnut-brown-6832efb533275196a3004bd1</loc>
         <lastmod>2025-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -655,7 +659,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-liner/nyx-line-and-load-two-in-one-lippie</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-liner-6819215f9e1c9b273a48a0ba/nyx-line-and-load-two-in-one-lippie-6832f65abef660d5991d13e3</loc>
         <lastmod>2025-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -669,7 +673,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-shadow/nyx-professional-makeup-glitter-goals-liquid-eyeshadow-various-shades</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-6808fac0d61d997618c9abd6/nyx-professional-makeup-glitter-goals-liquid-eyeshadow-various-shades-6832f948bef660d5991d13f6</loc>
         <lastmod>2025-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -683,7 +687,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/dark-circle-concealer/nyx-professional-makeup-dark-circle-concealer-deep</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/dark-circle-concealer-68337f4a6e352fdd6a8034d3/nyx-professional-makeup-dark-circle-concealer-deep-68338b1863dd0ab705d751ca</loc>
         <lastmod>2025-08-05</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -694,7 +698,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/illuminator/nyx-a-bit-jelly-gel-illuminator-opalescent</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/illuminator-68338fd4dc8d6588a8f80930/nyx-a-bit-jelly-gel-illuminator-opalescent-6833911863dd0ab705d75232</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -705,7 +709,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/high-definition-blush/nyx-professional-makeup-high-definition-blush-amber-016-ounce-hdb11</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/high-definition-blush-6833930163dd0ab705d75236/nyx-professional-makeup-high-definition-blush-amber-016-ounce-hdb11-6833939663dd0ab705d75247</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -722,7 +726,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/blush-makeup/all-blush/nyx-cosmetics-baked-blush-pink-fetish</loc>
+        <loc>https://www.esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0/all-blush-6833963293c0a92c8e769d20/nyx-cosmetics-baked-blush-pink-fetish-683395fdb72dd7764122f499</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -730,7 +734,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/blush-makeup/all-blush/sweet-cheeks-soft-cheek-tint-cream-blush</loc>
+        <loc>https://www.esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0/all-blush-6833963293c0a92c8e769d20/sweet-cheeks-soft-cheek-tint-cream-blush-683397aea4b726225299753b</loc>
         <lastmod>2025-05-25</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -744,7 +748,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-lacquer/slip-tease-full-color-lip-lacquer</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-lacquer-6834240f4743a53c13f20308/slip-tease-full-color-lip-lacquer-6834249a28d670958afb465e</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -761,7 +765,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/matte-lip-sticks/nyx-professional-makeup-soft-matte-lip-cream-lightweight-liquid-lipstick-cairo-matte-pure-nude</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/matte-lip-sticks-683425c57d9df2f3db8cb2f8/nyx-professional-makeup-soft-matte-lip-cream-lightweight-liquid-lipstick-cairo-matte-pure-nude-683426b94ab7fc299cc87554</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -775,7 +779,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/nyx-cosmetics-high-definition-studio-photogenic-foundation-hdf101-nude</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/nyx-cosmetics-high-definition-studio-photogenic-foundation-hdf101-nude-683428c2086cde4ab7705f00</loc>
         <lastmod>2025-07-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -792,7 +796,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-shadow-palette/the-smoky-fume-shadow-palettenyx-cosmeticstss01</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-palette-683429664c507b316566ee13/the-smoky-fume-shadow-palettenyx-cosmeticstss01-68342a204c507b316566ee1f</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -800,7 +804,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/total-control-pro-drop-foundation</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/total-control-pro-drop-foundation-68344c1e3f5474dcd03e0750</loc>
         <lastmod>2025-05-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -817,7 +821,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/bronzy-powder/nyx-cosmetics-tango-with-bronzing-powder-tribal-odyssey</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/bronzy-powder-68345327f78c045cbfac0c3a/nyx-cosmetics-tango-with-bronzing-powder-tribal-odyssey-683453eef78c045cbfac0c4e</loc>
         <lastmod>2025-07-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -834,7 +838,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-shadow-palette/nyx-professional-makeup-ultimate-edit-mini-shadow-palette-eyeshadow-palette-warm-neutrals</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-palette-683429664c507b316566ee13/nyx-professional-makeup-ultimate-edit-mini-shadow-palette-eyeshadow-palette-warm-neutrals-683455b993bdbae560b5f479</loc>
         <lastmod>2025-07-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -857,7 +861,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-shadow/nyx-cosmetics-love-in-rio-3-pan-eyeshadow-palette-no-tan-lines-allowed</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-6808fac0d61d997618c9abd6/nyx-cosmetics-love-in-rio-3-pan-eyeshadow-palette-no-tan-lines-allowed-6834579793bdbae560b5f48d</loc>
         <lastmod>2025-07-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -877,7 +881,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/lip-cream-pallette/nyx-professional-makeup-pro-lip-cream-palette-the-pinks-0317-ounce</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-cream-pallette-6834587ee6658ea6bc18330a/nyx-professional-makeup-pro-lip-cream-palette-the-pinks-0317-ounce-6834593750f8e1fc84405f2e</loc>
         <lastmod>2025-07-26</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -897,7 +901,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/makeup-sets/makeup-kits/makeup-kit-makeup-sets-for-teens-makeup-kits-for-women-teenagers-make-up-eyeshadow-palette-foundation-concealer-lipgloss-makeup-kit-for-women-full-kit</loc>
+        <loc>https://www.esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf/makeup-kits-6808f477d61d997618c9aa42/makeup-kit-makeup-sets-for-teens-makeup-kits-for-women-teenagers-make-up-eyeshadow-palette-foundation-concealer-lipgloss-makeup-kit-for-women-full-kit-6886ac7de0884528591860e1</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -920,7 +924,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/foundation-makeup/foundation-primers/elf-power-grip-primer-gel-based-and-hydrating-face-primer-for-smoothing-skin-and-gripping-makeup-moisturizes-and-primes-0811-fl-oz-24-ml</loc>
+        <loc>https://www.esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753/foundation-primers-6886aefc31c5811a6d69b958/elf-power-grip-primer-gel-based-and-hydrating-face-primer-for-smoothing-skin-and-gripping-makeup-moisturizes-and-primes-0811-fl-oz-24-ml-6886afb531c5811a6d69b963</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -937,7 +941,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/setting-spray/eif-power-grip-dewy-setting-spray</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/setting-spray-6886b5602a5acb976a3eea55/eif-power-grip-dewy-setting-spray-6886b7caa2b7da842299892f</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -957,7 +961,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/smashbox-always-on-skin-balancing-foundation-with-hyaluronic-acid-or-medium-to-full-coverage-or-hydrating-long-lasting-1-fl-oz</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/smashbox-always-on-skin-balancing-foundation-with-hyaluronic-acid-or-medium-to-full-coverage-or-hydrating-long-lasting-1-fl-oz-6886b9bea2b7da842299893e</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -980,7 +984,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/concealer/laura-geller-new-york-the-ideal-fix-concealer-porcelain-buildable-medium-to-full-coverage-liquid-concealer-covers-under-eye-dark-circles-and-blemishes-long-lasting</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealer-6806c684bca41016c440701c/laura-geller-new-york-the-ideal-fix-concealer-porcelain-buildable-medium-to-full-coverage-liquid-concealer-covers-under-eye-dark-circles-and-blemishes-long-lasting-6886bb62a2b7da8422998955</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -988,7 +992,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/mascara/laura-geller-new-york-always-there-waterproof-lengthening-mascara-in-black-or-long-lasting-mascara-for-volume-and-length</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/mascara-68078c85bca41016c4407588/laura-geller-new-york-always-there-waterproof-lengthening-mascara-in-black-or-long-lasting-mascara-for-volume-and-length-6886bc79a2b7da8422998958</loc>
         <lastmod>2025-07-27</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1002,7 +1006,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/mascara/smashbox-super-fan-lash-lengthening-mascara-or-lifting-long-lasting-volume-034-fl-oz-black</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/mascara-68078c85bca41016c4407588/smashbox-super-fan-lash-lengthening-mascara-or-lifting-long-lasting-volume-034-fl-oz-black-6886bf09a2b7da842299899c</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1016,7 +1020,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/concealer/bobbi-brown-creamy-concealer-kit-natural-tan-by-bobbi-brown-for-women-011-ounce-concealer-011-ounce</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealer-6806c684bca41016c440701c/bobbi-brown-creamy-concealer-kit-natural-tan-by-bobbi-brown-for-women-011-ounce-concealer-011-ounce-6886bfc5a2b7da842299899f</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1030,7 +1034,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/bobbi-brown-weightless-skin-foundation-spf-15-warm-beige</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/bobbi-brown-weightless-skin-foundation-spf-15-warm-beige-6886c84da2b7da8422998a6d</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1044,7 +1048,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/concealers-and-neutralizers/too-faced-born-this-way-super-coverage-multi-use-concealer-or-full-coverage-oil-free-long-lasting-hydrating</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealers-and-neutralizers-6886ba8ba2b7da842299894a/too-faced-born-this-way-super-coverage-multi-use-concealer-or-full-coverage-oil-free-long-lasting-hydrating-6886c904a2b7da8422998a7c</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1061,7 +1065,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/too-faced-born-this-way-natural-finish-longwear-liquid-foundation-or-medium-to-full-coverage-or-hydrating-oil-free</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/too-faced-born-this-way-natural-finish-longwear-liquid-foundation-or-medium-to-full-coverage-or-hydrating-oil-free-6886c99ba2b7da8422998a80</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1075,7 +1079,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/double-wear-stay-in-place-foundation</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/double-wear-stay-in-place-foundation-6886cb1ea2b7da8422998a86</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1086,7 +1090,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/powder-foundation/laura-geller-new-york-baked-double-take-powder-foundation-fair-buildable-medium-to-full-coverage-matte-finish</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/powder-foundation-68322f0764d72c3a8f531bbc/laura-geller-new-york-baked-double-take-powder-foundation-fair-buildable-medium-to-full-coverage-matte-finish-6886ce38d23397cf96998bbe</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1097,7 +1101,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/concealer/estee-lauder-double-wear-stay-in-place-flawless-24-hour-concealer-or-longwear-or-soft-matte-finish-medium-to-full-coverage-or-hydrating-04-fl-oz</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealer-6806c684bca41016c440701c/estee-lauder-double-wear-stay-in-place-flawless-24-hour-concealer-or-longwear-or-soft-matte-finish-medium-to-full-coverage-or-hydrating-04-fl-oz-6886ceb1d23397cf96998bc1</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1108,7 +1112,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/lip-makeup/liquid-lipstick/laura-geller-new-york-modern-classic-cream-lipstick-trio-mauve-majesty-real-rosy-novel-neutral</loc>
+        <loc>https://www.esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/liquid-lipstick-6808ba4bd61d997618c9a809/laura-geller-new-york-modern-classic-cream-lipstick-trio-mauve-majesty-real-rosy-novel-neutral-6886cf61d23397cf96998bc4</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1122,7 +1126,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-cream-and-treatment/advanced-night-repair-eye-concentrate-matrix-synchronized-multi-recovery-complex</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-cream-and-treatment-6886d0bfd23397cf96998bcb/advanced-night-repair-eye-concentrate-matrix-synchronized-multi-recovery-complex-6886d0a9d23397cf96998bc7</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1136,7 +1140,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/creams-and-moisturizers/estee-lauder-resilience-multi-effect-tri-peptide-face-and-neck-cream-moisturizer-spf-15-or-plumping-and-anti-aging</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/creams-and-moisturizers-6886d414d23397cf96998c7d/estee-lauder-resilience-multi-effect-tri-peptide-face-and-neck-cream-moisturizer-spf-15-or-plumping-and-anti-aging-6886d480d23397cf96998c88</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1150,7 +1154,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/foundation/mac-studio-fix-fluid-foundation-spf-15-c8-1-ounce</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a/mac-studio-fix-fluid-foundation-spf-15-c8-1-ounce-6886d524d23397cf96998c8b</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1158,7 +1162,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/powder-foundation/mac-studio-fix-powder-plus-foundation</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/powder-foundation-68322f0764d72c3a8f531bbc/mac-studio-fix-powder-plus-foundation-6886d5d5d23397cf96998c8e</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1169,7 +1173,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-serum/moisture-surge-eyetm-96-hour-hydro-filler-concentrate-moisture-surge-eyetm-96-hour-hydro-filler-concentrate</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-serum-6886d713d23397cf96998c95/moisture-surge-eyetm-96-hour-hydro-filler-concentrate-moisture-surge-eyetm-96-hour-hydro-filler-concentrate-6886d6ebd23397cf96998c91</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1180,7 +1184,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/eye-makeup/eye-cream/clinique-smart-clinical-repairtm-wrinkle-correcting-eye-cream</loc>
+        <loc>https://www.esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-cream-6886d7e9d23397cf96998cd5/clinique-smart-clinical-repairtm-wrinkle-correcting-eye-cream-6886d877d23397cf96998ce6</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1191,7 +1195,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/creams-and-moisturizers/on-til-dawn-mattifying-waterproof-setting-spray-full-sized</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/creams-and-moisturizers-6886d414d23397cf96998c7d/on-til-dawn-mattifying-waterproof-setting-spray-full-sized-6886d974d23397cf96998ce9</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1202,7 +1206,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/setting-powder/all-setting-powder/ultimate-blurring-setting-powder-full-sized</loc>
+        <loc>https://www.esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec/all-setting-powder-6886db24d23397cf96998cfa/ultimate-blurring-setting-powder-full-sized-6886daddd23397cf96998cf5</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1213,7 +1217,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/blush-makeup/all-blush/juvias-place-blushed-liquid-blush-blushlily-dewy-tint-cheeks-makeup-glow-pigment-effortless-beauty-long-lasting-cosmetics-soft-creamy-natural-buildable-all-skin-color-light-flawless-finish-blend</loc>
+        <loc>https://www.esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0/all-blush-6833963293c0a92c8e769d20/juvias-place-blushed-liquid-blush-blushlily-dewy-tint-cheeks-makeup-glow-pigment-effortless-beauty-long-lasting-cosmetics-soft-creamy-natural-buildable-all-skin-color-light-flawless-finish-blend-6886dcebd23397cf96998d24</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1221,7 +1225,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/face-makeup/makeup-palettes/juvias-place-warrior-2-eyeshadow-palette-professional-eye-makeup-pigmented-eyeshadow-palette-makeup-palette-for-eye-color-and-shine-pressed-eyeshadow-cosmetics</loc>
+        <loc>https://www.esmakeupstore.com/face-makeup-68055310764e6d332bd16299/makeup-palettes-6886de09d23397cf96998d33/juvias-place-warrior-2-eyeshadow-palette-professional-eye-makeup-pigmented-eyeshadow-palette-makeup-palette-for-eye-color-and-shine-pressed-eyeshadow-cosmetics-6886ddb5d23397cf96998d27</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1232,7 +1236,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/product/juvias-place-loose-highlighter-nubian-royalty-2-illuminating-loose-powder-highlighter-makeup-shimmer-powder-that-gives-radiant-glow-suitable-for-all-skin-tone</loc>
+        <loc>https://www.esmakeupstore.com/product/6886df05d23397cf96998d59</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1240,7 +1244,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/setting-powder/all-setting-powder/kimchi-chic-beauty-puff-puff-pass-set-and-bake-setting-powder-for-makeup-extra-fluffy-loose-face-powder-poof-soft-natural-face-makeup-for-uneven-skin-tone-03-translucent</loc>
+        <loc>https://www.esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec/all-setting-powder-6886db24d23397cf96998cfa/kimchi-chic-beauty-puff-puff-pass-set-and-bake-setting-powder-for-makeup-extra-fluffy-loose-face-powder-poof-soft-natural-face-makeup-for-uneven-skin-tone-03-translucent-6886e36dd23397cf96998e13</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1248,7 +1252,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/setting-powder/all-setting-powder/one-size-ultimate-blurring-setting-powder-travel-size-translucent-for-fair-to-medium-dark-skin</loc>
+        <loc>https://www.esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec/all-setting-powder-6886db24d23397cf96998cfa/one-size-ultimate-blurring-setting-powder-travel-size-translucent-for-fair-to-medium-dark-skin-6886e3c3d23397cf96998e16</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1256,7 +1260,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/setting-powder/all-setting-powder/one-size-ultimate-blurring-setting-powder-travel-size-ultra-pink-for-fair-to-medium-skin-tones</loc>
+        <loc>https://www.esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec/all-setting-powder-6886db24d23397cf96998cfa/one-size-ultimate-blurring-setting-powder-travel-size-ultra-pink-for-fair-to-medium-skin-tones-6886e427d23397cf96998e20</loc>
         <lastmod>2025-08-08</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1264,7 +1268,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/makeup-sets/makeup-kits/makeup-kit-for-women-full-kit-makeup-kits-for-teens-teenager-makeup-gift-set-for-teens-women-eyeshadow-foundationteen-makeup-kit-makeup-sets</loc>
+        <loc>https://www.esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf/makeup-kits-6808f477d61d997618c9aa42/makeup-kit-for-women-full-kit-makeup-kits-for-teens-teenager-makeup-gift-set-for-teens-women-eyeshadow-foundationteen-makeup-kit-makeup-sets-6886e547d23397cf96998e2e</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
@@ -1272,7 +1276,7 @@ export async function GET() {
         </image:image>
     </url>
     <url>
-        <loc>https://www.esmakeupstore.com/makeup-sets/makeup-kits/makeup-sets-for-teens-makeup-kit-for-women-full-kit-makeup-set-makeup-kit-eyeshadow-palette-foundation-makeup-gift-set-for-teenager-girls</loc>
+        <loc>https://www.esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf/makeup-kits-6808f477d61d997618c9aa42/makeup-sets-for-teens-makeup-kit-for-women-full-kit-makeup-set-makeup-kit-eyeshadow-palette-foundation-makeup-gift-set-for-teenager-girls-6886e5c7d23397cf96998e31</loc>
         <lastmod>2025-07-28</lastmod>
         <changefreq>weekly</changefreq>
         <image:image>
