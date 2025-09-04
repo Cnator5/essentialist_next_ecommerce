@@ -26,12 +26,6 @@ export default async function sitemap() {
       priority: 1,
     },
     {
-      url: 'https://www.esmakeupstore.com/about',
-      lastModified: new Date().toISOString(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
       url: 'https://www.esmakeupstore.com/contact',
       lastModified: new Date().toISOString(),
       changeFrequency: 'monthly',
