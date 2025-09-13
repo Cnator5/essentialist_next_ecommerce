@@ -1,6 +1,16 @@
 // app/sitemap.xml/route.js
 import { NextResponse } from 'next/server';
 
+// Hint this route is static-ish and can run at the edge for lower latency
+export const runtime = 'edge'
+
+// Optionally restrict to a region close to your users
+// export const preferredRegion = ['fra1', 'cdg1', 'dub1']
+
+// Cache for 1 hour at the CDN with SWR of 1 day
+const S_MAXAGE = 3600
+const SWR = 86400
+
 export async function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset 
@@ -1285,10 +1295,18 @@ export async function GET() {
     </url>
 </urlset>`;
 
-  return new NextResponse(xml, {
+ /*  return new NextResponse(xml, {
     headers: {
       'Content-Type': 'application/xml; charset=utf-8',
       'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=86400',
     },
   });
+} */
+
+ return new NextResponse(xml, {
+    headers: {
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': `public, s-maxage=${S_MAXAGE}, stale-while-revalidate=${SWR}`,
+    },
+  })
 }

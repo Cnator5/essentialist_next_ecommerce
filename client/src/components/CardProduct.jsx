@@ -141,6 +141,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { useSelector } from 'react-redux'
 import { DisplayPriceInRupees } from '../utils/DisplayPriceInRupees'
 import { valideURLConvert } from '../utils/valideURLConvert'
 import { pricewithDiscount } from '../utils/PriceWithDiscount'
@@ -153,36 +154,69 @@ export default function CardProduct({ data }) {
   const [isHovered, setIsHovered] = useState(false)
   const [isNavigating, setIsNavigating] = useState(false)
 
-  const handleProductClick = async (e) => {
-    if (e.target.closest('[data-add-to-cart]')) return
-    setIsNavigating(true)
+  // Get Redux data for instant navigation
+  const allCategory = useSelector(state => state?.product?.allCategory || [])
+  const allSubCategory = useSelector(state => state?.product?.allSubCategory || [])
 
-    try {
-      // Always fetch fresh product details to ensure we have populated category/subcategory data
-      const response = await fetch('/api/product/get-product-details', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: data._id }),
-      })
-      const productData = await response.json()
-      
-      if (productData?.success && productData.data?.category?.[0] && productData.data?.subCategory?.[0]) {
-        const category = productData.data.category[0]
-        const subCategory = productData.data.subCategory[0]
+  const handleProductClick = (e) => {
+    if (e.target.closest('[data-add-to-cart]')) return
+    
+    // Set navigating state immediately for UX
+    setIsNavigating(true)
+    
+    // Use setTimeout to allow UI to update, then navigate instantly
+    setTimeout(() => {
+      try {
+        let url = null
+
+        // STRATEGY 1: Use existing populated data (FASTEST - 0ms)
+        if (data?.category?.[0]?.name && data?.category?.[0]?._id && 
+            data?.subCategory?.[0]?.name && data?.subCategory?.[0]?._id) {
+          
+          const categorySlug = `${valideURLConvert(data.category[0].name)}-${data.category[0]._id}`
+          const subCategorySlug = `${valideURLConvert(data.subCategory[0].name)}-${data.subCategory[0]._id}`
+          const productSlug = `${valideURLConvert(data.name)}-${data._id}`
+          url = `/${categorySlug}/${subCategorySlug}/${productSlug}`
+        }
         
-        const categorySlug = `${valideURLConvert(category.name)}-${category._id}`
-        const subCategorySlug = `${valideURLConvert(subCategory.name)}-${subCategory._id}`
-        const productSlug = `${valideURLConvert(data.name)}-${data._id}`
-        const url = `/${categorySlug}/${subCategorySlug}/${productSlug}`
+        // STRATEGY 2: Build from Redux state (FAST - ~10ms)
+        else if (allCategory.length > 0 && allSubCategory.length > 0) {
+          const categoryId = typeof data.category?.[0] === 'string' 
+            ? data.category[0] 
+            : data.category?.[0]?._id
+
+          if (categoryId) {
+            const category = allCategory.find(cat => cat._id === categoryId)
+            const subCategory = allSubCategory.find(sub => 
+              sub.category?.some(c => c._id === categoryId)
+            )
+
+            if (category && subCategory) {
+              const categorySlug = `${valideURLConvert(category.name)}-${category._id}`
+              const subCategorySlug = `${valideURLConvert(subCategory.name)}-${subCategory._id}`
+              const productSlug = `${valideURLConvert(data.name)}-${data._id}`
+              url = `/${categorySlug}/${subCategorySlug}/${productSlug}`
+            }
+          }
+        }
+
+        // STRATEGY 3: Direct product route (FALLBACK - ~20ms)
+        if (!url) {
+          const productSlug = `${valideURLConvert(data.name)}-${data._id}`
+          url = `/product/${productSlug}`
+        }
+
+        // INSTANT NAVIGATION
         router.push(url)
-      } else {
-        console.error('Failed to get category/subcategory data')
+        
+      } catch (error) {
+        // Ultimate fallback - navigate by ID only
+        router.push(`/product/${data._id}`)
+      } finally {
+        // Remove loading state after a short delay to prevent flashing
+        setTimeout(() => setIsNavigating(false), 100)
       }
-    } catch (error) {
-      console.error('Navigation error:', error)
-    } finally {
-      setIsNavigating(false)
-    }
+    }, 10) // 10ms delay for smooth UX
   }
 
   return (
@@ -199,7 +233,7 @@ export default function CardProduct({ data }) {
     >
       {isNavigating && (
         <div className="absolute inset-0 bg-white/60 flex items-center justify-center z-10">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+          <div className="animate-spin rounded-full h-6 w-6 border-b-2 border-blue-500"></div>
         </div>
       )}
 
