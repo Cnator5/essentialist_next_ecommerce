@@ -104,7 +104,7 @@ export default async function sitemap() {
 
     let prodUrl;
     if (cat && sub) {
-      prodUrl = `https://www.esmakeupstore.com/${slugify(cat.name)}-${cat._id}/${slugify(sub.name)}-${sub._id}/${slugify(prod.name)}-${prod._id}`;
+      prodUrl = `https://www.esmakeupstore.com/${slugify(prod.name)}-${prod._id}`;
     } else {
       prodUrl = `https://www.esmakeupstore.com/product/${prod._id}`;
     }
@@ -118,4 +118,3 @@ export default async function sitemap() {
   }
 
   return items;
-}

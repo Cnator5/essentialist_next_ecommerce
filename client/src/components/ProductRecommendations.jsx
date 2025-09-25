@@ -200,7 +200,6 @@
 
 
 
-
 'use client';
 
 import React, { useEffect, useState } from "react";
@@ -299,33 +298,14 @@ const ProductRecommendations = ({ currentProductId, currentProductData }) => {
     }
   }, [isHomePage, currentProductData, currentProductId]);
 
-  const handleClickProduct = async (product) => {
+  const handleClickProduct = (product) => {
     if (!product?._id || !product?.name) return;
     
-    try {
-      // Always fetch fresh product details to ensure we have populated category/subcategory data
-      const response = await fetch('/api/product/get-product-details', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ productId: product._id }),
-      })
-      const productData = await response.json()
-      
-      if (productData?.success && productData.data?.category?.[0] && productData.data?.subCategory?.[0]) {
-        const category = productData.data.category[0]
-        const subCategory = productData.data.subCategory[0]
-        
-        const categorySlug = `${valideURLConvert(category.name)}-${category._id}`
-        const subCategorySlug = `${valideURLConvert(subCategory.name)}-${subCategory._id}`
-        const productSlug = `${valideURLConvert(product.name)}-${product._id}`
-        const url = `/${categorySlug}/${subCategorySlug}/${productSlug}`
-        router.push(url)
-      } else {
-        console.error('Failed to get category/subcategory data for product:', product._id)
-      }
-    } catch (error) {
-      console.error('Navigation error:', error)
-    }
+    // Fast client-side navigation to /product/[slug] without additional API calls
+    // The product/[slug]/page.jsx can parse the slug (e.g., extract ID from name-id format)
+    // and fetch full details server-side or client-side as needed.
+    const productSlug = `${valideURLConvert(product.name)}-${product._id}`;
+    router.push(`/product/${productSlug}`);
   };
   
   const displayHistory = isHomePage 
