@@ -161,10 +161,9 @@
 
 import React, { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { valideURLConvert } from '../utils/valideURLConvert'
 
-// Brand data for the brands section
 const makeupBrands = [
   'NYX',
   'LA girl', 
@@ -179,33 +178,32 @@ const makeupBrands = [
   'JUVIA'
 ]
 
-// Helper function to create brand slug
 const createBrandSlug = (brand) => {
   return brand.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
 }
 
 const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
-  const router = useRouter()
-
-  // Global state
   const loadingCategory = useSelector((state) => state.product.loadingCategory)
   const categoryData = useSelector((state) => state.product.allCategory) || []
   const subCategoryData = useSelector((state) => state.product.allSubCategory) || []
 
-  // Hydration guard: first render == server HTML
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => {
     setHydrated(true)
   }, [])
 
-  const getSubcategoriesForCategory = (categoryId) =>
-    subCategoryData.filter((sub) =>
-      Array.isArray(sub.category)
-        ? sub.category.some((cat) => cat?._id === categoryId)
-        : false
-    )
+  const getSubcategoriesForCategory = useMemo(() => {
+    const subcatsByCat = {}
+    subCategoryData.forEach((sub) => {
+      const catId = Array.isArray(sub.category) ? sub.category[0]?._id : sub.category?._id
+      if (catId) {
+        if (!subcatsByCat[catId]) subcatsByCat[catId] = []
+        subcatsByCat[catId].push(sub)
+      }
+    })
+    return (categoryId) => subcatsByCat[categoryId] || []
+  }, [subCategoryData])
 
-  // Classes
   const baseClasses = isMobile
     ? 'bg-white text-black w-full'
     : 'bg-white shadow-lg rounded-lg w-full h-auto flex flex-col hidden md:block'
@@ -226,12 +224,10 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
     ? 'text-sm text-black py-2 px-3 font-bold rounded hover:bg-pink-600 hover:text-white cursor-pointer transition-colors block'
     : 'text-sm text-black py-1 px-2 rounded hover:bg-pink-100 hover:text-pink-600 cursor-pointer transition-colors'
 
-  // Brand item classes (similar to subcategory but for brands)
   const brandItemClasses = isMobile
     ? 'text-sm text-black py-2 px-3 font-bold rounded hover:bg-pink-600 hover:text-white cursor-pointer transition-colors block'
     : 'text-sm text-black py-1 px-2 rounded hover:bg-pink-100 hover:text-pink-600 cursor-pointer transition-colors'
 
-  // Stable skeleton chunks to ensure deterministic HTML
   const stableSkeletonItems = useMemo(() => Array.from({ length: 8 }), [])
 
   const SkeletonBlock = ({ index }) => (
@@ -242,7 +238,6 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
     </div>
   )
 
-  // 1) Pre-hydration placeholder (same on server and initial client render)
   if (!hydrated) {
     return (
       <aside className={baseClasses}>
@@ -260,13 +255,11 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
     )
   }
 
-  // 2) After hydration: real UI
   const showSkeleton = loadingCategory
   const showEmpty = !loadingCategory && categoryData.length === 0
 
   return (
     <aside className={baseClasses}>
-      {/* Shop by Brands Section */}
       <div className={headerClasses}>
         <h2 className="text-white font-bold text-lg uppercase tracking-wide">
           Shop By Brands
@@ -279,24 +272,25 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
         </div>
         <div className={subcategoryContainerClasses}>
           <ul className={`space-y-1 py-2 ${isMobile ? 'pl-4' : ''}`}>
-            {makeupBrands.map((brand) => (
-              <li
-                key={brand}
-                onClick={() => {
-                  const brandSlug = createBrandSlug(brand)
-                  router.push(`/brands/${brandSlug}`)
-                  onNavigate()
-                }}
-                className={brandItemClasses}
-              >
-                {brand}
-              </li>
-            ))}
+            {makeupBrands.map((brand) => {
+              const brandSlug = createBrandSlug(brand)
+              return (
+                <li key={brand}>
+                  <Link
+                    href={`/brands/${brandSlug}`}
+                    prefetch={true}
+                    onClick={onNavigate}
+                    className={brandItemClasses}
+                  >
+                    {brand}
+                  </Link>
+                </li>
+              )
+            })}
           </ul>
         </div>
       </div>
 
-      {/* Shop by Categories Section */}
       <div className={`${headerClasses} ${isMobile ? 'border-t border-purple-800' : 'border-t border-pink-300'}`}>
         <h2 className="text-white font-bold text-lg uppercase tracking-wide">
           Shop By Category
@@ -319,21 +313,23 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
                 <div className={subcategoryContainerClasses}>
                   {subcategories.length > 0 ? (
                     <ul className={`space-y-1 py-2 ${isMobile ? 'pl-4' : ''}`}>
-                      {subcategories.map((subCat) => (
-                        <li
-                          key={subCat._id}
-                          onClick={() => {
-                            const url = `/${valideURLConvert(category.name)}-${category._id}/${valideURLConvert(
-                              subCat.name
-                            )}-${subCat._id}`
-                            router.push(url)
-                            onNavigate()
-                          }}
-                          className={subcategoryItemClasses}
-                        >
-                          {subCat.name}
-                        </li>
-                      ))}
+                      {subcategories.map((subCat) => {
+                        const url = `/${valideURLConvert(category.name)}-${category._id}/${valideURLConvert(
+                          subCat.name
+                        )}-${subCat._id}`
+                        return (
+                          <li key={subCat._id}>
+                            <Link
+                              href={url}
+                              prefetch={true}
+                              onClick={onNavigate}
+                              className={subcategoryItemClasses}
+                            >
+                              {subCat.name}
+                            </Link>
+                          </li>
+                        )
+                      })}
                     </ul>
                   ) : (
                     <p

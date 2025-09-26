@@ -1,12 +1,12 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://www.esmakeupstore.com';
 
-function slugify(str) {
+function valideURLConvert(str) {
   return (str || '')
     .toString()
     .normalize('NFKD')
-    .replace(/[\u0300-\u036F]/g, '') // Remove accents
-    .replace(/[^a-zA-Z0-9]+/g, '-')  // Replace non-alphanumerics with hyphens
-    .replace(/^-+|-+$/g, '')         // Trim hyphens
+    .replace(/[\u0300-\u036F]/g, '')
+    .replace(/[^a-zA-Z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
     .toLowerCase();
 }
 
@@ -17,7 +17,6 @@ async function fetchJSON(path) {
 }
 
 export default async function sitemap() {
-  // 1. Static pages
   const items = [
     {
       url: 'https://www.esmakeupstore.com/',
@@ -34,7 +33,7 @@ export default async function sitemap() {
     {
       url: 'https://www.esmakeupstore.com/new-arrival',
       lastModified: new Date().toISOString(),
-      changeFrequency: 'monthly',
+      changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
@@ -45,27 +44,43 @@ export default async function sitemap() {
     },
   ];
 
-  // 2. Fetch categories, subcategories, and products
   let categories = [];
   let subcategories = [];
   let products = [];
+
+  const fallbackCategories = [
+    { _id: '1', name: 'SETTING POWDER', updatedAt: new Date().toISOString() },
+    { _id: '2', name: 'Makeup Sets', updatedAt: new Date().toISOString() },
+    { _id: '3', name: 'Foundation Makeup', updatedAt: new Date().toISOString() },
+    { _id: '4', name: 'Blush Makeup', updatedAt: new Date().toISOString() },
+    { _id: '5', name: 'Lip Makeup', updatedAt: new Date().toISOString() },
+    { _id: '6', name: 'Eye Makeup', updatedAt: new Date().toISOString() },
+    { _id: '7', name: 'Face Makeup', updatedAt: new Date().toISOString() },
+  ];
+
+  const fallbackProducts = [
+    { _id: 'nyx-1', name: 'Total control drop foundation', updatedAt: new Date().toISOString(), subCategory: '3' },
+    { _id: 'nyx-2', name: 'Dou chromatic lip gloss', updatedAt: new Date().toISOString(), subCategory: '5' },
+    { _id: 'la-girl-1', name: 'Lip/eye liner pencil 3 in 1', updatedAt: new Date().toISOString(), subCategory: '6' },
+  ];
+
   try {
-    [categories, subcategories, products] = await Promise.all([
+    const [catRes, subRes, prodRes] = await Promise.all([
       fetchJSON('/api/category'),
       fetchJSON('/api/subcategory'),
       fetchJSON('/api/product?publish=true'),
     ]);
+    categories = (catRes?.data || catRes || fallbackCategories);
+    subcategories = (subRes?.data || subRes || []);
+    products = (prodRes?.data || prodRes || fallbackProducts).filter(p => p.publish);
   } catch (err) {
-    // If your API returns { success: true, data: [...] }
-    // you may need to adjust this depending on your backend response format
-    categories = categories.data || [];
-    subcategories = subcategories.data || [];
-    products = products.data || [];
+    console.error('Failed to fetch sitemap data:', err);
+    categories = fallbackCategories;
+    products = fallbackProducts;
   }
 
-  // 3. Add categories
   for (const cat of categories) {
-    const catUrl = `https://www.esmakeupstore.com/${slugify(cat.name)}-${cat._id}`;
+    const catUrl = `https://www.esmakeupstore.com/${valideURLConvert(cat.name)}-${cat._id}`;
     items.push({
       url: catUrl,
       lastModified: cat.updatedAt || new Date().toISOString(),
@@ -74,14 +89,12 @@ export default async function sitemap() {
     });
   }
 
-  // 4. Add subcategories
   for (const sub of subcategories) {
-    // Assuming sub.category is an array of category IDs
     const parentCat = categories.find(
       c => String(c._id) === String(Array.isArray(sub.category) ? sub.category[0] : sub.category)
     );
     if (!parentCat) continue;
-    const subUrl = `https://www.esmakeupstore.com/${slugify(parentCat.name)}-${parentCat._id}/${slugify(sub.name)}-${sub._id}`;
+    const subUrl = `https://www.esmakeupstore.com/${valideURLConvert(parentCat.name)}-${parentCat._id}/${valideURLConvert(sub.name)}-${sub._id}`;
     items.push({
       url: subUrl,
       lastModified: sub.updatedAt || new Date().toISOString(),
@@ -90,25 +103,8 @@ export default async function sitemap() {
     });
   }
 
-  // 5. Add products
   for (const prod of products) {
-    // Assuming prod.subCategory is an array of subcategory IDs
-    const sub = subcategories.find(
-      s => String(s._id) === String(Array.isArray(prod.subCategory) ? prod.subCategory[0] : prod.subCategory)
-    );
-    const cat = sub
-      ? categories.find(
-          c => String(c._id) === String(Array.isArray(sub.category) ? sub.category[0] : sub.category)
-        )
-      : null;
-
-    let prodUrl;
-    if (cat && sub) {
-      prodUrl = `https://www.esmakeupstore.com/${slugify(prod.name)}-${prod._id}`;
-    } else {
-      prodUrl = `https://www.esmakeupstore.com/product/${prod._id}`;
-    }
-
+    const prodUrl = `https://www.esmakeupstore.com/product/${valideURLConvert(prod.name)}-${prod._id}`;
     items.push({
       url: prodUrl,
       lastModified: prod.updatedAt || new Date().toISOString(),
@@ -118,3 +114,4 @@ export default async function sitemap() {
   }
 
   return items;
+}
