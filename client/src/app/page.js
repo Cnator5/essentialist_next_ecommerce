@@ -1,6 +1,7 @@
-// app/page.js
+// app/page.js (Reverted to server-side for static parts only; product fetching moved to client with cache)
 import Image from 'next/image'
 import Link from 'next/link'
+import { Suspense } from 'react'
 import bannern from '/public/assets/fbb4343f-2d39-4c25-ac2f-1ab5037f50da.avif'
 import bannern2 from '/public/assets/56e20d4e-2643-4edb-b3fd-7762b81a7658.avif'
 import bannerp from '/public/assets/lipstick-cosmetics-makeup-beauty-product-ad-banner_33099-1533.jpg'
@@ -10,6 +11,7 @@ import CategoryWiseProductDisplay from '../components/CategoryWiseProductDisplay
 import ProductRecommendations from '../components/ProductRecommendations'
 import TikTokGallery from '../components/TikTokGallery'
 import { valideURLConvert } from '../utils/valideURLConvert'
+import { unstable_cache as cache } from 'next/cache'
 
 export const dynamic = 'force-static' // Prefer static generation; hydrate client where needed.
 export const revalidate = 300 // Fallback ISR; API calls also specify revalidate.
@@ -27,42 +29,47 @@ const DEFAULT_DESC =
 
 const OG_IMAGE = 'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'
 
-// ---- Data layer with robust caching and graceful degradation ----
-async function getCategories() {
-  try {
-    const res = await fetch(`${baseURL}${SummaryApi.getCategory.url}`, {
-      method: SummaryApi.getCategory.method,
-      headers: { 'Content-Type': 'application/json' },
-      // Cache for 5 minutes via ISR; allow CDN to cache
-      next: { revalidate: 300, tags: ['categories'] },
-      cache: 'force-cache',
-    })
-    if (!res.ok) throw new Error('Failed to fetch categories')
-    const data = await res.json()
-    return Array.isArray(data) ? data : data?.data || []
-  } catch (e) {
-    console.error('getCategories error:', e)
-    return []
-  }
-}
+// Cached fetch functions for server-side data fetching (categories/subcategories only)
+const getCategories = cache(
+  async () => {
+    try {
+      const res = await fetch(`${baseURL}${SummaryApi.getCategory.url}`, {
+        method: SummaryApi.getCategory.method,
+        headers: { 'Content-Type': 'application/json' },
+        next: { revalidate: 300, tags: ['categories'] },
+        cache: 'force-cache',
+      })
+      if (!res.ok) throw new Error('Failed to fetch categories')
+      const data = await res.json()
+      return Array.isArray(data) ? data : data?.data || []
+    } catch (e) {
+      console.error('getCategories error:', e)
+      return []
+    }
+  },
+  ['categories']
+)
 
-async function getSubCategories() {
-  try {
-    const res = await fetch(`${baseURL}${SummaryApi.getSubCategory.url}`, {
-      method: SummaryApi.getSubCategory.method,
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({}),
-      next: { revalidate: 300, tags: ['subcategories'] },
-      cache: 'force-cache',
-    })
-    if (!res.ok) throw new Error('Failed to fetch subcategories')
-    const data = await res.json()
-    return Array.isArray(data) ? data : data?.data || []
-  } catch (e) {
-    console.error('getSubCategories error:', e)
-    return []
-  }
-}
+const getSubCategories = cache(
+  async () => {
+    try {
+      const res = await fetch(`${baseURL}${SummaryApi.getSubCategory.url}`, {
+        method: SummaryApi.getSubCategory.method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({}),
+        next: { revalidate: 300, tags: ['subcategories'] },
+        cache: 'force-cache',
+      })
+      if (!res.ok) throw new Error('Failed to fetch subcategories')
+      const data = await res.json()
+      return Array.isArray(data) ? data : data?.data || []
+    } catch (e) {
+      console.error('getSubCategories error:', e)
+      return []
+    }
+  },
+  ['subcategories']
+)
 
 // ---- Dynamic SEO (fixed logic) ----
 export async function generateMetadata() {
@@ -210,6 +217,9 @@ export default async function Home() {
     ? categoryData.slice(0, 7).map((c) => c?.name).filter(Boolean).join(', ')
     : ''
 
+  // Pass categories and subcategories to client components for URL building and fetching
+  const topCategories = categoryData.slice(0, 12) // Show up to 12 categories (adjust as needed)
+
   return (
     <>
       <StructuredData />
@@ -309,14 +319,21 @@ export default async function Home() {
           </div>
         </div>
 
+        {/* Render category displays; client-side fetch with in-memory cache for fast loads */}
         <div className="lg:block">
-          {Array.isArray(categoryData) &&
-            categoryData.map((c) => (
-              <CategoryWiseProductDisplay key={`${c?._id}-CategorywiseProduct`} id={c?._id} name={c?.name} />
-            ))}
+          {topCategories.map((c) => (
+            <CategoryWiseProductDisplay 
+              key={`${c._id}-CategorywiseProduct`} 
+              id={c._id} 
+              name={c.name} 
+              subCategories={subCategoryData} // Pass for URL building
+            />
+          ))}
         </div>
 
-        <TikTokGallery />
+        <Suspense fallback={<div>Loading TikTok Gallery...</div>}>
+          <TikTokGallery />
+        </Suspense>
 
         {/* WhatsApp Floating Button */}
         <a

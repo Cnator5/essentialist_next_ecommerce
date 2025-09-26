@@ -426,7 +426,7 @@ const CardProduct = React.memo(({ data, isLoading = false }) => {
       onClick={handleAddToCartClick} // Stop propagation for AddToCart
       prefetch={true} // Enable prefetching for instant navigation on click/hover (Next.js 15 optimized)
       style={{
-        minWidth: typeof window !== 'undefined' && window.innerWidth < 768 ? '15rem' : 'auto',
+        minWidth: typeof window !== 'undefined' && window.innerWidth < 768 ? '1rem' : 'auto',
         maxWidth: '20rem',
       }}
       // Creative: Add rel="preload" hint for browser prefetching
