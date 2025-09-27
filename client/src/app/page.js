@@ -1,4 +1,4 @@
-// app/page.js (Reverted to server-side for static parts only; product fetching moved to client with cache)
+// app/page.js (Updated: Server-side parallel fetching of products with unstable_cache for Data Cache; passes props to avoid client fetches)
 import Image from 'next/image'
 import Link from 'next/link'
 import { Suspense } from 'react'
@@ -20,6 +20,7 @@ const baseURL = process.env.NEXT_PUBLIC_API_URL
 const SummaryApi = {
   getCategory: { url: '/api/category/get', method: 'GET' },
   getSubCategory: { url: '/api/subcategory/get', method: 'POST' },
+  getProductByCategory: { url: '/api/product/get-product-by-category', method: 'POST' }, // From your SummaryApi
 }
 
 const DEFAULT_TITLE = 'Makeup: Best Online Makeup Store in Douala, Cameroon | Beauty & Personal Care'
@@ -70,6 +71,44 @@ const getSubCategories = cache(
   },
   ['subcategories']
 )
+
+// Cached fetch for products by category ID (uses unstable_cache for Data Cache + tags for revalidation)
+const getProductsByCategoryId = cache(
+  async (categoryId) => {
+    try {
+      const res = await fetch(`${baseURL}${SummaryApi.getProductByCategory.url}`, {
+        method: SummaryApi.getProductByCategory.method,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id: categoryId }),
+        next: { 
+          revalidate: 300, // Time-based revalidation every 5 min
+          tags: [`products-${categoryId}`] // Tag for on-demand revalidation
+        },
+        cache: 'force-cache', // Enable Data Cache
+      })
+      if (!res.ok) {
+        console.warn(`Failed to fetch products for category ${categoryId}: ${res.status}`)
+        return []
+      }
+      const data = await res.json()
+      return data?.success ? (data?.data || []) : []
+    } catch (e) {
+      console.error(`getProductsByCategoryId error for ${categoryId}:`, e)
+      return [] // Graceful fallback
+    }
+  },
+  ['products'] // Cache key prefix
+)
+
+// Parallel fetch all top category products (limited to 6-8 for perf; uses Data Cache via unstable_cache)
+async function getAllTopCategoryProducts(categories) {
+  const topCategories = categories.slice(0, 8) // Limit to 8 categories (adjust based on your data)
+  const productsPromises = topCategories.map(async (cat) => {
+    const products = await getProductsByCategoryId(cat._id)
+    return { category: cat, products }
+  })
+  return Promise.all(productsPromises) // Parallel execution
+}
 
 // ---- Dynamic SEO (fixed logic) ----
 export async function generateMetadata() {
@@ -138,7 +177,10 @@ export async function generateMetadata() {
 }
 
 // ---- Schema.org JSON-LD ----
-function StructuredData() {
+function StructuredData({ categoryProducts = [] }) {
+  // Enhanced with dynamic product data for better SEO (limit to top products)
+  const productList = categoryProducts.flatMap(({ products }) => products.slice(0, 5)) // Top 5 per category
+
   const websiteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
@@ -158,11 +200,35 @@ function StructuredData() {
       },
     },
     image: [
-      'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg',
+      OG_IMAGE,
       'https://www.esmakeupstore.com/assets/NYX-PMU-Makeup-Lips-Liquid-Lipstick-LIP-LINGERIE-XXL-LXXL28-UNTAMABLE-0800897132187-OpenSwatch.webp',
       'https://www.esmakeupstore.com/assets/800897085421_duochromaticilluminatingpowder_twilighttint_alt2.jpg',
     ],
   }
+
+  const itemListJsonLd = productList.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Featured Makeup Products',
+    description: 'Explore our top makeup products at Essentialist Makeup Store.',
+    numberOfItems: productList.length,
+    itemListElement: productList.map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Product',
+        name: product.name,
+        image: Array.isArray(product.image) ? product.image[0] : product.image,
+        url: `https://www.esmakeupstore.com/product/${valideURLConvert(product.name)}-${product._id}`,
+        offers: {
+          '@type': 'Offer',
+          price: product.price,
+          priceCurrency: 'XAF',
+          availability: product.stock > 0 ? 'https://schema.org/InStock' : 'https://schema.org/OutOfStock',
+        },
+      },
+    })),
+  } : null
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -191,6 +257,7 @@ function StructuredData() {
   }
 
   const ld = [websiteJsonLd, breadcrumbJsonLd, organizationJsonLd]
+  if (itemListJsonLd) ld.push(itemListJsonLd)
 
   return (
     <>
@@ -210,19 +277,65 @@ function buildCategoryUrl(catId, catName, subCategory) {
   return `/${valideURLConvert(catName)}-${catId}/${valideURLConvert(subCategory.name)}-${subCategory._id}`
 }
 
+// Suspense fallback for category product displays (inline skeleton for instant load)
+function CategoryFallback({ name }) {
+  return (
+    <div className="mb-12">
+      <div className="container mx-auto px-2 flex items-center justify-between p-2">
+        <h2 className="font-bold text-[20px] md:text-[40px] animate-pulse bg-gray-200 h-8 w-48 rounded"></h2>
+        <div className="animate-pulse bg-gray-200 h-6 w-20 rounded"></div>
+      </div>
+      <div className="relative flex items-center">
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:flex gap-1 md:gap-1 lg:gap-1 container mx-auto overflow-x-auto scrollbar-none scroll-smooth touch-pan-y">
+          {Array.from({ length: 6 }).map((_, i) => (
+            <div key={i} className="px-1">
+              <div className="relative flex flex-col border border-gray-200 overflow-hidden py-1 lg:p-2 rounded-lg bg-white shadow-sm animate-pulse">
+                <div className="relative overflow-hidden rounded-lg aspect-square mb-3 bg-gray-200">
+                  <div className="w-full h-full bg-gradient-to-r from-gray-200 to-gray-300 animate-pulse" />
+                </div>
+                <div className="flex-grow flex flex-col px-2 space-y-2">
+                  <div className="h-8 bg-gray-200 rounded w-3/4" />
+                  <div className="h-4 bg-gray-200 rounded w-1/2 mb-3" />
+                  <div className="flex items-center justify-between">
+                    <div className="space-y-1">
+                      <div className="h-5 bg-gray-200 rounded w-16" />
+                      <div className="h-4 bg-gray-200 rounded w-12" />
+                    </div>
+                    <div className="h-8 w-20 bg-gray-200 rounded-full" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default async function Home() {
   const [categoryData, subCategoryData] = await Promise.all([getCategories(), getSubCategories()])
+  const categoryProducts = await getAllTopCategoryProducts(categoryData) // Pre-fetch products in parallel with Data Cache
 
   const topCategoryNames = Array.isArray(categoryData)
     ? categoryData.slice(0, 7).map((c) => c?.name).filter(Boolean).join(', ')
     : ''
 
-  // Pass categories and subcategories to client components for URL building and fetching
-  const topCategories = categoryData.slice(0, 12) // Show up to 12 categories (adjust as needed)
+  // Render category displays with pre-fetched products (no client fetch needed)
+  const topCategoryDisplays = categoryProducts.map(({ category, products }) => (
+    <Suspense key={`${category._id}-products`} fallback={<CategoryFallback name={category.name} />}>
+      <CategoryWiseProductDisplay 
+        id={category._id} 
+        name={category.name} 
+        products={products} // Pass cached products
+        subCategories={subCategoryData} // For URL building
+      />
+    </Suspense>
+  ))
 
   return (
     <>
-      <StructuredData />
+      <StructuredData categoryProducts={categoryProducts} />
 
       <section className="bg-white">
         <ProductRecommendations />
@@ -319,16 +432,9 @@ export default async function Home() {
           </div>
         </div>
 
-        {/* Render category displays; client-side fetch with in-memory cache for fast loads */}
+        {/* Render top category displays with Suspense for parallel streaming + Data Cache */}
         <div className="lg:block">
-          {topCategories.map((c) => (
-            <CategoryWiseProductDisplay 
-              key={`${c._id}-CategorywiseProduct`} 
-              id={c._id} 
-              name={c.name} 
-              subCategories={subCategoryData} // Pass for URL building
-            />
-          ))}
+          {topCategoryDisplays}
         </div>
 
         <Suspense fallback={<div>Loading TikTok Gallery...</div>}>

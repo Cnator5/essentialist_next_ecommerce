@@ -157,10 +157,10 @@
 
 
 
-'use client'
+'use client' // At the top!
 
 import React, { useEffect, useMemo, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux' // Only for fallback
 import Link from 'next/link'
 import { valideURLConvert } from '../utils/valideURLConvert'
 
@@ -182,10 +182,21 @@ const createBrandSlug = (brand) => {
   return brand.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '')
 }
 
-const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
-  const loadingCategory = useSelector((state) => state.product.loadingCategory)
-  const categoryData = useSelector((state) => state.product.allCategory) || []
-  const subCategoryData = useSelector((state) => state.product.allSubCategory) || []
+const SideBar = ({ 
+  isMobile = false, 
+  onNavigate = () => {}, 
+  categoryData = [], 
+  subCategoryData = [], 
+  loadingCategory = false 
+}) => {
+  // Fallback to Redux only if props are empty (legacy/edge cases)
+  const reduxCategoryData = useSelector((state) => state.product.allCategory) || []
+  const reduxSubCategoryData = useSelector((state) => state.product.allSubCategory) || []
+  const reduxLoadingCategory = useSelector((state) => state.product.loadingCategory)
+
+  const finalCategoryData = categoryData.length > 0 ? categoryData : reduxCategoryData
+  const finalSubCategoryData = subCategoryData.length > 0 ? subCategoryData : reduxSubCategoryData
+  const finalLoadingCategory = typeof loadingCategory === 'boolean' ? loadingCategory : reduxLoadingCategory
 
   const [hydrated, setHydrated] = useState(false)
   useEffect(() => {
@@ -194,7 +205,7 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
 
   const getSubcategoriesForCategory = useMemo(() => {
     const subcatsByCat = {}
-    subCategoryData.forEach((sub) => {
+    finalSubCategoryData.forEach((sub) => {
       const catId = Array.isArray(sub.category) ? sub.category[0]?._id : sub.category?._id
       if (catId) {
         if (!subcatsByCat[catId]) subcatsByCat[catId] = []
@@ -202,7 +213,7 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
       }
     })
     return (categoryId) => subcatsByCat[categoryId] || []
-  }, [subCategoryData])
+  }, [finalSubCategoryData])
 
   const baseClasses = isMobile
     ? 'bg-white text-black w-full'
@@ -255,8 +266,8 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
     )
   }
 
-  const showSkeleton = loadingCategory
-  const showEmpty = !loadingCategory && categoryData.length === 0
+  const showSkeleton = finalLoadingCategory
+  const showEmpty = !finalLoadingCategory && finalCategoryData.length === 0
 
   return (
     <aside className={baseClasses}>
@@ -278,7 +289,7 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
                 <li key={brand}>
                   <Link
                     href={`/brands/${brandSlug}`}
-                    prefetch={true}
+                    prefetch={true} // Fast navigation: preloads on hover/viewport
                     onClick={onNavigate}
                     className={brandItemClasses}
                   >
@@ -303,7 +314,7 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
         ) : showEmpty ? (
           <div className="p-4 text-sm text-gray-500">No categories found</div>
         ) : (
-          categoryData.map((category) => {
+          finalCategoryData.map((category) => {
             const subcategories = getSubcategoriesForCategory(category._id)
             return (
               <div key={category._id} className="overflow-hidden">
@@ -321,7 +332,7 @@ const SideBar = ({ isMobile = false, onNavigate = () => {} }) => {
                           <li key={subCat._id}>
                             <Link
                               href={url}
-                              prefetch={true}
+                              prefetch={true} // Fast navigation
                               onClick={onNavigate}
                               className={subcategoryItemClasses}
                             >
