@@ -52,7 +52,7 @@ const Dropdown = () => {
                         absolute left-0 top-full mt-1
                         w-full max-w-full
                         md:w-[1250px] md:max-w-[1250px]
-                        md:translate-x-[-16.5%]
+                        md:translate-x-[-56.5%]
                         bg-white rounded-xl shadow-xl z-50 overflow-hidden
                         transform origin-top scale-y-100 transition-all duration-200
                     "
