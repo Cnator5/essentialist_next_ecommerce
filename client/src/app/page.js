@@ -162,7 +162,7 @@ export async function generateMetadata() {
     : ''
 
   const dynTitle = top
-    ? `Shop ${top} & More - Best Makeup Store in Cameroon`
+    ? `Best Makeup Store in Cameroon: Shop ${top} & More`
     : DEFAULT_TITLE
 
   const dynDesc = top

@@ -48,14 +48,14 @@ export const metadata = {
         url: 'https://www.esmakeupstore.com/assets/logo.jpg',
         width: 1200,
         height: 630,
-        alt: 'EssentialisMakeupStore Product Preview',
+        alt: 'Essentialist Makeup Store Product Preview',
       },
     ],
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Makeup: Beauty & Personal Care',
+    title: 'Essentialist Makeup Store - Beauty & Personal Care', 
     description:
       'Explore authentic makeup and cosmetics in Cameroon. Shop foundations, lipsticks, eyeshadows, and more with free shipping & cash on delivery.',
     images: ['https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'],
