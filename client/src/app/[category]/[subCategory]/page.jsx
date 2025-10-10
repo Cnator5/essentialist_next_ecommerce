@@ -352,6 +352,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import CardProduct from '../../../components/CardProduct'
 import { valideURLConvert } from '../../../utils/valideURLConvert'
+import Image from 'next/image'
 
 // ---------- API config ----------
 const baseURL = process.env.NEXT_PUBLIC_API_URL
@@ -460,7 +461,7 @@ export async function generateMetadata({ params, searchParams }) {
 
   const titleBase = subCategoryName || 'Products'
   const paginationSuffix = page > 1 ? ` | Page ${page}` : ''
-  const title = `Best ${titleBase} Makeup ${paginationSuffix}`
+  const title = `${titleBase} Makeup ${paginationSuffix}`
 
   const desc =
     products?.length
@@ -615,7 +616,7 @@ export default async function ProductListPage({ params, searchParams }) {
                     prefetch={false} // Performance optimization - only prefetch when needed
                   >
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src={s?.image}
                       alt={s?.name}
                       className="w-14 lg:h-14 lg:w-12 h-full object-scale-down"

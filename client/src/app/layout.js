@@ -8,7 +8,7 @@ const inter = Inter({ subsets: ['latin'] })
 export const metadata = {
   metadataBase: new URL('https://www.esmakeupstore.com'),
   title: {
-    default: 'Best Makeup store in Cameroon: Beauty & Personal Care',
+    default: 'Essentialist Makeup Store',
   },
   description:
     'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more. Shop top brands, enjoy exclusive deals, and experience free shipping & cash on delivery!',
@@ -40,12 +40,12 @@ export const metadata = {
     type: 'website',
     siteName: 'EssentialisMakeupStore',
     url: 'https://www.esmakeupstore.com/',
-    title: 'Makeup: Beauty & Personal Care - EssentialisMakeupStore',
+    title: 'Essentialist Makeup Store',
     description:
       'Explore authentic makeup and cosmetics in Cameroon. Shop foundations, lipsticks, eyeshadows, and more with free shipping & cash on delivery.',
     images: [
       {
-        url: 'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg',
+        url: 'https://www.esmakeupstore.com/assets/logo.jpg',
         width: 1200,
         height: 630,
         alt: 'EssentialisMakeupStore Product Preview',
@@ -62,8 +62,9 @@ export const metadata = {
     creator: '@essentialistmakeupstore',
   },
   icons: {
+    // icon: [{ url: '/icon.avif', type: 'image/avif' }],
     icon: [{ url: '/icon.avif', type: 'image/avif' }],
-    apple: [{ url: '/icon.avif' }],
+    apple: [{ url: '/icon.avif' }], 
   },
   other: {
     'msvalidate.01': '1D7D3FCABB171743A8EB32440530AC76',

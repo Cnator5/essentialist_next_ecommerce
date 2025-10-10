@@ -207,8 +207,8 @@ export async function generateMetadata() {
       images: [OG_IMAGE],
     },
     icons: {
-      icon: [{ url: '/icon.avif', type: 'image/avif' }],
-      apple: [{ url: '/icon.avif' }],
+      icon: [{ url: '  /icon.avif ', type: 'image/avif' }],
+      apple: [{ url: '  /icon.avif ' }],
     },
     themeColor: '#faf6f3',
     other: {
@@ -247,8 +247,8 @@ function StructuredData({ categoryProducts = [] }) {
     },
     image: [
       OG_IMAGE,
-      'https://www.esmakeupstore.com/assets/NYX-PMU-Makeup-Lips-Liquid-Lipstick-LIP-LINGERIE-XXL-LXXL28-UNTAMABLE-0800897132187-OpenSwatch.webp',
-      'https://www.esmakeupstore.com/assets/800897085421_duochromaticilluminatingpowder_twilighttint_alt2.jpg',
+      'https://www.esmakeupstore.com/assets/ogo.jpg',
+      'https://www.esmakeupstore.com/assets/ogo.jpg',
     ],
   }
 
