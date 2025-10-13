@@ -763,7 +763,7 @@ function StructuredData({ product, slug, rating }) {
   const websiteJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: 'EssentialisMakeupStore',
+    name: 'Essentialist Makeup Store',
     url: 'https://www.esmakeupstore.com/',
     potentialAction: {
       '@type': 'SearchAction',
@@ -775,7 +775,7 @@ function StructuredData({ product, slug, rating }) {
   const organizationJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Organization',
-    name: 'EssentialisMakeupStore',
+    name: 'Essentialist Makeup Store',
     url: 'https://www.esmakeupstore.com/',
     sameAs: [
       'https://www.facebook.com/Essentialistmakeupstore',

@@ -7,26 +7,38 @@ const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
   metadataBase: new URL('https://www.esmakeupstore.com'),
-  title: {
-    default: 'Essentialist Makeup Store',
-  },
+  title: 'Cameroon Makeup Shop | Setting Powders, Makeup Kits & Beauty Deals',
   description:
-    'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more. Shop top brands, enjoy exclusive deals, and experience free shipping & cash on delivery!',
+    'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more. Shop top makeup brands, enjoy exclusive deals, and experience free shipping & cash on delivery!',
   keywords: [
-    'makeup', 'makeup Cameroon', 'makeup Douala', 'African makeup', 'Cameroon beauty', 'Douala beauty',
-    'buy makeup Cameroon', 'makeup brands Cameroon', 'makeup store Douala', 'cosmetics Cameroon',
-    'EssentialisMakeupStore', 'makeup artist Douala', 'beauty shop Douala', 'foundation', 'concealer',
-    'contour', 'bronzer', 'blush', 'highlighter', 'pressed powder', 'setting spray', 'primer', 'eyeshadow',
-    'eyeshadow palette', 'eyeliner', 'mascara', 'eyebrow pencil', 'lipsticks', 'lip gloss', 'lip liner',
-    'makeup brushes', 'beauty blender', 'makeup remover', 'skincare', 'moisturizer', 'face mask',
-    'African makeup trends', 'Cameroonian beauty', 'best makeup products Douala', 'affordable makeup Cameroon',
-    'professional makeup Douala', 'bridal makeup Cameroon', 'makeup for dark skin', 'melanin makeup',
-    'makeup tutorials Cameroon', 'beauty influencers Cameroon', 'beauty supply Douala', 'face makeup Cameroon',
-    'eye makeup Cameroon', 'lip makeup Cameroon', 'makeup tools Cameroon', 'Douala cosmetics', 'Cameroon makeup shop',
-    'best beauty brands Douala', 'Essentialis makeup', 'trending makeup Cameroon', 'makeup sale Cameroon',
-    'Douala beauty trends', 'Cameroon makeup artists', 'best beauty shop Douala', 'buy cosmetics Douala',
-    'authentic makeup Cameroon', 'popular makeup brands Cameroon', 'best eye shadow Cameroon', 'beauty care Cameroon',
-    'top makeup Cameroon', 'trending cosmetics Douala',
+    'Cameroon makeup shop',
+    'Douala makeup store',
+    'setting powder Cameroon',
+    'makeup kits for teens Douala',
+    'NYX foundation price Cameroon',
+    'matte bronzer Cameroon',
+    'liquid lipstick Douala',
+    'waterproof mascara Cameroon',
+    'blush for melanin skin',
+    'face makeup Cameroon',
+    'eye makeup Douala',
+    'lip makeup Cameroon',
+    'makeup brushes Douala',
+    'beauty blender Cameroon',
+    'primer for oily skin Cameroon',
+    'bridal makeup Cameroon',
+    'cash on delivery makeup Cameroon',
+    'affordable makeup Bonamoussadi',
+    'highlighter for dark skin Cameroon',
+    'makeup removers Douala',
+    'skincare Cameroon',
+    'beauty supply Douala',
+    'authentic cosmetics Cameroon',
+    'trending makeup Cameroon',
+    'professional makeup Douala',
+    'makeup sale Cameroon',
+    'exclusive makeup deals Douala',
+    'Essentialist Makeup Store',
   ],
   robots: {
     index: true,
@@ -38,9 +50,9 @@ export const metadata = {
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    siteName: 'EssentialisMakeupStore',
+    siteName: 'Essentialist Makeup Store', // Maintains brand visibility as the SERP site name.
     url: 'https://www.esmakeupstore.com/',
-    title: 'Essentialist Makeup Store',
+    title: 'Cameroon Makeup Shop | Setting Powders, Makeup Kits & Beauty Deals',
     description:
       'Explore authentic makeup and cosmetics in Cameroon. Shop foundations, lipsticks, eyeshadows, and more with free shipping & cash on delivery.',
     images: [
@@ -55,33 +67,30 @@ export const metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Essentialist Makeup Store - Beauty & Personal Care', 
+    title: 'Cameroon Makeup Shop | Setting Powders, Makeup Kits & Beauty Deals',
     description:
       'Explore authentic makeup and cosmetics in Cameroon. Shop foundations, lipsticks, eyeshadows, and more with free shipping & cash on delivery.',
     images: ['https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'],
     creator: '@essentialistmakeupstore',
   },
   icons: {
-    // icon: [{ url: '/icon.avif', type: 'image/avif' }],
     icon: [{ url: '/icon.avif', type: 'image/avif' }],
-    apple: [{ url: '/icon.avif' }], 
+    apple: [{ url: '/icon.avif' }],
   },
   other: {
     'msvalidate.01': '1D7D3FCABB171743A8EB32440530AC76',
     'al:android:package': 'com.fsn.esmakeupstore',
-    'al:android:app_name': 'EssentialisMakeupStore: Makeup Shopping App',
-    'al:ios:app_name': 'EssentialisMakeupStore -- Makeup Shopping',
+    'al:android:app_name': 'Essentialist Makeup Store: Makeup Shopping App',
+    'al:ios:app_name': 'Essentialist Makeup Store — Makeup Shopping',
   },
 }
 
 export const viewport = {
-  themeColor: '#faf6f3',
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
   viewportFit: 'cover',
 }
-
 
 export default function RootLayout({ children }) {
   return (
