@@ -684,15 +684,16 @@ export async function generateMetadata({ params }) {
     metadataBase: new URL('https://www.esmakeupstore.com'),
     title: name,
     description,
-    keywords: [
+    keywords: `[
       name,
       'makeup',
       'beauty',
       'cosmetics',
-      'Essentialist MakeupStore',
+      'Essentialist Makeup Store',
       'Cameroon makeup',
       'Douala beauty',
-    ],
+      ${name}
+    ]`,
     alternates: { canonical: url },
     openGraph: {
       type: 'website',
