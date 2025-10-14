@@ -591,7 +591,7 @@ import { unstable_cache } from 'next/cache'
 export const dynamic = 'force-static'
 export const revalidate = 300
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
+const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1010'
 const SummaryApi = {
   getCategory: { url: '/api/category/get', method: 'GET' },
   getSubCategory: { url: '/api/subcategory/get', method: 'POST' },

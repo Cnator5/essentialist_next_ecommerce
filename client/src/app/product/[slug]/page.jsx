@@ -675,7 +675,7 @@ export async function generateMetadata({ params }) {
   const name = product?.name || 'Product'
   const descRaw =
     product?.description ||
-    `Buy ${name} at the best price from EssentialisMakeupStore.`
+    `Buy ${name} at the best price from EssentialistMakeupStore.`
   const description = stripHtml(descRaw).slice(0, 300)
   const img = Array.isArray(product?.image) ? product.image[0] : product?.image
   const url = `https://www.esmakeupstore.com/product/${slug}`
@@ -689,14 +689,14 @@ export async function generateMetadata({ params }) {
       'makeup',
       'beauty',
       'cosmetics',
-      'EssentialisMakeupStore',
+      'Essentialist MakeupStore',
       'Cameroon makeup',
       'Douala beauty',
     ],
     alternates: { canonical: url },
     openGraph: {
       type: 'website',
-      siteName: 'EssentialisMakeupStore',
+      siteName: 'Essentialist MakeupStore',
       url,
       title: name,
       description,
@@ -869,7 +869,7 @@ export default async function ProductDisplayPage({ params }) {
 
         <div className="p-4 lg:pl-7 text-base lg:text-lg">
           <p className="bg-emerald-200 w-fit px-2 rounded-full">10 Minutes</p>
-          <h1 className="text-lg font-semibold lg:text-3xl">{productData.name}</h1>
+          <h1 className="text-lg font-semibold lg:text-lg">{productData.name}</h1>
           <p>{productData.unit}</p>
 
           {/* Ratings */}
@@ -947,7 +947,7 @@ export default async function ProductDisplayPage({ params }) {
             <div className="flex items-center gap-4 my-4">
               <Image src="/assets/minute_delivery.jpeg" alt="Superfast delivery" width={80} height={80} className="w-20 h-20" />
               <div className="text-sm">
-                <div className="font-semibold">Superfast Delivery</div>
+                <div className="font-semibold">Super-fast Delivery</div>
                 <p>Get your order delivered to your doorstep at the earliest from dark stores near you.</p>
               </div>
             </div>
