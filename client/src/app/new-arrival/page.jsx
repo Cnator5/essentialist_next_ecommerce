@@ -1,6 +1,5 @@
 import SummaryApi, { apiFetch } from "../../common/SummaryApi";
 import NewArrivalContent from "../../components/NewArrivalContent";
-// import { apiFetch, SummaryApi } from "../common/SummaryApi";
 
 const STORE_NAME = "Essentialist Makeup Store";
 const PAGE_PATH = "https://www.esmakeupstore.com/new-arrival";
@@ -77,6 +76,7 @@ async function loadProducts() {
     if (!payload) return [];
     if (Array.isArray(payload.data?.products)) return payload.data.products;
     if (Array.isArray(payload.data)) return payload.data;
+    if (Array.isArray(payload.products)) return payload.products;
     return [];
   };
 
@@ -87,8 +87,50 @@ async function loadProducts() {
   };
 }
 
+function normalizeProducts(products) {
+  if (!Array.isArray(products)) return [];
+
+  return products.map((product) => {
+    if (!product || typeof product !== "object") return product;
+
+    const brandData = product.brand;
+    const brandName =
+      typeof brandData === "string"
+        ? brandData
+        : typeof brandData === "object"
+        ? brandData?.name ?? ""
+        : "";
+
+    const normalized = {
+      ...product,
+      brand: brandName,
+    };
+
+    if (!Array.isArray(product.image)) {
+      normalized.image = product.image ? [product.image] : [];
+    }
+
+    if (brandData && typeof brandData === "object") {
+      normalized.brandDetails = {
+        _id: brandData?._id ?? "",
+        name: brandName,
+        slug: brandData?.slug ?? "",
+        logo: brandData?.logo ?? "",
+        isFeatured: brandData?.isFeatured ?? false,
+        isActive: brandData?.isActive ?? true,
+      };
+    }
+
+    return normalized;
+  });
+}
+
 export default async function NewArrivalPage() {
   const { feedProducts, newCategoryProducts, hotCategoryProducts } = await loadProducts();
+
+  const normalizedFeedProducts = normalizeProducts(feedProducts);
+  const normalizedNewCategoryProducts = normalizeProducts(newCategoryProducts);
+  const normalizedHotCategoryProducts = normalizeProducts(hotCategoryProducts);
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -104,41 +146,39 @@ export default async function NewArrivalPage() {
     mainEntity: {
       "@type": "OfferCatalog",
       name: "New Arrivals",
-      itemListElement: feedProducts.slice(0, 20).map((product, index) => ({
-        "@type": "Offer",
-        position: index + 1,
-        itemOffered: {
-          "@type": "Product",
-          name: product?.name ?? "",
-          image: Array.isArray(product?.image)
-            ? product.image
-            : product?.image
-            ? [product.image]
-            : [],
-          brand: product?.brand
-            ? {
-                "@type": "Brand",
-                name: product.brand,
-              }
-            : undefined,
-          offers: {
-            "@type": "Offer",
-            priceCurrency: "XAF",
-            price: product?.discount
-              ? String(
-                  Math.round(
-                    Number(product.price || 0) -
-                      (Number(product.price || 0) * Number(product.discount || 0)) / 100,
-                  ),
-                )
-              : String(product?.price ?? ""),
-            availability: "https://schema.org/InStock",
-            url: `${process.env.NEXT_PUBLIC_SITE_URL || "https://www.esmakeupstore.com"}/product/${
-              product?._id || ""
-            }`,
+      itemListElement: normalizedFeedProducts.slice(0, 20).map((product, index) => {
+        const priceValue = Number(product?.price ?? 0);
+        const discountValue = Number(product?.discount ?? 0);
+        const finalPrice =
+          priceValue && discountValue
+            ? Math.round(priceValue - (priceValue * discountValue) / 100)
+            : priceValue;
+
+        return {
+          "@type": "Offer",
+          position: index + 1,
+          itemOffered: {
+            "@type": "Product",
+            name: product?.name ?? "",
+            image: Array.isArray(product?.image) ? product.image : [],
+            brand: product?.brand
+              ? {
+                  "@type": "Brand",
+                  name: product.brand,
+                }
+              : undefined,
+            offers: {
+              "@type": "Offer",
+              priceCurrency: "XAF",
+              price: finalPrice ? String(finalPrice) : "",
+              availability: "https://schema.org/InStock",
+              url: `${
+                process.env.NEXT_PUBLIC_SITE_URL || "https://www.esmakeupstore.com"
+              }/product/${product?._id || ""}`,
+            },
           },
-        },
-      })),
+        };
+      }),
     },
   };
 
@@ -154,9 +194,9 @@ export default async function NewArrivalPage() {
           subtitle: HERO_SUBTITLE,
           description: HERO_DESCRIPTION,
         }}
-        feedProducts={feedProducts}
-        newCategoryProducts={USE_CATEGORY_BLOCKS ? newCategoryProducts : []}
-        hotCategoryProducts={USE_CATEGORY_BLOCKS ? hotCategoryProducts : []}
+        feedProducts={normalizedFeedProducts}
+        newCategoryProducts={USE_CATEGORY_BLOCKS ? normalizedNewCategoryProducts : []}
+        hotCategoryProducts={USE_CATEGORY_BLOCKS ? normalizedHotCategoryProducts : []}
       />
     </>
   );
