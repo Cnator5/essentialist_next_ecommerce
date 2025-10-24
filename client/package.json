@@ -36,7 +36,7 @@
     "@tsparticles/react": "^3.0.0",
     "@tsparticles/slim": "^3.9.1",
     "@uiw/react-md-editor": "^4.0.8",
-    "axios": "^1.11.0",
+    "axios": "^1.12.2",
     "chart.js": "^4.5.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

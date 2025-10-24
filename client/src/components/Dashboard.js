@@ -1,3 +1,4 @@
+// components/Dashboard.jsx
 'use client'
 
 import React, { useEffect, useMemo, useState, useCallback } from 'react'
@@ -7,90 +8,46 @@ import SummaryApi, { baseURL } from '../common/SummaryApi'
 
 import {
   ResponsiveContainer,
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  BarChart,
-  Bar,
-  PieChart,
-  Pie,
-  Cell,
+  AreaChart, Area,
+  XAxis, YAxis, CartesianGrid, Tooltip,
+  BarChart, Bar,
+  PieChart, Pie, Cell,
 } from 'recharts'
 
 import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
+  Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle
 } from '../../@/components/ui/card'
 import { Badge } from '../../@/components/ui/badge'
 import { Button } from '../../@/components/ui/button'
 import { Input } from '../../@/components/ui/input'
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue
 } from '../../@/components/ui/select'
 import { ChartContainer } from '../../@/components/ui/chart'
 import { ToggleGroup, ToggleGroupItem } from '../../@/components/ui/toggle-group'
 
 import {
-  ArrowUpRight,
-  Users,
-  Package,
-  DollarSign,
-  ShoppingCart,
-  BarChart3,
-  Search,
-  Eye,
-  TrendingUp,
-  Crown,
-  Calendar,
-  Clock,
-  MapPin,
-  Mail,
-  Phone,
-  Hash,
+  ArrowUpRight, Users, Package, DollarSign,
+  ShoppingCart, BarChart3, Search, Eye, TrendingUp,
+  Crown, Calendar, Clock, MapPin, Mail, Phone, Hash
 } from 'lucide-react'
 
 import {
   format as formatDate,
-  startOfDay,
-  startOfWeek,
-  startOfMonth,
-  subDays,
-  subWeeks,
-  subMonths,
+  startOfDay, startOfWeek, startOfMonth,
+  subDays, subWeeks, subMonths
 } from 'date-fns'
 
 // --------------------- Utils ---------------------
 const currency = 'XAF'
 const api = axios.create({ baseURL, withCredentials: true })
 
-function sum(arr, sel = (x) => x) {
-  return arr.reduce((a, x) => a + sel(x), 0)
-}
-function safeNumber(n) {
-  const v = Number(n)
-  return Number.isFinite(v) ? v : 0
-}
+function sum(arr, sel = (x) => x) { return arr.reduce((a, x) => a + sel(x), 0) }
+function safeNumber(n) { const v = Number(n); return Number.isFinite(v) ? v : 0 }
 function formatCurrency(n) {
   try {
-    return n.toLocaleString('en-US', {
-      style: 'currency',
-      currency,
-      minimumFractionDigits: 0,
-    })
-  } catch {
-    return `${n} ${currency}`
-  }
+    return n.toLocaleString('en-US', { style: 'currency', currency, minimumFractionDigits: 0 })
+  } catch { return `${n} ${currency}` }
 }
 function groupBy(arr, keyFn) {
   return arr.reduce((acc, item) => {
@@ -112,17 +69,11 @@ function bucketizeByRange(data, range) {
   let labelFormat = 'MMM'
   let getBucketStart
   if (range === 'daily') {
-    periods = 7
-    labelFormat = 'EEE'
-    getBucketStart = (d) => startOfDay(d)
+    periods = 7; labelFormat = 'EEE'; getBucketStart = (d) => startOfDay(d)
   } else if (range === 'weekly') {
-    periods = 12
-    labelFormat = 'MMM dd'
-    getBucketStart = (d) => startOfWeek(d, { weekStartsOn: 1 })
+    periods = 12; labelFormat = 'MMM dd'; getBucketStart = (d) => startOfWeek(d, { weekStartsOn: 1 })
   } else {
-    periods = 12
-    labelFormat = 'MMM'
-    getBucketStart = (d) => startOfMonth(d)
+    periods = 12; labelFormat = 'MMM'; getBucketStart = (d) => startOfMonth(d)
   }
   const buckets = []
   const now = new Date()
@@ -150,21 +101,16 @@ function bucketizeByRange(data, range) {
 function salesSeriesFromOrders(orders, range) {
   const salesPoints = orders.map((o) => ({
     createdAt: new Date(o.createdAt),
-    online:
-      o.payment_status && o.payment_status !== 'CASH ON DELIVERY'
-        ? safeNumber(o.totalAmt || 0)
-        : 0,
+    online: o.payment_status && o.payment_status !== 'CASH ON DELIVERY' ? safeNumber(o.totalAmt || 0) : 0,
     inStore: o.payment_status === 'CASH ON DELIVERY' ? safeNumber(o.totalAmt || 0) : 0,
   }))
 
   const now = new Date()
   const periods = range === 'daily' ? 7 : 12
   const getStart =
-    range === 'daily'
-      ? (d) => startOfDay(d)
-      : range === 'weekly'
-        ? (d) => startOfWeek(d, { weekStartsOn: 1 })
-        : (d) => startOfMonth(d)
+    range === 'daily' ? (d) => startOfDay(d) :
+    range === 'weekly' ? (d) => startOfWeek(d, { weekStartsOn: 1 }) :
+    (d) => startOfMonth(d)
 
   const bucketStarts = []
   for (let i = periods - 1; i >= 0; i--) {
@@ -222,7 +168,7 @@ function RevenueAreaInteractive({ series, timeRange, setTimeRange }) {
     const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90
     const start = new Date()
     start.setDate(start.getDate() - days)
-    return (series || []).filter((d) => (d.date ? d.date >= start : true))
+    return (series || []).filter(d => (d.date ? d.date >= start : true))
   }, [series, timeRange])
 
   const chartConfig = {
@@ -246,15 +192,9 @@ function RevenueAreaInteractive({ series, timeRange, setTimeRange }) {
               variant="outline"
               className="hidden md:flex"
             >
-              <ToggleGroupItem value="90d" className="h-8 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground">
-                90d
-              </ToggleGroupItem>
-              <ToggleGroupItem value="30d" className="h-8 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground">
-                30d
-              </ToggleGroupItem>
-              <ToggleGroupItem value="7d" className="h-8 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground">
-                7d
-              </ToggleGroupItem>
+              <ToggleGroupItem value="90d" className="h-8 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground">90d</ToggleGroupItem>
+              <ToggleGroupItem value="30d" className="h-8 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground">30d</ToggleGroupItem>
+              <ToggleGroupItem value="7d" className="h-8 px-3 data-[state=on]:bg-primary data-[state=on]:text-primary-foreground">7d</ToggleGroupItem>
             </ToggleGroup>
             <Select value={timeRange} onValueChange={setTimeRange}>
               <SelectTrigger className="md:hidden w-[140px]">
@@ -283,7 +223,14 @@ function RevenueAreaInteractive({ series, timeRange, setTimeRange }) {
               </linearGradient>
             </defs>
             <CartesianGrid vertical={false} strokeDasharray="3 3" />
-            <XAxis dataKey="name" tickLine={false} axisLine={false} tickMargin={8} minTickGap={24} tick={{ fontSize: 12 }} />
+            <XAxis
+              dataKey="name"
+              tickLine={false}
+              axisLine={false}
+              tickMargin={8}
+              minTickGap={24}
+              tick={{ fontSize: 12 }}
+            />
             <YAxis
               tickLine={false}
               axisLine={false}
@@ -292,8 +239,24 @@ function RevenueAreaInteractive({ series, timeRange, setTimeRange }) {
               tick={{ fontSize: 12 }}
             />
             <Tooltip content={<PrettyTooltip currencyMode />} />
-            <Area dataKey="revenue" name="Revenue" type="monotone" fill="url(#revFill)" stroke="#6366F1" strokeWidth={2} dot={false} />
-            <Area dataKey="profit" name="Profit" type="monotone" fill="url(#profFill)" stroke="#10B981" strokeWidth={2} dot={false} />
+            <Area
+              dataKey="revenue"
+              name="Revenue"
+              type="monotone"
+              fill="url(#revFill)"
+              stroke="#6366F1"
+              strokeWidth={2}
+              dot={false}
+            />
+            <Area
+              dataKey="profit"
+              name="Profit"
+              type="monotone"
+              fill="url(#profFill)"
+              stroke="#10B981"
+              strokeWidth={2}
+              dot={false}
+            />
           </AreaChart>
         </ChartContainer>
       </CardContent>
@@ -381,7 +344,7 @@ const Dashboard = () => {
         setAllProducts(products)
         setAllOrders(orders)
 
-        const uniqueUsers = Array.from(new Set((orders || []).map((o) => String(o.userId || 'guest'))))
+        const uniqueUsers = Array.from(new Set((orders || []).map(o => String(o.userId || 'guest'))))
         const totalUsers = adminData?.totals?.totalUsers ?? uniqueUsers.length
 
         setCategoryDistribution(categoryDistributionFromProducts(products))
@@ -408,17 +371,13 @@ const Dashboard = () => {
         for (const o of orders) {
           const items = Array.isArray(o.products) ? o.products : []
           for (const it of items) {
-            const key = String(
-              it.productId || it.product_details?._id || it.product_details?.name || Math.random(),
-            )
-            const prev =
-              productMap.get(key) ||
-              {
-                id: it.productId || it.product_details?._id || key,
-                name: it.product_details?.name || 'Product',
-                sales: 0,
-                revenue: 0,
-              }
+            const key = String(it.productId || it.product_details?._id || it.product_details?.name || Math.random())
+            const prev = productMap.get(key) || {
+              id: it.productId || it.product_details?._id || key,
+              name: it.product_details?.name || 'Product',
+              sales: 0,
+              revenue: 0,
+            }
             const qty = safeNumber(it.quantity || 1)
             const price = safeNumber(it.price || 0)
             prev.sales += qty
@@ -430,16 +389,13 @@ const Dashboard = () => {
           Array.from(productMap.values())
             .sort((a, b) => b.revenue - a.revenue)
             .slice(0, 8)
-            .map((p, idx) => ({ ...p, rank: idx + 1, growth: Math.round((Math.random() * 30 + 5) * 10) / 10 })),
+            .map((p, idx) => ({ ...p, rank: idx + 1, growth: Math.round((Math.random() * 30 + 5) * 10) / 10 }))
         )
 
         const totalRevenue = sum(orders, (o) => safeNumber(o.totalAmt || o.subTotalAmt || 0))
         const totalOrders = orders.length
         const totalProfit = Math.round(totalRevenue * 0.35)
-        const totalSalesUnits = sum(
-          orders,
-          (o) => sum(Array.isArray(o.products) ? o.products : [], (it) => safeNumber(it.quantity || 1)),
-        )
+        const totalSalesUnits = sum(orders, (o) => sum(Array.isArray(o.products) ? o.products : [], (it) => safeNumber(it.quantity || 1)))
         const avgOrderValue = totalOrders ? totalRevenue / totalOrders : 0
 
         setStats({
@@ -466,9 +422,7 @@ const Dashboard = () => {
       }
     }
     load()
-    return () => {
-      mounted = false
-    }
+    return () => { mounted = false }
   }, [])
 
   const productsSold = useMemo(() => {
@@ -487,60 +441,52 @@ const Dashboard = () => {
         map.set(id, prev)
       }
     }
-    return Array.from(map.values())
-      .map((x) => ({
-        ...x,
-        avgPrice: x.quantity ? x.revenue / x.quantity : 0,
-        firstSold: x.dates.length ? new Date(Math.min(...x.dates.map((d) => d.getTime()))) : null,
-        lastSold: x.dates.length ? new Date(Math.max(...x.dates.map((d) => d.getTime()))) : null,
-      }))
-      .sort((a, b) => b.quantity - a.quantity)
+    return Array.from(map.values()).map((x) => ({
+      ...x,
+      avgPrice: x.quantity ? x.revenue / x.quantity : 0,
+      firstSold: x.dates.length ? new Date(Math.min(...x.dates.map(d => d.getTime()))) : null,
+      lastSold: x.dates.length ? new Date(Math.max(...x.dates.map(d => d.getTime()))) : null,
+    })).sort((a, b) => b.quantity - a.quantity)
   }, [allOrders])
 
   function applySearch(items, keys) {
     if (!query.trim()) return items
     const q = query.trim().toLowerCase()
-    return items.filter((item) => keys.some((k) => String(item[k] ?? '').toLowerCase().includes(q)))
+    return items.filter((item) =>
+      keys.some((k) => String(item[k] ?? '').toLowerCase().includes(q))
+    )
   }
   function paginate(items) {
     const start = (page - 1) * pageSize
     return items.slice(start, start + pageSize)
   }
-  useEffect(() => {
-    setPage(1)
-  }, [query, activeTab])
+  useEffect(() => { setPage(1) }, [query, activeTab])
 
   const ordersForList = useMemo(() => {
-    const normalized = (allOrders || [])
-      .map((o) => ({
-        id: o.orderId || o._id,
-        amount: safeNumber(o.totalAmt || o.subTotalAmt || 0),
-        status: o.payment_status || 'Processing',
-        date: o.createdAt ? new Date(o.createdAt) : null,
-        items: Array.isArray(o.products) ? o.products.length : 0,
-        contactName: o.contact_info?.name || 'Customer',
-        email: o.contact_info?.customer_email || o.contact_info?.email || '',
-        mobile: o.contact_info?.mobile || '',
-        address: o.delivery_address || {},
-      }))
-      .sort((a, b) => (b.date?.getTime?.() || 0) - (a.date?.getTime?.() || 0))
+    const normalized = (allOrders || []).map((o) => ({
+      id: o.orderId || o._id,
+      amount: safeNumber(o.totalAmt || o.subTotalAmt || 0),
+      status: o.payment_status || 'Processing',
+      date: o.createdAt ? new Date(o.createdAt) : null,
+      items: Array.isArray(o.products) ? o.products.length : 0,
+      contactName: o.contact_info?.name || 'Customer',
+      email: o.contact_info?.customer_email || o.contact_info?.email || '',
+      mobile: o.contact_info?.mobile || '',
+      address: o.delivery_address || {},
+    })).sort((a, b) => (b.date?.getTime?.() || 0) - (a.date?.getTime?.() || 0))
     const filtered = applySearch(normalized, ['id', 'contactName', 'email', 'status'])
     return { total: filtered.length, items: paginate(filtered) }
   }, [allOrders, query, page])
 
   const productsForList = useMemo(() => {
-    const normalized = (allProducts || [])
-      .map((p) => ({
-        id: p._id || p.id,
-        name: p.name || p.productName || 'Product',
-        sku: p.sku || '',
-        price: safeNumber(p.price || p.sellingPrice || 0),
-        stock: safeNumber(p.stock || p.quantity || 0),
-        category: Array.isArray(p.category)
-          ? p.category[0]?.name || ''
-          : p.category?.name || p.category || '',
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name))
+    const normalized = (allProducts || []).map((p) => ({
+      id: p._id || p.id,
+      name: p.name || p.productName || 'Product',
+      sku: p.sku || '',
+      price: safeNumber(p.price || p.sellingPrice || 0),
+      stock: safeNumber(p.stock || p.quantity || 0),
+      category: Array.isArray(p.category) ? (p.category[0]?.name || '') : (p.category?.name || p.category || ''),
+    })).sort((a, b) => a.name.localeCompare(b.name))
     const filtered = applySearch(normalized, ['name', 'sku', 'category'])
     return { total: filtered.length, items: paginate(filtered) }
   }, [allProducts, query, page])
@@ -630,10 +576,7 @@ const Dashboard = () => {
         <div className="space-y-6">
           {/* KPI Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <Card
-              onClick={() => goTab('products')}
-              className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary bg-pink-200"
-            >
+            <Card onClick={() => goTab('products')} className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary bg-pink-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">Total Products</CardTitle>
               </CardHeader>
@@ -643,10 +586,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <Card
-              onClick={() => goTab('customers')}
-              className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary bg-blue-200"
-            >
+            <Card onClick={() => goTab('customers')} className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary bg-blue-200">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">Total Users</CardTitle>
               </CardHeader>
@@ -656,10 +596,7 @@ const Dashboard = () => {
               </CardContent>
             </Card>
 
-            <Card
-              onClick={() => goTab('orders')}
-              className="bg-pink-200 cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary"
-            >
+            <Card onClick={() => goTab('orders')} className="bg-pink-200 cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">Total Orders</CardTitle>
               </CardHeader>
@@ -744,6 +681,7 @@ const Dashboard = () => {
 
           {/* Recent Orders + Top Products */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Recent Orders - Responsive fix with grid, wrap and overflow protection */}
             <Card className="hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary">
               <CardHeader className="pb-3">
                 <div className="flex items-center justify-between">
@@ -762,10 +700,16 @@ const Dashboard = () => {
                 </div>
               </CardHeader>
 
+              {/* Make the list scrollable if it grows too large on small screens */}
               <CardContent className="space-y-3 max-h-[560px] overflow-auto pr-1">
                 {recentOrders.map((o) => (
-                  <div key={o.id} className="p-4 rounded-lg border bg-card hover:bg-accent/30 transition focus-within:ring-2 focus-within:ring-primary">
+                  <div
+                    key={o.id}
+                    className="p-4 rounded-lg border bg-card hover:bg-accent/30 transition focus-within:ring-2 focus-within:ring-primary"
+                  >
+                    {/* Responsive layout: stack on mobile, grid on larger screens */}
                     <div className="grid grid-cols-1 xl:grid-cols-12 gap-3">
+                      {/* Left block: meta */}
                       <div className="xl:col-span-7 2xl:col-span-8 min-w-0">
                         <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                           <span className="inline-flex items-center gap-1 text-primary font-semibold">
@@ -785,7 +729,9 @@ const Dashboard = () => {
                         </div>
 
                         <div className="mt-2">
-                          <div className="font-semibold text-sm sm:text-base truncate">{o.contact.name}</div>
+                          <div className="font-semibold text-sm sm:text-base truncate">
+                            {o.contact.name}
+                          </div>
                           <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
                             {o.contact.email ? (
                               <span className="inline-flex items-center gap-1 break-all">
@@ -800,6 +746,7 @@ const Dashboard = () => {
                           </div>
                         </div>
 
+                        {/* Address row wraps and truncates cleanly */}
                         {o.address && (
                           <div className="mt-2 text-xs text-muted-foreground">
                             <span className="inline-flex items-start gap-1">
@@ -811,15 +758,14 @@ const Dashboard = () => {
                                   o.address.state,
                                   o.address.country,
                                   o.address.pincode,
-                                ]
-                                  .filter(Boolean)
-                                  .join(', ')}
+                                ].filter(Boolean).join(', ')}
                               </span>
                             </span>
                           </div>
                         )}
                       </div>
 
+                      {/* Right block: amount + status with strong colors and focus */}
                       <div className="xl:col-span-5 2xl:col-span-4 flex xl:flex-col items-end xl:items-end justify-between gap-2">
                         <div className="text-right">
                           <div className="text-base sm:text-lg font-extrabold text-emerald-600">
@@ -827,13 +773,10 @@ const Dashboard = () => {
                           </div>
                           <Badge
                             className={`mt-1 ${
-                              o.status?.toLowerCase().includes('completed')
-                                ? 'bg-emerald-100 text-emerald-700 border-emerald-200'
-                                : o.status?.toLowerCase().includes('cancel')
-                                  ? 'bg-rose-100 text-rose-700 border-rose-200'
-                                  : o.status?.toLowerCase().includes('pending')
-                                    ? 'bg-amber-100 text-amber-800 border-amber-200'
-                                    : 'bg-sky-100 text-sky-800 border-sky-200'
+                              o.status?.toLowerCase().includes('completed') ? 'bg-emerald-100 text-emerald-700 border-emerald-200' :
+                              o.status?.toLowerCase().includes('cancel') ? 'bg-rose-100 text-rose-700 border-rose-200' :
+                              o.status?.toLowerCase().includes('pending') ? 'bg-amber-100 text-amber-800 border-amber-200' :
+                              'bg-sky-100 text-sky-800 border-sky-200'
                             }`}
                             variant="outline"
                           >
@@ -841,6 +784,7 @@ const Dashboard = () => {
                           </Badge>
                         </div>
 
+                        {/* CTA button with clear color and focus ring */}
                         <Button
                           variant="secondary"
                           className="bg-primary/10 text-primary hover:bg-primary/20 focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary"
@@ -867,6 +811,7 @@ const Dashboard = () => {
               </CardFooter>
             </Card>
 
+            {/* Top Products */}
             <Card className="hover:shadow-lg transition">
               <CardHeader>
                 <CardTitle>Top Products</CardTitle>
@@ -928,16 +873,8 @@ const Dashboard = () => {
                       <td className="py-3 px-3">{o.contactName}</td>
                       <td className="py-3 px-3">
                         <div className="flex flex-col">
-                          {o.email && (
-                            <span className="inline-flex items-center gap-1">
-                              <Mail className="h-3.5 w-3.5" /> {o.email}
-                            </span>
-                          )}
-                          {o.mobile && (
-                            <span className="inline-flex items-center gap-1">
-                              <Phone className="h-3.5 w-3.5" /> {o.mobile}
-                            </span>
-                          )}
+                          {o.email && <span className="inline-flex items-center gap-1"><Mail className="h-3.5 w-3.5" /> {o.email}</span>}
+                          {o.mobile && <span className="inline-flex items-center gap-1"><Phone className="h-3.5 w-3.5" /> {o.mobile}</span>}
                         </div>
                       </td>
                       <td className="py-3 px-3">
@@ -948,9 +885,7 @@ const Dashboard = () => {
                             o.address?.state,
                             o.address?.country,
                             o.address?.pincode,
-                          ]
-                            .filter(Boolean)
-                            .join(', ')}
+                          ].filter(Boolean).join(', ')}
                         </div>
                       </td>
                       <td className="py-3 px-3">
@@ -958,18 +893,12 @@ const Dashboard = () => {
                       </td>
                       <td className="py-3 px-3 font-semibold text-emerald-600">{formatCurrency(o.amount)}</td>
                       <td className="py-3 px-3">
-                        <Badge
-                          className={`${
-                            o.status?.toLowerCase().includes('completed')
-                              ? 'bg-emerald-100 text-emerald-700 border-emerald-200'
-                              : o.status?.toLowerCase().includes('cancel')
-                                ? 'bg-rose-100 text-rose-700 border-rose-200'
-                                : o.status?.toLowerCase().includes('pending')
-                                  ? 'bg-amber-100 text-amber-800 border-amber-200'
-                                  : 'bg-sky-100 text-sky-800 border-sky-200'
-                          }`}
-                          variant="outline"
-                        >
+                        <Badge className={`${
+                          o.status?.toLowerCase().includes('completed') ? 'bg-emerald-100 text-emerald-700 border-emerald-200' :
+                          o.status?.toLowerCase().includes('cancel') ? 'bg-rose-100 text-rose-700 border-rose-200' :
+                          o.status?.toLowerCase().includes('pending') ? 'bg-amber-100 text-amber-800 border-amber-200' :
+                          'bg-sky-100 text-sky-800 border-sky-200'
+                        }`} variant="outline">
                           {o.status}
                         </Badge>
                       </td>
@@ -1097,9 +1026,7 @@ const Dashboard = () => {
                   {soldForList.items.map((s) => (
                     <tr key={s.id} className="border-b hover:bg-accent/30">
                       <td className="py-3 px-3 font-medium">{s.name}</td>
-                      <td className="py-3 px-3">
-                        <Badge variant="outline">{s.quantity}</Badge>
-                      </td>
+                      <td className="py-3 px-3"><Badge variant="outline">{s.quantity}</Badge></td>
                       <td className="py-3 px-3">{formatCurrency(s.avgPrice)}</td>
                       <td className="py-3 px-3 font-semibold text-emerald-600">{formatCurrency(s.revenue)}</td>
                       <td className="py-3 px-3">{s.firstSold ? formatDate(s.firstSold, 'MMM dd, yyyy') : '—'}</td>
