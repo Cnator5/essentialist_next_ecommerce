@@ -598,7 +598,13 @@
 
 'use client';
 
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState
+} from 'react';
 import dynamic from 'next/dynamic';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
@@ -655,13 +661,54 @@ const customTabularStyles = `
   }
 `;
 
+const toIdArray = (items = []) =>
+  items
+    .map((item) => {
+      if (!item) return null;
+      if (typeof item === 'string') return item;
+      if (typeof item === 'object' && item._id) return item._id;
+      return null;
+    })
+    .filter(Boolean);
+
+const toFallbackMap = (items = []) => {
+  const map = new Map();
+  items.forEach((item) => {
+    if (item && typeof item === 'object' && item._id && item.name) {
+      map.set(item._id, item.name);
+    }
+  });
+  return map;
+};
+
+const buildInitialState = (product) => ({
+  _id: product._id,
+  name: product.name || '',
+  image: Array.isArray(product.image) ? product.image : [],
+  category: toIdArray(product.category),
+  subCategory: toIdArray(product.subCategory),
+  unit: product.unit || '',
+  stock: product.stock ?? '',
+  bulkPrice: product.bulkPrice ?? '',
+  price: product.price ?? '',
+  discount: product.discount ?? '',
+  description: product.description || '',
+  plainTextDetails: product.plainTextDetails || '',
+  more_details: product.more_details || {},
+  brandId:
+    (typeof product.brand === 'object' && product.brand?._id) ||
+    (typeof product.brand === 'string' ? product.brand : '') ||
+    ''
+});
+
 function MarkdownPreview({ source = '' }) {
-  let html = source
+  const html = source
     .replace(/`([^`]+)`/g, '<code>$1</code>')
     .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
     .replace(/\*([^*]+)\*/g, '<em>$1</em>')
     .replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>')
     .replace(/\n/g, '<br/>');
+
   return (
     <div
       data-color-mode="light"
@@ -681,33 +728,62 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
     loadingBrands
   } = useSelector((state) => state.product);
 
-  const [data, setData] = useState({
-    _id: propsData._id,
-    name: propsData.name,
-    image: propsData.image,
-    category: propsData.category,
-    subCategory: propsData.subCategory,
-    unit: propsData.unit,
-    stock: propsData.stock,
-    bulkPrice: propsData.bulkPrice,
-    price: propsData.price,
-    discount: propsData.discount,
-    description: propsData.description,
-    plainTextDetails: propsData.plainTextDetails || '',
-    more_details: propsData.more_details || {},
-    brandId: propsData?.brand?._id || ''
-  });
-
+  const [data, setData] = useState(() => buildInitialState(propsData));
   const [imageLoading, setImageLoading] = useState(false);
-  const [ViewImageURL, setViewImageURL] = useState('');
+  const [viewImageURL, setViewImageURL] = useState('');
   const [selectCategory, setSelectCategory] = useState('');
   const [selectSubCategory, setSelectSubCategory] = useState('');
   const [openAddField, setOpenAddField] = useState(false);
   const [fieldName, setFieldName] = useState('');
   const multipleFileInputRef = useRef(null);
 
-  const selectedBrand =
-    allBrands.find((brand) => brand._id === data.brandId) || propsData.brand || null;
+  useEffect(() => {
+    setData(buildInitialState(propsData));
+  }, [propsData?._id]);
+
+  const fallbackCategoryMap = useMemo(
+    () => toFallbackMap(propsData.category),
+    [propsData.category]
+  );
+
+  const fallbackSubCategoryMap = useMemo(
+    () => toFallbackMap(propsData.subCategory),
+    [propsData.subCategory]
+  );
+
+  const selectedBrand = useMemo(() => {
+    if (!data.brandId) return null;
+    const storeBrand = allBrands.find((brand) => brand._id === data.brandId);
+    if (storeBrand) return storeBrand;
+    if (
+      propsData.brand &&
+      typeof propsData.brand === 'object' &&
+      propsData.brand._id === data.brandId
+    ) {
+      return propsData.brand;
+    }
+    return null;
+  }, [data.brandId, allBrands, propsData.brand]);
+
+  const resolveCategoryName = useCallback(
+    (id) => {
+      const found = allCategory.find((cat) => cat._id === id);
+      if (found) return found.name;
+      if (fallbackCategoryMap.has(id)) return fallbackCategoryMap.get(id);
+      return 'Unknown category';
+    },
+    [allCategory, fallbackCategoryMap]
+  );
+
+  const resolveSubCategoryName = useCallback(
+    (id) => {
+      const found = allSubCategory.find((sub) => sub._id === id);
+      if (found) return found.name;
+      if (fallbackSubCategoryMap.has(id)) return fallbackSubCategoryMap.get(id);
+      return 'Unknown subcategory';
+    },
+    [allSubCategory, fallbackSubCategoryMap]
+  );
 
   const fetchBrands = useCallback(async () => {
     try {
@@ -719,9 +795,16 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
           sort: 'nameAsc'
         }
       });
-      const { data: responseData } = response;
-      if (responseData.success) {
-        dispatch(setAllBrands(responseData.data));
+
+      const responseData = response?.data;
+      const rawBrands =
+        responseData?.data ||
+        responseData?.brands ||
+        responseData?.result ||
+        [];
+
+      if (Array.isArray(rawBrands)) {
+        dispatch(setAllBrands(rawBrands));
       }
     } catch (error) {
       AxiosToastError(error);
@@ -753,10 +836,8 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
   const handleKeyDown = (event) => {
     if (event.key === 'Tab') {
       event.preventDefault();
-      const start = event.target.selectionStart;
-      const end = event.target.selectionEnd;
-      const value = event.target.value;
-      const newValue = value.substring(0, start) + '\t' + value.substring(end);
+      const { selectionStart, selectionEnd, value } = event.target;
+      const newValue = value.substring(0, selectionStart) + '\t' + value.substring(selectionEnd);
 
       setData((prev) => ({
         ...prev,
@@ -764,19 +845,19 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
       }));
 
       setTimeout(() => {
-        event.target.selectionStart = event.target.selectionEnd = start + 1;
+        event.target.selectionStart = event.target.selectionEnd = selectionStart + 1;
       }, 0);
     }
   };
 
   const handleMultipleUploadImages = async (event) => {
     const files = event.target.files;
-    if (!files || files.length === 0) return;
+    if (!files?.length) return;
 
     setImageLoading(true);
     const newImages = [...data.image];
 
-    for (let index = 0; index < files.length; index++) {
+    for (let index = 0; index < files.length; index += 1) {
       try {
         const response = await uploadImage(files[index]);
         const imageUrl = response?.data?.data?.url;
@@ -815,29 +896,23 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
   };
 
   const handleDeleteImage = (index) => {
-    const newImages = [...data.image];
-    newImages.splice(index, 1);
     setData((prev) => ({
       ...prev,
-      image: newImages
+      image: prev.image.filter((_, idx) => idx !== index)
     }));
   };
 
   const handleRemoveCategory = (index) => {
-    const categories = [...data.category];
-    categories.splice(index, 1);
     setData((prev) => ({
       ...prev,
-      category: categories
+      category: prev.category.filter((_, idx) => idx !== index)
     }));
   };
 
   const handleRemoveSubCategory = (index) => {
-    const subcategories = [...data.subCategory];
-    subcategories.splice(index, 1);
     setData((prev) => ({
       ...prev,
-      subCategory: subcategories
+      subCategory: prev.subCategory.filter((_, idx) => idx !== index)
     }));
   };
 
@@ -866,25 +941,48 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    const payload = {
+      ...data,
+      category: data.category.filter(Boolean),
+      subCategory: data.subCategory.filter(Boolean),
+      brandId: data.brandId || null
+    };
+
     try {
       const response = await Axios({
         ...SummaryApi.updateProductDetails,
-        data: {
-          ...data,
-          brandId: data.brandId || null
-        }
+        data: payload
       });
 
-      const { data: responseData } = response;
-      if (responseData.success) {
-        successAlert(responseData.message);
-        if (close) close();
+      const responseData = response?.data;
+      if (responseData?.success) {
+        successAlert(responseData.message || 'Product updated');
+        close?.();
         fetchProductData?.();
       }
     } catch (error) {
       AxiosToastError(error);
     }
   };
+
+  const selectedCategories = useMemo(
+    () =>
+      data.category.map((categoryId) => ({
+        id: categoryId,
+        name: resolveCategoryName(categoryId)
+      })),
+    [data.category, resolveCategoryName]
+  );
+
+  const selectedSubCategories = useMemo(
+    () =>
+      data.subCategory.map((subCategoryId) => ({
+        id: subCategoryId,
+        name: resolveSubCategoryName(subCategoryId)
+      })),
+    [data.subCategory, resolveSubCategoryName]
+  );
 
   return (
     <section className="fixed top-0 right-0 left-0 bottom-0 bg-black z-50 bg-opacity-70 p-4">
@@ -998,7 +1096,7 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
 
               <div>
                 <p className="font-medium">Images</p>
-                <div>
+                <div className="space-y-3">
                   <label
                     htmlFor="multipleProductImages"
                     className="bg-blue-50 h-24 border rounded flex justify-center items-center cursor-pointer"
@@ -1023,6 +1121,28 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
                       onChange={handleMultipleUploadImages}
                     />
                   </label>
+                  <label
+                    htmlFor="singleProductImage"
+                    className="bg-blue-50 h-24 border rounded flex justify-center items-center cursor-pointer"
+                  >
+                    <div className="text-center flex justify-center items-center flex-col">
+                      {imageLoading ? (
+                        <Loading />
+                      ) : (
+                        <>
+                          <FaCloudUploadAlt size={35} />
+                          <p>Upload single image</p>
+                        </>
+                      )}
+                    </div>
+                    <input
+                      type="file"
+                      id="singleProductImage"
+                      className="hidden"
+                      accept="image/*"
+                      onChange={handleUploadImage}
+                    />
+                  </label>
                   <div className="flex flex-wrap gap-4">
                     {data.image.map((img, index) => (
                       <div
@@ -1035,12 +1155,14 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
                           className="w-full h-full object-scale-down cursor-pointer"
                           onClick={() => setViewImageURL(img)}
                         />
-                        <div
+                        <button
+                          type="button"
                           onClick={() => handleDeleteImage(index)}
-                          className="absolute bottom-0 right-0 p-1 bg-red-600 hover:bg-red-600 rounded text-white hidden group-hover:block cursor-pointer"
+                          className="absolute bottom-0 right-0 p-1 bg-red-600 hover:bg-red-500 rounded text-white hidden group-hover:block cursor-pointer"
+                          aria-label="Delete image"
                         >
                           <MdDelete />
-                        </div>
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -1056,36 +1178,40 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
                     onChange={(event) => {
                       const value = event.target.value;
                       if (!value) return;
-                      const category = allCategory.find((cat) => cat._id === value);
-                      if (!category) return;
-
-                      const alreadySelected = data.category.some((cat) => cat._id === category._id);
-                      if (alreadySelected) return;
+                      if (data.category.includes(value)) {
+                        setSelectCategory('');
+                        return;
+                      }
 
                       setData((prev) => ({
                         ...prev,
-                        category: [...prev.category, category]
+                        category: [...prev.category, value]
                       }));
                       setSelectCategory('');
                     }}
                   >
                     <option value="">Select category</option>
-                    {allCategory.map((c) => (
-                      <option key={c._id} value={c._id}>
-                        {c.name}
+                    {allCategory.map((category) => (
+                      <option key={category._id} value={category._id}>
+                        {category.name}
                       </option>
                     ))}
                   </select>
                   <div className="flex flex-wrap gap-3">
-                    {data.category.map((c, index) => (
+                    {selectedCategories.map((category, index) => (
                       <div
-                        key={`${c._id}-${index}-productsection`}
-                        className="text-sm flex items-center gap-1 bg-blue-50 mt-2"
+                        key={`${category.id}-${index}-product-section`}
+                        className="text-sm flex items-center gap-1 bg-blue-50 mt-2 px-2 py-1 rounded"
                       >
-                        <p>{c.name}</p>
-                        <div className="hover:text-red-500 cursor-pointer" onClick={() => handleRemoveCategory(index)}>
-                          <IoClose size={20} />
-                        </div>
+                        <p>{category.name}</p>
+                        <button
+                          type="button"
+                          className="hover:text-red-500 cursor-pointer"
+                          onClick={() => handleRemoveCategory(index)}
+                          aria-label="Remove category"
+                        >
+                          <IoClose size={18} />
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -1101,15 +1227,14 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
                     onChange={(event) => {
                       const value = event.target.value;
                       if (!value) return;
-                      const subCategory = allSubCategory.find((sub) => sub._id === value);
-                      if (!subCategory) return;
-
-                      const alreadySelected = data.subCategory.some((sub) => sub._id === subCategory._id);
-                      if (alreadySelected) return;
+                      if (data.subCategory.includes(value)) {
+                        setSelectSubCategory('');
+                        return;
+                      }
 
                       setData((prev) => ({
                         ...prev,
-                        subCategory: [...prev.subCategory, subCategory]
+                        subCategory: [...prev.subCategory, value]
                       }));
                       setSelectSubCategory('');
                     }}
@@ -1117,22 +1242,27 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
                     <option value="" className="text-neutral-600">
                       Select sub category
                     </option>
-                    {allSubCategory.map((sub) => (
-                      <option key={sub._id} value={sub._id}>
-                        {sub.name}
+                    {allSubCategory.map((subCategory) => (
+                      <option key={subCategory._id} value={subCategory._id}>
+                        {subCategory.name}
                       </option>
                     ))}
                   </select>
                   <div className="flex flex-wrap gap-3">
-                    {data.subCategory.map((sub, index) => (
+                    {selectedSubCategories.map((subCategory, index) => (
                       <div
-                        key={`${sub._id}-${index}-productsection`}
-                        className="text-sm flex items-center gap-1 bg-blue-50 mt-2"
+                        key={`${subCategory.id}-${index}-product-section`}
+                        className="text-sm flex items-center gap-1 bg-blue-50 mt-2 px-2 py-1 rounded"
                       >
-                        <p>{sub.name}</p>
-                        <div className="hover:text-red-500 cursor-pointer" onClick={() => handleRemoveSubCategory(index)}>
-                          <IoClose size={20} />
-                        </div>
+                        <p>{subCategory.name}</p>
+                        <button
+                          type="button"
+                          className="hover:text-red-500 cursor-pointer"
+                          onClick={() => handleRemoveSubCategory(index)}
+                          aria-label="Remove subcategory"
+                        >
+                          <IoClose size={18} />
+                        </button>
                       </div>
                     ))}
                   </div>
@@ -1217,7 +1347,7 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
                 />
               </div>
 
-              {Object.keys(data.more_details).map((key, index) => (
+              {Object.keys(data.more_details || {}).map((key, index) => (
                 <div key={`${key}-${index}`} className="grid gap-1">
                   <label htmlFor={key} className="font-medium">
                     {key}
@@ -1254,7 +1384,9 @@ const EditProductAdmin = ({ close, data: propsData, fetchProductData }) => {
               </button>
             </form>
           </div>
-          {ViewImageURL && <ViewImage url={ViewImageURL} close={() => setViewImageURL('')} />}
+
+          {viewImageURL && <ViewImage url={viewImageURL} close={() => setViewImageURL('')} />}
+
           {openAddField && (
             <AddFieldComponent
               value={fieldName}

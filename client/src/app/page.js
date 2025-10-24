@@ -783,6 +783,8 @@ export async function generateMetadata() {
     'blush for melanin skin Cameroon',
     'makeup store Bonamoussadi Douala',
     'cash on delivery makeup Cameroon',
+    "blush for melanin skin Cameroon ",
+    "waterproof mascara Douala"
   ]
 
   return {
