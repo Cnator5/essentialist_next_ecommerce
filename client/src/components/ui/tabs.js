@@ -24,8 +24,7 @@ export function Tabs({
     if (onValueChange) onValueChange(v);
   };
 
-  // Include setValue in the dependency array
-  const context = React.useMemo(() => ({ value, setValue }), [value, setValue]);
+  const context = React.useMemo(() => ({ value, setValue }), [value]);
 
   return (
     <TabsContext.Provider value={context}>
