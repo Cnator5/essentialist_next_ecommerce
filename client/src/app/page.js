@@ -13,15 +13,13 @@ import TikTokGallery from '../components/TikTokGallery'
 import { valideURLConvert } from '../utils/valideURLConvert'
 import { unstable_cache } from 'next/cache'
 
+import SummaryApi, { baseURL } from '../common/SummaryApi'
+import { callSummaryApi } from '../common/SummaryApi'
+
 export const dynamic = 'force-static'
 export const revalidate = 300
 
-const baseURL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1010'
-const SummaryApi = {
-  getCategory: { url: '/api/category/get', method: 'GET' },
-  getSubCategory: { url: '/api/subcategory/get', method: 'POST' },
-  getProductByCategory: { url: '/api/product/get-product-by-category', method: 'POST' },
-}
+const apiAvailable = Boolean(baseURL)
 
 const DEFAULT_TITLE = 'Cameroon Makeup Shop | Setting Powders, Makeup Kits & Beauty Deals'
 
@@ -32,23 +30,19 @@ const OG_IMAGE = 'https://www.esmakeupstore.com/assets/logo.jpg'
 
 const getCategories = unstable_cache(
   async () => {
+    if (!apiAvailable) {
+      console.warn('getCategories: NEXT_PUBLIC_API_URL not configured during build; returning []')
+      return []
+    }
     try {
-      const res = await fetch(`${baseURL}${SummaryApi.getCategory.url}`, {
-        method: SummaryApi.getCategory.method,
-        headers: { 'Content-Type': 'application/json' },
-        next: { revalidate: 300, tags: ['categories'] },
+      const data = await callSummaryApi(SummaryApi.getCategory, {
         cache: 'force-cache',
+        next: { revalidate: 300, tags: ['categories'] },
+        timeout: 12000,
       })
-
-      if (!res.ok) {
-        console.error('Failed to fetch categories:', res.status, res.statusText)
-        throw new Error('Failed to fetch categories')
-      }
-
-      const data = await res.json()
       return Array.isArray(data) ? data : data?.data || []
-    } catch (e) {
-      console.error('getCategories error:', e)
+    } catch (error) {
+      console.error('getCategories error:', error)
       return []
     }
   },
@@ -58,24 +52,20 @@ const getCategories = unstable_cache(
 
 const getSubCategories = unstable_cache(
   async () => {
+    if (!apiAvailable) {
+      console.warn('getSubCategories: NEXT_PUBLIC_API_URL not configured during build; returning []')
+      return []
+    }
     try {
-      const res = await fetch(`${baseURL}${SummaryApi.getSubCategory.url}`, {
-        method: SummaryApi.getSubCategory.method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({}),
-        next: { revalidate: 300, tags: ['subcategories'] },
+      const data = await callSummaryApi(SummaryApi.getSubCategory, {
+        payload: {},
         cache: 'force-cache',
+        next: { revalidate: 300, tags: ['subcategories'] },
+        timeout: 12000,
       })
-
-      if (!res.ok) {
-        console.error('Failed to fetch subcategories:', res.status, res.statusText)
-        throw new Error('Failed to fetch subcategories')
-      }
-
-      const data = await res.json()
       return Array.isArray(data) ? data : data?.data || []
-    } catch (e) {
-      console.error('getSubCategories error:', e)
+    } catch (error) {
+      console.error('getSubCategories error:', error)
       return []
     }
   },
@@ -85,44 +75,32 @@ const getSubCategories = unstable_cache(
 
 const getProductsByCategoryId = unstable_cache(
   async (categoryId) => {
+    if (!apiAvailable) {
+      console.warn(`getProductsByCategoryId: skipping fetch for ${categoryId} because API unavailable during build`)
+      return []
+    }
+    if (!categoryId) {
+      console.warn('getProductsByCategoryId called with invalid categoryId')
+      return []
+    }
+
     try {
-      if (!categoryId) {
-        console.warn('getProductsByCategoryId called with invalid categoryId')
-        return []
-      }
-
-      const res = await fetch(`${baseURL}${SummaryApi.getProductByCategory.url}`, {
-        method: SummaryApi.getProductByCategory.method,
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ id: categoryId }),
-        next: {
-          revalidate: 300,
-          tags: [`products-${categoryId}`],
-        },
+      const data = await callSummaryApi(SummaryApi.getProductByCategory, {
+        payload: { id: categoryId },
         cache: 'force-cache',
+        next: { revalidate: 300, tags: [`products-${categoryId}`] },
+        timeout: 12000,
       })
-
-      if (!res.ok) {
-        console.warn(`Failed to fetch products for category ${categoryId}: ${res.status}`)
-        return []
-      }
-
-      const data = await res.json()
-
-      // console.log(`Products for category ${categoryId}:`,
-      //   data?.success ? `Success: ${data?.data?.length || 0} products` : 'Failed',
-      //   data?.error || ''
-      // )
-
-      return data?.success ? (data?.data || []) : []
-    } catch (e) {
-      console.error(`getProductsByCategoryId error for ${categoryId}:`, e)
+      return data?.success ? data?.data || [] : []
+    } catch (error) {
+      console.error(`getProductsByCategoryId error for ${categoryId}:`, error)
       return []
     }
   },
   ['products'],
   { revalidate: 300 }
 )
+
 
 async function getAllTopCategoryProducts(categories) {
   if (!Array.isArray(categories) || categories.length === 0) {
