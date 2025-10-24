@@ -3,11 +3,11 @@ export const generateOrganizationSchema = () => {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
-    "name": "EssentialisMakeupStore",
+    "name": "EssentialistMakeupStore",
     "url": "https://www.esmakeupstore.com/",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg"
+      "url": "https://www.esmakeupstore.com/assets/logo.jpg"
     },
     "contactPoint": {
       "@type": "ContactPoint",
@@ -21,7 +21,7 @@ export const generateWebsiteSchema = () => {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "EssentialisMakeupStore",
+    "name": "EssentialistMakeupStore",
     "url": "https://www.esmakeupstore.com/",
     "potentialAction": {
       "@type": "SearchAction",
@@ -56,11 +56,12 @@ export const generateProductSchema = (product) => {
       "url": `https://www.esmakeupstore.com/product/${product._id}`,
       "priceCurrency": "XAF",
       "price": product.price,
+      "ratings":product.ratings,
       "availability": product.stock > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock"
     },
     "brand": {
       "@type": "Brand",
-      "name": product.brand || "EssentialisMakeupStore"
+      "name": product.brand || "EssentialistMakeupStore"
     }
   };
 };
