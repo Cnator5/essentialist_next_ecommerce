@@ -849,7 +849,7 @@ export async function generateMetadata() {
       icon: [{ url: '/icon.avif', type: 'image/avif' }],
       apple: [{ url: '/icon.avif' }],
     },
-    themeColor: '#faf6f3',
+
     other: {
       'og:site_name:pretty': 'Essentialist Makeup Store',
       'al:android:package': 'com.fsn.esmakeupstore',
