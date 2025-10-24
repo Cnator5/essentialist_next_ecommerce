@@ -1,5 +1,6 @@
+import SummaryApi, { apiFetch } from "../../common/SummaryApi";
 import NewArrivalContent from "../../components/NewArrivalContent";
-import { apiFetch, SummaryApi } from "../../common/summaryApi";
+// import { apiFetch, SummaryApi } from "../common/SummaryApi";
 
 const STORE_NAME = "Essentialist Makeup Store";
 const PAGE_PATH = "https://www.esmakeupstore.com/new-arrival";
