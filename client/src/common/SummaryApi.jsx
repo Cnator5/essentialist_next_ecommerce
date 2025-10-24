@@ -1,7 +1,15 @@
-const baseURL = process.env.NEXT_PUBLIC_API_URL;
+const rawEnvBaseUrl = process.env.NEXT_PUBLIC_API_URL?.trim() ?? "";
+export const baseURL = rawEnvBaseUrl.replace(/\/$/, "");
+
+const missingEnvMessage =
+  "SummaryApi: NEXT_PUBLIC_API_URL is not defined. Falling back to relative URLs — make sure this is set in your deployment environment.";
 
 if (!baseURL) {
-  throw new Error("NEXT_PUBLIC_API_URL is not defined. Please set it in your environment.");
+  if (typeof window === "undefined") {
+    console.warn(missingEnvMessage);
+  } else {
+    console.error(missingEnvMessage);
+  }
 }
 
 const SummaryApi = {
@@ -235,33 +243,121 @@ const SummaryApi = {
   },
 };
 
-async function apiFetch(path, { method = "GET", body, headers = {}, cache = "no-store", next } = {}) {
-  const requestConfig = {
+function normalizePath(path = "") {
+  if (!path) return "/";
+  return path.startsWith("/") ? path : `/${path}`;
+}
+
+function buildUrl(path, params) {
+  let url = baseURL ? `${baseURL}${normalizePath(path)}` : normalizePath(path);
+  if (params && Object.keys(params).length) {
+    const search = new URLSearchParams();
+    Object.entries(params).forEach(([key, value]) => {
+      if (value === undefined || value === null) return;
+      if (Array.isArray(value)) {
+        value.forEach((item) => search.append(key, item));
+      } else {
+        search.append(key, value);
+      }
+    });
+    const queryString = search.toString();
+    if (queryString) {
+      url += url.includes("?") ? `&${queryString}` : `?${queryString}`;
+    }
+  }
+  return url;
+}
+
+export async function apiFetch(
+  path,
+  {
+    method = "GET",
+    body,
+    headers = {},
+    params,
+    cache = "no-store",
+    next,
+    credentials = "include",
+    signal,
+    timeout = 15000,
+  } = {}
+) {
+  const controller = signal ? null : new AbortController();
+  const requestSignal = signal ?? controller.signal;
+
+  const init = {
     method,
     headers: {
       "Content-Type": "application/json",
       ...headers,
     },
     cache,
+    credentials,
+    signal: requestSignal,
   };
 
-  if (body) {
-    requestConfig.body = JSON.stringify(body);
-  }
-
   if (next) {
-    requestConfig.next = next;
+    init.next = next;
   }
 
-  const response = await fetch(`${baseURL}${path}`, requestConfig);
-
-  if (!response.ok) {
-    const errorText = await response.text();
-    throw new Error(`API ${method} ${path} failed: ${response.status} ${errorText}`);
+  const upperMethod = method.toUpperCase();
+  if (body !== undefined && !["GET", "HEAD"].includes(upperMethod)) {
+    init.body = typeof body === "string" ? body : JSON.stringify(body);
   }
 
-  return response.json();
+  const requestUrl = buildUrl(path, params);
+  let timeoutId;
+  if (!signal && timeout > 0) {
+    timeoutId = setTimeout(() => {
+      controller?.abort(new Error(`Request to ${requestUrl} timed out after ${timeout} ms`));
+    }, timeout);
+  }
+
+  try {
+    const response = await fetch(requestUrl, init);
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(
+        `API ${upperMethod} ${requestUrl} failed: ${response.status} ${response.statusText} — ${errorText}`
+      );
+    }
+
+    if (response.status === 204) return null;
+
+    const text = await response.text();
+    return text ? JSON.parse(text) : null;
+  } finally {
+    if (timeoutId) clearTimeout(timeoutId);
+  }
 }
 
-export { baseURL, SummaryApi, apiFetch };
+export async function callSummaryApi(
+  endpoint,
+  { payload, params, headers, cache = "no-store", credentials = "include", signal, timeout } = {}
+) {
+  if (!endpoint?.url) {
+    throw new Error("callSummaryApi: endpoint definition must include a url.");
+  }
+
+  const method = endpoint.method?.toUpperCase?.() ?? "GET";
+  const isBodyMethod = !["GET", "DELETE", "HEAD"].includes(method);
+  const body = isBodyMethod ? payload : undefined;
+  const finalParams =
+    !isBodyMethod && payload && typeof payload === "object"
+      ? { ...(params || {}), ...payload }
+      : params;
+
+  return apiFetch(endpoint.url, {
+    method,
+    body,
+    params: finalParams,
+    headers,
+    cache,
+    credentials,
+    signal,
+    timeout,
+  });
+}
+
+export { SummaryApi };
 export default SummaryApi;
