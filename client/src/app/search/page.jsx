@@ -7,7 +7,7 @@ import Axios from './../../utils/Axios'
 import AxiosToastError from './../../utils/AxiosToastError'
 import CardProduct from './../../components/CardProduct'
 import InfiniteScroll from 'react-infinite-scroll-component'
-import noDataImage from '/public/assets/nothing here yet.webp'
+// import noDataImage from '/public/assets/nothing here yet.webp'
 import Search from './../../components/Search'
 import CardLoading from './../../components/CardLoading';
 
@@ -102,7 +102,7 @@ export default function SearchPage() {
                 !data[0] && !loading && (
                   <div className='flex flex-col justify-center items-center w-full mx-auto'>
                     <img
-                      src={noDataImage} 
+                      src="/assets/nothing here yet.webp"
                       className='w-full h-full max-w-xs max-h-xs block'
                     />
                     <p className='font-semibold my-2'>No Data found</p>
