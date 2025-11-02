@@ -226,7 +226,7 @@ BillDetails.displayName = 'BillDetails';
 const EmptyCart = memo(({ close }) => (
   <div className='bg-white flex flex-col justify-center items-center'>
     <Image
-      src={imageEmpty}
+      src="/assets/empty_cart.avif"
       className='w-full h-full object-scale-down'
       alt="Empty cart"
       width={250}
