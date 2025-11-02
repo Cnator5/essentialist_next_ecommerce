@@ -3,11 +3,24 @@
  */
 const nextConfig = {
   experimental: {
-    optimizeRouterScrolling: true,
+    turbopackFileSystemCacheForDev: true,
   },
   reactStrictMode: true,
   images: {
-    domains: ['res.cloudinary.com'],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/dvpweiur3/**",
+      },
+      {
+        protocol: "http", // 👈 add this one too
+        hostname: "res.cloudinary.com",
+        port: "",
+        pathname: "/dvpweiur3/**",
+      },
+    ],
   },
 };
 

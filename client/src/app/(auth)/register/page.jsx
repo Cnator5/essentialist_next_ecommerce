@@ -8,7 +8,7 @@ import AxiosToastError from '../../../utils/AxiosToastError';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import bannerMobile from "/public/assets/NYX-PMU-Makeup-Face-TOTAL-CONTROL-PRO-DROP-FOUNDATION-Foundation-Golden-TCPDF13-000-0800897206956-Open.jpg";
+// import bannerMobile from "/public/assets/NYX-PMU-Makeup-Face-TOTAL-CONTROL-PRO-DROP-FOUNDATION-Foundation-Golden-TCPDF13-000-0800897206956-Open.jpg";
 
 const Register = () => {
     const [data, setData] = useState({
@@ -78,7 +78,7 @@ const Register = () => {
                 className="w-full max-w-sm rounded-2xl shadow-lg bg-white border border-gray-200 p-6 flex flex-col items-center"
             >
                 <img
-                    src={bannerMobile}
+                    src="/assets/NYX-PMU-Makeup-Face-TOTAL-CONTROL-PRO-DROP-FOUNDATION-Foundation-Golden-TCPDF13-000-0800897206956-Open.jpg"
                     alt="Makeup Banner"
                     className="w-20 h-20 object-cover rounded-full mb-3 border-4 border-pink-200 shadow"
                     loading="lazy"

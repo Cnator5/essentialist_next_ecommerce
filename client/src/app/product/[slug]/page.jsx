@@ -147,10 +147,10 @@
 // }
 
 // // ------------------------
-// // Dynamic SEO (SSR)
+// // Dynamic SEO (SSR) - Updated for async params
 // // ------------------------
 // export async function generateMetadata({ params }) {
-//   const slug = params?.slug
+//   const { slug } = await params // Await params to access slug asynchronously
 //   const productId = extractProductId(slug)
 //   if (!productId) {
 //     return {
@@ -172,7 +172,7 @@
 //   const name = product?.name || 'Product'
 //   const descRaw =
 //     product?.description ||
-//     `Buy ${name} at the best price from EssentialisMakeupStore.`
+//     `Buy ${name} at the best price from EssentialistMakeupStore.`
 //   const description = stripHtml(descRaw).slice(0, 300)
 //   const img = Array.isArray(product?.image) ? product.image[0] : product?.image
 //   const url = `https://www.esmakeupstore.com/product/${slug}`
@@ -181,19 +181,20 @@
 //     metadataBase: new URL('https://www.esmakeupstore.com'),
 //     title: name,
 //     description,
-//     keywords: [
+//     keywords: `[
 //       name,
 //       'makeup',
 //       'beauty',
 //       'cosmetics',
-//       'EssentialisMakeupStore',
+//       'Essentialist Makeup Store',
 //       'Cameroon makeup',
 //       'Douala beauty',
-//     ],
+//       ${name}
+//     ]`,
 //     alternates: { canonical: url },
 //     openGraph: {
 //       type: 'website',
-//       siteName: 'EssentialisMakeupStore',
+//       siteName: 'Essentialist MakeupStore',
 //       url,
 //       title: name,
 //       description,
@@ -260,7 +261,7 @@
 //   const websiteJsonLd = {
 //     '@context': 'https://schema.org',
 //     '@type': 'WebSite',
-//     name: 'EssentialisMakeupStore',
+//     name: 'Essentialist Makeup Store',
 //     url: 'https://www.esmakeupstore.com/',
 //     potentialAction: {
 //       '@type': 'SearchAction',
@@ -272,7 +273,7 @@
 //   const organizationJsonLd = {
 //     '@context': 'https://schema.org',
 //     '@type': 'Organization',
-//     name: 'EssentialisMakeupStore',
+//     name: 'Essentialist Makeup Store',
 //     url: 'https://www.esmakeupstore.com/',
 //     sameAs: [
 //       'https://www.facebook.com/Essentialistmakeupstore',
@@ -308,10 +309,10 @@
 // }
 
 // // ------------------------
-// // Page (SSR)
+// // Page (SSR) - Updated for async params
 // // ------------------------
 // export default async function ProductDisplayPage({ params }) {
-//   const slug = params?.slug
+//   const { slug } = await params // Await params to access slug asynchronously
 //   const productId = extractProductId(slug)
 //   if (!productId) return notFound()
 
@@ -366,7 +367,7 @@
 
 //         <div className="p-4 lg:pl-7 text-base lg:text-lg">
 //           <p className="bg-emerald-200 w-fit px-2 rounded-full">10 Minutes</p>
-//           <h1 className="text-lg font-semibold lg:text-3xl">{productData.name}</h1>
+//           <h1 className="text-lg font-semibold lg:text-lg">{productData.name}</h1>
 //           <p>{productData.unit}</p>
 
 //           {/* Ratings */}
@@ -444,7 +445,7 @@
 //             <div className="flex items-center gap-4 my-4">
 //               <Image src="/assets/minute_delivery.jpeg" alt="Superfast delivery" width={80} height={80} className="w-20 h-20" />
 //               <div className="text-sm">
-//                 <div className="font-semibold">Superfast Delivery</div>
+//                 <div className="font-semibold">Super-fast Delivery</div>
 //                 <p>Get your order delivered to your doorstep at the earliest from dark stores near you.</p>
 //               </div>
 //             </div>
@@ -501,30 +502,38 @@
 
 
 
-import Image from 'next/image'
-import { notFound } from 'next/navigation'
-import Divider from '../../../components/Divider'
-import AddToCartButton from '../../../components/AddToCartButton'
-import ProductRecommendations from '../../../components/ProductRecommendations'
-import { DisplayPriceInRupees } from '../../../utils/DisplayPriceInRupees'
-import { pricewithDiscount } from '../../../utils/PriceWithDiscount'
-import RatingBlock from './RatingBlock.client'
-import ProductGallery from './ProductGallery.client'
-import SummaryApi, { baseURL } from '../../../common/SummaryApi'
 
-// -------- Helpers ----------
+
+
+
+
+
+
+
+
+// src/app/product/[slug]/page.jsx
+import Image from "next/image";
+import { notFound } from "next/navigation";
+import Divider from "../../../components/Divider";
+import AddToCartButton from "../../../components/AddToCartButton";
+import ProductRecommendations from "../../../components/ProductRecommendations";
+import { DisplayPriceInRupees } from "../../../utils/DisplayPriceInRupees";
+import { pricewithDiscount } from "../../../utils/PriceWithDiscount";
+import RatingBlock from "./RatingBlock.client";
+import ProductGallery from "./ProductGallery.client";
+import SummaryApi, { apiFetch } from "../../../common/SummaryApi";
+
 function extractProductId(slug) {
-  if (!slug) return null
-  const parts = slug.split('-')
-  return parts[parts.length - 1]
+  if (!slug) return null;
+  const parts = slug.split("-");
+  return parts[parts.length - 1];
 }
 
 function stripHtml(html) {
-  if (!html) return ''
-  return html.replace(/<[^>]*>?/gm, '').trim()
+  if (!html) return "";
+  return html.replace(/<[^>]*>?/gm, "").trim();
 }
 
-// Styles
 const tabularStyles = `
   .tabular-content {
     white-space: pre-wrap;
@@ -563,12 +572,13 @@ const tabularStyles = `
     outline-offset: 3px;
     border-radius: 6px;
   }
-`
+`;
 
-// Skeletons
-function ImageSkeleton() { return <div className="aspect-square rounded-lg bg-slate-200"></div> }
-function TextSkeleton({ width = '100%', height = 'h-4' }) {
-  return <div className={`bg-slate-200 rounded ${height}`} style={{ width }} />
+function ImageSkeleton() {
+  return <div className="aspect-square rounded-lg bg-slate-200"></div>;
+}
+function TextSkeleton({ width = "100%", height = "h-4" }) {
+  return <div className={`bg-slate-200 rounded ${height}`} style={{ width }} />;
 }
 function ProductSkeleton() {
   return (
@@ -609,79 +619,68 @@ function ProductSkeleton() {
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-// ------------------------
-// Server data fetchers (SSR)
-// ------------------------
 async function getProduct(productId) {
   try {
-    const res = await fetch(`${baseURL}${SummaryApi.getProductDetails.url}`, {
+    const response = await apiFetch(SummaryApi.getProductDetails.url, {
       method: SummaryApi.getProductDetails.method.toUpperCase(),
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ productId }),
-      next: { revalidate: 300 },
-    })
-    if (!res.ok) throw new Error('Failed to fetch product details')
-    const data = await res.json()
-    const product = data?.data || (data?.success && data?.data) || null
-    return product
-  } catch (e) {
-    console.error('getProduct error:', e)
-    return null
+      body: { productId },
+      cache: "no-store",
+    });
+    return response?.data ?? null;
+  } catch (error) {
+    console.error("getProduct error:", error);
+    return null;
   }
 }
 
 async function getRatingsSSR(productId) {
   try {
-    const res = await fetch(`${baseURL}${SummaryApi.ratingsGet.url(productId)}`, {
-      method: 'GET',
-      headers: { 'Content-Type': 'application/json' },
-      next: { revalidate: 300 },
-    })
-    if (!res.ok) return { average: 0, count: 0, myRating: null }
-    const json = await res.json()
-    return json?.data || { average: 0, count: 0, myRating: null }
-  } catch (e) {
-    console.error('getRatingsSSR error:', e)
-    return { average: 0, count: 0, myRating: null }
+    const response = await apiFetch(SummaryApi.ratingsGet.url(productId), {
+      method: SummaryApi.ratingsGet.method.toUpperCase(),
+      cache: "no-store",
+    });
+    return response?.data || { average: 0, count: 0, myRating: null };
+  } catch (error) {
+    console.error("getRatingsSSR error:", error);
+    return { average: 0, count: 0, myRating: null };
   }
 }
 
-// ------------------------
-// Dynamic SEO (SSR) - Updated for async params
-// ------------------------
-export async function generateMetadata({ params }) {
-  const { slug } = await params // Await params to access slug asynchronously
-  const productId = extractProductId(slug)
+export async function generateMetadata(props) {
+  const params = await props.params;
+  const slug = params?.slug;
+  const productId = extractProductId(slug);
+
   if (!productId) {
     return {
-      title: 'Product not found',
-      description: 'Invalid product URL',
+      title: "Product not found",
+      description: "Invalid product URL",
       robots: { index: false, follow: false },
-    }
+    };
   }
 
-  const product = await getProduct(productId)
+  const product = await getProduct(productId);
   if (!product) {
     return {
-      title: 'Product not found',
-      description: 'Product could not be found.',
+      title: "Product not found",
+      description: "Product could not be found.",
       robots: { index: false, follow: true },
-    }
+    };
   }
 
-  const name = product?.name || 'Product'
+  const name = product?.name || "Product";
   const descRaw =
     product?.description ||
-    `Buy ${name} at the best price from EssentialistMakeupStore.`
-  const description = stripHtml(descRaw).slice(0, 300)
-  const img = Array.isArray(product?.image) ? product.image[0] : product?.image
-  const url = `https://www.esmakeupstore.com/product/${slug}`
+    `Buy ${name} at the best price from EssentialistMakeupStore.`;
+  const description = stripHtml(descRaw).slice(0, 300);
+  const img = Array.isArray(product?.image) ? product.image[0] : product?.image;
+  const url = `https://www.esmakeupstore.com/product/${slug}`;
 
   return {
-    metadataBase: new URL('https://www.esmakeupstore.com'),
+    metadataBase: new URL("https://www.esmakeupstore.com"),
     title: name,
     description,
     keywords: `[
@@ -696,107 +695,110 @@ export async function generateMetadata({ params }) {
     ]`,
     alternates: { canonical: url },
     openGraph: {
-      type: 'website',
-      siteName: 'Essentialist MakeupStore',
+      type: "website",
+      siteName: "Essentialist MakeupStore",
       url,
       title: name,
       description,
       images: img ? [{ url: img, width: 1200, height: 630, alt: name }] : [],
-      locale: 'en_US',
+      locale: "en_US",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: name,
       description,
       images: img ? [img] : [],
     },
     robots: { index: true, follow: true },
-  }
+  };
 }
 
-// ------------------------
-// Schema.org JSON-LD (SSR)
-// ------------------------
 function StructuredData({ product, slug, rating }) {
-  const url = `https://www.esmakeupstore.com/product/${slug}`
-  const imgList = Array.isArray(product?.image) ? product.image : [product?.image].filter(Boolean)
+  const url = `https://www.esmakeupstore.com/product/${slug}`;
+  const imgList = Array.isArray(product?.image)
+    ? product.image
+    : [product?.image].filter(Boolean);
   const offers = {
-    '@type': 'Offer',
-    priceCurrency: 'XAF',
-    price: String(pricewithDiscount(product?.price || 0, product?.discount || 0)),
+    "@type": "Offer",
+    priceCurrency: "XAF",
+    price: String(
+      pricewithDiscount(product?.price || 0, product?.discount || 0)
+    ),
     availability:
       product?.stock && product.stock > 0
-        ? 'https://schema.org/InStock'
-        : 'https://schema.org/OutOfStock',
+        ? "https://schema.org/InStock"
+        : "https://schema.org/OutOfStock",
     url,
-  }
+  };
 
   const productJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Product',
+    "@context": "https://schema.org",
+    "@type": "Product",
     name: product?.name,
     description: stripHtml(product?.description),
     image: imgList,
     sku: product?._id || product?.sku,
-    brand: product?.brand ? { '@type': 'Brand', name: product.brand } : undefined,
+    brand: product?.brand
+      ? { "@type": "Brand", name: product.brand }
+      : undefined,
     offers,
     ...(rating && rating.count > 0
       ? {
           aggregateRating: {
-            '@type': 'AggregateRating',
+            "@type": "AggregateRating",
             ratingValue: String(rating.average),
             reviewCount: String(rating.count),
           },
         }
       : {}),
-  }
+  };
 
   const breadcrumbJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BreadcrumbList',
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
     itemListElement: [
-      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.esmakeupstore.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Products', item: 'https://www.esmakeupstore.com/product' },
-      { '@type': 'ListItem', position: 3, name: product?.name, item: url },
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://www.esmakeupstore.com/" },
+      { "@type": "ListItem", position: 2, name: "Products", item: "https://www.esmakeupstore.com/product" },
+      { "@type": "ListItem", position: 3, name: product?.name, item: url },
     ],
-  }
+  };
 
   const websiteJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'WebSite',
-    name: 'Essentialist Makeup Store',
-    url: 'https://www.esmakeupstore.com/',
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Essentialist Makeup Store",
+    url: "https://www.esmakeupstore.com/",
     potentialAction: {
-      '@type': 'SearchAction',
-      target: 'https://www.esmakeupstore.com/search?q={search_term_string}',
-      'query-input': 'required name=search_term_string',
+      "@type": "SearchAction",
+      target: "https://www.esmakeupstore.com/search?q={search_term_string}",
+      "query-input": "required name=search_term_string",
     },
-  }
+  };
 
   const organizationJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Organization',
-    name: 'Essentialist Makeup Store',
-    url: 'https://www.esmakeupstore.com/',
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "Essentialist Makeup Store",
+    url: "https://www.esmakeupstore.com/",
     sameAs: [
-      'https://www.facebook.com/Essentialistmakeupstore',
-      'https://www.tiktok.com/@essentialistmakeupstore',
-      'https://www.instagram.com/Essentialistmakeupstore',
+      "https://www.facebook.com/Essentialistmakeupstore",
+      "https://www.tiktok.com/@essentialistmakeupstore",
+      "https://www.instagram.com/Essentialistmakeupstore",
     ],
     address: {
-      '@type': 'PostalAddress',
-      addressCountry: 'CM',
-      addressLocality: 'Douala',
+      "@type": "PostalAddress",
+      addressCountry: "CM",
+      addressLocality: "Douala",
     },
     contactPoint: {
-      '@type': 'ContactPoint',
-      telephone: '+237655225569',
-      contactType: 'customer service',
-      availableLanguage: ['en', 'fr'],
+      "@type": "ContactPoint",
+      telephone: "+237655225569",
+      contactType: "customer service",
+      availableLanguage: ["en", "fr"],
     },
-  }
+  };
 
-  const arr = [productJsonLd, breadcrumbJsonLd, websiteJsonLd, organizationJsonLd]
+  const arr = [productJsonLd, breadcrumbJsonLd, websiteJsonLd, organizationJsonLd];
 
   return (
     <>
@@ -808,27 +810,25 @@ function StructuredData({ product, slug, rating }) {
         />
       ))}
     </>
-  )
+  );
 }
 
-// ------------------------
-// Page (SSR) - Updated for async params
-// ------------------------
-export default async function ProductDisplayPage({ params }) {
-  const { slug } = await params // Await params to access slug asynchronously
-  const productId = extractProductId(slug)
-  if (!productId) return notFound()
+export default async function ProductDisplayPage(props) {
+  const params = await props.params;
+  const slug = params?.slug;
+  const productId = extractProductId(slug);
+  if (!productId) return notFound();
 
   const [productData, ratingSSR] = await Promise.all([
     getProduct(productId),
     getRatingsSSR(productId),
-  ])
+  ]);
 
-  if (!productData) return notFound()
+  if (!productData) return notFound();
 
   const images = Array.isArray(productData.image)
     ? productData.image
-    : [productData.image].filter(Boolean)
+    : [productData.image].filter(Boolean);
 
   return (
     <>
@@ -844,7 +844,7 @@ export default async function ProductDisplayPage({ params }) {
               <p className="font-semibold">Description</p>
               <div
                 className="text-base text-justify text-slate-900 product-description-content"
-                dangerouslySetInnerHTML={{ __html: productData.description || '' }}
+                dangerouslySetInnerHTML={{ __html: productData.description || "" }}
               />
             </div>
             {productData.specifications && (
@@ -858,7 +858,7 @@ export default async function ProductDisplayPage({ params }) {
               <p className="text-base">{productData.unit}</p>
             </div>
             {productData?.more_details &&
-              typeof productData.more_details === 'object' &&
+              typeof productData.more_details === "object" &&
               Object.keys(productData.more_details).map((element, idx) => (
                 <div key={`detail-${idx}`}>
                   <p className="font-semibold">{element}</p>
@@ -873,13 +873,15 @@ export default async function ProductDisplayPage({ params }) {
           <h1 className="text-lg font-semibold lg:text-lg">{productData.name}</h1>
           <p>{productData.unit}</p>
 
-          {/* Ratings */}
           <div className="mt-2">
             <div className="flex items-center gap-2 text-sm text-slate-800">
-              <span className="font-semibold">{Number(ratingSSR?.average || 0).toFixed(2)}</span>
+              <span className="font-semibold">
+                {Number(ratingSSR?.average || 0).toFixed(2)}
+              </span>
               <span>/ 5</span>
               <span className="text-slate-700">
-                ({ratingSSR?.count || 0} {Number(ratingSSR?.count) === 1 ? 'rating' : 'ratings'})
+                ({ratingSSR?.count || 0}{" "}
+                {Number(ratingSSR?.count) === 1 ? "rating" : "ratings"})
               </span>
             </div>
             <RatingBlock productId={productId} />
@@ -887,7 +889,6 @@ export default async function ProductDisplayPage({ params }) {
 
           <Divider />
 
-          {/* Bulk Price */}
           <div>
             <p>Bulk Price</p>
             <div className="flex items-center gap-2 lg:gap-4">
@@ -902,39 +903,46 @@ export default async function ProductDisplayPage({ params }) {
                 </p>
               </div>
               {productData.discount > 0 && (
-                <p className="line-through">{DisplayPriceInRupees(productData.price)}</p>
+                <p className="line-through">
+                  {DisplayPriceInRupees(productData.price)}
+                </p>
               )}
               {productData.discount > 0 && (
                 <p className="font-bold text-emerald-600 lg:text-2xl">
-                  {productData.discount}% <span className="text-base text-slate-900">Discount</span>
+                  {productData.discount}%{" "}
+                  <span className="text-base text-slate-900">Discount</span>
                 </p>
               )}
             </div>
           </div>
 
-          {/* Price */}
           <div>
             <p>Price</p>
             <div className="flex items-center gap-2 lg:gap-4">
               <div className="border border-emerald-600 px-4 py-2 rounded bg-emerald-50 w-fit">
                 <p className="font-semibold text-lg lg:text-xl">
                   {DisplayPriceInRupees(
-                    pricewithDiscount(productData.price, productData.discount || 0)
+                    pricewithDiscount(
+                      productData.price,
+                      productData.discount || 0
+                    )
                   )}
                 </p>
               </div>
               {productData.discount > 0 && (
-                <p className="line-through">{DisplayPriceInRupees(productData.price)}</p>
+                <p className="line-through">
+                  {DisplayPriceInRupees(productData.price)}
+                </p>
               )}
               {productData.discount > 0 && (
                 <p className="font-bold text-emerald-600 lg:text-2xl">
-                  {productData.discount}% <span className="text-base text-slate-900">Discount</span>
+                  {productData.discount}%{" "}
+                  <span className="text-base text-slate-900">Discount</span>
                 </p>
               )}
             </div>
           </div>
 
-          {/* Stock/Add to Cart */}
           {productData.stock === 0 ? (
             <p className="text-lg text-rose-600 my-2">Out of Stock</p>
           ) : (
@@ -943,27 +951,55 @@ export default async function ProductDisplayPage({ params }) {
             </div>
           )}
 
-          <h2 className="font-semibold mt-8">Why shop from Essentialist Makeup Store?</h2>
+          <h2 className="font-semibold mt-8">
+            Why shop from Essentialist Makeup Store?
+          </h2>
           <div>
             <div className="flex items-center gap-4 my-4">
-              <Image src="/assets/minute_delivery.jpeg" alt="Superfast delivery" width={80} height={80} className="w-20 h-20" />
+              <Image
+                src="/assets/minute_delivery.jpeg"
+                alt="Super-fast delivery"
+                width={80}
+                height={80}
+                className="w-20 h-20"
+              />
               <div className="text-sm">
                 <div className="font-semibold">Super-fast Delivery</div>
-                <p>Get your order delivered to your doorstep at the earliest from dark stores near you.</p>
+                <p>
+                  Get your order delivered to your doorstep at the earliest from
+                  dark stores near you.
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4 my-4">
-              <Image src="/assets/Best_Prices_Offers.png" alt="Best prices and offers" width={80} height={80} className="w-20 h-20" />
+              <Image
+                src="/assets/Best_Prices_Offers.png"
+                alt="Best prices and offers"
+                width={80}
+                height={80}
+                className="w-20 h-20"
+              />
               <div className="text-sm">
                 <div className="font-semibold">Best Prices and Offers</div>
-                <p>Best price destination with offers directly from the manufacturers.</p>
+                <p>
+                  Best price destination with offers directly from the manufacturers.
+                </p>
               </div>
             </div>
             <div className="flex items-center gap-4 my-4">
-              <Image src="/assets/Wide_Assortment.avif" alt="Wide assortment" width={80} height={80} className="w-20 h-20" />
+              <Image
+                src="/assets/Wide_Assortment.avif"
+                alt="Wide assortment"
+                width={80}
+                height={80}
+                className="w-20 h-20"
+              />
               <div className="text-sm">
                 <div className="font-semibold">Wide Assortment</div>
-                <p>Choose from over five thousand makeup products including foundations, lipsticks, eyeshadows, and more.</p>
+                <p>
+                  Choose from over five thousand makeup products including
+                  foundations, lipsticks, eyeshadows, and more.
+                </p>
               </div>
             </div>
           </div>
@@ -973,7 +1009,7 @@ export default async function ProductDisplayPage({ params }) {
               <p className="font-semibold">Description</p>
               <div
                 className="text-base text-justify text-slate-900 product-description-content"
-                dangerouslySetInnerHTML={{ __html: productData.description || '' }}
+                dangerouslySetInnerHTML={{ __html: productData.description || "" }}
               />
             </div>
             {productData.specifications && (
@@ -987,7 +1023,7 @@ export default async function ProductDisplayPage({ params }) {
               <p className="text-base">{productData.unit}</p>
             </div>
             {productData?.more_details &&
-              typeof productData.more_details === 'object' &&
+              typeof productData.more_details === "object" &&
               Object.keys(productData.more_details).map((element, idx) => (
                 <div key={`mobile-detail-${idx}`}>
                   <p className="font-semibold">{element}</p>
@@ -998,7 +1034,10 @@ export default async function ProductDisplayPage({ params }) {
         </div>
       </section>
 
-      <ProductRecommendations currentProductId={productId} currentProductData={productData} />
+      <ProductRecommendations
+        currentProductId={productId}
+        currentProductData={productData}
+      />
     </>
-  )
+  );
 }

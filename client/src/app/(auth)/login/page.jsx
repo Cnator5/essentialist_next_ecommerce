@@ -12,8 +12,9 @@ import { useDispatch } from 'react-redux';
 import { setUserDetails } from './../../../store/userSlice';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import bannerMobile from "/public/assets/staymattebutnotflatpowderfoundationmain.jpg"; // If using next/image and file is in /assets
+// import bannerMobile from "/public/assets/staymattebutnotflatpowderfoundationmain.jpg"; // If using next/image and file is in /assets
 import Axios from './../../../utils/Axios';
+
 
 const Login = () => {
   const [data, setData] = useState({
@@ -76,7 +77,7 @@ const Login = () => {
         {/* Image Side */}
         <div className="relative h-40 md:h-auto md:w-1/2 bg-pink-400">
           <Image
-            src={bannerMobile}
+            src="/assets/staymattebutnotflatpowderfoundationmain.jpg"
             alt="Cosmetics sale banner"
             fill
             className="object-cover"

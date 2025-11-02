@@ -1,10 +1,13 @@
 'use client';
 
 import React, {
+  useCallback,
+  useDeferredValue,
   useEffect,
   useMemo,
+  useRef,
   useState,
-  useCallback,
+  useTransition,
 } from 'react';
 import { useSelector } from 'react-redux';
 import SummaryApi, { callSummaryApi, apiFetch } from '../common/SummaryApi';
@@ -62,6 +65,11 @@ import {
   Mail,
   Phone,
   Hash,
+  Globe,
+  CheckCircle2,
+  Loader2,
+  RefreshCw,
+  AlertTriangle,
 } from 'lucide-react';
 
 import {
@@ -75,13 +83,25 @@ import {
 } from 'date-fns';
 
 const currency = 'XAF';
+const PAGE_SIZE = 10;
 
-function sum(arr, sel = (x) => x) {
-  return arr.reduce((acc, item) => acc + sel(item), 0);
+const COLORS = [
+  '#7C3AED',
+  '#06B6D4',
+  '#F59E0B',
+  '#EF4444',
+  '#10B981',
+  '#8B5CF6',
+  '#3B82F6',
+  '#EC4899',
+];
+
+function sum(arr = [], selector = (item) => item) {
+  return arr.reduce((acc, item) => acc + selector(item), 0);
 }
 
-function safeNumber(n) {
-  const parsed = Number(n);
+function safeNumber(value) {
+  const parsed = Number(value);
   return Number.isFinite(parsed) ? parsed : 0;
 }
 
@@ -107,7 +127,7 @@ function groupBy(arr, selector) {
 }
 
 function ordersToRevenuePoints(orders) {
-  return orders.map((order) => ({
+  return (orders || []).map((order) => ({
     createdAt: new Date(order.createdAt),
     totalAmt: safeNumber(order.totalAmt || order.subTotalAmt || 0),
     profit: Math.round(safeNumber(order.totalAmt || 0) * 0.35),
@@ -162,7 +182,7 @@ function bucketizeByRange(data, range) {
 }
 
 function salesSeriesFromOrders(orders, range) {
-  const salesPoints = orders.map((order) => ({
+  const salesPoints = (orders || []).map((order) => ({
     createdAt: new Date(order.createdAt),
     online:
       order.payment_status && order.payment_status !== 'CASH ON DELIVERY'
@@ -222,16 +242,306 @@ function categoryDistributionFromProducts(products) {
   return entries;
 }
 
-const COLORS = [
-  '#7C3AED',
-  '#06B6D4',
-  '#F59E0B',
-  '#EF4444',
-  '#10B981',
-  '#8B5CF6',
-  '#3B82F6',
-  '#EC4899',
-];
+function dedupeOrders(orders = []) {
+  const map = new Map();
+  orders.forEach((order) => {
+    if (!order) return;
+    const key = String(
+      order.orderId ||
+        order._id ||
+        order.id ||
+        order.id_str ||
+        Math.random().toString(36).slice(2)
+    );
+    if (!map.has(key)) {
+      map.set(key, order);
+    } else {
+      const current = map.get(key);
+      map.set(key, { ...current, ...order });
+    }
+  });
+  return Array.from(map.values());
+}
+
+function buildRecentOrders(orders = []) {
+  return [...orders]
+    .filter(Boolean)
+    .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+    .slice(0, 10)
+    .map((order) => {
+      const products = Array.isArray(order.products) ? order.products : [];
+      const itemsCount = sum(products, (item) => safeNumber(item.quantity || 1));
+      return {
+        id: order.orderId || order._id,
+        amount: safeNumber(order.totalAmt || order.subTotalAmt || 0),
+        status: order.payment_status || 'Processing',
+        fulfillmentStatus:
+          order.fulfillment_status || order.fulfillmentStatus || 'Processing',
+        date: new Date(order.createdAt),
+        deliveredAt: order.deliveredAt ? new Date(order.deliveredAt) : null,
+        itemsCount,
+        isGuest: Boolean(order.is_guest),
+        paymentMethod:
+          order.paymentMethod ||
+          (order.payment_status === 'CASH ON DELIVERY'
+            ? 'Cash on Delivery'
+            : 'Online'),
+        contact: {
+          name:
+            order.contact_info?.name ||
+            order.contact?.name ||
+            order.delivery_address?.name ||
+            'Customer',
+          email:
+            order.contact_info?.customer_email ||
+            order.contact_info?.email ||
+            order.contact?.email ||
+            '',
+          mobile:
+            order.contact_info?.mobile ||
+            order.contact?.mobile ||
+            order.delivery_address?.mobile ||
+            '',
+        },
+        address:
+          typeof order.delivery_address === 'object'
+            ? order.delivery_address
+            : {},
+      };
+    });
+}
+
+function computeTopProducts(orders = []) {
+  const productMap = new Map();
+
+  orders.forEach((order) => {
+    const items = Array.isArray(order.products) ? order.products : [];
+    items.forEach((entry) => {
+      const key =
+        String(entry.productId) ||
+        entry.product_details?._id ||
+        entry.product_details?.name ||
+        Math.random().toString(36).slice(2);
+
+      const previous = productMap.get(key) || {
+        id: entry.productId || entry.product_details?._id || key,
+        name: entry.product_details?.name || 'Product',
+        sales: 0,
+        revenue: 0,
+      };
+
+      const qty = safeNumber(entry.quantity || 1);
+      const price = safeNumber(entry.price || entry.product_details?.price || 0);
+
+      previous.sales += qty;
+      previous.revenue += qty * price;
+
+      productMap.set(key, previous);
+    });
+  });
+
+  return Array.from(productMap.values())
+    .sort((a, b) => b.revenue - a.revenue)
+    .slice(0, 8)
+    .map((product, idx) => ({
+      ...product,
+      rank: idx + 1,
+      growth: Math.round((Math.random() * 30 + 5) * 10) / 10,
+    }));
+}
+
+function percentChange(current, previous) {
+  if (!Number.isFinite(previous) || previous === 0) {
+    return Number.isFinite(current) && current !== 0 ? 100 : 0;
+  }
+  const value = ((current - previous) / previous) * 100;
+  return Math.round(value * 10) / 10;
+}
+
+function computeGrowthFallback(orders = []) {
+  if (!orders.length) {
+    return { revenueGrowth: 0, salesGrowth: 0, profitGrowth: 0 };
+  }
+
+  const now = Date.now();
+  const dayMs = 24 * 60 * 60 * 1000;
+  const thirtyDaysAgo = now - 30 * dayMs;
+  const sixtyDaysAgo = now - 60 * dayMs;
+
+  const currentOrders = orders.filter(
+    (order) => new Date(order.createdAt).getTime() >= thirtyDaysAgo
+  );
+  const previousOrders = orders.filter((order) => {
+    const timestamp = new Date(order.createdAt).getTime();
+    return timestamp >= sixtyDaysAgo && timestamp < thirtyDaysAgo;
+  });
+
+  const currentRevenue = sum(currentOrders, (order) =>
+    safeNumber(order.totalAmt || order.subTotalAmt || 0)
+  );
+  const previousRevenue = sum(previousOrders, (order) =>
+    safeNumber(order.totalAmt || order.subTotalAmt || 0)
+  );
+
+  const currentUnits = sum(currentOrders, (order) =>
+    sum(Array.isArray(order.products) ? order.products : [], (item) =>
+      safeNumber(item.quantity || 1)
+    )
+  );
+  const previousUnits = sum(previousOrders, (order) =>
+    sum(Array.isArray(order.products) ? order.products : [], (item) =>
+      safeNumber(item.quantity || 1)
+    )
+  );
+
+  const currentProfit = Math.round(currentRevenue * 0.35);
+  const previousProfit = Math.round(previousRevenue * 0.35);
+
+  return {
+    revenueGrowth: percentChange(currentRevenue, previousRevenue),
+    salesGrowth: percentChange(currentUnits, previousUnits),
+    profitGrowth: percentChange(currentProfit, previousProfit),
+  };
+}
+
+function computeStats({ adminData, orders = [], products = [] }) {
+  const totals = adminData?.totals ?? {};
+  const growth = adminData?.growth ?? computeGrowthFallback(orders);
+
+  const totalOrders = totals.totalOrders ?? orders.length;
+  const totalProducts = totals.totalProducts ?? products.length;
+  const totalRevenue =
+    totals.totalRevenue ??
+    sum(orders, (order) => safeNumber(order.totalAmt || order.subTotalAmt || 0));
+  const totalSalesUnits =
+    totals.totalSalesUnits ??
+    sum(orders, (order) =>
+      sum(Array.isArray(order.products) ? order.products : [], (item) =>
+        safeNumber(item.quantity || 1)
+      )
+    );
+  const totalProfit = totals.totalProfit ?? Math.round(totalRevenue * 0.35);
+
+  const guestOrders = totals.guestOrders ?? orders.filter((order) => Boolean(order.is_guest)).length;
+  const deliveredOrders =
+    totals.deliveredOrders ??
+    orders.filter((order) => {
+      const status =
+        order.fulfillment_status || order.fulfillmentStatus || 'Processing';
+      return status.toLowerCase() === 'delivered';
+    }).length;
+
+  const pendingDeliveries = totals.pendingDeliveries ?? Math.max(0, totalOrders - deliveredOrders);
+
+  const uniqueUsers = new Set();
+  orders.forEach((order) => {
+    if (order.userId) {
+      uniqueUsers.add(String(order.userId));
+      return;
+    }
+    const email =
+      order.contact_info?.customer_email ||
+      order.contact?.email ||
+      order.delivery_address?.customer_email;
+    const phone =
+      order.contact_info?.mobile ||
+      order.contact?.mobile ||
+      order.delivery_address?.mobile;
+
+    if (email) uniqueUsers.add(email.toLowerCase());
+    else if (phone) uniqueUsers.add(phone);
+    else uniqueUsers.add(`guest-${order.orderId || order._id}`);
+  });
+
+  const totalUsers = totals.totalUsers ?? uniqueUsers.size;
+  const avgOrderValue = totalOrders ? totalRevenue / totalOrders : 0;
+
+  return {
+    totalProducts,
+    totalUsers,
+    totalRevenue,
+    totalSales: totalSalesUnits,
+    totalProfit,
+    totalOrders,
+    avgOrderValue,
+    revenueGrowth: growth.revenueGrowth ?? 0,
+    salesGrowth: growth.salesGrowth ?? 0,
+    profitGrowth: growth.profitGrowth ?? 0,
+    guestOrders,
+    deliveredOrders,
+    pendingDeliveries,
+  };
+}
+
+function getPaymentBadgeClass(status = '') {
+  const normalized = status.toLowerCase();
+  if (normalized.includes('completed') || normalized.includes('paid')) {
+    return 'bg-emerald-100 text-emerald-700 border-emerald-200';
+  }
+  if (normalized.includes('cancel')) {
+    return 'bg-rose-100 text-rose-700 border-rose-200';
+  }
+  if (normalized.includes('pending')) {
+    return 'bg-amber-100 text-amber-800 border-amber-200';
+  }
+  return 'bg-sky-100 text-sky-800 border-sky-200';
+}
+
+function getFulfillmentBadgeClass(status = '') {
+  const normalized = status.toLowerCase();
+  if (normalized === 'delivered') {
+    return 'bg-emerald-100 text-emerald-700 border-emerald-200';
+  }
+  if (normalized.includes('dispatch') || normalized.includes('out')) {
+    return 'bg-sky-100 text-sky-700 border-sky-200';
+  }
+  if (normalized.includes('cancel') || normalized.includes('failed')) {
+    return 'bg-rose-100 text-rose-700 border-rose-200';
+  }
+  return 'bg-amber-100 text-amber-800 border-amber-200';
+}
+
+function mapOrderForList(order) {
+  const products = Array.isArray(order.products) ? order.products : [];
+  const itemCount = sum(products, (item) => safeNumber(item.quantity || 1));
+
+  return {
+    id: order.orderId || order._id,
+    amount: safeNumber(order.totalAmt || order.subTotalAmt || 0),
+    status: order.payment_status || 'Processing',
+    fulfillmentStatus:
+      order.fulfillment_status || order.fulfillmentStatus || 'Processing',
+    createdAt: order.createdAt ? new Date(order.createdAt) : null,
+    deliveredAt: order.deliveredAt ? new Date(order.deliveredAt) : null,
+    itemCount,
+    paymentMethod:
+      order.paymentMethod ||
+      (order.payment_status === 'CASH ON DELIVERY'
+        ? 'Cash on Delivery'
+        : 'Online'),
+    contactName:
+      order.contact_info?.name ||
+      order.contact?.name ||
+      order.delivery_address?.name ||
+      'Customer',
+    email:
+      order.contact_info?.customer_email ||
+      order.contact_info?.email ||
+      order.contact?.email ||
+      '',
+    mobile:
+      order.contact_info?.mobile ||
+      order.contact?.mobile ||
+      order.delivery_address?.mobile ||
+      '',
+    address:
+      typeof order.delivery_address === 'object'
+        ? order.delivery_address
+        : {},
+    isGuest: Boolean(order.is_guest),
+    integrityToken: order.integrityToken || '',
+  };
+}
 
 const PrettyTooltip = ({ active, payload, label, currencyMode = false }) => {
   if (!active || !payload?.length) return null;
@@ -256,9 +566,9 @@ const PrettyTooltip = ({ active, payload, label, currencyMode = false }) => {
   );
 };
 
-function RevenueAreaInteractive({ series, timeRange, setTimeRange }) {
+const RevenueAreaInteractive = ({ series, timeRange, setTimeRange }) => {
   const filtered = useMemo(() => {
-    const days = timeRange === '7d' ? 7 : timeRange === '30d' ? 30 : 90;
+    const days = timeRange === '7d' ? 7 : timeRange === '90d' ? 90 : 30;
     const start = new Date();
     start.setDate(start.getDate() - days);
     return (series || []).filter((d) => (d.date ? d.date >= start : true));
@@ -363,12 +673,13 @@ function RevenueAreaInteractive({ series, timeRange, setTimeRange }) {
       </CardContent>
     </Card>
   );
-}
+};
 
 const Dashboard = () => {
   const user = useSelector((state) => state.user);
 
   const [loading, setLoading] = useState(true);
+  const [backgroundLoading, setBackgroundLoading] = useState(false);
   const [stats, setStats] = useState({
     totalProducts: 0,
     totalUsers: 0,
@@ -380,6 +691,9 @@ const Dashboard = () => {
     profitGrowth: 0,
     totalOrders: 0,
     avgOrderValue: 0,
+    guestOrders: 0,
+    deliveredOrders: 0,
+    pendingDeliveries: 0,
   });
 
   const [revenueData, setRevenueData] = useState([]);
@@ -390,177 +704,284 @@ const Dashboard = () => {
   const [timeRange, setTimeRange] = useState('30d');
 
   const [allOrders, setAllOrders] = useState([]);
+  const [guestOrders, setGuestOrders] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
 
   const [activeTab, setActiveTab] = useState('overview');
   const [query, setQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const pageSize = 10;
+  const deferredQuery = useDeferredValue(query);
 
-  const fetchProducts = useCallback(async () => {
-    try {
-      const response = await callSummaryApi(SummaryApi.getProduct, {
-        payload: { page: 1, limit: 5000 },
-      });
-      return response?.data || [];
-    } catch (error) {
-      console.error('Failed to fetch products', error);
-      return [];
-    }
-  }, []);
+  const [ordersPage, setOrdersPage] = useState(1);
+  const [guestPage, setGuestPage] = useState(1);
+  const [productsPage, setProductsPage] = useState(1);
+  const [soldPage, setSoldPage] = useState(1);
 
-  const fetchOrders = useCallback(async () => {
-    try {
-      const response = await callSummaryApi(SummaryApi.getOrderItems);
-      return response?.data || [];
-    } catch (error) {
-      console.error('Failed to fetch orders', error);
-      return [];
-    }
-  }, []);
+  const [deliveryLoading, setDeliveryLoading] = useState({});
+  const [alert, setAlert] = useState(null);
+  const [isTransitioning, startTransition] = useTransition();
 
-  const fetchAdminDashboard = useCallback(async () => {
-    try {
-      const response = await apiFetch('/api/admin/dashboard');
-      return response?.data || null;
-    } catch (error) {
-      console.error('Failed to fetch admin dashboard', error);
-      return null;
-    }
+  const isMountedRef = useRef(false);
+  const dataStoreRef = useRef({
+    adminData: null,
+    orders: [],
+    guestOrders: [],
+    products: [],
+  });
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
   }, []);
 
   useEffect(() => {
-    let mounted = true;
+    if (!alert) return;
+    const timer = setTimeout(() => setAlert(null), 6000);
+    return () => clearTimeout(timer);
+  }, [alert]);
 
-    const load = async () => {
-      setLoading(true);
+  const assertSuccess = useCallback((response, fallbackMessage) => {
+    if (response && typeof response === 'object' && 'success' in response) {
+      if (response.success) {
+        return response.data ?? null;
+      }
+      throw new Error(response.message || fallbackMessage);
+    }
+    return response ?? null;
+  }, []);
+
+  const fetchProducts = useCallback(async () => {
+    const response = await callSummaryApi(SummaryApi.getProduct, {
+      payload: { page: 1, limit: 5000 },
+    });
+    return assertSuccess(response, 'Failed to fetch products') ?? [];
+  }, [assertSuccess]);
+
+  const fetchOrders = useCallback(async () => {
+    const response = await callSummaryApi(SummaryApi.adminOrders, {
+      credentials: 'include',
+    });
+    return assertSuccess(response, 'Failed to fetch admin orders') ?? [];
+  }, [assertSuccess]);
+
+  const fetchGuestOrders = useCallback(async () => {
+    const response = await callSummaryApi(SummaryApi.getGuestOrders, {
+      credentials: 'include',
+    });
+    return assertSuccess(response, 'Failed to fetch guest orders') ?? [];
+  }, [assertSuccess]);
+
+  const fetchAdminDashboard = useCallback(async () => {
+    const response = await apiFetch('/api/admin/dashboard', {
+      credentials: 'include',
+    });
+    return assertSuccess(response, 'Failed to fetch admin dashboard') ?? null;
+  }, [assertSuccess]);
+
+  const normalizeOrdersArray = (value) => {
+    if (!value) return [];
+    if (Array.isArray(value)) return value;
+    if (Array.isArray(value.orders)) return value.orders;
+    return [];
+  };
+
+  const normalizeProductsArray = (value) => {
+    if (!value) return [];
+    if (Array.isArray(value)) return value;
+    if (Array.isArray(value.data)) return value.data;
+    return [];
+  };
+
+  const applyDashboardState = useCallback(
+    ({ adminData, orders, guestOrders: guestOrderList, products }) => {
+      dataStoreRef.current = {
+        ...dataStoreRef.current,
+        ...(adminData !== undefined ? { adminData } : {}),
+        ...(orders !== undefined ? { orders } : {}),
+        ...(guestOrderList !== undefined ? { guestOrders: guestOrderList } : {}),
+        ...(products !== undefined ? { products } : {}),
+      };
+
+      const snapshot = dataStoreRef.current;
+
+      const baseOrders = normalizeOrdersArray(snapshot.orders);
+      const guestOnlyOrders = normalizeOrdersArray(snapshot.guestOrders);
+      const normalizedProducts = normalizeProductsArray(snapshot.products);
+
+      const combinedOrders = dedupeOrders([...baseOrders, ...guestOnlyOrders]).sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
+      const combinedGuestOrders = combinedOrders.filter((order) => Boolean(order.is_guest));
+
+      const orderPoints = ordersToRevenuePoints(combinedOrders);
+      const nextRevenueData = bucketizeByRange(orderPoints, 'monthly');
+      const nextSalesData = salesSeriesFromOrders(combinedOrders, 'monthly');
+      const nextCategoryDistribution = categoryDistributionFromProducts(normalizedProducts);
+      const nextRecentOrders = buildRecentOrders(combinedOrders);
+      const nextTopProducts = computeTopProducts(combinedOrders);
+      const nextStats = computeStats({
+        adminData: snapshot.adminData,
+        orders: combinedOrders,
+        products: normalizedProducts,
+      });
+
+      startTransition(() => {
+        setAllProducts(normalizedProducts);
+        setAllOrders(combinedOrders);
+        setGuestOrders(combinedGuestOrders);
+        setCategoryDistribution(nextCategoryDistribution);
+        setRecentOrders(nextRecentOrders);
+        setTopProducts(nextTopProducts);
+        setStats(nextStats);
+        setRevenueData(nextRevenueData);
+        setSalesData(nextSalesData);
+      });
+    },
+    [startTransition]
+  );
+
+  const loadDashboard = useCallback(
+    async ({ silent = false } = {}) => {
+      if (!silent) setLoading(true);
+
       try {
-        const [adminData, products, orders] = await Promise.all([
+        const [adminData, orders] = await Promise.all([
           fetchAdminDashboard(),
-          fetchProducts(),
           fetchOrders(),
         ]);
 
-        if (!mounted) return;
+        if (!isMountedRef.current) return;
 
-        setAllProducts(products);
-        setAllOrders(orders);
+        applyDashboardState({ adminData, orders });
 
-        const uniqueUsers = Array.from(
-          new Set((orders || []).map((order) => String(order.userId || 'guest')))
-        );
-        const totalUsers = adminData?.totals?.totalUsers ?? uniqueUsers.length;
-
-        setCategoryDistribution(categoryDistributionFromProducts(products));
-
-        const recent = [...orders]
-          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-          .slice(0, 10)
-          .map((order) => ({
-            id: order.orderId || order._id,
-            amount: safeNumber(order.totalAmt || order.subTotalAmt || 0),
-            status: order.payment_status || 'Processing',
-            date: new Date(order.createdAt),
-            items: Array.isArray(order.products) ? order.products.length : 0,
-            contact: {
-              name: order.contact_info?.name || 'Customer',
-              email:
-                order.contact_info?.customer_email ||
-                order.contact_info?.email ||
-                '',
-              mobile: order.contact_info?.mobile || '',
-            },
-            address: order.delivery_address || {},
-          }));
-        setRecentOrders(recent);
-
-        const productMap = new Map();
-        for (const order of orders) {
-          const items = Array.isArray(order.products) ? order.products : [];
-          for (const entry of items) {
-            const key =
-              String(entry.productId) ||
-              entry.product_details?._id ||
-              entry.product_details?.name ||
-              Math.random().toString(36).slice(2);
-
-            const previous = productMap.get(key) || {
-              id: entry.productId || entry.product_details?._id || key,
-              name: entry.product_details?.name || 'Product',
-              sales: 0,
-              revenue: 0,
-            };
-
-            const qty = safeNumber(entry.quantity || 1);
-            const price = safeNumber(entry.price || 0);
-            previous.sales += qty;
-            previous.revenue += qty * price;
-            productMap.set(key, previous);
-          }
+        if (!silent && isMountedRef.current) {
+          setLoading(false);
         }
 
-        setTopProducts(
-          Array.from(productMap.values())
-            .sort((a, b) => b.revenue - a.revenue)
-            .slice(0, 8)
-            .map((product, idx) => ({
-              ...product,
-              rank: idx + 1,
-              growth: Math.round((Math.random() * 30 + 5) * 10) / 10,
-            }))
-        );
+        if (!isMountedRef.current) return;
 
-        const totalRevenue = sum(orders, (order) =>
-          safeNumber(order.totalAmt || order.subTotalAmt || 0)
-        );
-        const totalOrders = orders.length;
-        const totalProfit = Math.round(totalRevenue * 0.35);
-        const totalSalesUnits = sum(
-          orders,
-          (order) =>
-            sum(
-              Array.isArray(order.products) ? order.products : [],
-              (item) => safeNumber(item.quantity || 1)
-            )
-        );
-        const avgOrderValue = totalOrders ? totalRevenue / totalOrders : 0;
+        setBackgroundLoading(true);
 
-        setStats({
-          totalProducts: adminData?.totals?.totalProducts ?? products.length,
-          totalUsers,
-          totalRevenue: adminData?.totals?.totalRevenue ?? totalRevenue,
-          totalSales: adminData?.totals?.totalSalesUnits ?? totalSalesUnits,
-          totalProfit: adminData?.totals?.totalProfit ?? totalProfit,
-          totalOrders,
-          avgOrderValue,
-          revenueGrowth: Math.round(
-            (adminData?.growth?.revenueGrowth ?? Math.random() * 20 + 5) * 10
-          ) / 10,
-          salesGrowth: Math.round(
-            (adminData?.growth?.salesGrowth ?? Math.random() * 15 + 3) * 10
-          ) / 10,
-          profitGrowth: Math.round(
-            (adminData?.growth?.profitGrowth ?? Math.random() * 25 + 8) * 10
-          ) / 10,
+        const [productsResult, guestResult] = await Promise.allSettled([
+          fetchProducts(),
+          fetchGuestOrders(),
+        ]);
+
+        if (!isMountedRef.current) return;
+
+        const resolvedProducts =
+          productsResult.status === 'fulfilled' ? productsResult.value : [];
+        const resolvedGuestOrders =
+          guestResult.status === 'fulfilled' ? guestResult.value : [];
+
+        applyDashboardState({
+          products: resolvedProducts,
+          guestOrders: resolvedGuestOrders,
         });
-
-        const orderPoints = ordersToRevenuePoints(orders);
-        const range = 'weekly';
-        setRevenueData(bucketizeByRange(orderPoints, range));
-        setSalesData(salesSeriesFromOrders(orders, range));
       } catch (error) {
         console.error('Dashboard load error', error);
+        if (!silent && isMountedRef.current) {
+          setAlert({
+            type: 'error',
+            text:
+              error?.message ||
+              'Unable to refresh dashboard data. Please retry shortly.',
+          });
+        }
       } finally {
-        if (mounted) setLoading(false);
+        if (!silent && isMountedRef.current) {
+          setLoading(false);
+        }
+        if (isMountedRef.current) {
+          setBackgroundLoading(false);
+        }
       }
-    };
+    },
+    [
+      applyDashboardState,
+      fetchAdminDashboard,
+      fetchGuestOrders,
+      fetchOrders,
+      fetchProducts,
+    ]
+  );
 
-    load();
+  useEffect(() => {
+    loadDashboard();
+  }, [loadDashboard]);
 
-    return () => {
-      mounted = false;
-    };
-  }, [fetchAdminDashboard, fetchOrders, fetchProducts]);
+  useEffect(() => {
+    setOrdersPage(1);
+    setGuestPage(1);
+    setProductsPage(1);
+    setSoldPage(1);
+  }, [deferredQuery, activeTab]);
+
+  const applySearch = useCallback(
+    (items, keys) => {
+      const searchValue = deferredQuery?.trim().toLowerCase();
+      if (!searchValue) return items;
+      return items.filter((item) =>
+        keys.some((key) =>
+          String(item[key] ?? '')
+            .toLowerCase()
+            .includes(searchValue)
+        )
+      );
+    },
+    [deferredQuery]
+  );
+
+  const paginate = useCallback((items, page) => {
+    const start = (page - 1) * PAGE_SIZE;
+    return items.slice(start, start + PAGE_SIZE);
+  }, []);
+
+  const ordersForList = useMemo(() => {
+    const normalized = (allOrders || []).map(mapOrderForList);
+    const filtered = applySearch(normalized, [
+      'id',
+      'contactName',
+      'email',
+      'status',
+      'fulfillmentStatus',
+      'paymentMethod',
+    ]);
+    return { total: filtered.length, items: paginate(filtered, ordersPage) };
+  }, [allOrders, applySearch, paginate, ordersPage]);
+
+  const guestOrdersForList = useMemo(() => {
+    const normalized = (guestOrders || []).map(mapOrderForList);
+    const filtered = applySearch(normalized, [
+      'id',
+      'contactName',
+      'email',
+      'status',
+      'fulfillmentStatus',
+      'paymentMethod',
+    ]);
+    return { total: filtered.length, items: paginate(filtered, guestPage) };
+  }, [guestOrders, applySearch, paginate, guestPage]);
+
+  const productsForList = useMemo(() => {
+    const normalized = (allProducts || [])
+      .map((product) => ({
+        id: product._id || product.id,
+        name: product.name || product.productName || 'Product',
+        sku: product.sku || '',
+        price: safeNumber(product.price || product.sellingPrice || 0),
+        stock: safeNumber(product.stock || product.quantity || 0),
+        category: Array.isArray(product.category)
+          ? product.category[0]?.name || ''
+          : product.category?.name || product.category || '',
+      }))
+      .sort((a, b) => a.name.localeCompare(b.name));
+
+    const filtered = applySearch(normalized, ['name', 'sku', 'category']);
+    return { total: filtered.length, items: paginate(filtered, productsPage) };
+  }, [allProducts, applySearch, paginate, productsPage]);
 
   const productsSold = useMemo(() => {
     const map = new Map();
@@ -574,7 +995,7 @@ const Dashboard = () => {
           Math.random().toString(36).slice(2);
         const name = entry.product_details?.name || 'Product';
         const qty = safeNumber(entry.quantity || 1);
-        const price = safeNumber(entry.price || 0);
+        const price = safeNumber(entry.price || entry.product_details?.price || 0);
 
         const previous = map.get(id) || {
           id,
@@ -605,82 +1026,57 @@ const Dashboard = () => {
       .sort((a, b) => b.quantity - a.quantity);
   }, [allOrders]);
 
-  const applySearch = useCallback(
-    (items, keys) => {
-      if (!query.trim()) return items;
-      const q = query.trim().toLowerCase();
-      return items.filter((item) =>
-        keys.some((key) =>
-          String(item[key] ?? '')
-            .toLowerCase()
-            .includes(q)
-        )
-      );
-    },
-    [query]
-  );
-
-  const paginate = useCallback(
-    (items) => {
-      const start = (page - 1) * pageSize;
-      return items.slice(start, start + pageSize);
-    },
-    [page]
-  );
-
-  useEffect(() => {
-    setPage(1);
-  }, [query, activeTab]);
-
-  const ordersForList = useMemo(() => {
-    const normalized = (allOrders || [])
-      .map((order) => ({
-        id: order.orderId || order._id,
-        amount: safeNumber(order.totalAmt || order.subTotalAmt || 0),
-        status: order.payment_status || 'Processing',
-        date: order.createdAt ? new Date(order.createdAt) : null,
-        items: Array.isArray(order.products) ? order.products.length : 0,
-        contactName: order.contact_info?.name || 'Customer',
-        email:
-          order.contact_info?.customer_email ||
-          order.contact_info?.email ||
-          '',
-        mobile: order.contact_info?.mobile || '',
-        address: order.delivery_address || {},
-      }))
-      .sort(
-        (a, b) =>
-          (b.date?.getTime?.() || 0) - (a.date?.getTime?.() || 0)
-      );
-
-    const filtered = applySearch(normalized, ['id', 'contactName', 'email', 'status']);
-    return { total: filtered.length, items: paginate(filtered) };
-  }, [allOrders, applySearch, paginate]);
-
-  const productsForList = useMemo(() => {
-    const normalized = (allProducts || [])
-      .map((product) => ({
-        id: product._id || product.id,
-        name: product.name || product.productName || 'Product',
-        sku: product.sku || '',
-        price: safeNumber(product.price || product.sellingPrice || 0),
-        stock: safeNumber(product.stock || product.quantity || 0),
-        category: Array.isArray(product.category)
-          ? product.category[0]?.name || ''
-          : product.category?.name || product.category || '',
-      }))
-      .sort((a, b) => a.name.localeCompare(b.name));
-
-    const filtered = applySearch(normalized, ['name', 'sku', 'category']);
-    return { total: filtered.length, items: paginate(filtered) };
-  }, [allProducts, applySearch, paginate]);
-
   const soldForList = useMemo(() => {
     const filtered = applySearch(productsSold, ['name']);
-    return { total: filtered.length, items: paginate(filtered) };
-  }, [productsSold, applySearch, paginate]);
+    return { total: filtered.length, items: paginate(filtered, soldPage) };
+  }, [productsSold, applySearch, paginate, soldPage]);
 
   const goTab = useCallback((tab) => setActiveTab(tab), []);
+
+  const handleConfirmDelivery = useCallback(
+    async (orderId) => {
+      if (!orderId) return;
+
+      setDeliveryLoading((prev) => ({ ...prev, [orderId]: true }));
+
+      try {
+        const response = await callSummaryApi(
+          SummaryApi.markOrderDelivered(orderId),
+          {
+            payload: {
+              note: 'Delivery confirmed via admin dashboard',
+            },
+            credentials: 'include',
+          }
+        );
+        const updated = assertSuccess(response, 'Unable to mark order as delivered');
+        if (updated) {
+          setAlert({
+            type: 'success',
+            text: `Order ${orderId} marked as delivered.`,
+          });
+          await loadDashboard({ silent: true });
+        }
+      } catch (error) {
+        console.error('Failed to confirm delivery', error);
+        setAlert({
+          type: 'error',
+          text:
+            error?.message ||
+            'Unable to mark the order as delivered. Please retry.',
+        });
+      } finally {
+        setDeliveryLoading((prev) => {
+          const next = { ...prev };
+          delete next[orderId];
+          return next;
+        });
+      }
+    },
+    [assertSuccess, loadDashboard]
+  );
+
+  const isBusy = loading || backgroundLoading || isTransitioning;
 
   const Header = (
     <div className="flex flex-col lg:flex-row justify-between items-start lg:items-center mb-8 gap-4">
@@ -700,6 +1096,12 @@ const Dashboard = () => {
             <Clock className="h-3 w-3" />
             {formatDate(new Date(), 'HH:mm')}
           </Badge>
+          {(backgroundLoading || isTransitioning) && (
+            <Badge variant="outline" className="gap-1 text-emerald-600 border-emerald-200 bg-emerald-50">
+              <Loader2 className="h-3 w-3 animate-spin" />
+              Syncing in background
+            </Badge>
+          )}
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
@@ -712,6 +1114,15 @@ const Dashboard = () => {
             className="pl-9 w-full lg:w-72 focus-visible:ring-2 focus-visible:ring-primary"
           />
         </div>
+        <Button
+          onClick={() => loadDashboard({ silent: false })}
+          className="gap-2 border border-primary bg-transparent text-primary hover:bg-primary/10"
+          variant="outline"
+          disabled={isBusy}
+        >
+          <RefreshCw className={`h-4 w-4 ${isBusy ? 'animate-spin' : ''}`} />
+          Refresh
+        </Button>
         <Button
           onClick={() => window.print()}
           className="gap-2 bg-primary text-primary-foreground hover:opacity-90"
@@ -728,6 +1139,7 @@ const Dashboard = () => {
       {[
         { key: 'overview', label: 'Overview', icon: TrendingUp },
         { key: 'orders', label: 'Orders', icon: ShoppingCart },
+        { key: 'guest', label: 'Guest Orders', icon: Globe },
         { key: 'products', label: 'Products', icon: Package },
         { key: 'sold', label: 'Sold Products', icon: Crown },
         { key: 'customers', label: 'Users', icon: Users },
@@ -749,6 +1161,223 @@ const Dashboard = () => {
     </div>
   );
 
+  const buildPaginationFooter = ({
+    total,
+    page,
+    setPage,
+  }) => {
+    const totalPages = Math.max(1, Math.ceil(total / PAGE_SIZE));
+    const start = total === 0 ? 0 : (page - 1) * PAGE_SIZE + 1;
+    const end = total === 0 ? 0 : Math.min(page * PAGE_SIZE, total);
+
+    return (
+      <>
+        <div className="text-xs text-muted-foreground">
+          {total === 0 ? (
+            'No records to display'
+          ) : (
+            <>
+              Showing {start}-{end} of {total}
+            </>
+          )}
+        </div>
+        <div className="space-x-2">
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setPage((prev) => Math.max(1, prev - 1))}
+            disabled={page === 1}
+            className="border-primary text-primary hover:bg-primary/10"
+          >
+            Prev
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() =>
+              setPage((prev) => (prev >= totalPages ? prev : prev + 1))
+            }
+            disabled={page >= totalPages}
+            className="border-primary text-primary hover:bg-primary/10"
+          >
+            Next
+          </Button>
+        </div>
+      </>
+    );
+  };
+
+  const OrdersTableCard = ({
+    dataset,
+    title,
+    description,
+    emptyMessage,
+    page,
+    setPage,
+  }) => {
+    return (
+      <Card className="hover:shadow-lg transition">
+        <CardHeader>
+          <CardTitle>{title}</CardTitle>
+          <CardDescription>{description}</CardDescription>
+        </CardHeader>
+        <CardContent className="overflow-x-auto">
+          {dataset.items.length === 0 ? (
+            <div className="py-12 text-center text-sm text-muted-foreground">
+              {emptyMessage}
+            </div>
+          ) : (
+            <div className="min-w-[1050px]">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b bg-muted/40">
+                    <th className="text-left py-3 px-3">Order</th>
+                    <th className="text-left py-3 px-3">Customer</th>
+                    <th className="text-left py-3 px-3">Contact</th>
+                    <th className="text-left py-3 px-3">Address</th>
+                    <th className="text-left py-3 px-3">Items</th>
+                    <th className="text-left py-3 px-3">Amount</th>
+                    <th className="text-left py-3 px-3">Payment</th>
+                    <th className="text-left py-3 px-3">Fulfillment</th>
+                    <th className="text-left py-3 px-3">Date</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {dataset.items.map((order) => {
+                    const isDelivered =
+                      order.fulfillmentStatus?.toLowerCase() === 'delivered';
+                    return (
+                      <tr
+                        key={order.id}
+                        className={`border-b hover:bg-accent/30 ${
+                          order.isGuest
+                            ? 'bg-emerald-50/40 dark:bg-emerald-950/30'
+                            : ''
+                        }`}
+                      >
+                        <td className="py-3 px-3 font-mono text-xs text-primary font-semibold">
+                          <div className="flex flex-col gap-1">
+                            <span className="break-all">#{order.id}</span>
+                            {order.isGuest ? (
+                              <Badge
+                                variant="outline"
+                                className="w-fit gap-1 bg-emerald-100 text-emerald-700 border-emerald-200"
+                              >
+                                <Globe className="h-3 w-3" />
+                                Guest
+                              </Badge>
+                            ) : null}
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="font-medium">{order.contactName}</div>
+                          <div className="text-xs text-muted-foreground">
+                            {order.paymentMethod}
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="flex flex-col gap-1">
+                            {order.email && (
+                              <span className="inline-flex items-center gap-1 break-all">
+                                <Mail className="h-3.5 w-3.5" /> {order.email}
+                              </span>
+                            )}
+                            {order.mobile && (
+                              <span className="inline-flex items-center gap-1">
+                                <Phone className="h-3.5 w-3.5" /> {order.mobile}
+                              </span>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="max-w-[260px] text-xs text-muted-foreground">
+                            {[
+                              order.address?.address_line,
+                              order.address?.city,
+                              order.address?.state,
+                              order.address?.country,
+                              order.address?.pincode,
+                            ]
+                              .filter(Boolean)
+                              .join(', ')}
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <Badge variant="outline">{order.itemCount} items</Badge>
+                        </td>
+                        <td className="py-3 px-3 font-semibold text-emerald-600">
+                          {formatCurrency(order.amount)}
+                        </td>
+                        <td className="py-3 px-3">
+                          <Badge
+                            className={getPaymentBadgeClass(order.status)}
+                            variant="outline"
+                          >
+                            {order.status}
+                          </Badge>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="flex flex-col gap-2">
+                            <Badge
+                              className={getFulfillmentBadgeClass(
+                                order.fulfillmentStatus
+                              )}
+                              variant="outline"
+                            >
+                              {order.fulfillmentStatus}
+                            </Badge>
+                            {order.deliveredAt ? (
+                              <span className="text-[11px] text-muted-foreground">
+                                Delivered{' '}
+                                {formatDate(order.deliveredAt, 'MMM dd, yyyy')}
+                              </span>
+                            ) : (
+                              <Button
+                                variant="outline"
+                                size="sm"
+                                className="justify-start gap-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50"
+                                disabled={
+                                  isDelivered || Boolean(deliveryLoading[order.id])
+                                }
+                                onClick={() => handleConfirmDelivery(order.id)}
+                              >
+                                {deliveryLoading[order.id] ? (
+                                  <>
+                                    <Loader2 className="h-4 w-4 animate-spin" />
+                                    Updating
+                                  </>
+                                ) : (
+                                  <>
+                                    <CheckCircle2 className="h-4 w-4" />
+                                    Confirm delivery
+                                  </>
+                                )}
+                              </Button>
+                            )}
+                          </div>
+                        </td>
+                        <td className="py-3 px-3">
+                          <div className="text-xs text-muted-foreground">
+                            {order.createdAt
+                              ? formatDate(order.createdAt, 'MMM dd, yyyy HH:mm')
+                              : ''}
+                          </div>
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+        </CardContent>
+        <CardFooter className="flex items-center justify-between">
+          {buildPaginationFooter({ total: dataset.total, page, setPage })}
+        </CardFooter>
+      </Card>
+    );
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[70vh]">
@@ -765,14 +1394,30 @@ const Dashboard = () => {
   return (
     <div className="p-4 md:p-6 space-y-6">
       {Header}
+      {alert ? (
+        <div
+          className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-sm ${
+            alert.type === 'success'
+              ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+              : 'border-rose-200 bg-rose-50 text-rose-700'
+          }`}
+        >
+          {alert.type === 'success' ? (
+            <CheckCircle2 className="h-5 w-5" />
+          ) : (
+            <AlertTriangle className="h-5 w-5" />
+          )}
+          <span className="font-medium">{alert.text}</span>
+        </div>
+      ) : null}
       {Tabs}
 
       {activeTab === 'overview' && (
         <div className="space-y-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
             <Card
               onClick={() => goTab('products')}
-              className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary bg-pink-200"
+              className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary"
             >
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">
@@ -789,14 +1434,14 @@ const Dashboard = () => {
 
             <Card
               onClick={() => goTab('customers')}
-              className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary bg-blue-200"
+              className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary"
             >
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">
                   Total Users
                 </CardTitle>
               </CardHeader>
-              <CardContent className="flex items-end justify-between">
+              <CardContent className="flex items-end justify_between">
                 <div className="text-3xl font-bold">
                   {stats.totalUsers.toLocaleString()}
                 </div>
@@ -806,22 +1451,28 @@ const Dashboard = () => {
 
             <Card
               onClick={() => goTab('orders')}
-              className="bg-pink-200 cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary"
+              className="cursor-pointer hover:shadow-lg transition focus-within:ring-2 focus-within:ring-primary"
             >
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">
                   Total Orders
                 </CardTitle>
               </CardHeader>
-              <CardContent className="flex items-end justify-between">
-                <div className="text-3xl font-bold">
-                  {stats.totalOrders.toLocaleString()}
+              <CardContent className="flex flex-col gap-3">
+                <div className="flex items-end justify-between">
+                  <div className="text-3xl font-bold">
+                    {stats.totalOrders.toLocaleString()}
+                  </div>
+                  <ShoppingCart className="h-6 w-6 text-primary" />
                 </div>
-                <ShoppingCart className="h-6 w-6 text-primary" />
+                <div className="text-xs text-muted-foreground flex items-center gap-2">
+                  <Globe className="h-3.5 w-3.5 text-emerald-500" />
+                  Guest orders: {stats.guestOrders.toLocaleString()}
+                </div>
               </CardContent>
             </Card>
 
-            <Card className="bg-blue-200 hover:shadow-lg transition">
+            <Card className="hover:shadow-lg transition">
               <CardHeader className="pb-2">
                 <CardTitle className="text-sm font-medium text-muted-foreground">
                   Total Revenue
@@ -838,6 +1489,36 @@ const Dashboard = () => {
                   </div>
                 </div>
                 <DollarSign className="h-6 w-6 text-primary" />
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Card className="hover:shadow-lg transition">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  Delivered Orders
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex items-end justify-between">
+                <div className="text-3xl font-bold text-emerald-600">
+                  {stats.deliveredOrders.toLocaleString()}
+                </div>
+                <CheckCircle2 className="h-6 w-6 text-emerald-500" />
+              </CardContent>
+            </Card>
+
+            <Card className="hover:shadow-lg transition">
+              <CardHeader className="pb-2">
+                <CardTitle className="text-sm font-medium text-muted-foreground">
+                  Pending Deliveries
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex items-end justify-between">
+                <div className="text-3xl font-bold text-amber-600">
+                  {stats.pendingDeliveries.toLocaleString()}
+                </div>
+                <Clock className="h-6 w-6 text-amber-500" />
               </CardContent>
             </Card>
           </div>
@@ -951,6 +1632,15 @@ const Dashboard = () => {
                               #{order.id}
                             </span>
                           </span>
+                          {order.isGuest ? (
+                            <>
+                              <span className="hidden sm:inline">•</span>
+                              <span className="inline-flex items-center gap-1 text-emerald-600">
+                                <Globe className="h-3.5 w-3.5" />
+                                Guest Order
+                              </span>
+                            </>
+                          ) : null}
                           <span className="hidden sm:inline">•</span>
                           <span className="inline-flex items-center gap-1">
                             <Calendar className="h-3.5 w-3.5" />
@@ -959,7 +1649,7 @@ const Dashboard = () => {
                           <span className="hidden sm:inline">•</span>
                           <span className="inline-flex items-center gap-1">
                             <ShoppingCart className="h-3.5 w-3.5" />
-                            {order.items} items
+                            {order.itemsCount} items
                           </span>
                         </div>
 
@@ -1006,20 +1696,28 @@ const Dashboard = () => {
                           <div className="text-base sm:text-lg font-extrabold text-emerald-600">
                             {formatCurrency(order.amount)}
                           </div>
-                          <Badge
-                            className={`mt-1 ${
-                              order.status?.toLowerCase().includes('completed')
-                                ? 'bg-emerald-100 text-emerald-700 border-emerald-200'
-                                : order.status?.toLowerCase().includes('cancel')
-                                ? 'bg-rose-100 text-rose-700 border-rose-200'
-                                : order.status?.toLowerCase().includes('pending')
-                                ? 'bg-amber-100 text-amber-800 border-amber-200'
-                                : 'bg-sky-100 text-sky-800 border-sky-200'
-                            }`}
-                            variant="outline"
-                          >
-                            {order.status}
-                          </Badge>
+                          <div className="flex flex-wrap justify-end gap-2 mt-2">
+                            <Badge
+                              className={getPaymentBadgeClass(order.status)}
+                              variant="outline"
+                            >
+                              {order.status}
+                            </Badge>
+                            <Badge
+                              className={getFulfillmentBadgeClass(
+                                order.fulfillmentStatus
+                              )}
+                              variant="outline"
+                            >
+                              {order.fulfillmentStatus}
+                            </Badge>
+                          </div>
+                          {order.deliveredAt ? (
+                            <div className="text-[11px] text-muted-foreground mt-1">
+                              Delivered{' '}
+                              {formatDate(order.deliveredAt, 'MMM dd, yyyy')}
+                            </div>
+                          ) : null}
                         </div>
 
                         <Button
@@ -1089,132 +1787,40 @@ const Dashboard = () => {
       )}
 
       {activeTab === 'orders' && (
-        <Card className="hover:shadow-lg transition">
-          <CardHeader>
-            <CardTitle>All Orders</CardTitle>
-            <CardDescription>
-              Full list with customer, address, and items
-            </CardDescription>
-          </CardHeader>
-          <CardContent className="overflow-x-auto">
-            <div className="min-w-[900px]">
-              <table className="w-full text-sm">
-                <thead>
-                  <tr className="border-b bg-muted/40">
-                    <th className="text-left py-3 px-3">Order</th>
-                    <th className="text-left py-3 px-3">Customer</th>
-                    <th className="text-left py-3 px-3">Contact</th>
-                    <th className="text-left py-3 px-3">Address</th>
-                    <th className="text-left py-3 px-3">Items</th>
-                    <th className="text-left py-3 px-3">Amount</th>
-                    <th className="text-left py-3 px-3">Status</th>
-                    <th className="text-left py-3 px-3">Date</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {ordersForList.items.map((order) => (
-                    <tr key={order.id} className="border-b hover:bg-accent/30">
-                      <td className="py-3 px-3 font-mono text-xs text-primary font-semibold">
-                        #{order.id}
-                      </td>
-                      <td className="py-3 px-3">{order.contactName}</td>
-                      <td className="py-3 px-3">
-                        <div className="flex flex-col">
-                          {order.email && (
-                            <span className="inline-flex items-center gap-1">
-                              <Mail className="h-3.5 w-3.5" /> {order.email}
-                            </span>
-                          )}
-                          {order.mobile && (
-                            <span className="inline-flex items-center gap-1">
-                              <Phone className="h-3.5 w-3.5" /> {order.mobile}
-                            </span>
-                          )}
-                        </div>
-                      </td>
-                      <td className="py-3 px-3">
-                        <div className="max-w-[260px] text-xs text-muted-foreground">
-                          {[
-                            order.address?.address_line,
-                            order.address?.city,
-                            order.address?.state,
-                            order.address?.country,
-                            order.address?.pincode,
-                          ]
-                            .filter(Boolean)
-                            .join(', ')}
-                        </div>
-                      </td>
-                      <td className="py-3 px-3">
-                        <Badge variant="outline">{order.items} items</Badge>
-                      </td>
-                      <td className="py-3 px-3 font-semibold text-emerald-600">
-                        {formatCurrency(order.amount)}
-                      </td>
-                      <td className="py-3 px-3">
-                        <Badge
-                          className={`${
-                            order.status?.toLowerCase().includes('completed')
-                              ? 'bg-emerald-100 text-emerald-700 border-emerald-200'
-                              : order.status?.toLowerCase().includes('cancel')
-                              ? 'bg-rose-100 text-rose-700 border-rose-200'
-                              : order.status?.toLowerCase().includes('pending')
-                              ? 'bg-amber-100 text-amber-800 border-amber-200'
-                              : 'bg-sky-100 text-sky-800 border-sky-200'
-                          }`}
-                          variant="outline"
-                        >
-                          {order.status}
-                        </Badge>
-                      </td>
-                      <td className="py-3 px-3">
-                        {order.date ? formatDate(order.date, 'MMM dd, yyyy HH:mm') : ''}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </CardContent>
-          <CardFooter className="flex items-center justify-between">
-            <div className="text-xs text-muted-foreground">
-              Showing {(page - 1) * pageSize + 1}-
-              {Math.min(page * pageSize, ordersForList.total)} of{' '}
-              {ordersForList.total}
-            </div>
-            <div className="space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-                disabled={page === 1}
-                className="border-primary text-primary hover:bg-primary/10"
-              >
-                Prev
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() =>
-                  setPage((prev) =>
-                    prev * pageSize < ordersForList.total ? prev + 1 : prev
-                  )
-                }
-                disabled={page * pageSize >= ordersForList.total}
-                className="border-primary text-primary hover:bg-primary/10"
-              >
-                Next
-              </Button>
-            </div>
-          </CardFooter>
-        </Card>
+        <OrdersTableCard
+          dataset={ordersForList}
+          title="All Orders"
+          description="Full list with customer, address, payment and fulfillment details"
+          emptyMessage={
+            deferredQuery
+              ? 'No orders match your search.'
+              : 'No orders have been placed yet.'
+          }
+          page={ordersPage}
+          setPage={setOrdersPage}
+        />
+      )}
+
+      {activeTab === 'guest' && (
+        <OrdersTableCard
+          dataset={guestOrdersForList}
+          title="Guest Orders"
+          description="Orders placed without customer accounts"
+          emptyMessage={
+            deferredQuery
+              ? 'No guest orders match your search.'
+              : 'No guest orders have been placed yet.'
+          }
+          page={guestPage}
+          setPage={setGuestPage}
+        />
       )}
 
       {activeTab === 'products' && (
         <Card className="hover:shadow-lg transition">
           <CardHeader>
             <CardTitle>All Products</CardTitle>
-            <CardDescription>Complete product catalog</CardDescription>
+            <CardDescription>Complete product catalog since day one</CardDescription>
           </CardHeader>
           <CardContent className="overflow-x-auto">
             <div className="min-w-[800px]">
@@ -1232,7 +1838,9 @@ const Dashboard = () => {
                   {productsForList.items.map((product) => (
                     <tr key={product.id} className="border-b hover:bg-accent/30">
                       <td className="py-3 px-3 font-medium">{product.name}</td>
-                      <td className="py-3 px-3 font-mono text-xs">{product.sku || '—'}</td>
+                      <td className="py-3 px-3 font-mono text-xs">
+                        {product.sku || '—'}
+                      </td>
                       <td className="py-3 px-3">
                         <Badge variant="outline">{product.category || '—'}</Badge>
                       </td>
@@ -1259,35 +1867,11 @@ const Dashboard = () => {
             </div>
           </CardContent>
           <CardFooter className="flex items-center justify-between">
-            <div className="text-xs text-muted-foreground">
-              Showing {(page - 1) * pageSize + 1}-
-              {Math.min(page * pageSize, productsForList.total)} of{' '}
-              {productsForList.total} products
-            </div>
-            <div className="space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-                disabled={page === 1}
-                className="border-primary text-primary hover:bg-primary/10"
-              >
-                Prev
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() =>
-                  setPage((prev) =>
-                    prev * pageSize < productsForList.total ? prev + 1 : prev
-                  )
-                }
-                disabled={page * pageSize >= productsForList.total}
-                className="border-primary text-primary hover:bg-primary/10"
-              >
-                Next
-              </Button>
-            </div>
+            {buildPaginationFooter({
+              total: productsForList.total,
+              page: productsPage,
+              setPage: setProductsPage,
+            })}
           </CardFooter>
         </Card>
       )}
@@ -1337,35 +1921,11 @@ const Dashboard = () => {
             </div>
           </CardContent>
           <CardFooter className="flex items-center justify-between">
-            <div className="text-xs text-muted-foreground">
-              Showing {(page - 1) * pageSize + 1}-
-              {Math.min(page * pageSize, soldForList.total)} of{' '}
-              {soldForList.total} sold products
-            </div>
-            <div className="space-x-2">
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() => setPage((prev) => Math.max(1, prev - 1))}
-                disabled={page === 1}
-                className="border-primary text-primary hover:bg-primary/10"
-              >
-                Prev
-              </Button>
-              <Button
-                variant="outline"
-                size="sm"
-                onClick={() =>
-                  setPage((prev) =>
-                    prev * pageSize < soldForList.total ? prev + 1 : prev
-                  )
-                }
-                disabled={page * pageSize >= soldForList.total}
-                className="border-primary text-primary hover:bg-primary/10"
-              >
-                Next
-              </Button>
-            </div>
+            {buildPaginationFooter({
+              total: soldForList.total,
+              page: soldPage,
+              setPage: setSoldPage,
+            })}
           </CardFooter>
         </Card>
       )}

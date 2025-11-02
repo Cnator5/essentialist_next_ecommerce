@@ -155,7 +155,7 @@ import { FaCaretRight } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
 import AddToCartButton from './AddToCartButton';
 import { pricewithDiscount } from '../utils/PriceWithDiscount';
-import imageEmpty from '/public/assets/empty_cart.avif';
+// import imageEmpty from '/public/assets/empty_cart.avif';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';

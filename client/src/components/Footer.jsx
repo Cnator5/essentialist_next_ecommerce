@@ -5,11 +5,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { FaFacebook, FaInstagram, FaTiktok, FaYoutube, FaWhatsapp } from 'react-icons/fa';
-import mtnlogo from '/public/assets/mtnlogo.png';
-import orange from '/public/assets/orange.png';
-import stripe from '/public/assets/stipe.png';
-import google_play from '/public/assets/google_play.png';
-import app_store from '/public/assets/app_store.jpeg';
+// import mtnlogo from '/public/assets/mtnlogo.png';
+// import orange from '/public/assets/orange.png';
+// import stripe from '/public/assets/stipe.png';
+// import google_play from '/public/assets/google_play.png';
+// import app_store from '/public/assets/app_store.jpeg';
 import Globe from './Globe';
 import { motion } from 'framer-motion';
 
@@ -163,9 +163,9 @@ const Footer = () => {
             <div>
               <h3 className="text-black font-bold mb-2 sm:mb-3 text-xs sm:text-base">Payment Methods:</h3>
               <div className="flex flex-row items-center flex-wrap gap-2">
-                <Image src={orange} alt="Orange logo" className="w-8 sm:w-12 md:w-16 h-6 sm:h-10 object-contain" width={48} height={28} priority />
-                <Image src={mtnlogo} alt="MTN logo" className="w-8 sm:w-12 md:w-16 h-6 sm:h-10 object-contain" width={48} height={28} priority />
-                <Image src={stripe} alt="Stripe logo" className="w-10 sm:w-14 md:w-20 h-6 sm:h-10 object-contain" width={56} height={28} priority />
+                <Image src="/assets/orange.png" alt="Orange logo" className="w-8 sm:w-12 md:w-16 h-6 sm:h-10 object-contain" width={48} height={28} priority />
+                <Image src="/assets/mtnlogo.png" alt="MTN logo" className="w-8 sm:w-12 md:w-16 h-6 sm:h-10 object-contain" width={48} height={28} priority />
+                <Image src="/assets/stripe.png" alt="Stripe logo" className="w-10 sm:w-14 md:w-20 h-6 sm:h-10 object-contain" width={56} height={28} priority />
               </div>
             </div>
           </div>
@@ -177,7 +177,7 @@ const Footer = () => {
               <li><Link href="#" className="text-black font-bold md:font-normal hover:text-pink-500 transition duration-300">Cart</Link></li>
               <li><Link href="#" className="text-black font-bold md:font-normal hover:text-pink-500 transition duration-300">My Basket</Link></li>
               <li><Link href="#" className="text-black font-bold md:font-normal hover:text-pink-500 transition duration-300">Returns Policy</Link></li>
-              <li><Link href="#" className="text-black font-bold md:font-normal hover:text-pink-500 transition duration-300">Register</Link></li>
+              <li><Link href="/register" className="text-black font-bold md:font-normal hover:text-pink-500 transition duration-300">Register</Link></li>
               <li><Link href="#" className="text-black font-bold md:font-normal hover:text-pink-500 transition duration-300">Blog</Link></li>
             </ul>
             <div>
@@ -208,7 +208,7 @@ const Footer = () => {
             <div className="flex flex-row items-center flex-wrap gap-2 sm:gap-4 mb-4 sm:mb-6">
               <Link href="https://play.google.com" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[90px] max-w-[140px]">
                 <Image
-                  src={google_play}
+                  src="/assets/google_play.png"
                   alt="Google Play"
                   className="w-full h-10 sm:h-16 md:h-20 object-contain rounded-lg shadow-lg transition-transform duration-200 hover:scale-105"
                   width={120}
@@ -218,7 +218,7 @@ const Footer = () => {
               </Link>
               <Link href="https://apple.com/app-store" target="_blank" rel="noopener noreferrer" className="flex-1 min-w-[90px] max-w-[140px]">
                 <Image
-                  src={app_store}
+                  src="/assets/app_store.jpeg"
                   alt="App Store"
                   className="w-full h-10 sm:h-16 md:h-20 object-contain rounded-lg shadow-lg transition-transform duration-200 hover:scale-105"
                   width={120}

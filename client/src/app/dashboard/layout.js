@@ -62,7 +62,7 @@ const DashboardLayout = ({ children }) => {
 
       {/* Desktop layout */}
       <div className="mx-auto max-w-7xl px-4 py-6 lg:py-8">
-        <div className="grid gap-6 lg:grid-cols-[260px,1fr]">
+        <div className="grid  lg:grid-cols-[160px,2fr]">
           <aside className="hidden lg:block border border-slate-200 rounded-lg shadow-sm">
             <div className="p-4 sticky top-20 max-h-[calc(100vh-160px)] overflow-y-auto">
               <UserMenu />

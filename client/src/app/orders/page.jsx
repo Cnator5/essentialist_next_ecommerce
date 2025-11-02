@@ -1,3 +1,14 @@
+
+
+
+
+
+
+
+
+
+
+
 "use client";
 
 import React, {
@@ -9,10 +20,10 @@ import React, {
 import { useDispatch, useSelector } from "react-redux";
 import { format } from "date-fns";
 
-import NoData from "../../../components/NoData";
-import { DisplayPriceInRupees } from "../../../utils/DisplayPriceInRupees";
-import SummaryApi, { callSummaryApi } from "../../../common/SummaryApi";
-import { setOrder } from "../../../store/orderSlice";
+import NoData from "../../components/NoData";
+import { DisplayPriceInRupees } from "../../utils/DisplayPriceInRupees";
+import SummaryApi, { callSummaryApi } from "../../common/SummaryApi";
+import { setOrder } from "../../store/orderSlice";
 
 const loaderStyles = `
   .loader-lg {
@@ -151,7 +162,7 @@ function formatDateSafe(dateString) {
   }
 }
 
-const MyOrders = () => {
+const MyOrdersPublicPage = () => {
   const dispatch = useDispatch();
   const ordersFromStore = useSelector((state) => state.orders.order);
   const authState = useSelector((state) => state.user?.user ?? state.user ?? null);
@@ -694,4 +705,4 @@ const MyOrders = () => {
   );
 };
 
-export default MyOrders;
+export default MyOrdersPublicPage;

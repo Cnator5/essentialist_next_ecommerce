@@ -704,17 +704,20 @@ const PAGE_SIZE = 8
 const SummaryApi = {
   getSubCategory: { url: '/api/subcategory/get', method: 'post' },
   getProductByCategoryAndSubCategory: {
-    url: '/api/product/get-pruduct-by-category-and-subcategory',
+    url: '/api/product/get-product-by-category-and-subcategory',
     method: 'post',
   },
   getCategory: { url: '/api/category/get', method: 'get' },
 }
 
+const OBJECT_ID_REGEX = /^[0-9a-f]{24}$/i
+
 // ---------- Helpers ----------
 function parseIdFromSlug(slug) {
   if (!slug) return null
   const parts = String(slug).split('-')
-  return parts[parts.length - 1]
+  const candidate = parts[parts.length - 1]
+  return OBJECT_ID_REGEX.test(candidate) ? candidate : null
 }
 
 function parseNameFromSlug(slug) {
@@ -733,78 +736,10 @@ function stripHtml(html) {
   return html.replace(/<[^>]*>?/gm, '').trim()
 }
 
-// // ---------- SEO title map (low‑competition, commercial intent) ----------
-// const subCategoryBestTitles = {
-//   // Face / Foundation family
-//   'Foundation': 'Transfer proof foundation for masks',
-//   'Foundation Makeup': 'Foundation shade finder kit',
-//   'Liquid Foundation': 'Lightweight liquid foundation for acne prone skin',
-//   'Powder Foundation': 'buildable powder foundation for mature skin',
-//   'Stick foundation': 'stick foundation for oily skin',
-//   'Total Control Drop Foundation': 'drop foundation full coverage adjustable',
-//   'Foundation Primers': 'gripping primer for long wear makeup',
-//   'Face Primer': 'pore blurring primer for oily skin',
-//   'Tinted Moisturizer': 'tinted moisturizer with spf for oily skin',
-//   'Setting Spray': 'Alcohol free setting spray for dry skin',
-//   'SETTING POWDER': 'no flashback setting powder',
-//   'All Setting Powder': 'translucent setting powder for oily skin',
-//   // Concealers / Correctors
-//   'Concealer': 'full coverage concealer for dark circles',
-//   'Concealers & Neutralizers': 'peach color corrector for dark circles',
-//   'Dark circle concealer': 'orange concealer for dark circles',
-//   // Blush / Highlighter / Bronzer
-//   'Blush Makeup': 'cream blush for mature skin that doesn’t settle',
-//   'All Blush': 'best affordable blush for fair skin',
-//   'High Definition Blush': 'hd cream blush for camera ready look',
-//   'Highlighters & Luminizers': 'subtle highlighter for mature skin',
-//   'Illuminator': 'liquid illuminator under foundation',
-//   'Liquid highlighter': 'dewy liquid highlighter for natural glow',
-//   'Bronzy': 'subtle bronzy makeup look products',
-//   'Bronzy Powder': 'warm bronzer powder for olive skin',
-//   'Matte bronzer': 'matte bronzer for fair cool undertone',
-//   // Eyes
-//   'Eye Makeup': 'everyday eye makeup kit for beginners',
-//   'Eye Shadow': 'neutral eyeshadow for blue eyes',
-//   'Eye Shadow Palette': 'mini eyeshadow palette for travel',
-//   'Eyeliner': 'smudge proof eyeliner for oily lids',
-//   'Kajal': 'long lasting kajal for watery eyes',
-//   'Mascara': 'tubing mascara for short lashes',
-//   'Eye Cream & Treatment': 'eye cream for dark circles and puffiness under $30',
-//   'EYE CREAM': 'fragrance free eye cream for sensitive skin',
-//   'Eye Serum': 'retinol eye serum for fine lines',
-//   'Eye brow cake powder': 'eyebrow cake powder for sparse brows',
-//   'Eye Brow Enhancers': 'tinted brow gel for thin eyebrows',
-//   // Lips
-//   'Lip Makeup': 'lip makeup set gift for her',
-//   'Lipstick': 'transfer proof lipstick for weddings',
-//   'Liquid Lipstick': 'comfortable liquid lipstick non drying',
-//   'Matte Lip Sticks': 'matte lipstick set nude',
-//   'Lip Gloss': 'non sticky lip gloss set',
-//   'Lip Lacquer': 'high shine lip lacquer long wear',
-//   'Lip Liner': 'waterproof lip liner nude shades',
-//   'Lip Plumper': 'cinnamon lip plumper gloss',
-//   'Lip Tint': 'long lasting lip tint waterproof',
-//   'Lip Crayon': 'matte lip crayon non drying',
-//   'Lip cream': 'long lasting lip cream matte finish',
-//   'Lip Cream Pallette': 'lip cream palette professional',
-//   'Lip/eye liner pencil 3 in 1': '3 in 1 lip eye liner pencil set',
-//   // Palettes / Kits
-//   'Makeup Palettes': 'all in one makeup palette with mirror',
-//   'Makeup Sets': 'beginner makeup set with bag',
-//   'Makeup Kits': 'travel makeup kit essentials',
-//   // Face Makeup catch-all
-//   'Face Makeup': 'beginner face makeup kit with brushes',
-//   // Compacts / Powders
-//   'Compact': 'compact powder for oily skin long lasting',
-//   'Loose Powder': 'talc free loose setting powder',
-//   // Highlighters duplicate safe default handled above
-// }
-
-
 // ---------- SEO title map (low‑competition, commercial intent) ----------
 const subCategoryBestTitles = {
   // Face / Foundation family
-  'Foundation': 'Transfer Proof Foundation For Masks',
+  Foundation: 'Transfer Proof Foundation For Masks',
   'Foundation Makeup': 'Foundation Shade Finder Kit',
   'Liquid Foundation': 'Lightweight Liquid Foundation For Acne Prone Skin',
   'Powder Foundation': 'Buildable Powder Foundation For Mature Skin',
@@ -817,7 +752,7 @@ const subCategoryBestTitles = {
   'SETTING POWDER': 'No Flashback Setting Powder',
   'All Setting Powder': 'Translucent Setting Powder For Oily Skin',
   // Concealers / Correctors
-  'Concealer': 'Full Coverage Concealer For Dark Circles',
+  Concealer: 'Full Coverage Concealer For Dark Circles',
   'Concealers & Neutralizers': 'Peach Color Corrector For Dark Circles',
   'Dark circle concealer': 'Orange Concealer For Dark Circles',
   // Blush / Highlighter / Bronzer
@@ -825,18 +760,18 @@ const subCategoryBestTitles = {
   'All Blush': 'Best Affordable Blush For Fair Skin',
   'High Definition Blush': 'HD Cream Blush For Camera Ready Look',
   'Highlighters & Luminizers': 'Subtle Highlighter For Mature Skin',
-  'Illuminator': 'Liquid Illuminator Under Foundation',
+  Illuminator: 'Liquid Illuminator Under Foundation',
   'Liquid highlighter': 'Dewy Liquid Highlighter For Natural Glow',
-  'Bronzy': 'Subtle Bronzy Makeup Look Products',
+  Bronzy: 'Subtle Bronzy Makeup Look Products',
   'Bronzy Powder': 'Warm Bronzer Powder For Olive Skin',
   'Matte bronzer': 'Matte Bronzer For Fair Cool Undertone',
   // Eyes
   'Eye Makeup': 'Everyday Eye Makeup Kit For Beginners',
   'Eye Shadow': 'Neutral Eyeshadow For Blue Eyes',
   'Eye Shadow Palette': 'Mini Eyeshadow Palette For Travel',
-  'Eyeliner': 'Smudge Proof Eyeliner For Oily Lids',
-  'Kajal': 'Long Lasting Kajal For Watery Eyes',
-  'Mascara': 'Tubing Mascara For Short Lashes',
+  Eyeliner: 'Smudge Proof Eyeliner For Oily Lids',
+  Kajal: 'Long Lasting Kajal For Watery Eyes',
+  Mascara: 'Tubing Mascara For Short Lashes',
   'Eye Cream & Treatment': 'Eye Cream For Dark Circles And Puffiness Under $30',
   'EYE CREAM': 'Fragrance Free Eye Cream For Sensitive Skin',
   'Eye Serum': 'Retinol Eye Serum For Fine Lines',
@@ -844,7 +779,7 @@ const subCategoryBestTitles = {
   'Eye Brow Enhancers': 'Tinted Brow Gel For Thin Eyebrows',
   // Lips
   'Lip Makeup': 'Lip Makeup Set Gift For Her',
-  'Lipstick': 'Transfer Proof Lipstick For Weddings',
+  Lipstick: 'Transfer Proof Lipstick For Weddings',
   'Liquid Lipstick': 'Comfortable Liquid Lipstick Non Drying',
   'Matte Lip Sticks': 'Matte Lipstick Set Nude',
   'Lip Gloss': 'Non Sticky Lip Gloss Set',
@@ -863,20 +798,17 @@ const subCategoryBestTitles = {
   // Face Makeup catch-all
   'Face Makeup': 'Beginner Face Makeup Kit With Brushes',
   // Compacts / Powders
-  'Compact': 'Compact Powder For Oily Skin Long Lasting',
+  Compact: 'Compact Powder For Oily Skin Long Lasting',
   'Loose Powder': 'Talc Free Loose Setting Powder',
 }
 
 // Utility: choose best SEO title for a given subcategory name
 function bestSeoTitleForSubcategory(subCategoryName = '') {
-  // Exact match first
   if (subCategoryBestTitles[subCategoryName]) return subCategoryBestTitles[subCategoryName]
-  // Try case-insensitive key match
   const key = Object.keys(subCategoryBestTitles).find(
-    k => k.toLowerCase() === String(subCategoryName).toLowerCase()
+    (k) => k.toLowerCase() === String(subCategoryName).toLowerCase(),
   )
   if (key) return subCategoryBestTitles[key]
-  // Fallback: append generic modifiers for commercial intent
   return `${subCategoryName} buy online in Cameroon`
 }
 
@@ -887,7 +819,7 @@ async function fetchSubCategories() {
       method: SummaryApi.getSubCategory.method.toUpperCase(),
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({}),
-      next: { revalidate: 300 },
+      cache: 'no-store',
     })
     if (!res.ok) throw new Error('Failed to fetch subcategories')
     const data = await res.json()
@@ -899,6 +831,14 @@ async function fetchSubCategories() {
 }
 
 async function fetchProductsByCatSub({ categoryId, subCategoryId, page = 1 }) {
+  if (!OBJECT_ID_REGEX.test(categoryId) || !OBJECT_ID_REGEX.test(subCategoryId)) {
+    console.warn('Skipping product fetch due to invalid IDs', {
+      categoryId,
+      subCategoryId,
+    })
+    return { products: [], totalCount: 0 }
+  }
+
   try {
     const res = await fetch(`${baseURL}${SummaryApi.getProductByCategoryAndSubCategory.url}`, {
       method: SummaryApi.getProductByCategoryAndSubCategory.method.toUpperCase(),
@@ -909,7 +849,7 @@ async function fetchProductsByCatSub({ categoryId, subCategoryId, page = 1 }) {
         page,
         limit: PAGE_SIZE,
       }),
-      next: { revalidate: 120 },
+      cache: 'no-store',
     })
     if (!res.ok) throw new Error('Failed to fetch products')
     const json = await res.json()
@@ -923,10 +863,9 @@ async function fetchProductsByCatSub({ categoryId, subCategoryId, page = 1 }) {
 
 // ---------- Dynamic SEO ----------
 export async function generateMetadata({ params, searchParams }) {
-  // Fix: Await params before accessing properties
   const paramsData = await params
   const searchParamsData = await searchParams
-  
+
   const categorySlug = paramsData?.category
   const subCategorySlug = paramsData?.subCategory
   const page = Number(searchParamsData?.page || 1)
@@ -944,14 +883,11 @@ export async function generateMetadata({ params, searchParams }) {
     }
   }
 
-  // Fetch some data for better SEO text
   const [{ products, totalCount }] = await Promise.all([
     fetchProductsByCatSub({ categoryId, subCategoryId, page }),
   ])
 
-  // NEW: use low‑competition, commercial-intent title for each subCategory
   const commercialTitle = bestSeoTitleForSubcategory(subCategoryName)
-  const paginationSuffix = page > 1 ? ` | Page ${page}` : ''
   const title = `${commercialTitle} | ${subCategoryName}`
 
   const desc =
@@ -959,7 +895,9 @@ export async function generateMetadata({ params, searchParams }) {
       ? `Shop ${subCategoryName} in ${categoryName} at EssentialistMakeupStore. Discover ${products.length} of ${totalCount} products available with nationwide shipping, secure online payment, and great prices.`
       : `Browse ${subCategoryName} in ${categoryName} at EssentialistMakeupStore. Fast Cameroon-wide delivery and secure checkout.`
 
-  const canonical = `https://www.esmakeupstore.com/${categorySlug}/${subCategorySlug}${page > 1 ? `?page=${page}` : ''}`
+  const canonical = `https://www.esmakeupstore.com/${categorySlug}/${subCategorySlug}${
+    page > 1 ? `?page=${page}` : ''
+  }`
 
   const ogImage =
     products?.[0]?.image?.[0] ||
@@ -1030,7 +968,6 @@ function StructuredData({ categorySlug, subCategorySlug, subCategoryName, produc
     },
   }
 
-  // Optional: expose list of products with availability (InStock / OutOfStock)
   const itemListJsonLd = products?.length
     ? {
         '@context': 'https://schema.org',
@@ -1071,10 +1008,9 @@ function StructuredData({ categorySlug, subCategorySlug, subCategoryName, produc
 
 // ---------- Page (SSR) ----------
 export default async function ProductListPage({ params, searchParams }) {
-  // Fix: Await params and searchParams before accessing properties
   const paramsData = await params
   const searchParamsData = await searchParams
-  
+
   const categorySlug = paramsData?.category
   const subCategorySlug = paramsData?.subCategory
   const page = Number(searchParamsData?.page || 1)
@@ -1086,25 +1022,21 @@ export default async function ProductListPage({ params, searchParams }) {
 
   if (!categoryId || !subCategoryId) return notFound()
 
-  // Fetch data in parallel
   const [allSubCategories, { products, totalCount }] = await Promise.all([
     fetchSubCategories(),
     fetchProductsByCatSub({ categoryId, subCategoryId, page }),
   ])
 
-  // Build subcategory list for this category
   const displaySubCategory = safeArray(
-    allSubCategories.filter((s) => safeArray(s?.category).some((c) => c?._id === categoryId))
+    allSubCategories.filter((s) => safeArray(s?.category).some((c) => c?._id === categoryId)),
   )
 
   const totalPages = Math.max(1, Math.ceil((Number(totalCount) || 0) / PAGE_SIZE))
   const hasMore = page < totalPages
 
-  // Build next page link
   const basePath = `/${categorySlug}/${subCategorySlug}`
   const nextHref = hasMore ? `${basePath}?page=${page + 1}` : null
 
-  // Derive best commercial title for on-page H1
   const h1Commercial = bestSeoTitleForSubcategory(subCategoryName)
 
   return (
@@ -1132,16 +1064,29 @@ export default async function ProductListPage({ params, searchParams }) {
 
       <main className="sticky top-24 lg:top-20">
         <section className="container sticky top-24 mx-auto grid grid-cols-[90px,1fr] md:grid-cols-[200px,1fr] lg:grid-cols-[280px,1fr]">
-          <aside className="min-h-[88vh] max-h-[88vh] overflow-y-scroll grid gap-1 shadow-md scrollbarCustom bg-white py-2" aria-label="Subcategories">
+          <aside
+            className="min-h-[88vh] max-h-[88vh] overflow-y-scroll grid gap-1 shadow-md scrollbarCustom bg-white py-2"
+            aria-label="Subcategories"
+          >
             {displaySubCategory.length > 0 ? (
               displaySubCategory.map((s, index) => {
-                const link = `/${valideURLConvert(s?.category?.[0]?.name)}-${s?.category?.[0]?._id}/${valideURLConvert(s?.name)}-${s?._id}`
+                const categoryNameForSlug =
+                  typeof s?.category?.[0] === 'string'
+                    ? s?.category?.[0]
+                    : s?.category?.[0]?.name || ''
+                const categoryIdForSlug =
+                  typeof s?.category?.[0] === 'string'
+                    ? s?.category?.[0]
+                    : s?.category?.[0]?._id
+
+                const link = `/${valideURLConvert(categoryNameForSlug)}-${categoryIdForSlug}/${valideURLConvert(
+                  s?.name,
+                )}-${s?._id}`
                 const isActive = String(subCategoryId) === String(s?._id)
-                // Add title attribute with best commercial intent title per subcategory
                 const subBest = bestSeoTitleForSubcategory(s?.name)
                 return (
                   <Link
-                    key={s?._id + '-' + index}
+                    key={`${s?._id}-${index}`}
                     href={link}
                     title={subBest}
                     className={`w-full p-2 lg:flex items-center lg:w-full lg:h-16 box-border lg:gap-4 border-b hover:bg-green-100 transition-colors duration-200 ${isActive ? 'bg-green-100' : ''}`}
@@ -1169,7 +1114,6 @@ export default async function ProductListPage({ params, searchParams }) {
 
           <section className="sticky top-20">
             <header className="bg-white shadow-md p-4 z-10">
-              {/* Replace H1 with best commercial intent title, and keep subcategory label below for clarity */}
               <h1 className="font-semibold">{h1Commercial}</h1>
               <p className="text-xs text-gray-500 mt-1">
                 {subCategoryName} in {categoryName}
@@ -1185,8 +1129,19 @@ export default async function ProductListPage({ params, searchParams }) {
               {products.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center">
                   <div className="text-gray-400 mb-4">
-                    <svg className="w-16 h-16 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2M4 13h2m0 0V9a2 2 0 012-2h2m0 0V6a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 01.293.707V9M16 13v2a2 2 0 01-2 2h-2m0 0H9m3 0v-2M9 13h2" />
+                    <svg
+                      className="w-16 h-16 mx-auto"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={1}
+                        d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2 2v-5m16 0h-2M4 13h2m0 0V9a2 2 0 012-2h2m0 0V6a2 2 0 012-2h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 01.293.707V9M16 13v2a2 2 0 01-2 2h-2m0 0H9m3 0v-2M9 13h2"
+                      />
                     </svg>
                   </div>
                   <h2 className="text-lg font-medium text-gray-900 mb-2">No products found</h2>
@@ -1196,7 +1151,7 @@ export default async function ProductListPage({ params, searchParams }) {
                 <>
                   <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 p-4 gap-4" role="list">
                     {products.map((p, index) => (
-                      <li key={p?._id + '-productSubCategory-' + index}>
+                      <li key={`${p?._id}-productSubCategory-${index}`}>
                         <CardProduct data={p} />
                       </li>
                     ))}

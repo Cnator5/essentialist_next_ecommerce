@@ -94,9 +94,11 @@ async function getRatingsSSR(productId) {
   }
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata(props) {
+  const params = await props.params
   const slug = params?.product
   const productId = extractProductId(slug)
+
   if (!productId) {
     return {
       title: 'Product not found',
@@ -247,7 +249,8 @@ function StructuredData({ product, slug, rating, params }) {
   )
 }
 
-export default async function ProductDisplayPage({ params }) {
+export default async function ProductDisplayPage(props) {
+  const params = await props.params
   const slug = params?.product
   const productId = extractProductId(slug)
   if (!productId) return notFound()

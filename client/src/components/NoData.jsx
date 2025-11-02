@@ -1,12 +1,11 @@
 "use client";
 import React from 'react'
-import noDataImage from '/public/assets/nothing here yet.webp'
 
 const NoData = () => {
   return (
     <div className='flex flex-col items-center justify-center p-4 gap-2'>
       <img
-        src={noDataImage}
+        src="/assets/nothing here yet.webp"
         alt='no data'
         className='w-36' 
       />

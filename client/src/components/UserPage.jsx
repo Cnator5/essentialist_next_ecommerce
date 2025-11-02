@@ -55,7 +55,7 @@ const UserPage = () => {
       <div className="text-sm font-semibold sm:font-bold grid gap-1 mt-4">
         {isAdmin(user.role) && (
           <>
-            <Link href="/dashboard" className="px-2 hover:bg-orange-200 py-1">dashboard Overview</Link>
+            <Link href="/dashboard" className="px-2 hover:bg-orange-200 py-1">Dashboard Overview</Link>
             <Link href="/dashboard/category" className="px-2 hover:bg-orange-200 py-1">Category</Link>
             <Link href="/dashboard/subcategory" className="px-2 hover:bg-orange-200 py-1">Sub Category</Link>
             <Link href="/dashboard/upload-product" className="px-2 hover:bg-orange-200 py-1">Upload Product</Link>
