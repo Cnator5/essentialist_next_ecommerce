@@ -196,7 +196,8 @@ export async function GET(request) {
     const OrderModel = getOrderModel();
     const AddressModel = getAddressModel();
 
-    const { searchParams } = new URL(request.url);
+    // const { searchParams } = new URL(request.url);
+    const { searchParams } = request.nextURL
     const limitParam = searchParams.get("limit");
     const limit = limitParam
       ? Math.max(10, Math.min(parseInt(limitParam, 10) || 150, 400))

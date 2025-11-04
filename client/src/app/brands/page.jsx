@@ -15,7 +15,7 @@ const DEFAULT_DESC =
 const API_BASE = process.env.NEXT_PUBLIC_API_URL || ''
 const MAX_PRODUCTS_FOR_STRUCTURED_DATA = 20
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 // ---------- Fetch helpers ----------
 

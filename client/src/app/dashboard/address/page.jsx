@@ -12,23 +12,25 @@ import AxiosToastError from '../../../utils/AxiosToastError';
 import { useGlobalContext } from '../../../providers/GlobalProvider';
 
 const Address = () => {
-  const addressList = useSelector(state => state.addresses.addressList)
-  const [openAddress,setOpenAddress] = useState(false)
-  const [OpenEdit,setOpenEdit] = useState(false)
-  const [editData,setEditData] = useState({})
-  const { fetchAddress} = useGlobalContext()
+  const addressList = useSelector(state => state.addresses.addressList) || []
+  const [openAddress, setOpenAddress] = useState(false)
+  const [openEdit, setOpenEdit] = useState(false)
+  const [editData, setEditData] = useState({})
+  const { fetchAddress } = useGlobalContext()
 
-  const handleDisableAddress = async(id)=>{
+  const activeAddresses = addressList.filter(address => address?.status !== false)
+
+  const handleDisableAddress = async (id) => {
     try {
       const response = await Axios({
         ...SummaryApi.disableAddress,
-        data : {
-          _id : id
+        data: {
+          _id: id
         }
       })
-      if(response.data.success){
+      if (response.data.success) {
         toast.success("Address Remove")
-        if(fetchAddress){
+        if (fetchAddress) {
           fetchAddress()
         }
       }
@@ -36,61 +38,66 @@ const Address = () => {
       AxiosToastError(error)
     }
   }
+
   return (
     <div className=''>
-        <div className='bg-white shadow-lg px-2 py-2 flex justify-between gap-4 items-center '>
-            <h2 className='font-semibold text-ellipsis line-clamp-1'>Address</h2>
-            <button onClick={()=>setOpenAddress(true)} className='border border-primary-200 text-primary-200 px-3 hover:bg-primary-200 hover:text-black py-1 rounded-full'>
-                Add Address
-            </button>
+      <div className='bg-white shadow-lg px-2 py-2 flex justify-between gap-4 items-center '>
+        <h2 className='font-semibold text-ellipsis line-clamp-1'>Address</h2>
+        <button onClick={() => setOpenAddress(true)} className='border border-primary-200 text-primary-200 px-3 hover:bg-primary-200 hover:text-black py-1 rounded-full'>
+          Add Address
+        </button>
+      </div>
+      <div className='bg-blue-50 p-2 grid gap-4'>
+        {activeAddresses.map((address, index) => (
+          <div
+            key={address._id ?? address.id ?? `${address.customer_email ?? 'email'}-${address.mobile ?? index}`}
+            className='border rounded p-3 flex gap-3 bg-white'
+          >
+            <div className='w-full'>
+              <p>{address.name}</p>
+              <p>{address.customer_email}</p>
+              <p>{address.address_line}</p>
+              <p>{address.city}</p>
+              <p>{address.state}</p>
+              <p>{address.country} - {address.pincode}</p>
+              <p>{address.mobile}</p>
+            </div>
+            <div className=' grid gap-10'>
+              <button onClick={() => {
+                setOpenEdit(true)
+                setEditData(address)
+              }} className='bg-green-200 p-1 rounded  hover:text-white hover:bg-green-600'>
+                <MdEdit />
+              </button>
+              <button onClick={() =>
+                handleDisableAddress(address._id)
+              } className='bg-red-200 p-1 rounded hover:text-white hover:bg-red-600'>
+                <MdDelete size={20} />
+              </button>
+            </div>
+          </div>
+        ))}
+        {activeAddresses.length === 0 && (
+          <div className='border border-dashed border-primary-200 rounded p-4 bg-white text-center text-gray-600'>
+            No saved addresses yet. Add a new address to get started.
+          </div>
+        )}
+        <div onClick={() => setOpenAddress(true)} className='h-16 bg-blue-50 border-2 border-dashed flex justify-center items-center cursor-pointer'>
+          Add address
         </div>
-        <div className='bg-blue-50 p-2 grid gap-4'>
-              {
-                addressList.map((address,index)=>{
-                  return(
-                      <div className={`border rounded p-3 flex gap-3 bg-white ${!address.status && 'hidden'}`}>
-                          <div className='w-full'>
-                            <p>{address.name}</p>
-                            <p>{address.customer_email}</p>
-                            <p>{address.address_line}</p>
-                            <p>{address.city}</p>
-                            <p>{address.state}</p>
-                            <p>{address.country} - {address.pincode}</p>
-                            <p>{address.mobile}</p>
-                          </div>
-                          <div className=' grid gap-10'>
-                            <button onClick={()=>{
-                              setOpenEdit(true)
-                              setEditData(address)
-                            }} className='bg-green-200 p-1 rounded  hover:text-white hover:bg-green-600'>
-                              <MdEdit/>
-                            </button>
-                            <button onClick={()=>
-                              handleDisableAddress(address._id)
-                            } className='bg-red-200 p-1 rounded hover:text-white hover:bg-red-600'>
-                              <MdDelete size={20}/>  
-                            </button>
-                          </div>
-                      </div>
-                  )
-                })
-              }
-              <div onClick={()=>setOpenAddress(true)} className='h-16 bg-blue-50 border-2 border-dashed flex justify-center items-center cursor-pointer'>
-                Add address
-              </div>
-        </div>
+      </div>
 
-        {
-          openAddress && (
-            <AddAddress close={()=>setOpenAddress(false)}/>
-          )
-        }
+      {
+        openAddress && (
+          <AddAddress close={() => setOpenAddress(false)} />
+        )
+      }
 
-        {
-          OpenEdit && (
-            <EditAddressDetails data={editData} close={()=>setOpenEdit(false)}/>
-          )
-        }
+      {
+        openEdit && (
+          <EditAddressDetails data={editData} close={() => setOpenEdit(false)} />
+        )
+      }
     </div>
   )
 }

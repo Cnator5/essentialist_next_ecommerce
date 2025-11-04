@@ -193,7 +193,8 @@ export async function GET(request) {
   try {
     await dbConnect();
 
-    const { searchParams } = new URL(request.url);
+    // const { searchParams } = new URL(request.url);
+    const { searchParams } = request.nextUrl   // cheaper & avoids URL()
     const guestOnly = searchParams.get("guestOnly") === "true";
     const includeGuestsParam = searchParams.get("includeGuests");
     const includeGuests =

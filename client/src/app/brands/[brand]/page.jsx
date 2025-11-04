@@ -856,7 +856,7 @@ const API_BASE = process.env.NEXT_PUBLIC_API_URL || ''
 const DEFAULT_BRAND_DESCRIPTION =
   'Shop authentic makeup with FCFA pricing. Fast delivery in Douala & nationwide across Cameroon.'
 
-export const dynamic = 'force-dynamic'
+// export const dynamic = 'force-dynamic'
 
 async function fetchJson(url, init = {}) {
   const res = await fetch(url, init)

@@ -51,6 +51,7 @@ const Header = () => {
         { title: 'HOME', path: '/' },
         { title: 'BRANDS', path: '/brands' },
         { title: 'NEW & HOT', path: '/new-arrival' },
+        { title: 'BLOG', path: '/blog' },
         { title: 'CONTACT US', path: '/contact' }
     ], []);
 
@@ -386,7 +387,7 @@ const Header = () => {
             </nav>
             <div className="hidden lg:block bg-black text-white border-t border-purple-800">
                 <div className="max-w-screen-2xl mx-auto px-4">
-                    <ul className="flex justify-center space-x-20 py-2">
+                    <ul className="flex justify-center space-x-20 ">
                         {navLinks.map(link => (
                             <li key={link.path} className="flex items-center justify-between hover:text-purple-400 cursor-pointer">
                                 <Link href={link.path} prefetch>{link.title}</Link>
