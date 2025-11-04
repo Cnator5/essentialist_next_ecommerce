@@ -29,10 +29,18 @@ import { Provider } from 'react-redux'
 import { store } from '../../store/store'
 import ShellWithRedux from './ShellWithRedux'
 
+import { Suspense } from 'react'
+
 export default function ClientLayoutShell({ children, initialNavData }) {
   return (
     <Provider store={store}>
-      <ShellWithRedux initialNavData={initialNavData}>{children}</ShellWithRedux>
+      <Suspense fallback={
+        <div className="min-h-screen bg-[#faf6f3] flex items-center justify-center">
+          <div className="animate-pulse w-24 h-24 rounded-full bg-gray-200"></div>
+        </div>
+      }>
+        <ShellWithRedux initialNavData={initialNavData}>{children}</ShellWithRedux>
+      </Suspense>
     </Provider>
   )
 }
