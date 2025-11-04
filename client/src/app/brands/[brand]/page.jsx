@@ -1667,7 +1667,8 @@
 
 
 
-// app/brands/[brand]/page.jsx
+
+import { Suspense } from 'react'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { valideURLConvert } from '../../../utils/valideURLConvert'
@@ -2314,15 +2315,25 @@ export async function generateMetadata({ params }) {
   }
 }
 
-export default async function BrandPage({ params }) {
-  const resolvedParams = await params
-  const brandSlug = resolvedParams?.brand
+export default function BrandPage({ params }) {
+  const brandSlugPromise = Promise.resolve(params).then((resolved) => resolved?.brand)
+
+  return (
+    <Suspense fallback={<BrandPageSkeleton />}>
+      <BrandContent brandSlugPromise={brandSlugPromise} />
+    </Suspense>
+  )
+}
+
+async function BrandContent({ brandSlugPromise }) {
+  const brandSlug = (await brandSlugPromise) || ''
 
   if (!brandSlug || brandSlug === FALLBACK_BRAND_SLUG) {
     return notFound()
   }
 
   const brandData = await fetchBrandBySlug(brandSlug)
+
   if (!brandData) {
     return notFound()
   }
@@ -2508,6 +2519,52 @@ export default async function BrandPage({ params }) {
           })
         }}
       />
+    </main>
+  )
+}
+
+function BrandPageSkeleton() {
+  return (
+    <main className="bg-gradient-to-b from-pink-50 to-white min-h-screen py-10 px-2 md:px-10 animate-pulse">
+      <header className="text-center mb-8 space-y-4">
+        <div className="mx-auto h-10 w-3/4 max-w-2xl rounded-full bg-pink-200" />
+        <div className="mx-auto h-6 w-1/2 max-w-xl rounded-full bg-pink-100" />
+        <div className="mx-auto h-4 w-3/4 max-w-xl rounded-full bg-pink-100" />
+      </header>
+
+      <section className="mb-8 bg-white rounded-lg shadow-md p-6">
+        <div className="h-6 w-40 bg-pink-100 rounded mb-4" />
+        <div className="flex flex-wrap gap-2">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div
+              key={index}
+              className="h-10 w-28 rounded-full bg-gray-100"
+            />
+          ))}
+        </div>
+      </section>
+
+      <section className="overflow-hidden rounded-lg border border-pink-200 shadow-lg bg-white">
+        <div className="bg-gradient-to-r from-pink-500 to-pink-600 text-white p-4">
+          <div className="h-5 w-48 bg-pink-300/50 rounded mb-2" />
+          <div className="h-4 w-64 bg-pink-300/40 rounded" />
+        </div>
+
+        <div className="divide-y divide-pink-100">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <div
+              key={index}
+              className={`grid grid-cols-4 gap-4 px-4 py-5 ${
+                index % 2 === 0 ? 'bg-white' : 'bg-pink-50/60'
+              }`}
+            >
+              <div className="col-span-2 h-4 bg-gray-200 rounded" />
+              <div className="h-4 bg-gray-200 rounded" />
+              <div className="h-4 bg-gray-200 rounded" />
+            </div>
+          ))}
+        </div>
+      </section>
     </main>
   )
 }
