@@ -2194,10 +2194,12 @@ export async function generateStaticParams() {
   }
 
   // During CI/build we prefer to skip prerendering brand pages if the
-  // upstream API is unavailable. Returning an empty array prevents
-  // Next from attempting to prerender these routes and avoids build-time
-  // failures when the API responds with 5xx/errors.
-  return []
+  // upstream API is unavailable. When using Next's Cache Components,
+  // `generateStaticParams` must return at least one result to allow the
+  // build-time validation pass. Return a safe placeholder slug so the
+  // build can complete; runtime will treat this slug as a fallback and
+  // render the appropriate not-found/placeholder UI.
+  return [{ brand: FALLBACK_BRAND_SLUG }]
 }
 
 export async function generateMetadata({ params }) {
