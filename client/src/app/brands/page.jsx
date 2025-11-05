@@ -1781,16 +1781,43 @@ export async function generateMetadata() {
 
 export default async function BrandPage() {
   if (process.env.NODE_ENV === 'production') {
-    await pingIndexNow()
+    try {
+      await pingIndexNow()
+    } catch (error) {
+      console.warn('[brands directory] pingIndexNow failed', error)
+    }
   }
 
-  const [{ items: brandItems }, { items: productItems }, allCategory, allSubCategory] =
-    await Promise.all([
+  // Attempt to fetch data; if any upstream API calls fail during build
+  // we return a lightweight static placeholder so the build won't fail.
+  let brandItems = []
+  let productItems = []
+  let allCategory = []
+  let allSubCategory = []
+
+  try {
+    const res = await Promise.all([
       fetchBrandCollection(),
       fetchProductCatalog(),
       getCategories(),
       getSubCategories()
     ])
+
+    brandItems = res[0]?.items || []
+    productItems = res[1]?.items || []
+    allCategory = res[2] || []
+    allSubCategory = res[3] || []
+  } catch (error) {
+    console.warn('[brands directory] data fetch failed during build', error)
+    return (
+      <main className="bg-gradient-to-b from-pink-50 to-white min-h-screen py-10 px-2 md:px-10">
+        <div className="container mx-auto p-8 text-center">
+          <h1 className="text-2xl font-bold">Brands temporarily unavailable</h1>
+          <p className="mt-2 text-gray-600">We couldn’t fetch brand data at build time. The site will attempt to load dynamic content at runtime.</p>
+        </div>
+      </main>
+    )
+  }
 
   const productRows = productItems.map(normalizeProductRow)
   const brandStats = aggregateBrandStats(brandItems, productRows)

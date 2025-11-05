@@ -2193,7 +2193,11 @@ export async function generateStaticParams() {
     console.warn('generateStaticParams failed, returning placeholder.', error)
   }
 
-  return [{ brand: FALLBACK_BRAND_SLUG }]
+  // During CI/build we prefer to skip prerendering brand pages if the
+  // upstream API is unavailable. Returning an empty array prevents
+  // Next from attempting to prerender these routes and avoids build-time
+  // failures when the API responds with 5xx/errors.
+  return []
 }
 
 export async function generateMetadata({ params }) {
