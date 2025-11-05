@@ -397,11 +397,6 @@ export async function apiFetch(
 
   const requestUrl = buildUrl(path, params);
 
-  // Production build guard removed: assume production environment
-  // variables (NEXT_PUBLIC_API_URL / API_URL) are configured in the
-  // deployment environment (e.g. Vercel). If you intentionally want to
-  // skip requests during build-time, reintroduce a guard here.
-
   let abortTimer;
   if (timeout > 0 && controller) {
     abortTimer = setTimeout(() => controller.abort(), timeout);
