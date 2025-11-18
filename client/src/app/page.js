@@ -721,7 +721,7 @@ export async function generateMetadata() {
   const addPhrases =
     'Buy setting powder in Cameroon, NYX powder foundation Cameroon price, waterproof mascara Douala, affordable makeup kits Cameroon, cash on delivery makeup Cameroon.'
   const dynDesc = top
-    ? `Discover the best in ${top} and more. Authentic makeup, cosmetics, and beauty essentials in Cameroon. ${addPhrases}`
+    ? `Discover the best in ${top} and more. Authentic makeup, cosmetics, and beauty essentials in Cameroon. Best makeupstore in Cameroon: ${addPhrases}`
     : `${DEFAULT_DESC} ${addPhrases}`
 
   const extraKW = [
@@ -747,6 +747,7 @@ export async function generateMetadata() {
       new Set([
         'makeup',
         'best makeup store in Cameroon',
+        'best makeupstore in Cameroon',
         'makeup essentials',
         'makeup in Douala',
         'African makeup',
@@ -1190,7 +1191,7 @@ export default async function Home() {
 
           <div className="container mx-auto mt-2 px-4">
             <div className="w-full rounded">
-              <div className="hidden lg:block">
+              {/* <div className="hidden lg:block">
                 <Image
                   src="/assets/56e20d4e-2643-4edb-b3fd-7762b81a7658.avif"
                   width={90}
@@ -1200,8 +1201,8 @@ export default async function Home() {
                   className="w-full h-auto"
                   sizes="(min-width:1024px) 1200px, 100vw"
                 />
-              </div>
-              <div className="lg:hidden">
+              </div> */}
+              {/* <div className="lg:hidden">
                 <Image
                   src="/assets/lipstick-cosmetics-makeup-beauty-product-ad-banner_33099-1533.jpg"
                   width={90}
@@ -1211,7 +1212,7 @@ export default async function Home() {
                   className="w-full h-auto"
                   sizes="100vw"
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 

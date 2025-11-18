@@ -12,16 +12,23 @@ const DEFAULT_BRAND_DESCRIPTION =
   'Shop authentic makeup with FCFA pricing. Fast delivery in Douala & nationwide across Cameroon.'
 const BUILD_VALIDATION_PLACEHOLDER = '__build-validation__'
 
-// export const dynamic = 'force-dynamic' // disable static optimization because cacheComponents is enabled
+// ---------- Fetch helpers ----------
 
 async function fetchJson(url, init = {}) {
-  const res = await fetch(url, init)
-  if (res.status === 404) return null
-  if (!res.ok) {
-    const text = await res.text()
-    throw new Error(`Request failed ${res.status}: ${text}`)
+  try {
+    const res = await fetch(url, init)
+    if (res.status === 404) return null
+    if (!res.ok) {
+      const text = await res
+        .text()
+        .catch(() => res.statusText || 'Unable to read response body')
+      throw new Error(`Request failed ${res.status}: ${text}`)
+    }
+    return res.json()
+  } catch (error) {
+    console.warn('[brand page] fetchJson failed', { url, error })
+    return null
   }
-  return res.json()
 }
 
 function createBrandSlug(name = '') {
@@ -314,6 +321,8 @@ function stripMarkdown(text = '') {
 }
 
 function BrandStructuredData({ brand = {}, products = [] }) {
+  if (!brand?.name) return null
+
   const brandSlug = brand.slug || createBrandSlug(brand.name || '')
   const description =
     stripMarkdown(brand.description || brand.shortDescription || '') ||
@@ -333,26 +342,28 @@ function BrandStructuredData({ brand = {}, products = [] }) {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `${brand.name} Makeup Products`,
-    numberOfItems: products.length,
-    itemListElement: products.slice(0, 20).map((product, index) => ({
-      '@type': 'ListItem',
-      position: index + 1,
-      item: {
-        '@type': 'Product',
-        name: product.name,
-        brand: { '@type': 'Brand', name: product.brandName },
-        category: product.subCategoryName || product.categoryName,
-        offers: {
-          '@type': 'Offer',
-          priceCurrency: 'XAF',
-          price:
-            typeof product.sellingPrice === 'number'
-              ? String(product.sellingPrice)
-              : undefined,
-          availability: 'https://schema.org/InStock'
+    numberOfItems: Array.isArray(products) ? products.length : 0,
+    itemListElement: (Array.isArray(products) ? products : []).slice(0, 20).map(
+      (product, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'Product',
+          name: product.name,
+          brand: { '@type': 'Brand', name: product.brandName },
+          category: product.subCategoryName || product.categoryName,
+          offers: {
+            '@type': 'Offer',
+            priceCurrency: 'XAF',
+            price:
+              typeof product.sellingPrice === 'number'
+                ? String(product.sellingPrice)
+                : undefined,
+            availability: 'https://schema.org/InStock'
+          }
         }
-      }
-    }))
+      })
+    )
   }
 
   return (
@@ -489,7 +500,8 @@ async function getCategories() {
     if (!res.ok) throw new Error('Failed categories')
     const data = await res.json()
     return Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : []
-  } catch {
+  } catch (error) {
+    console.warn('[brand page] getCategories failed', error)
     return []
   }
 }
@@ -506,12 +518,17 @@ async function getSubCategories() {
     if (!res.ok) throw new Error('Failed subcategories')
     const data = await res.json()
     return Array.isArray(data?.data) ? data.data : Array.isArray(data) ? data : []
-  } catch {
+  } catch (error) {
+    console.warn('[brand page] getSubCategories failed', error)
     return []
   }
 }
 
 export async function generateStaticParams() {
+  if (!API_BASE) {
+    return [{ brand: BUILD_VALIDATION_PLACEHOLDER }]
+  }
+
   try {
     const brands = await fetchBrandCollection()
     const params = Array.from(
@@ -545,6 +562,39 @@ export async function generateMetadata({ params }) {
       title: 'Brand not found',
       description: 'This brand is not available in our store.',
       robots: { index: false, follow: false }
+    }
+  }
+
+  if (!API_BASE) {
+    const title = `${brandSlug.replace(/-/g, ' ')} | ${SITE_NAME}`
+    return {
+      metadataBase: new URL(SITE_URL),
+      title,
+      description: DEFAULT_BRAND_DESCRIPTION,
+      robots: { index: true, follow: true },
+      alternates: { canonical: `${SITE_URL}/brands/${brandSlug}` },
+      openGraph: {
+        type: 'website',
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/brands/${brandSlug}`,
+        title,
+        description: DEFAULT_BRAND_DESCRIPTION,
+        images: [
+          {
+            url: DEFAULT_OG_IMAGE,
+            width: 1200,
+            height: 630,
+            alt: 'Essentialist Makeup Store'
+          }
+        ],
+        locale: 'en_US'
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title,
+        description: DEFAULT_BRAND_DESCRIPTION,
+        images: [DEFAULT_OG_IMAGE]
+      }
     }
   }
 
@@ -631,10 +681,15 @@ export async function generateMetadata({ params }) {
     console.error(`Metadata generation failed for brand ${brandSlug}:`, error)
     return {
       metadataBase: new URL(SITE_URL),
-      title: `${brandSlug} | Essentialist Makeup Store`,
+      title: `${brandSlug} | ${SITE_NAME}`,
       description: DEFAULT_BRAND_DESCRIPTION,
       robots: { index: false, follow: false },
       openGraph: {
+        type: 'website',
+        siteName: SITE_NAME,
+        url: `${SITE_URL}/brands/${brandSlug}`,
+        title: `${brandSlug} | ${SITE_NAME}`,
+        description: DEFAULT_BRAND_DESCRIPTION,
         images: [
           {
             url: DEFAULT_OG_IMAGE,
@@ -642,7 +697,8 @@ export async function generateMetadata({ params }) {
             height: 630,
             alt: 'Essentialist Makeup Store'
           }
-        ]
+        ],
+        locale: 'en_US'
       },
       twitter: {
         card: 'summary_large_image',
@@ -668,7 +724,22 @@ export default async function BrandPage({ params }) {
 async function BrandContent({ brandSlug }) {
   const brandData = await fetchBrandBySlug(brandSlug)
   if (!brandData) {
-    notFound()
+    return (
+      <main className="bg-gradient-to-b from-pink-50 to-white min-h-screen py-10 px-2 md:px-10">
+        <section className="max-w-4xl mx-auto text-center bg-white border border-pink-200 rounded-lg shadow p-8">
+          <h1 className="text-3xl font-bold text-pink-500">Brand temporarily unavailable</h1>
+          <p className="mt-4 text-gray-600">
+            We couldn’t load brand details right now. Please refresh the page or try again later.
+          </p>
+          <Link
+            href="/brands"
+            className="inline-flex mt-6 px-6 py-3 rounded-full bg-pink-500 text-white font-semibold hover:bg-pink-600 transition"
+          >
+            Back to all brands
+          </Link>
+        </section>
+      </main>
+    )
   }
 
   const [productsRaw, allBrands, allCategory, allSubCategory] = await Promise.all([
