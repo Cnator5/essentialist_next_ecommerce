@@ -1,11 +1,9 @@
-// src/app/[category]/[subCategory]/page.jsx
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import CardProduct from '../../../components/CardProduct'
 import { valideURLConvert } from '../../../utils/valideURLConvert'
 import Image from 'next/image'
 
-// ---------- API config ----------
 const baseURL = process.env.NEXT_PUBLIC_API_URL
 const PAGE_SIZE = 8
 
@@ -20,7 +18,6 @@ const SummaryApi = {
 
 const OBJECT_ID_REGEX = /^[0-9a-f]{24}$/i
 
-// ---------- Helpers ----------
 function parseIdFromSlug(slug) {
   if (!slug) return null
   const parts = String(slug).split('-')
@@ -38,15 +35,12 @@ function safeArray(v) {
   return Array.isArray(v) ? v : []
 }
 
-// Strip HTML for meta descriptions
 function stripHtml(html) {
   if (!html) return ''
   return html.replace(/<[^>]*>?/gm, '').trim()
 }
 
-// ---------- SEO title map (low‑competition, commercial intent) ----------
 const subCategoryBestTitles = {
-  // Face / Foundation family
   Foundation: 'Transfer Proof Foundation For Masks',
   'Foundation Makeup': 'Foundation Shade Finder Kit',
   'Liquid Foundation': 'Lightweight Liquid Foundation For Acne Prone Skin',
@@ -59,11 +53,9 @@ const subCategoryBestTitles = {
   'Setting Spray': 'Alcohol Free Setting Spray For Dry Skin',
   'SETTING POWDER': 'No Flashback Setting Powder',
   'All Setting Powder': 'Translucent Setting Powder For Oily Skin',
-  // Concealers / Correctors
   Concealer: 'Full Coverage Concealer For Dark Circles',
   'Concealers & Neutralizers': 'Peach Color Corrector For Dark Circles',
   'Dark circle concealer': 'Orange Concealer For Dark Circles',
-  // Blush / Highlighter / Bronzer
   'Blush Makeup': 'Cream Blush For Mature Skin That Doesn’t Settle',
   'All Blush': 'Best Affordable Blush For Fair Skin',
   'High Definition Blush': 'HD Cream Blush For Camera Ready Look',
@@ -73,7 +65,6 @@ const subCategoryBestTitles = {
   Bronzy: 'Subtle Bronzy Makeup Look Products',
   'Bronzy Powder': 'Warm Bronzer Powder For Olive Skin',
   'Matte bronzer': 'Matte Bronzer For Fair Cool Undertone',
-  // Eyes
   'Eye Makeup': 'Everyday Eye Makeup Kit For Beginners',
   'Eye Shadow': 'Neutral Eyeshadow For Blue Eyes',
   'Eye Shadow Palette': 'Mini Eyeshadow Palette For Travel',
@@ -85,7 +76,6 @@ const subCategoryBestTitles = {
   'Eye Serum': 'Retinol Eye Serum For Fine Lines',
   'Eye brow cake powder': 'Eyebrow Cake Powder For Sparse Brows',
   'Eye Brow Enhancers': 'Tinted Brow Gel For Thin Eyebrows',
-  // Lips
   'Lip Makeup': 'Lip Makeup Set Gift For Her',
   Lipstick: 'Transfer Proof Lipstick For Weddings',
   'Liquid Lipstick': 'Comfortable Liquid Lipstick Non Drying',
@@ -99,18 +89,14 @@ const subCategoryBestTitles = {
   'Lip cream': 'Long Lasting Lip Cream Matte Finish',
   'Lip Cream Pallette': 'Lip Cream Palette Professional',
   'Lip/eye liner pencil 3 in 1': '3 In 1 Lip Eye Liner Pencil Set',
-  // Palettes / Kits
   'Makeup Palettes': 'All In One Makeup Palette With Mirror',
   'Makeup Sets': 'Beginner Makeup Set With Bag',
   'Makeup Kits': 'Travel Makeup Kit Essentials',
-  // Face Makeup catch-all
   'Face Makeup': 'Beginner Face Makeup Kit With Brushes',
-  // Compacts / Powders
   Compact: 'Compact Powder For Oily Skin Long Lasting',
   'Loose Powder': 'Talc Free Loose Setting Powder',
 }
 
-// Utility: choose best SEO title for a given subcategory name
 function bestSeoTitleForSubcategory(subCategoryName = '') {
   if (subCategoryBestTitles[subCategoryName]) return subCategoryBestTitles[subCategoryName]
   const key = Object.keys(subCategoryBestTitles).find(
@@ -120,7 +106,6 @@ function bestSeoTitleForSubcategory(subCategoryName = '') {
   return `${subCategoryName} buy online in Cameroon`
 }
 
-// ---------- Server fetchers (SSR) ----------
 async function fetchSubCategories() {
   try {
     const res = await fetch(`${baseURL}${SummaryApi.getSubCategory.url}`, {
@@ -169,7 +154,6 @@ async function fetchProductsByCatSub({ categoryId, subCategoryId, page = 1 }) {
   }
 }
 
-// ---------- Dynamic SEO ----------
 export async function generateMetadata({ params, searchParams }) {
   const paramsData = await params
   const searchParamsData = await searchParams
@@ -198,10 +182,9 @@ export async function generateMetadata({ params, searchParams }) {
   const commercialTitle = bestSeoTitleForSubcategory(subCategoryName)
   const title = `${commercialTitle} | ${subCategoryName}`
 
-  const desc =
-    products?.length
-      ? `Shop ${subCategoryName} in ${categoryName} at EssentialistMakeupStore. Discover ${products.length} of ${totalCount} products available with nationwide shipping, secure online payment, and great prices.`
-      : `Browse ${subCategoryName} in ${categoryName} at EssentialistMakeupStore. Fast Cameroon-wide delivery and secure checkout.`
+  const desc = products?.length
+    ? `Shop ${subCategoryName} in ${categoryName} at EssentialistMakeupStore. Discover ${products.length} of ${totalCount} products available with nationwide shipping, secure online payment, and great prices.`
+    : `Browse ${subCategoryName} in ${categoryName} at EssentialistMakeupStore. Fast Cameroon-wide delivery and secure checkout.`
 
   const canonical = `https://www.esmakeupstore.com/${categorySlug}/${subCategorySlug}${
     page > 1 ? `?page=${page}` : ''
@@ -250,7 +233,6 @@ export async function generateMetadata({ params, searchParams }) {
   }
 }
 
-// ---------- Schema.org JSON-LD ----------
 function StructuredData({ categorySlug, subCategorySlug, subCategoryName, products = [] }) {
   const url = `https://www.esmakeupstore.com/${categorySlug}/${subCategorySlug}`
 
@@ -314,7 +296,6 @@ function StructuredData({ categorySlug, subCategorySlug, subCategoryName, produc
   )
 }
 
-// ---------- Page (SSR) ----------
 export default async function ProductListPage({ params, searchParams }) {
   const paramsData = await params
   const searchParamsData = await searchParams
@@ -397,7 +378,12 @@ export default async function ProductListPage({ params, searchParams }) {
                     key={`${s?._id}-${index}`}
                     href={link}
                     title={subBest}
-                    className={`w-full p-2 lg:flex items-center lg:w-full lg:h-16 box-border lg:gap-4 border-b hover:bg-green-100 transition-colors duration-200 ${isActive ? 'bg-green-100' : ''}`}
+                    scroll
+                    className={`group relative w-full p-2 lg:flex items-center lg:w-full lg:h-16 box-border lg:gap-4 border-b transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-secondary-100 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                      isActive
+                        ? 'bg-secondary-200/10 text-secondary-100 border-secondary-200'
+                        : 'hover:bg-secondary-200/5'
+                    }`}
                     aria-current={isActive ? 'page' : undefined}
                     prefetch={false}
                   >
@@ -406,12 +392,22 @@ export default async function ProductListPage({ params, searchParams }) {
                       alt={s?.name}
                       className="w-14 lg:h-14 lg:w-12 h-full object-scale-down"
                       loading="lazy"
-                      width="56"
-                      height="56"
+                      width={56}
+                      height={56}
                     />
-                    <p className="-mt-6 lg:mt-0 text-xs text-center lg:text-left lg:text-base sm:text-sm text-pink-400 font-semibold py-6 lg:py-0">
+                    <p
+                      className={`-mt-6 lg:mt-0 text-xs text-center lg:text-left lg:text-base sm:text-sm font-semibold py-6 lg:py-0 transition-colors duration-200 ${
+                        isActive ? 'text-secondary-100' : 'text-primary'
+                      }`}
+                    >
                       {s?.name}
                     </p>
+                    {!isActive && (
+                      <span className="pointer-events-none absolute inset-y-2 left-0 w-1 rounded-full bg-transparent group-focus-visible:bg-secondary-100 group-hover:bg-secondary-100/40 transition-colors" />
+                    )}
+                    {isActive && (
+                      <span className="pointer-events-none absolute inset-y-2 left-0 w-1 rounded-full bg-secondary-100" />
+                    )}
                   </Link>
                 )
               })
@@ -433,7 +429,10 @@ export default async function ProductListPage({ params, searchParams }) {
               )}
             </header>
 
-            <section className="min-h-[80vh] max-h-[80vh] overflow-y-auto relative">
+            <section
+              key={`${subCategoryId}-${page}`}
+              className="min-h-[80vh] max-h-[80vh] overflow-y-auto relative"
+            >
               {products.length === 0 ? (
                 <div className="flex flex-col items-center justify-center h-full p-8 text-center">
                   <div className="text-gray-400 mb-4">
@@ -469,7 +468,7 @@ export default async function ProductListPage({ params, searchParams }) {
                     <nav className="p-4 text-center" aria-label="Pagination">
                       <Link
                         href={nextHref}
-                        className="inline-block px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+                        className="inline-block px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
                         prefetch={false}
                       >
                         Load More Products

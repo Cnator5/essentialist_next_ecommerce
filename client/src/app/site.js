@@ -42,6 +42,12 @@ export default async function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    {
+      url: 'https://www.esmakeupstore.com/blog',
+      lastModified: new Date().toISOString(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 
   let categories = [];

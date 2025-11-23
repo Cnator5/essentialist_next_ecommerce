@@ -1,1276 +1,1314 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset 
-    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-    xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-    <url>
-        <loc>https://esmakeupstore.com/</loc>
-        <changefreq>daily</changefreq>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/contact</loc>
-        <changefreq>monthly</changefreq>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/new-arrival</loc>
-        <changefreq>monthly</changefreq>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/brands</loc>
-        <changefreq>monthly</changefreq>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299</loc>
-        <lastmod>2025-05-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119645/glamourglow/updk1iyh7k5grkoornih.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8</loc>
-        <lastmod>2025-05-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748095607/glamourglow/ddag1aopmvea1k0h8xpg.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb</loc>
-        <lastmod>2025-07-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748095545/glamourglow/yt56fszmtpbk5ghjjmw5.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0</loc>
-        <lastmod>2025-07-07</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210848/glamourglow/ygmwxsfxhc0uset8q0d7.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753</loc>
-        <lastmod>2025-08-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257875/glamourglow/ddm7n3ziyzroegjnnn49.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656172/essentialist%20makeup%20store/v77ugrt9ktv8rtmw2gvf.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec</loc>
-        <lastmod>2025-08-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668046/essentialist%20makeup%20store/c6gpositkyk3naohhw0b.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/face-primer-680553c5764e6d332bd162c2</loc>
-        <lastmod>2025-04-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745179586/glamourglow/ftpc4gom20r9jegp99dp.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eyeliner-680554de764e6d332bd162f3</loc>
-        <lastmod>2025-04-20</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745179868/glamourglow/vg5adg7nyhnxaqtukhui.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lipstick-6806ba02bca41016c4406fa0</loc>
-        <lastmod>2025-04-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745271295/glamourglow/gefa3kjuxdrfijvud9d0.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealer-6806c684bca41016c440701c</loc>
-        <lastmod>2025-04-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274499/glamourglow/jmobzwotzupaa8vu4hec.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/foundation-6806c72abca41016c440702a</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248578/glamourglow/clfmclkmifdyr0fs9fjs.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/compact-6806c76abca41016c440702e</loc>
-        <lastmod>2025-04-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274728/glamourglow/ao2dydpqbywtwwiaytwg.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/contour-6806c7a5bca41016c4407032</loc>
-        <lastmod>2025-04-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274784/glamourglow/fm5yjucuvhe3lmnspb5w.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/loose-powder-6806c7fabca41016c4407036</loc>
-        <lastmod>2025-04-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274871/glamourglow/wn0xmupjeuwewmx2pawn.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/tinted-moisturizer-6806c85abca41016c440703a</loc>
-        <lastmod>2025-04-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274963/glamourglow/citsktwzrpgoetp2zs7l.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/kajal-6806c94bbca41016c4407076</loc>
-        <lastmod>2025-04-21</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745275205/glamourglow/n91sqpwpviplhqozg1y6.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/mascara-68078c85bca41016c4407588</loc>
-        <lastmod>2025-04-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745325165/glamourglow/cojmskrhn62ib1hnq4qi.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/liquid-lipstick-6808ba4bd61d997618c9a809</loc>
-        <lastmod>2025-04-23</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745402423/glamourglow/rrjdmagsbsczm3ryhjud.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf/makeup-kits-6808f477d61d997618c9aa42</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745417332/glamourglow/ckouxywzw0pmqrszqmbb.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-6808fac0d61d997618c9abd6</loc>
-        <lastmod>2025-04-23</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745418937/glamourglow/ybcogovm0ftrb0yv8h8h.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-crayon-681920859e1c9b273a48a09c</loc>
-        <lastmod>2025-05-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746477187/glamourglow/bch8jgwisd44lu6xudq9.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-gloss-681921099e1c9b273a48a0b6</loc>
-        <lastmod>2025-05-05</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746477320/glamourglow/pqfg6stc4vbtsyslez9h.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-liner-6819215f9e1c9b273a48a0ba</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170075/glamourglow/lz3cnqregonhrbtasope.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-plumper-681921a09e1c9b273a48a0be</loc>
-        <lastmod>2025-05-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746477474/glamourglow/c7cqkj5jvwgf0fcu6rav.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-tint-681921f29e1c9b273a48a0d0</loc>
-        <lastmod>2025-05-11</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746477554/glamourglow/steyozjt0qqrym83n1rn.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-brow-enhancers-68192e789e1c9b273a48a108</loc>
-        <lastmod>2025-05-09</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746480757/glamourglow/wghgzm7lbkfx4sbdixgz.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/total-control-drop-foundation-682b89064d22a2bf839f6fa8</loc>
-        <lastmod>2025-07-05</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1747683572/glamourglow/moue84zul341ecxpmrbh.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/powder-foundation-68322f0764d72c3a8f531bbc</loc>
-        <lastmod>2025-05-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119296/glamourglow/wkzwgdqxf1bihswtphfd.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-brow-cake-powder-6832336ee1f06493c6738d98</loc>
-        <lastmod>2025-05-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120424/glamourglow/oe1kixci01wlloii4sdo.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/bronzy-683239a95247169fee818f99</loc>
-        <lastmod>2025-05-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122018/glamourglow/rdoyut0vuipxqenap3f1.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/highlighters-and-luminizers-68326107ad3c362a575353e7</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748132098/glamourglow/ishyrvvzz3lb8ml0v2uu.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-cream-6832ee6feac2bef97c54882d</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168299/glamourglow/av8u3shw5kghdztfujba.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lipeye-liner-pencil-3-in-1-68337acb6e352fdd6a8034b7</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748204217/glamourglow/sappziwcdc6mdjxqc6uz.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/liquid-foundation-68337bac7435b8a0a884a7f4</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748204429/glamourglow/ap0qgyp6iexxbzhg2zqb.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/stick-foundation-68337cc01c2f524355d4ed90</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748204728/glamourglow/qpuyzmfflu1fudan4zpl.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/matte-bronzer-68337d871c2f524355d4ed9d</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748204930/glamourglow/sbzjscsoav9oz4tlkqb5.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/dark-circle-concealer-68337f4a6e352fdd6a8034d3</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748205381/glamourglow/u0ulxbua8cyol8oxmxs1.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/liquid-highlighter-68338c9663dd0ab705d75200</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208773/glamourglow/wuacxdh220gbpns0zfk9.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/illuminator-68338fd4dc8d6588a8f80930</loc>
-        <lastmod>2025-07-05</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209612/glamourglow/sv0c2wehakkvndkpi5kx.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/high-definition-blush-6833930163dd0ab705d75236</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210432/glamourglow/fobrwjlihiwq43d7vbv4.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0/all-blush-6833963293c0a92c8e769d20</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211244/glamourglow/ogboxzonsgiewj76eaea.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-lacquer-6834240f4743a53c13f20308</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247537/glamourglow/jirimata8dtpugruvt2y.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/matte-lip-sticks-683425c57d9df2f3db8cb2f8</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247970/glamourglow/bt4uhftifsa2gpe9azyv.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-palette-683429664c507b316566ee13</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248907/glamourglow/jkjgtytnojnjn2qnvygp.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/bronzy-powder-68345327f78c045cbfac0c3a</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259563/glamourglow/s7n81au6gh2mtx6zmmdh.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-cream-pallette-6834587ee6658ea6bc18330a</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260983/glamourglow/c0ekchld1lsgfah20aiz.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753/foundation-primers-6886aefc31c5811a6d69b958</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657019/essentialist%20makeup%20store/pzogb9scjwll2j9ilyvw.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/setting-spray-6886b5602a5acb976a3eea55</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753658715/essentialist%20makeup%20store/fnt00rwaisdf01vuys4u.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealers-and-neutralizers-6886ba8ba2b7da842299894a</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660040/essentialist%20makeup%20store/ekvmm12zhckemsvu3mac.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-cream-and-treatment-6886d0bfd23397cf96998bcb</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665721/essentialist%20makeup%20store/bzukjm7kwa7n0mq9pkvr.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/creams-and-moisturizers-6886d414d23397cf96998c7d</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666573/essentialist%20makeup%20store/kzmgr9i86mdyrq4u2zlf.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-serum-6886d713d23397cf96998c95</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667342/essentialist%20makeup%20store/njncrf5cryajpkzdxrr1.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-cream-6886d7e9d23397cf96998cd5</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667552/essentialist%20makeup%20store/cntdnmcmuq9zf5oy2imv.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec/all-setting-powder-6886db24d23397cf96998cfa</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668373/essentialist%20makeup%20store/xgmadz7zwmecwbbhq9d2.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/makeup-palettes-6886de09d23397cf96998d33</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669125/essentialist%20makeup%20store/d7eebyl8jnlt3l9figiz.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/highlighters-and-luminizers-6886de8fd23397cf96998d4d</loc>
-        <lastmod>2025-08-22</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669259/essentialist%20makeup%20store/drdqhcx1caoguoobymhc.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-duo-chromatic-illuminating-powder-snow-rose-6831ccc8c0c2ebc2246abee1</loc>
-        <lastmod>2025-07-19</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093675/glamourglow/up8qrjmbqtjejboplu56.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093707/glamourglow/m1kfv4ibz76tra4emsjg.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093732/glamourglow/nikirkix2gu1mupu2ili.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-worth-the-hype-volumizing-and-lengthening-mascara-black-6831d20a29361bedb252f0f4</loc>
-        <lastmod>2025-07-19</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748095049/glamourglow/re7hthymzk3wgt1pk7ox.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/la-girl-glide-eye-liner-pencil-351-very-black-6831d48e46fe00dd6c9e836d</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748096088/glamourglow/fljz5srxwfblv4tsknur.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748096749/glamourglow/yqnthfvlrp7y8m91nnqx.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-stay-matte-but-not-flat-powder-foundation-natural-6832303c4b5cd28eb829bcad</loc>
-        <lastmod>2025-07-19</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119522/glamourglow/ifac2ztnb5fwwd5yz10p.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-stay-matte-but-not-flat-liquid-foundation-ivory-118-ounce-683231fda35e6630b5dcdc0c</loc>
-        <lastmod>2025-07-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119891/glamourglow/rneyfwhrtmhogmfxzwym.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119898/glamourglow/yval0nczhubapskyvkbi.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119903/glamourglow/h4evtlygo47g1tyclmml.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119908/glamourglow/eryr1c2tfrrdxfxuie7e.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-eyebrow-cake-powder-blackgray-683234ce308cc86035e2c624</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120463/glamourglow/gmvwopnsrmcg1gb2u5wk.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120473/glamourglow/sqdgzheyciyz8gbhgo1a.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120483/glamourglow/hceo4xmcee7vxlddukbk.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120500/glamourglow/ibmum0mbjdvxqlasu78n.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120514/glamourglow/gavggqzgpdpfhwwd6rjv.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120529/glamourglow/nohtzzcmklmeet4jgtxh.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-mineral-foundation-stick-choose-your-shade-68323792aa1c99871d874dde</loc>
-        <lastmod>2025-09-03</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896170/essentialist%20makeup%20store/wl1leokucyf4fdrv5trt.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896184/essentialist%20makeup%20store/kgutujebcaimucjc0fce.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896192/essentialist%20makeup%20store/zswows7qypqxxn2vi0c5.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/matte-bronzer-68323ab1308cc86035e2c63a</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122173/glamourglow/rkgzeev8s2wycsxplanc.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122181/glamourglow/orvwhuxsa5wdqbakcbsn.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122189/glamourglow/dnw7skxshmzfojnr3dly.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122207/glamourglow/l8musn7lqcctw7xkd6tq.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-born-to-glow-liquid-illuminator-liquid-shimmer-makeup-highlighter-foundation-base-vegan-formula-shade-pure-gold-68323c25aa1c99871d874dfb</loc>
-        <lastmod>2025-05-24</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122770/glamourglow/hsto6viqw8irnwijmxsf.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122785/glamourglow/hm4kqwk9i7nzuvy4vl3v.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122821/glamourglow/p2f1wpgvbwn2rcduualz.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122912/glamourglow/xvnctqufuaugdrt1f8qn.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-away-we-glow-liquid-highlighter-golden-hour-022-fluid-ounce-683260e7ad3c362a575353e3</loc>
-        <lastmod>2025-09-03</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756895275/essentialist%20makeup%20store/u8ojp8rqtcnonl6fbvt0.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756895361/essentialist%20makeup%20store/w4gdkavawcxerxx73kkv.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/lip-lingerie-xxl-matte-liquid-lipstick-6832746794b23d7bce190111</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748136344/glamourglow/jnbzwxofynzfr1js6hrb.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748136979/glamourglow/xf7b5ja1u4mop2los8ss.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748137036/glamourglow/bdtizceyalqnny3xtijf.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748137049/glamourglow/ezdulnb8o6oesfkiakjm.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-liquid-suede-cream-lipstick-downtown-beauty-walnut-brown-6832efb533275196a3004bd1</loc>
-        <lastmod>2025-08-05</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168331/glamourglow/f3bky2xftyvdpypymk56.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168409/glamourglow/deu9t8yvrdyb6pwxocfq.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168426/glamourglow/wknrgliogq0o5hnulqla.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168431/glamourglow/p9xjmfhqnqfyofvx8avy.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168483/glamourglow/gb5j5myllyeq6ercylzs.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-line-and-load-two-in-one-lippie-6832f65abef660d5991d13e3</loc>
-        <lastmod>2025-08-05</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170246/glamourglow/aghexn4kzpihkz0nyuqc.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170275/glamourglow/q8s7fb9vgd0l81b6bcuh.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170284/glamourglow/hhmym5l47g9tnddndceo.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-glitter-goals-liquid-eyeshadow-various-shades-6832f948bef660d5991d13f6</loc>
-        <lastmod>2025-08-05</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170892/glamourglow/yzvwa7kkfxkf0ttqnd2x.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170959/glamourglow/unf54rv9g6tlut3ujdcw.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170967/glamourglow/mzgljc0dteg2veeo8vn6.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-dark-circle-concealer-deep-68338b1863dd0ab705d751ca</loc>
-        <lastmod>2025-08-05</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208365/glamourglow/opvu3gguh0slie9p8rxc.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208385/glamourglow/b4zq7zotjm9fxylx0hzy.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-a-bit-jelly-gel-illuminator-opalescent-6833911863dd0ab705d75232</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209855/glamourglow/eydjjdfd22nc5v2ixbjc.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209863/glamourglow/zybfsoni067lyuwxsum6.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-high-definition-blush-amber-016-ounce-hdb11-6833939663dd0ab705d75247</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210525/glamourglow/miyqqltyejvjwu3k4sdw.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210966/glamourglow/n3up2i2uuqrvhn23ewvo.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210986/glamourglow/qlye3txtmavkshu8hzx4.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211006/glamourglow/qxmho3dafk4dre3nhgzi.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-cosmetics-baked-blush-pink-fetish-683395fdb72dd7764122f499</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211098/glamourglow/sxl4jisaowsdwg5gasan.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/sweet-cheeks-soft-cheek-tint-cream-blush-683397aea4b726225299753b</loc>
-        <lastmod>2025-05-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211405/glamourglow/syt0vrfndhxfiwpsxnzq.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211595/glamourglow/qhtpofp3raqyzomhjwrf.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211626/glamourglow/dhkwymdwlflypgbqxl7q.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/slip-tease-full-color-lip-lacquer-6834249a28d670958afb465e</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247638/glamourglow/ycogtxt6k0w8xxp1vbdp.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247736/glamourglow/fzua6rxrq2undbmffalm.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247754/glamourglow/pcbfvwbnvxw8acmc1csv.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247773/glamourglow/odemdzbu71anqoohdtjq.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-soft-matte-lip-cream-lightweight-liquid-lipstick-cairo-matte-pure-nude-683426b94ab7fc299cc87554</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248106/glamourglow/xyf2eahykifxbw5geks9.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248219/glamourglow/hu0obfoju8jugj74kjv8.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248243/glamourglow/evujkqukcx9piwg4lwb4.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-cosmetics-high-definition-studio-photogenic-foundation-hdf101-nude-683428c2086cde4ab7705f00</loc>
-        <lastmod>2025-09-03</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248697/glamourglow/rcdoupllgxdxyeajzl8h.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248740/glamourglow/ywxoufflz0kunwej7xm7.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896465/essentialist%20makeup%20store/i8o9nwhmva51sdu2mwnf.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/the-smoky-fume-shadow-palettenyx-cosmeticstss01-68342a204c507b316566ee1f</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748249015/glamourglow/c0oatrbak3ghsfyekaih.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/total-control-pro-drop-foundation-68344c1e3f5474dcd03e0750</loc>
-        <lastmod>2025-05-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257441/glamourglow/jqolpfhiuwlgahhzvmvz.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257618/glamourglow/g8kkljxaz9ja6orgvgyg.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257728/glamourglow/zxppo5vqytjjkcoigsc8.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257746/glamourglow/gdkob4jnjfjbzwsxwwos.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-cosmetics-tango-with-bronzing-powder-tribal-odyssey-683453eef78c045cbfac0c4e</loc>
-        <lastmod>2025-07-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259640/glamourglow/b4artjg6xxpm7ulucqsr.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259767/glamourglow/wfuvyckirnjmwzcuzphe.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259791/glamourglow/nqsh2dnjb7gfyn58vrdo.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259817/glamourglow/hjvgqgwwumtnp4xbcgkn.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-ultimate-edit-mini-shadow-palette-eyeshadow-palette-warm-neutrals-683455b993bdbae560b5f479</loc>
-        <lastmod>2025-07-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260063/glamourglow/hxulube2dfh0yudpxs22.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260135/glamourglow/jpzogh41h7phhli45ttj.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260159/glamourglow/al2glemfl3yavgevnsbf.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491732/essentialist%20makeup%20store/ytq78polhe4pxef6vsdr.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491733/essentialist%20makeup%20store/rsadbxauaky7utcqvkrj.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491734/essentialist%20makeup%20store/fxwbdyn99g9s6uuzje7a.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-cosmetics-love-in-rio-3-pan-eyeshadow-palette-no-tan-lines-allowed-6834579793bdbae560b5f48d</loc>
-        <lastmod>2025-07-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260542/glamourglow/jd7w4nhnqiyt25qlozof.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260578/glamourglow/hpukulk9yi8kt1ragxed.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260601/glamourglow/udkt8tjx4olcjmm1lz7e.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260622/glamourglow/bq54morirhv2r3ltm3a2.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260641/glamourglow/grebszmdcobpbhmvbgra.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/nyx-professional-makeup-pro-lip-cream-palette-the-pinks-0317-ounce-6834593750f8e1fc84405f2e</loc>
-        <lastmod>2025-07-26</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261003/glamourglow/njcimrtnjtcubbo061th.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261022/glamourglow/crz4zdh43toanvbdfqa2.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261041/glamourglow/wjtxsxk12zpk5hw43e5g.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261075/glamourglow/fski9sf9furrpsyftiul.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261085/glamourglow/u4qpwdv40semoyu4hern.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/makeup-kit-makeup-sets-for-teens-makeup-kits-for-women-teenagers-make-up-eyeshadow-palette-foundation-concealer-lipgloss-makeup-kit-for-women-full-kit-6886ac7de0884528591860e1</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656288/essentialist%20makeup%20store/jfpxwdrwma2na4ce9spy.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656289/essentialist%20makeup%20store/vfdibdrgsrayjymdlcai.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656290/essentialist%20makeup%20store/vmmhthanfsslftodkroh.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656291/essentialist%20makeup%20store/ig9lryj5zdbvpwkf7w3k.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656292/essentialist%20makeup%20store/ukbbbxmbedisx31thrix.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656397/essentialist%20makeup%20store/ipkumdhps6lmwaeurlsn.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/elf-power-grip-primer-gel-based-and-hydrating-face-primer-for-smoothing-skin-and-gripping-makeup-moisturizes-and-primes-0811-fl-oz-24-ml-6886afb531c5811a6d69b963</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657212/essentialist%20makeup%20store/niazfnzmgvshnymxpbki.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657213/essentialist%20makeup%20store/ihywu9gh2mwdwfj632tt.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657215/essentialist%20makeup%20store/fux0l8xngwohb8bmmfk8.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657216/essentialist%20makeup%20store/twtsrz1lew52kqrdwwdc.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/eif-power-grip-dewy-setting-spray-6886b7caa2b7da842299892f</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659091/essentialist%20makeup%20store/zlt3pldk5i0qelrg4gbg.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659092/essentialist%20makeup%20store/uc7ivi6fyjhgkr9kbutm.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659093/essentialist%20makeup%20store/a6tcm6dxgib6t1pdjy2e.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659094/essentialist%20makeup%20store/dacaoyqaojlamiwjhxpo.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659095/essentialist%20makeup%20store/qnv5iibfmker3bpzxsfp.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/smashbox-always-on-skin-balancing-foundation-with-hyaluronic-acid-or-medium-to-full-coverage-or-hydrating-long-lasting-1-fl-oz-6886b9bea2b7da842299893e</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659697/essentialist%20makeup%20store/de0lenyhc7d6auunyiz7.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659703/essentialist%20makeup%20store/jcywtoyauyxhopzgobov.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659712/essentialist%20makeup%20store/zkziyvbbhlr4oo1jhwbr.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659713/essentialist%20makeup%20store/xu8xha41pgst7ebv79ak.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659714/essentialist%20makeup%20store/ehae30tbgct8tsabw1zu.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659715/essentialist%20makeup%20store/zmwh76v1vxej0jyv02dy.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/laura-geller-new-york-the-ideal-fix-concealer-porcelain-buildable-medium-to-full-coverage-liquid-concealer-covers-under-eye-dark-circles-and-blemishes-long-lasting-6886bb62a2b7da8422998955</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660196/essentialist%20makeup%20store/z8viotb401e0dppiqksh.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/laura-geller-new-york-always-there-waterproof-lengthening-mascara-in-black-or-long-lasting-mascara-for-volume-and-length-6886bc79a2b7da8422998958</loc>
-        <lastmod>2025-07-27</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660480/essentialist%20makeup%20store/ivzxbxbwfkvhpu9dog3s.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660488/essentialist%20makeup%20store/turrpzne5cz9gknsg5mz.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660490/essentialist%20makeup%20store/morjd8uhg4rthhdowdtq.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/smashbox-super-fan-lash-lengthening-mascara-or-lifting-long-lasting-volume-034-fl-oz-black-6886bf09a2b7da842299899c</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661152/essentialist%20makeup%20store/dj6xtxhk534sdtfvwpra.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661158/essentialist%20makeup%20store/jhepyvyol5vmljxczd6l.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661159/essentialist%20makeup%20store/ivokj6mjow8btla5nl7a.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/bobbi-brown-creamy-concealer-kit-natural-tan-by-bobbi-brown-for-women-011-ounce-concealer-011-ounce-6886bfc5a2b7da842299899f</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661322/essentialist%20makeup%20store/py0bcnb0qwwu1dkby6zn.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661323/essentialist%20makeup%20store/iwotnxlivz9d7d3tluft.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661324/essentialist%20makeup%20store/o1xvjxpaw9gpzvbodezb.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/bobbi-brown-weightless-skin-foundation-spf-15-warm-beige-6886c84da2b7da8422998a6d</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663458/essentialist%20makeup%20store/pndkuvptofohqyaq11ls.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663463/essentialist%20makeup%20store/atgc32xkpk3mhquzroem.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663467/essentialist%20makeup%20store/bveoonvh2mo0d4x1qmlz.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/too-faced-born-this-way-super-coverage-multi-use-concealer-or-full-coverage-oil-free-long-lasting-hydrating-6886c904a2b7da8422998a7c</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663711/essentialist%20makeup%20store/vnqy9ipldwsv236j3ztu.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663712/essentialist%20makeup%20store/lcogwvmf63sdtgrtwi4b.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663713/essentialist%20makeup%20store/q5edzb4radeehxw98ann.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663714/essentialist%20makeup%20store/s6ulj2swsjescq6o6wdh.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/too-faced-born-this-way-natural-finish-longwear-liquid-foundation-or-medium-to-full-coverage-or-hydrating-oil-free-6886c99ba2b7da8422998a80</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663852/essentialist%20makeup%20store/guzwis5va3gma4auvue7.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663853/essentialist%20makeup%20store/f9owyp67fbbyrhppzsl5.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663854/essentialist%20makeup%20store/hqjmygtq23fj5bhoqrkv.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/double-wear-stay-in-place-foundation-6886cb1ea2b7da8422998a86</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664221/essentialist%20makeup%20store/a4jb7upljfq2qkyu8imw.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664228/essentialist%20makeup%20store/isdudthvt4h86czhcg7q.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/laura-geller-new-york-baked-double-take-powder-foundation-fair-buildable-medium-to-full-coverage-matte-finish-6886ce38d23397cf96998bbe</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664954/essentialist%20makeup%20store/rthpjtbkdnfcwghleubr.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664957/essentialist%20makeup%20store/ai6euvgx0q1lxkzuntjw.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/estee-lauder-double-wear-stay-in-place-flawless-24-hour-concealer-or-longwear-or-soft-matte-finish-medium-to-full-coverage-or-hydrating-04-fl-oz-6886ceb1d23397cf96998bc1</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665160/essentialist%20makeup%20store/taeolmd5to9aue0s81sr.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665161/essentialist%20makeup%20store/dalrbddkpr7n1vcq6khe.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/laura-geller-new-york-modern-classic-cream-lipstick-trio-mauve-majesty-real-rosy-novel-neutral-6886cf61d23397cf96998bc4</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665308/essentialist%20makeup%20store/ao36nueemgwwhjscy6r2.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665309/essentialist%20makeup%20store/enbtq9d8mtusk10xbrhz.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665309/essentialist%20makeup%20store/fj9ejoixxwr4inqitzqh.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/advanced-night-repair-eye-concentrate-matrix-synchronized-multi-recovery-complex-6886d0a9d23397cf96998bc7</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665554/essentialist%20makeup%20store/k6rmbsdih12n9fv9zob5.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665562/essentialist%20makeup%20store/emdfkmn0gpzktjplqjvl.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665563/essentialist%20makeup%20store/to6fddy1vmso2jnmshl7.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/estee-lauder-resilience-multi-effect-tri-peptide-face-and-neck-cream-moisturizer-spf-15-or-plumping-and-anti-aging-6886d480d23397cf96998c88</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666634/essentialist%20makeup%20store/a0dsish9hfzw2zv2gfer.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666656/essentialist%20makeup%20store/nkimlv3kx57tjxx6j5cg.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666657/essentialist%20makeup%20store/b2rp7ecmgiharo1fz7r4.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/mac-studio-fix-fluid-foundation-spf-15-c8-1-ounce-6886d524d23397cf96998c8b</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666797/essentialist%20makeup%20store/nuop9cd8kincejlqgyzc.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/mac-studio-fix-powder-plus-foundation-6886d5d5d23397cf96998c8e</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666949/essentialist%20makeup%20store/dii75mudetmeq0rywdp8.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666950/essentialist%20makeup%20store/yoluyxo26l1vv9rdrzvl.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/moisture-surge-eyetm-96-hour-hydro-filler-concentrate-moisture-surge-eyetm-96-hour-hydro-filler-concentrate-6886d6ebd23397cf96998c91</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667228/essentialist%20makeup%20store/wkspe0zq0zab4ji2jwdc.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667232/essentialist%20makeup%20store/hczd2uxlz4qe3lqp9c4f.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/clinique-smart-clinical-repairtm-wrinkle-correcting-eye-cream-6886d877d23397cf96998ce6</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667654/essentialist%20makeup%20store/tjw7u0wmiioj0tky2xuv.avif</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667655/essentialist%20makeup%20store/uz5t9wetenh5jfrze4z8.avif</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/on-til-dawn-mattifying-waterproof-setting-spray-full-sized-6886d974d23397cf96998ce9</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667815/essentialist%20makeup%20store/rrtmtap0izvakrzfizvj.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667816/essentialist%20makeup%20store/fmmhzo3jbdc3pj4bigml.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/ultimate-blurring-setting-powder-full-sized-6886daddd23397cf96998cf5</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668261/essentialist%20makeup%20store/prqqx9zhwgla2qpsiwun.webp</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668262/essentialist%20makeup%20store/za6qgf1ufdtx61eeya3p.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/juvias-place-blushed-liquid-blush-blushlily-dewy-tint-cheeks-makeup-glow-pigment-effortless-beauty-long-lasting-cosmetics-soft-creamy-natural-buildable-all-skin-color-light-flawless-finish-blend-6886dcebd23397cf96998d24</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668791/essentialist%20makeup%20store/g6qef2i1qvmtdpzdtlpy.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/juvias-place-warrior-2-eyeshadow-palette-professional-eye-makeup-pigmented-eyeshadow-palette-makeup-palette-for-eye-color-and-shine-pressed-eyeshadow-cosmetics-6886ddb5d23397cf96998d27</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668919/essentialist%20makeup%20store/nbetnvgg0vg2tmfrb1ff.jpg</image:loc>
-        </image:image>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668920/essentialist%20makeup%20store/cf7ojqxfr1zyzs0exz4k.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/juvias-place-loose-highlighter-nubian-royalty-2-illuminating-loose-powder-highlighter-makeup-shimmer-powder-that-gives-radiant-glow-suitable-for-all-skin-tone-6886df05d23397cf96998d59</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669357/essentialist%20makeup%20store/m79oo5wpfedx1pjmygvx.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/kimchi-chic-beauty-puff-puff-pass-set-and-bake-setting-powder-for-makeup-extra-fluffy-loose-face-powder-poof-soft-natural-face-makeup-for-uneven-skin-tone-03-translucent-6886e36dd23397cf96998e13</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670450/essentialist%20makeup%20store/ea8k6pojuzpv8eisdaeh.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/one-size-ultimate-blurring-setting-powder-travel-size-translucent-for-fair-to-medium-dark-skin-6886e3c3d23397cf96998e16</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670570/essentialist%20makeup%20store/mofalocxvpuywpd1jsr3.jpg</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/one-size-ultimate-blurring-setting-powder-travel-size-ultra-pink-for-fair-to-medium-skin-tones-6886e427d23397cf96998e20</loc>
-        <lastmod>2025-08-08</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670647/essentialist%20makeup%20store/keqdkvwfl5dmr47dhao2.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/makeup-kit-for-women-full-kit-makeup-kits-for-teens-teenager-makeup-gift-set-for-teens-women-eyeshadow-foundationteen-makeup-kit-makeup-sets-6886e547d23397cf96998e2e</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670835/essentialist%20makeup%20store/xbzze6kq3rsmcfestfh6.webp</image:loc>
-        </image:image>
-    </url>
-    <url>
-        <loc>https://esmakeupstore.com/product/makeup-sets-for-teens-makeup-kit-for-women-full-kit-makeup-set-makeup-kit-eyeshadow-palette-foundation-makeup-gift-set-for-teenager-girls-6886e5c7d23397cf96998e31</loc>
-        <lastmod>2025-07-28</lastmod>
-        <changefreq>weekly</changefreq>
-        <image:image>
-            <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753671063/essentialist%20makeup%20store/fau6tkpyptiknnlbmwa7.jpg</image:loc>
-        </image:image>
-    </url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<url>
+<loc>https://esmakeupstore.com/</loc>
+<changefreq>daily</changefreq>
+</url>
+<url>
+<loc>https://esmakeupstore.com/contact</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
+<loc>https://esmakeupstore.com/new-arrival</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
+<loc>https://esmakeupstore.com/brands</loc>
+<changefreq>monthly</changefreq>
+</url>
+<url>
+<loc>https://esmakeupstore.com/blog</loc>
+<changefreq>weekly</changefreq>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299</loc>
+<lastmod>2025-05-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119645/glamourglow/updk1iyh7k5grkoornih.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8</loc>
+<lastmod>2025-05-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748095607/glamourglow/ddag1aopmvea1k0h8xpg.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb</loc>
+<lastmod>2025-07-07</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748095545/glamourglow/yt56fszmtpbk5ghjjmw5.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0</loc>
+<lastmod>2025-07-07</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210848/glamourglow/ygmwxsfxhc0uset8q0d7.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753</loc>
+<lastmod>2025-08-22</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257875/glamourglow/ddm7n3ziyzroegjnnn49.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf</loc>
+<lastmod>2025-11-02</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656172/essentialist%20makeup%20store/v77ugrt9ktv8rtmw2gvf.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec</loc>
+<lastmod>2025-08-22</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668046/essentialist%20makeup%20store/c6gpositkyk3naohhw0b.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/face-primer-680553c5764e6d332bd162c2</loc>
+<lastmod>2025-04-20</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745179586/glamourglow/ftpc4gom20r9jegp99dp.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eyeliner-680554de764e6d332bd162f3</loc>
+<lastmod>2025-04-20</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745179868/glamourglow/vg5adg7nyhnxaqtukhui.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lipstick-6806ba02bca41016c4406fa0</loc>
+<lastmod>2025-04-21</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745271295/glamourglow/gefa3kjuxdrfijvud9d0.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealer-6806c684bca41016c440701c</loc>
+<lastmod>2025-04-21</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274499/glamourglow/jmobzwotzupaa8vu4hec.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753/foundation-6806c72abca41016c440702a</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248578/glamourglow/clfmclkmifdyr0fs9fjs.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/compact-6806c76abca41016c440702e</loc>
+<lastmod>2025-04-21</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274728/glamourglow/ao2dydpqbywtwwiaytwg.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/contour-6806c7a5bca41016c4407032</loc>
+<lastmod>2025-04-21</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274784/glamourglow/fm5yjucuvhe3lmnspb5w.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/loose-powder-6806c7fabca41016c4407036</loc>
+<lastmod>2025-04-21</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274871/glamourglow/wn0xmupjeuwewmx2pawn.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/tinted-moisturizer-6806c85abca41016c440703a</loc>
+<lastmod>2025-04-21</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745274963/glamourglow/citsktwzrpgoetp2zs7l.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/kajal-6806c94bbca41016c4407076</loc>
+<lastmod>2025-04-21</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745275205/glamourglow/n91sqpwpviplhqozg1y6.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/mascara-68078c85bca41016c4407588</loc>
+<lastmod>2025-04-22</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745325165/glamourglow/cojmskrhn62ib1hnq4qi.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/liquid-lipstick-6808ba4bd61d997618c9a809</loc>
+<lastmod>2025-04-23</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745402423/glamourglow/rrjdmagsbsczm3ryhjud.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/makeup-sets-6886ab6fe4268c581ac367cf/makeup-kits-6808f477d61d997618c9aa42</loc>
+<lastmod>2025-07-27</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745417332/glamourglow/ckouxywzw0pmqrszqmbb.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-6808fac0d61d997618c9abd6</loc>
+<lastmod>2025-04-23</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1745418937/glamourglow/ybcogovm0ftrb0yv8h8h.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-crayon-681920859e1c9b273a48a09c</loc>
+<lastmod>2025-05-11</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746477187/glamourglow/bch8jgwisd44lu6xudq9.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-gloss-681921099e1c9b273a48a0b6</loc>
+<lastmod>2025-05-05</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746477320/glamourglow/pqfg6stc4vbtsyslez9h.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-liner-6819215f9e1c9b273a48a0ba</loc>
+<lastmod>2025-05-25</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170075/glamourglow/lz3cnqregonhrbtasope.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-plumper-681921a09e1c9b273a48a0be</loc>
+<lastmod>2025-05-11</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746477474/glamourglow/c7cqkj5jvwgf0fcu6rav.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-tint-681921f29e1c9b273a48a0d0</loc>
+<lastmod>2025-05-11</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746477554/glamourglow/steyozjt0qqrym83n1rn.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-brow-enhancers-68192e789e1c9b273a48a108</loc>
+<lastmod>2025-05-09</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1746480757/glamourglow/wghgzm7lbkfx4sbdixgz.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/total-control-drop-foundation-682b89064d22a2bf839f6fa8</loc>
+<lastmod>2025-07-05</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1747683572/glamourglow/moue84zul341ecxpmrbh.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/powder-foundation-68322f0764d72c3a8f531bbc</loc>
+<lastmod>2025-05-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119296/glamourglow/wkzwgdqxf1bihswtphfd.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-brow-cake-powder-6832336ee1f06493c6738d98</loc>
+<lastmod>2025-05-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120424/glamourglow/oe1kixci01wlloii4sdo.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/bronzy-683239a95247169fee818f99</loc>
+<lastmod>2025-05-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122018/glamourglow/rdoyut0vuipxqenap3f1.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/highlighters-and-luminizers-68326107ad3c362a575353e7</loc>
+<lastmod>2025-05-25</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748132098/glamourglow/ishyrvvzz3lb8ml0v2uu.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-cream-6832ee6feac2bef97c54882d</loc>
+<lastmod>2025-05-25</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168299/glamourglow/av8u3shw5kghdztfujba.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lipeye-liner-pencil-3-in-1-68337acb6e352fdd6a8034b7</loc>
+<lastmod>2025-07-27</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748204217/glamourglow/sappziwcdc6mdjxqc6uz.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753/liquid-foundation-68337bac7435b8a0a884a7f4</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748204429/glamourglow/ap0qgyp6iexxbzhg2zqb.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753/stick-foundation-68337cc01c2f524355d4ed90</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748204728/glamourglow/qpuyzmfflu1fudan4zpl.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/matte-bronzer-68337d871c2f524355d4ed9d</loc>
+<lastmod>2025-05-25</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748204930/glamourglow/sbzjscsoav9oz4tlkqb5.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/dark-circle-concealer-68337f4a6e352fdd6a8034d3</loc>
+<lastmod>2025-05-25</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748205381/glamourglow/u0ulxbua8cyol8oxmxs1.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/liquid-highlighter-68338c9663dd0ab705d75200</loc>
+<lastmod>2025-05-25</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208773/glamourglow/wuacxdh220gbpns0zfk9.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/illuminator-68338fd4dc8d6588a8f80930</loc>
+<lastmod>2025-07-05</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209612/glamourglow/sv0c2wehakkvndkpi5kx.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/high-definition-blush-6833930163dd0ab705d75236</loc>
+<lastmod>2025-05-25</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210432/glamourglow/fobrwjlihiwq43d7vbv4.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/blush-makeup-683394b5e4a011b9b5865ad0/all-blush-6833963293c0a92c8e769d20</loc>
+<lastmod>2025-05-25</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211244/glamourglow/ogboxzonsgiewj76eaea.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-lacquer-6834240f4743a53c13f20308</loc>
+<lastmod>2025-05-26</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247537/glamourglow/jirimata8dtpugruvt2y.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/matte-lip-sticks-683425c57d9df2f3db8cb2f8</loc>
+<lastmod>2025-05-26</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247970/glamourglow/bt4uhftifsa2gpe9azyv.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-shadow-palette-683429664c507b316566ee13</loc>
+<lastmod>2025-05-26</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248907/glamourglow/jkjgtytnojnjn2qnvygp.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/bronzy-powder-68345327f78c045cbfac0c3a</loc>
+<lastmod>2025-05-26</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259563/glamourglow/s7n81au6gh2mtx6zmmdh.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/lip-makeup-6806b355bca41016c4406edb/lip-cream-pallette-6834587ee6658ea6bc18330a</loc>
+<lastmod>2025-05-26</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260983/glamourglow/c0ekchld1lsgfah20aiz.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/foundation-makeup-68344c5d3f5474dcd03e0753/foundation-primers-6886aefc31c5811a6d69b958</loc>
+<lastmod>2025-07-27</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657019/essentialist%20makeup%20store/pzogb9scjwll2j9ilyvw.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/setting-spray-6886b5602a5acb976a3eea55</loc>
+<lastmod>2025-07-27</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753658715/essentialist%20makeup%20store/fnt00rwaisdf01vuys4u.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealers-and-neutralizers-6886ba8ba2b7da842299894a</loc>
+<lastmod>2025-07-27</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660040/essentialist%20makeup%20store/ekvmm12zhckemsvu3mac.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-cream-and-treatment-6886d0bfd23397cf96998bcb</loc>
+<lastmod>2025-07-28</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665721/essentialist%20makeup%20store/bzukjm7kwa7n0mq9pkvr.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/creams-and-moisturizers-6886d414d23397cf96998c7d</loc>
+<lastmod>2025-07-28</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666573/essentialist%20makeup%20store/kzmgr9i86mdyrq4u2zlf.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-serum-6886d713d23397cf96998c95</loc>
+<lastmod>2025-07-28</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667342/essentialist%20makeup%20store/njncrf5cryajpkzdxrr1.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/eye-makeup-68055442764e6d332bd162c8/eye-cream-6886d7e9d23397cf96998cd5</loc>
+<lastmod>2025-07-28</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667552/essentialist%20makeup%20store/cntdnmcmuq9zf5oy2imv.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/setting-powder-6886d9d2d23397cf96998cec/all-setting-powder-6886db24d23397cf96998cfa</loc>
+<lastmod>2025-07-28</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668373/essentialist%20makeup%20store/xgmadz7zwmecwbbhq9d2.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/makeup-palettes-6886de09d23397cf96998d33</loc>
+<lastmod>2025-07-28</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669125/essentialist%20makeup%20store/d7eebyl8jnlt3l9figiz.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/highlighters-and-luminizers-6886de8fd23397cf96998d4d</loc>
+<lastmod>2025-08-22</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669259/essentialist%20makeup%20store/drdqhcx1caoguoobymhc.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/powder-68fba2361cbb9f3741e63fc3</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1761321514/essentialist%20makeup%20store/kg5ik4n3yydyckups8qd.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/concealers-and-correctors-68fbbc7d757e4370ace94541</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1761328242/essentialist%20makeup%20store/kosldw1pgimbobugj44t.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/face-makeup-68055310764e6d332bd16299/cleansers-68fbbf3414f74b3cc8ba37a0</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1761328938/essentialist%20makeup%20store/gdrjiptubznuynxmcfby.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-duo-chromatic-illuminating-powder-snow-rose-6831ccc8c0c2ebc2246abee1</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093675/glamourglow/up8qrjmbqtjejboplu56.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093707/glamourglow/m1kfv4ibz76tra4emsjg.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093732/glamourglow/nikirkix2gu1mupu2ili.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-worth-the-hype-volumizing-and-lengthening-mascara-black-6831d20a29361bedb252f0f4</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748095049/glamourglow/re7hthymzk3wgt1pk7ox.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/la-girl-glide-eye-liner-pencil-351-very-black-6831d48e46fe00dd6c9e836d</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748096088/glamourglow/fljz5srxwfblv4tsknur.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748096749/glamourglow/yqnthfvlrp7y8m91nnqx.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-stay-matte-but-not-flat-powder-foundation-natural-6832303c4b5cd28eb829bcad</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119522/glamourglow/ifac2ztnb5fwwd5yz10p.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-stay-matte-but-not-flat-liquid-foundation-ivory-118-ounce-683231fda35e6630b5dcdc0c</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119891/glamourglow/rneyfwhrtmhogmfxzwym.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119898/glamourglow/yval0nczhubapskyvkbi.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119903/glamourglow/h4evtlygo47g1tyclmml.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119908/glamourglow/eryr1c2tfrrdxfxuie7e.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-eyebrow-cake-powder-blackgray-683234ce308cc86035e2c624</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120463/glamourglow/gmvwopnsrmcg1gb2u5wk.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120473/glamourglow/sqdgzheyciyz8gbhgo1a.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120483/glamourglow/hceo4xmcee7vxlddukbk.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120500/glamourglow/ibmum0mbjdvxqlasu78n.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120514/glamourglow/gavggqzgpdpfhwwd6rjv.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120529/glamourglow/nohtzzcmklmeet4jgtxh.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-mineral-foundation-stick-choose-your-shade-68323792aa1c99871d874dde</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896170/essentialist%20makeup%20store/wl1leokucyf4fdrv5trt.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896184/essentialist%20makeup%20store/kgutujebcaimucjc0fce.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896192/essentialist%20makeup%20store/zswows7qypqxxn2vi0c5.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/matte-bronzer-68323ab1308cc86035e2c63a</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122173/glamourglow/rkgzeev8s2wycsxplanc.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122181/glamourglow/orvwhuxsa5wdqbakcbsn.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122189/glamourglow/dnw7skxshmzfojnr3dly.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122207/glamourglow/l8musn7lqcctw7xkd6tq.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-born-to-glow-liquid-illuminator-liquid-shimmer-makeup-highlighter-foundation-base-vegan-formula-shade-pure-gold-68323c25aa1c99871d874dfb</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122770/glamourglow/hsto6viqw8irnwijmxsf.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122785/glamourglow/hm4kqwk9i7nzuvy4vl3v.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122821/glamourglow/p2f1wpgvbwn2rcduualz.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122912/glamourglow/xvnctqufuaugdrt1f8qn.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-away-we-glow-liquid-highlighter-golden-hour-022-fluid-ounce-683260e7ad3c362a575353e3</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1761329524/essentialist%20makeup%20store/xclnjenj2qpr3qgpuras.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/lip-lingerie-xxl-matte-liquid-lipstick-6832746794b23d7bce190111</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748136344/glamourglow/jnbzwxofynzfr1js6hrb.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748136979/glamourglow/xf7b5ja1u4mop2los8ss.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748137036/glamourglow/bdtizceyalqnny3xtijf.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748137049/glamourglow/ezdulnb8o6oesfkiakjm.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-liquid-suede-cream-lipstick-downtown-beauty-walnut-brown-6832efb533275196a3004bd1</loc>
+<lastmod>2025-11-10</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168331/glamourglow/f3bky2xftyvdpypymk56.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168409/glamourglow/deu9t8yvrdyb6pwxocfq.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168426/glamourglow/wknrgliogq0o5hnulqla.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168431/glamourglow/p9xjmfhqnqfyofvx8avy.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168483/glamourglow/gb5j5myllyeq6ercylzs.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-line-and-load-two-in-one-lippie-6832f65abef660d5991d13e3</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170246/glamourglow/aghexn4kzpihkz0nyuqc.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170275/glamourglow/q8s7fb9vgd0l81b6bcuh.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170284/glamourglow/hhmym5l47g9tnddndceo.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-glitter-goals-liquid-eyeshadow-various-shades-6832f948bef660d5991d13f6</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170892/glamourglow/yzvwa7kkfxkf0ttqnd2x.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170959/glamourglow/unf54rv9g6tlut3ujdcw.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170967/glamourglow/mzgljc0dteg2veeo8vn6.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-dark-circle-concealer-deep-68338b1863dd0ab705d751ca</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208365/glamourglow/opvu3gguh0slie9p8rxc.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208385/glamourglow/b4zq7zotjm9fxylx0hzy.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-a-bit-jelly-gel-illuminator-opalescent-6833911863dd0ab705d75232</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209855/glamourglow/eydjjdfd22nc5v2ixbjc.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209863/glamourglow/zybfsoni067lyuwxsum6.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-high-definition-blush-amber-016-ounce-hdb11-6833939663dd0ab705d75247</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210525/glamourglow/miyqqltyejvjwu3k4sdw.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210966/glamourglow/n3up2i2uuqrvhn23ewvo.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210986/glamourglow/qlye3txtmavkshu8hzx4.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211006/glamourglow/qxmho3dafk4dre3nhgzi.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-cosmetics-baked-blush-pink-fetish-683395fdb72dd7764122f499</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211098/glamourglow/sxl4jisaowsdwg5gasan.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/sweet-cheeks-soft-cheek-tint-cream-blush-683397aea4b726225299753b</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211405/glamourglow/syt0vrfndhxfiwpsxnzq.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211595/glamourglow/qhtpofp3raqyzomhjwrf.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211626/glamourglow/dhkwymdwlflypgbqxl7q.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-slip-tease-full-color-lip-lacquer-6834249a28d670958afb465e</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247638/glamourglow/ycogtxt6k0w8xxp1vbdp.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247736/glamourglow/fzua6rxrq2undbmffalm.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247754/glamourglow/pcbfvwbnvxw8acmc1csv.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247773/glamourglow/odemdzbu71anqoohdtjq.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-soft-matte-lip-cream-lightweight-liquid-lipstick-cairo-matte-pure-nude-683426b94ab7fc299cc87554</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248106/glamourglow/xyf2eahykifxbw5geks9.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248219/glamourglow/hu0obfoju8jugj74kjv8.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248243/glamourglow/evujkqukcx9piwg4lwb4.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-cosmetics-high-definition-studio-photogenic-foundation-hdf101-nude-683428c2086cde4ab7705f00</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248697/glamourglow/rcdoupllgxdxyeajzl8h.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248740/glamourglow/ywxoufflz0kunwej7xm7.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896465/essentialist%20makeup%20store/i8o9nwhmva51sdu2mwnf.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/the-smoky-fume-shadow-palettenyx-cosmeticstss01-68342a204c507b316566ee1f</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748249015/glamourglow/c0oatrbak3ghsfyekaih.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/total-control-pro-drop-foundation-68344c1e3f5474dcd03e0750</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257441/glamourglow/jqolpfhiuwlgahhzvmvz.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257618/glamourglow/g8kkljxaz9ja6orgvgyg.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257728/glamourglow/zxppo5vqytjjkcoigsc8.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257746/glamourglow/gdkob4jnjfjbzwsxwwos.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-cosmetics-tango-with-bronzing-powder-tribal-odyssey-683453eef78c045cbfac0c4e</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259640/glamourglow/b4artjg6xxpm7ulucqsr.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259767/glamourglow/wfuvyckirnjmwzcuzphe.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259791/glamourglow/nqsh2dnjb7gfyn58vrdo.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259817/glamourglow/hjvgqgwwumtnp4xbcgkn.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-ultimate-edit-mini-shadow-palette-eyeshadow-palette-warm-neutrals-683455b993bdbae560b5f479</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260063/glamourglow/hxulube2dfh0yudpxs22.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260135/glamourglow/jpzogh41h7phhli45ttj.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260159/glamourglow/al2glemfl3yavgevnsbf.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491732/essentialist%20makeup%20store/ytq78polhe4pxef6vsdr.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491733/essentialist%20makeup%20store/rsadbxauaky7utcqvkrj.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491734/essentialist%20makeup%20store/fxwbdyn99g9s6uuzje7a.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-cosmetics-love-in-rio-3-pan-eyeshadow-palette-no-tan-lines-allowed-6834579793bdbae560b5f48d</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260542/glamourglow/jd7w4nhnqiyt25qlozof.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260578/glamourglow/hpukulk9yi8kt1ragxed.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260601/glamourglow/udkt8tjx4olcjmm1lz7e.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260622/glamourglow/bq54morirhv2r3ltm3a2.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260641/glamourglow/grebszmdcobpbhmvbgra.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/nyx-professional-makeup-pro-lip-cream-palette-the-pinks-0317-ounce-6834593750f8e1fc84405f2e</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261003/glamourglow/njcimrtnjtcubbo061th.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261022/glamourglow/crz4zdh43toanvbdfqa2.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261041/glamourglow/wjtxsxk12zpk5hw43e5g.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261075/glamourglow/fski9sf9furrpsyftiul.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261085/glamourglow/u4qpwdv40semoyu4hern.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/makeup-kit-makeup-sets-for-teens-makeup-kits-for-women-teenagers-make-up-eyeshadow-palette-foundation-concealer-lipgloss-makeup-kit-for-women-full-kit-6886ac7de0884528591860e1</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656288/essentialist%20makeup%20store/jfpxwdrwma2na4ce9spy.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656289/essentialist%20makeup%20store/vfdibdrgsrayjymdlcai.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656290/essentialist%20makeup%20store/vmmhthanfsslftodkroh.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656291/essentialist%20makeup%20store/ig9lryj5zdbvpwkf7w3k.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656292/essentialist%20makeup%20store/ukbbbxmbedisx31thrix.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656397/essentialist%20makeup%20store/ipkumdhps6lmwaeurlsn.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/elf-power-grip-primer-gel-based-and-hydrating-face-primer-for-smoothing-skin-and-gripping-makeup-moisturizes-and-primes-0811-fl-oz-24-ml-6886afb531c5811a6d69b963</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657212/essentialist%20makeup%20store/niazfnzmgvshnymxpbki.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657213/essentialist%20makeup%20store/ihywu9gh2mwdwfj632tt.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657215/essentialist%20makeup%20store/fux0l8xngwohb8bmmfk8.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657216/essentialist%20makeup%20store/twtsrz1lew52kqrdwwdc.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/eif-power-grip-dewy-setting-spray-6886b7caa2b7da842299892f</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659091/essentialist%20makeup%20store/zlt3pldk5i0qelrg4gbg.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659092/essentialist%20makeup%20store/uc7ivi6fyjhgkr9kbutm.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659093/essentialist%20makeup%20store/a6tcm6dxgib6t1pdjy2e.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659094/essentialist%20makeup%20store/dacaoyqaojlamiwjhxpo.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659095/essentialist%20makeup%20store/qnv5iibfmker3bpzxsfp.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/smashbox-always-on-skin-balancing-foundation-with-hyaluronic-acid-or-medium-to-full-coverage-or-hydrating-long-lasting-1-fl-oz-6886b9bea2b7da842299893e</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659697/essentialist%20makeup%20store/de0lenyhc7d6auunyiz7.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659703/essentialist%20makeup%20store/jcywtoyauyxhopzgobov.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659712/essentialist%20makeup%20store/zkziyvbbhlr4oo1jhwbr.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659713/essentialist%20makeup%20store/xu8xha41pgst7ebv79ak.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659714/essentialist%20makeup%20store/ehae30tbgct8tsabw1zu.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659715/essentialist%20makeup%20store/zmwh76v1vxej0jyv02dy.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/laura-geller-new-york-the-ideal-fix-concealer-porcelain-buildable-medium-to-full-coverage-liquid-concealer-covers-under-eye-dark-circles-and-blemishes-long-lasting-6886bb62a2b7da8422998955</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660196/essentialist%20makeup%20store/z8viotb401e0dppiqksh.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/laura-geller-new-york-always-there-waterproof-lengthening-mascara-in-black-or-long-lasting-mascara-for-volume-and-length-6886bc79a2b7da8422998958</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660480/essentialist%20makeup%20store/ivzxbxbwfkvhpu9dog3s.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660488/essentialist%20makeup%20store/turrpzne5cz9gknsg5mz.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660490/essentialist%20makeup%20store/morjd8uhg4rthhdowdtq.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/smashbox-super-fan-lash-lengthening-mascara-or-lifting-long-lasting-volume-034-fl-oz-black-6886bf09a2b7da842299899c</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661152/essentialist%20makeup%20store/dj6xtxhk534sdtfvwpra.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661158/essentialist%20makeup%20store/jhepyvyol5vmljxczd6l.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661159/essentialist%20makeup%20store/ivokj6mjow8btla5nl7a.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/bobbi-brown-creamy-concealer-kit-natural-tan-by-bobbi-brown-for-women-011-ounce-concealer-011-ounce-6886bfc5a2b7da842299899f</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661322/essentialist%20makeup%20store/py0bcnb0qwwu1dkby6zn.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661323/essentialist%20makeup%20store/iwotnxlivz9d7d3tluft.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661324/essentialist%20makeup%20store/o1xvjxpaw9gpzvbodezb.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/bobbi-brown-weightless-skin-foundation-spf-15-warm-beige-6886c84da2b7da8422998a6d</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663458/essentialist%20makeup%20store/pndkuvptofohqyaq11ls.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663463/essentialist%20makeup%20store/atgc32xkpk3mhquzroem.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663467/essentialist%20makeup%20store/bveoonvh2mo0d4x1qmlz.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/too-faced-born-this-way-super-coverage-multi-use-concealer-or-full-coverage-oil-free-long-lasting-hydrating-6886c904a2b7da8422998a7c</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663711/essentialist%20makeup%20store/vnqy9ipldwsv236j3ztu.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663712/essentialist%20makeup%20store/lcogwvmf63sdtgrtwi4b.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663713/essentialist%20makeup%20store/q5edzb4radeehxw98ann.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663714/essentialist%20makeup%20store/s6ulj2swsjescq6o6wdh.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/too-faced-born-this-way-natural-finish-longwear-liquid-foundation-or-medium-to-full-coverage-or-hydrating-oil-free-6886c99ba2b7da8422998a80</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663852/essentialist%20makeup%20store/guzwis5va3gma4auvue7.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663853/essentialist%20makeup%20store/f9owyp67fbbyrhppzsl5.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663854/essentialist%20makeup%20store/hqjmygtq23fj5bhoqrkv.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/double-wear-stay-in-place-foundation-6886cb1ea2b7da8422998a86</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664221/essentialist%20makeup%20store/a4jb7upljfq2qkyu8imw.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664228/essentialist%20makeup%20store/isdudthvt4h86czhcg7q.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/laura-geller-new-york-baked-double-take-powder-foundation-fair-buildable-medium-to-full-coverage-matte-finish-6886ce38d23397cf96998bbe</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664954/essentialist%20makeup%20store/rthpjtbkdnfcwghleubr.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664957/essentialist%20makeup%20store/ai6euvgx0q1lxkzuntjw.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/estee-lauder-double-wear-stay-in-place-flawless-24-hour-concealer-or-longwear-or-soft-matte-finish-medium-to-full-coverage-or-hydrating-04-fl-oz-6886ceb1d23397cf96998bc1</loc>
+<lastmod>2025-11-10</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665160/essentialist%20makeup%20store/taeolmd5to9aue0s81sr.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665161/essentialist%20makeup%20store/dalrbddkpr7n1vcq6khe.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/laura-geller-new-york-modern-classic-cream-lipstick-trio-mauve-majesty-real-rosy-novel-neutral-6886cf61d23397cf96998bc4</loc>
+<lastmod>2025-11-10</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665308/essentialist%20makeup%20store/ao36nueemgwwhjscy6r2.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665309/essentialist%20makeup%20store/enbtq9d8mtusk10xbrhz.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665309/essentialist%20makeup%20store/fj9ejoixxwr4inqitzqh.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/estee-lauder-advanced-night-repair-eye-concentrate-matrix-synchronized-multi-recovery-complex-to-reduce-puffiness-05-fl-oz-6886d0a9d23397cf96998bc7</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665554/essentialist%20makeup%20store/k6rmbsdih12n9fv9zob5.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665562/essentialist%20makeup%20store/emdfkmn0gpzktjplqjvl.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665563/essentialist%20makeup%20store/to6fddy1vmso2jnmshl7.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/estee-lauder-resilience-multi-effect-tri-peptide-face-and-neck-cream-moisturizer-spf-15-or-plumping-and-anti-aging-6886d480d23397cf96998c88</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666634/essentialist%20makeup%20store/a0dsish9hfzw2zv2gfer.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666656/essentialist%20makeup%20store/nkimlv3kx57tjxx6j5cg.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666657/essentialist%20makeup%20store/b2rp7ecmgiharo1fz7r4.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/mac-studio-fix-fluid-foundation-spf-15-c8-1-ounce-6886d524d23397cf96998c8b</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666797/essentialist%20makeup%20store/nuop9cd8kincejlqgyzc.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/mac-studio-fix-powder-plus-foundation-6886d5d5d23397cf96998c8e</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666949/essentialist%20makeup%20store/dii75mudetmeq0rywdp8.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666950/essentialist%20makeup%20store/yoluyxo26l1vv9rdrzvl.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/moisture-surge-eyetm-96-hour-hydro-filler-concentrate-moisture-surge-eyetm-96-hour-hydro-filler-concentrate-6886d6ebd23397cf96998c91</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667228/essentialist%20makeup%20store/wkspe0zq0zab4ji2jwdc.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667232/essentialist%20makeup%20store/hczd2uxlz4qe3lqp9c4f.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/clinique-smart-clinical-repairtm-wrinkle-correcting-eye-cream-6886d877d23397cf96998ce6</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667654/essentialist%20makeup%20store/tjw7u0wmiioj0tky2xuv.avif</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667655/essentialist%20makeup%20store/uz5t9wetenh5jfrze4z8.avif</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/one-size-on-til-dawn-mattifying-waterproof-setting-spray-6886d974d23397cf96998ce9</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667815/essentialist%20makeup%20store/rrtmtap0izvakrzfizvj.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667816/essentialist%20makeup%20store/fmmhzo3jbdc3pj4bigml.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/ultimate-blurring-setting-powder-or-onesize-by-patrick-starrr-6886daddd23397cf96998cf5</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668261/essentialist%20makeup%20store/prqqx9zhwgla2qpsiwun.webp</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668262/essentialist%20makeup%20store/za6qgf1ufdtx61eeya3p.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/juvias-place-blushed-liquid-blush-blushlily-dewy-tint-cheeks-makeup-glow-pigment-effortless-beauty-long-lasting-cosmetics-soft-creamy-natural-buildable-all-skin-color-light-flawless-finish-blend-6886dcebd23397cf96998d24</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668791/essentialist%20makeup%20store/g6qef2i1qvmtdpzdtlpy.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/juvias-place-warrior-2-eyeshadow-palette-professional-eye-makeup-pigmented-eyeshadow-palette-makeup-palette-for-eye-color-and-shine-pressed-eyeshadow-cosmetics-6886ddb5d23397cf96998d27</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668919/essentialist%20makeup%20store/nbetnvgg0vg2tmfrb1ff.jpg</image:loc>
+</image:image>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668920/essentialist%20makeup%20store/cf7ojqxfr1zyzs0exz4k.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/juvias-place-loose-highlighter-nubian-royalty-2-illuminating-loose-powder-highlighter-makeup-shimmer-powder-that-gives-radiant-glow-suitable-for-all-skin-tone-6886df05d23397cf96998d59</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669357/essentialist%20makeup%20store/m79oo5wpfedx1pjmygvx.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/kimchi-chic-beauty-puff-puff-pass-set-and-bake-setting-powder-for-makeup-extra-fluffy-loose-face-powder-poof-soft-natural-face-makeup-for-uneven-skin-tone-03-translucent-6886e36dd23397cf96998e13</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670450/essentialist%20makeup%20store/ea8k6pojuzpv8eisdaeh.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/one-size-ultimate-blurring-setting-powder-travel-size-translucent-for-fair-to-medium-dark-skin-6886e3c3d23397cf96998e16</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670570/essentialist%20makeup%20store/mofalocxvpuywpd1jsr3.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/one-size-ultimate-blurring-setting-powder-travel-size-ultra-pink-for-fair-to-medium-skin-tones-6886e427d23397cf96998e20</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670647/essentialist%20makeup%20store/keqdkvwfl5dmr47dhao2.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/makeup-kit-for-women-full-kit-makeup-kits-for-teens-teenager-makeup-gift-set-for-teens-women-eyeshadow-foundationteen-makeup-kit-makeup-sets-6886e547d23397cf96998e2e</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670835/essentialist%20makeup%20store/xbzze6kq3rsmcfestfh6.webp</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/product/makeup-sets-for-teens-makeup-kit-for-women-full-kit-makeup-set-makeup-kit-eyeshadow-palette-foundation-makeup-gift-set-for-teenager-girls-6886e5c7d23397cf96998e31</loc>
+<lastmod>2025-10-24</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753671063/essentialist%20makeup%20store/fau6tkpyptiknnlbmwa7.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/blog/top-10-makeup-essentials-every-beginner-in-cameroon-needs</loc>
+<lastmod>2025-11-05</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>https://res.cloudinary.com/dvpweiur3/image/upload/v1748259767/glamourglow/wfuvyckirnjmwzcuzphe.jpg</image:loc>
+</image:image>
+</url>
+<url>
+<loc>https://esmakeupstore.com/blog/festive-makeup-looks-for-your-end-of-year-events-in-cameroon</loc>
+<lastmod>2025-11-04</lastmod>
+<changefreq>weekly</changefreq>
+<image:image>
+<image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257875/glamourglow/ddm7n3ziyzroegjnnn49.jpg</image:loc>
+</image:image>
+</url>
 </urlset>
