@@ -388,6 +388,14 @@ const Footer = () => {
                   Blog
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/reviews"
+                  className="text-black font-bold md:font-normal hover:text-pink-500 transition duration-300"
+                >
+                  Reviews
+                </Link>
+              </li>
             </ul>
             <div>
               <h3 className="text-black font-bold mb-2 sm:mb-3 text-xs sm:text-base">
