@@ -10,7 +10,7 @@ import { useSelector } from 'react-redux';
 import { GoTriangleDown, GoTriangleUp } from "react-icons/go";
 import UserMenu from './UserMenu';
 import { DisplayPriceInRupees } from '../utils/DisplayPriceInRupees';
-import { useGlobalContext } from '../providers/GlobalProvider';
+// import { useGlobalContext } from '../providers/GlobalProvider';
 import DisplayCartItem from './DisplayCartItem';
 import Dropdown from './Dropdown';
 import { BsSearch } from 'react-icons/bs';
@@ -21,6 +21,7 @@ import { BiTimeFive } from 'react-icons/bi';
 import SideBar from './SideBar';
 // import logo from '/public/assets/logo.jpg'
 import Search from './Search'
+import { useGlobalContext } from '@/providers/ReactQueryProvider'
 
 const Header = () => {
     // State management

@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useState } from 'react'
-import { useGlobalContext } from '../providers/GlobalProvider'
+// import { useGlobalContext } from '../providers/GlobalProvider'
 import toast from 'react-hot-toast'
 import AxiosToastError from '../utils/AxiosToastError'
 import Loading from './Loading'
 import { useSelector } from 'react-redux'
 import { FaMinus, FaPlus } from "react-icons/fa6";
 import { isLoggedIn } from '../utils/guestCartUtils'
+import { useGlobalContext } from '@/providers/ReactQueryProvider';
 
 const AddToCartButton = ({ data }) => {
     const { fetchCartItem, updateCartItem, deleteCartItem, addToCart } = useGlobalContext()

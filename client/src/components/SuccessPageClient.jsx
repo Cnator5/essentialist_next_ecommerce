@@ -24,10 +24,11 @@ import {
   ShoppingBag,
 } from "lucide-react";
 
-import { useGlobalContext } from "../providers/GlobalProvider";
+// import { useGlobalContext } from "../providers/GlobalProvider";
 import { DisplayPriceInRupees } from "../utils/DisplayPriceInRupees";
 import { handleClearCart } from "../store/cartProduct";
 import SummaryApi, { callSummaryApi } from "../common/SummaryApi";
+import { useGlobalContext } from "@/providers/ReactQueryProvider";
 
 const RECEIPT_PUBLIC_KEY_RAW =
   process.env.NEXT_PUBLIC_RECEIPT_PUBLIC_KEY ?? "";

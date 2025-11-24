@@ -1,11 +1,12 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { useGlobalContext } from '../providers/GlobalProvider';
+// import { useGlobalContext } from '../providers/GlobalProvider';
 import { FaCartShopping } from 'react-icons/fa6';
 import { DisplayPriceInRupees } from '../utils/DisplayPriceInRupees';
 import { FaCaretRight } from "react-icons/fa";
 import { useSelector } from 'react-redux';
 import Link from 'next/link';
+import { useGlobalContext } from '../providers/ReactQueryProvider';
 
 const CartMobileLink = () => {
   const { totalPrice, totalQty } = useGlobalContext();

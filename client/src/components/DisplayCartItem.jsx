@@ -149,7 +149,7 @@
 'use client'
 import { useEffect, memo } from 'react';
 import { IoClose } from 'react-icons/io5';
-import { useGlobalContext } from '../providers/GlobalProvider';
+// import { useGlobalContext } from '../providers/GlobalProvider';
 import { DisplayPriceInRupees } from '../utils/DisplayPriceInRupees';
 import { FaCaretRight } from "react-icons/fa";
 import { useSelector, useDispatch } from 'react-redux';
@@ -159,6 +159,7 @@ import { pricewithDiscount } from '../utils/PriceWithDiscount';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { useGlobalContext } from '@/providers/ReactQueryProvider';
 
 // Move this outside component to avoid recreation on each render
 const getStoredUser = () => {

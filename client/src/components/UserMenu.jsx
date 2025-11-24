@@ -341,6 +341,18 @@ const UserMenu = ({ onSelect }) => {
           </li>
         )}
 
+        {isUserAdmin && (
+          <li>
+            <Link
+              href="/dashboard/reviews"
+              onClick={closeMenu}
+              className="block rounded px-2 py-1 hover:bg-orange-200/60"
+            >
+              Review Manager
+            </Link>
+          </li>
+        )}
+
         <li>
           <Link
             href="/dashboard/myorders"
