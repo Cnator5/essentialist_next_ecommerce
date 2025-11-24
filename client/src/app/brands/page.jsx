@@ -8,17 +8,24 @@ const SITE_NAME = 'Essentialist Makeup Store'
 const OG_IMAGE =
   'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'
 const DEFAULT_TITLE =
-  'Shop Top Makeup Brands Online in Cameroon | Essentialist Makeup Store'
+  'Shop Top Makeup Brands Online in Cameroon'
 const DEFAULT_BRANDS =
   'NYX, Juvias Place, ONE/SIZE, Bobbi Brown, Smashbox, e.l.f., Estée Lauder, MAC, Clinique, LA Girl'
 const DEFAULT_DESC =
   'Discover authentic makeup in Cameroon. Browse brand-specific price lists, compare FCFA pricing, and order with fast nationwide delivery from Douala.'
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || ''
 const MAX_PRODUCTS_FOR_STRUCTURED_DATA = 20
+
+const RAW_API_BASE = (process.env.NEXT_PUBLIC_API_URL || '').trim()
+const API_BASE = RAW_API_BASE.replace(/\/$/, '')
+const IS_EXPORT_MODE = process.env.NEXT_EXPORT === 'true'
+const IS_LOCALHOST_API = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(API_BASE)
+const CAN_USE_REMOTE_API = Boolean(API_BASE) && !(IS_EXPORT_MODE && IS_LOCALHOST_API)
 
 // ---------- Fetch helpers ----------
 
 async function fetchJson(url, init = {}) {
+  if (!CAN_USE_REMOTE_API) return null
+
   try {
     const res = await fetch(url, init)
     if (res.status === 404) return null
@@ -36,7 +43,7 @@ async function fetchJson(url, init = {}) {
 }
 
 async function fetchBrandCollection() {
-  if (!API_BASE) return { items: [], meta: {} }
+  if (!CAN_USE_REMOTE_API) return { items: [], meta: {} }
 
   const payload = await fetchJson(
     `${API_BASE}/api/brand/list?limit=200&sort=nameAsc&onlyActive=true&includeMetrics=true`,
@@ -58,7 +65,7 @@ async function fetchBrandCollection() {
 }
 
 async function fetchProductCatalog() {
-  if (!API_BASE) return { items: [], meta: {} }
+  if (!CAN_USE_REMOTE_API) return { items: [], meta: {} }
 
   const payload = await fetchJson(`${API_BASE}/api/product/get`, {
     cache: 'no-store',
@@ -92,7 +99,7 @@ const SummaryApi = {
 }
 
 async function getCategories() {
-  if (!API_BASE) return []
+  if (!CAN_USE_REMOTE_API) return []
   try {
     const res = await fetch(`${API_BASE}${SummaryApi.getCategory.url}`, {
       method: SummaryApi.getCategory.method.toUpperCase(),
@@ -109,7 +116,7 @@ async function getCategories() {
 }
 
 async function getSubCategories() {
-  if (!API_BASE) return []
+  if (!CAN_USE_REMOTE_API) return []
   try {
     const res = await fetch(`${API_BASE}${SummaryApi.getSubCategory.url}`, {
       method: SummaryApi.getSubCategory.method.toUpperCase(),
@@ -606,7 +613,7 @@ function StructuredData({ products = [], brandStats = [] }) {
 }
 
 async function pingIndexNow() {
-  if (!API_BASE) return
+  if (!CAN_USE_REMOTE_API || process.env.NODE_ENV !== 'production') return
   try {
     await fetch(`${API_BASE}/api/indexnow/submit-url`, {
       method: 'POST',
@@ -622,24 +629,13 @@ async function pingIndexNow() {
 // ---------- Metadata ----------
 
 export async function generateMetadata() {
-  if (!API_BASE) {
+  if (!CAN_USE_REMOTE_API) {
     return {
       metadataBase: new URL(ROOT_URL),
       title: DEFAULT_TITLE,
-      description: DEFAULT_DESC,
-      keywords: [
-        'makeup brands',
-        'Cameroon makeup',
-        'Douala makeup store',
-        'authentic makeup Cameroon',
-        'foundation price list',
-        'lipstick price',
-        'powder price',
-        'cosmetics Cameroon',
-        'brand comparison',
-        'makeup price list'
-      ],
-      robots: { index: true, follow: true },
+      description:
+        'Brand directory content is unavailable during static export when NEXT_PUBLIC_API_URL points to localhost.',
+      robots: { index: false, follow: false },
       alternates: { canonical: SITE_URL },
       openGraph: {
         type: 'website',
@@ -780,8 +776,12 @@ export function generateViewport() {
 // ---------- Page ----------
 
 export default async function BrandPage() {
-  if (process.env.NODE_ENV === 'production' && API_BASE) {
+  if (process.env.NODE_ENV === 'production' && CAN_USE_REMOTE_API) {
     await pingIndexNow()
+  }
+
+  if (!CAN_USE_REMOTE_API) {
+    return <ApiUnavailableNotice />
   }
 
   let brandItems = []
@@ -1033,6 +1033,27 @@ export default async function BrandPage() {
           })
         }}
       />
+    </main>
+  )
+}
+
+function ApiUnavailableNotice() {
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-50 to-white px-4 py-16">
+      <section className="max-w-3xl w-full bg-white border border-pink-200 rounded-2xl shadow-lg p-8 space-y-4 text-center">
+        <h1 className="text-2xl md:text-3xl font-bold text-pink-600">
+          Brand directory skipped during static export
+        </h1>
+        <p className="text-gray-700">
+          Remote API calls are disabled because <code className="px-2 py-1 bg-gray-100 rounded">next export</code>{' '}
+          detected <code>NEXT_PUBLIC_API_URL</code> pointing to <code>localhost</code>. This prevents the build from crashing but leaves this page without live data.
+        </p>
+        <ol className="text-left text-gray-700 list-decimal list-inside space-y-2">
+          <li>Expose your API on a reachable host (staging/prod or tunnel) and update <code>NEXT_PUBLIC_API_URL</code>.</li>
+          <li>Or run the project with <code>next build && next start</code> instead of <code>next export</code> so data loads at runtime.</li>
+          <li>Or accept that the exported HTML will show this message until client-side hydration fetches data.</li>
+        </ol>
+      </section>
     </main>
   )
 }

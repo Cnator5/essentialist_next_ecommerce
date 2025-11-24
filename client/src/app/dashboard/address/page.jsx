@@ -9,7 +9,8 @@ import Axios from '../../../utils/Axios';
 import SummaryApi from '../../../common/SummaryApi';
 import toast from 'react-hot-toast';
 import AxiosToastError from '../../../utils/AxiosToastError';
-import { useGlobalContext } from '../../../providers/GlobalProvider';
+import { useGlobalContext } from '@/providers/ReactQueryProvider';
+// import { useGlobalContext } from '../../../providers/GlobalProvider';
 
 const Address = () => {
   const addressList = useSelector(state => state.addresses.addressList) || []

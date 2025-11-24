@@ -7,7 +7,13 @@ const SITE_URL = 'https://www.esmakeupstore.com'
 const SITE_NAME = 'Essentialist Makeup Store'
 const DEFAULT_OG_IMAGE =
   'https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'
-const API_BASE = process.env.NEXT_PUBLIC_API_URL || ''
+
+const RAW_API_BASE = (process.env.NEXT_PUBLIC_API_URL || '').trim()
+const API_BASE = RAW_API_BASE.replace(/\/$/, '')
+const IS_EXPORT_MODE = process.env.NEXT_EXPORT === 'true'
+const IS_LOCALHOST_API = /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/i.test(API_BASE)
+const CAN_USE_REMOTE_API = Boolean(API_BASE) && !(IS_EXPORT_MODE && IS_LOCALHOST_API)
+
 const DEFAULT_BRAND_DESCRIPTION =
   'Shop authentic makeup with FCFA pricing. Fast delivery in Douala & nationwide across Cameroon.'
 const BUILD_VALIDATION_PLACEHOLDER = '__build-validation__'
@@ -15,6 +21,8 @@ const BUILD_VALIDATION_PLACEHOLDER = '__build-validation__'
 // ---------- Fetch helpers ----------
 
 async function fetchJson(url, init = {}) {
+  if (!CAN_USE_REMOTE_API) return null
+
   try {
     const res = await fetch(url, init)
     if (res.status === 404) return null
@@ -341,7 +349,7 @@ function BrandStructuredData({ brand = {}, products = [] }) {
   const productListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
-    name: `${brand.name} Makeup Products`,
+    name: `${brand.name}`,
     numberOfItems: Array.isArray(products) ? products.length : 0,
     itemListElement: (Array.isArray(products) ? products : []).slice(0, 20).map(
       (product, index) => ({
@@ -418,7 +426,8 @@ function BrandNavigation({ brands = [], currentSlug }) {
 }
 
 async function fetchBrandCollection() {
-  if (!API_BASE) return []
+  if (!CAN_USE_REMOTE_API) return []
+
   const payload = await fetchJson(
     `${API_BASE}/api/brand/list?limit=200&sort=nameAsc&onlyActive=true`,
     { cache: 'no-store' }
@@ -435,7 +444,7 @@ async function fetchBrandCollection() {
 }
 
 async function fetchBrandBySlug(slug) {
-  if (!API_BASE || !slug) return null
+  if (!CAN_USE_REMOTE_API || !slug) return null
 
   const directPayload = await fetchJson(
     `${API_BASE}/api/brand/${encodeURIComponent(slug)}?includeProducts=true`,
@@ -457,7 +466,7 @@ async function fetchBrandBySlug(slug) {
 }
 
 async function fetchProductsByBrand(brand) {
-  if (!API_BASE || !brand) return []
+  if (!CAN_USE_REMOTE_API || !brand) return []
 
   if (Array.isArray(brand.products) && brand.products.length) {
     return brand.products
@@ -490,7 +499,7 @@ const SummaryApi = {
 }
 
 async function getCategories() {
-  if (!API_BASE) return []
+  if (!CAN_USE_REMOTE_API) return []
   try {
     const res = await fetch(`${API_BASE}${SummaryApi.getCategory.url}`, {
       method: SummaryApi.getCategory.method.toUpperCase(),
@@ -507,7 +516,7 @@ async function getCategories() {
 }
 
 async function getSubCategories() {
-  if (!API_BASE) return []
+  if (!CAN_USE_REMOTE_API) return []
   try {
     const res = await fetch(`${API_BASE}${SummaryApi.getSubCategory.url}`, {
       method: SummaryApi.getSubCategory.method.toUpperCase(),
@@ -525,7 +534,7 @@ async function getSubCategories() {
 }
 
 export async function generateStaticParams() {
-  if (!API_BASE) {
+  if (!CAN_USE_REMOTE_API) {
     return [{ brand: BUILD_VALIDATION_PLACEHOLDER }]
   }
 
@@ -556,45 +565,26 @@ export async function generateMetadata({ params }) {
   const resolvedParams = await params
   const brandSlug = resolvedParams?.brand
 
-  if (!brandSlug || brandSlug === BUILD_VALIDATION_PLACEHOLDER) {
-    return {
-      metadataBase: new URL(SITE_URL),
-      title: 'Brand not found',
-      description: 'This brand is not available in our store.',
-      robots: { index: false, follow: false }
-    }
-  }
+  if (
+    !brandSlug ||
+    brandSlug === BUILD_VALIDATION_PLACEHOLDER ||
+    !CAN_USE_REMOTE_API
+  ) {
+    const fallbackSlug = brandSlug && brandSlug !== BUILD_VALIDATION_PLACEHOLDER
+      ? brandSlug.replace(/-/g, ' ')
+      : 'Brand not found'
 
-  if (!API_BASE) {
-    const title = `${brandSlug.replace(/-/g, ' ')} | ${SITE_NAME}`
     return {
       metadataBase: new URL(SITE_URL),
-      title,
-      description: DEFAULT_BRAND_DESCRIPTION,
-      robots: { index: true, follow: true },
-      alternates: { canonical: `${SITE_URL}/brands/${brandSlug}` },
-      openGraph: {
-        type: 'website',
-        siteName: SITE_NAME,
-        url: `${SITE_URL}/brands/${brandSlug}`,
-        title,
-        description: DEFAULT_BRAND_DESCRIPTION,
-        images: [
-          {
-            url: DEFAULT_OG_IMAGE,
-            width: 1200,
-            height: 630,
-            alt: 'Essentialist Makeup Store'
-          }
-        ],
-        locale: 'en_US'
-      },
-      twitter: {
-        card: 'summary_large_image',
-        title,
-        description: DEFAULT_BRAND_DESCRIPTION,
-        images: [DEFAULT_OG_IMAGE]
-      }
+      title: `${fallbackSlug} | ${SITE_NAME}`,
+      description:
+        CAN_USE_REMOTE_API
+          ? 'This brand is not available in our store.'
+          : 'Brand catalog is unavailable during static export while NEXT_PUBLIC_API_URL points to localhost.',
+      robots: { index: false, follow: false },
+      alternates: brandSlug
+        ? { canonical: `${SITE_URL}/brands/${brandSlug}` }
+        : undefined
     }
   }
 
@@ -644,7 +634,7 @@ export async function generateMetadata({ params }) {
       title,
       description,
       keywords: [
-        `${brand.name} makeup`,
+        `${brand.name}`,
         `${brand.name} Cameroon`,
         `${brand.name} price list`,
         'authentic makeup',
@@ -665,7 +655,7 @@ export async function generateMetadata({ params }) {
             url: dynamicOgImage,
             width: 1200,
             height: 630,
-            alt: `${brand.name} makeup products`
+            alt: `${brand.name}`
           }
         ],
         locale: 'en_US'
@@ -714,6 +704,10 @@ export default async function BrandPage({ params }) {
     notFound()
   }
 
+  if (!CAN_USE_REMOTE_API) {
+    return <ApiUnavailableNotice brandSlug={brand} />
+  }
+
   return (
     <Suspense fallback={<BrandPageFallback />}>
       <BrandContent brandSlug={brand} />
@@ -722,6 +716,10 @@ export default async function BrandPage({ params }) {
 }
 
 async function BrandContent({ brandSlug }) {
+  if (!CAN_USE_REMOTE_API) {
+    return <ApiUnavailableNotice brandSlug={brandSlug} />
+  }
+
   const brandData = await fetchBrandBySlug(brandSlug)
   if (!brandData) {
     return (
@@ -729,7 +727,8 @@ async function BrandContent({ brandSlug }) {
         <section className="max-w-4xl mx-auto text-center bg-white border border-pink-200 rounded-lg shadow p-8">
           <h1 className="text-3xl font-bold text-pink-500">Brand temporarily unavailable</h1>
           <p className="mt-4 text-gray-600">
-            We couldn’t load brand details right now. Please refresh the page or try again later.
+            We couldn’t load brand details right now. Please ensure the API is reachable and try
+            again.
           </p>
           <Link
             href="/brands"
@@ -927,6 +926,33 @@ async function BrandContent({ brandSlug }) {
           })
         }}
       />
+    </main>
+  )
+}
+
+function ApiUnavailableNotice({ brandSlug }) {
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-gradient-to-b from-pink-50 to-white px-4 py-16">
+      <section className="max-w-3xl w-full bg-white border border-pink-200 rounded-2xl shadow-lg p-8 space-y-4 text-center">
+        <h1 className="text-2xl md:text-3xl font-bold text-pink-600">
+          Brand catalog skipped during static export
+        </h1>
+        <p className="text-gray-700">
+          `next export` is running with <code className="px-2 py-1 bg-gray-100 rounded">NEXT_PUBLIC_API_URL</code>{' '}
+          pointing to <code className="px-2 py-1 bg-gray-100 rounded">localhost</code>. Because that API
+          isn’t reachable to the build worker, remote fetches are disabled to let the export finish.
+        </p>
+        {brandSlug && (
+          <p className="text-sm text-gray-600">
+            Requested brand slug: <code>{brandSlug}</code>
+          </p>
+        )}
+        <ol className="text-left text-gray-700 list-decimal list-inside space-y-2">
+          <li>Expose the API on a publicly reachable URL or tunnel (e.g. via ngrok) and set <code>NEXT_PUBLIC_API_URL</code> to that host before building.</li>
+          <li>Or skip <code>next export</code> and deploy with <code>next build && next start</code> so the server can fetch data at runtime.</li>
+          <li>Or ship the export knowing these routes will show this notice until hydrated with client-side data.</li>
+        </ol>
+      </section>
     </main>
   )
 }
