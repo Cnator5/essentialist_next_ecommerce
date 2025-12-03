@@ -1,3 +1,4 @@
+// client/src/app/user/page.jsx
 "use client";
 
 import React from 'react';

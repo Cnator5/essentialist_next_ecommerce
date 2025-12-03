@@ -14,7 +14,7 @@ const jsonLd = {
 };
 
 export const metadata = {
-  title: "Authentic Customer Reviews | Essentialist",
+  title: "Authentic Customer Reviews | Essentialist Makeup Store ",
   description:
     "Read and share verified experiences about Essentialist products, shipping, support, and more.",
   alternates: {

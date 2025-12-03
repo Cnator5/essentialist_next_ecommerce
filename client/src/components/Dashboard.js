@@ -81,6 +81,7 @@ import {
   subWeeks,
   subMonths,
 } from 'date-fns';
+import { useGlobalContext } from '@/providers/ReactQueryProvider';
 
 const currency = 'XAF';
 const PAGE_SIZE = 10;
@@ -676,7 +677,8 @@ const RevenueAreaInteractive = ({ series, timeRange, setTimeRange }) => {
 };
 
 const Dashboard = () => {
-  const user = useSelector((state) => state.user);
+  // const user = useSelector((state) => state.user);
+  const { user } = useGlobalContext();
 
   const [loading, setLoading] = useState(true);
   const [backgroundLoading, setBackgroundLoading] = useState(false);

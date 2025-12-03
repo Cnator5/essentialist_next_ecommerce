@@ -165,7 +165,7 @@
 
 
 
-
+//Path: client/src/app/product/%5Bslug%5D/ProductGallery.client.jsx
 "use client";
 
 import { useMemo, useRef, useState, useEffect, useCallback } from "react";

@@ -1,3 +1,4 @@
+// client/src/store/userSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialValue = {

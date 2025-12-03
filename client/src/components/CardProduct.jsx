@@ -306,7 +306,7 @@
 // }
 
 
-
+//src/components/CardProduct.jsx
 'use client'
 
 import { useState, useMemo, useCallback, Suspense } from 'react'
