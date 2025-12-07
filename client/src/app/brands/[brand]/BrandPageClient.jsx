@@ -1,3 +1,4 @@
+//app/brands/[brand]/BrandPageClient.jsx
 'use client'
 
 import { useEffect, useMemo } from 'react'

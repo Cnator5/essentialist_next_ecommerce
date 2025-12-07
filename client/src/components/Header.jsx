@@ -208,7 +208,7 @@ const Header = () => {
     const headerStyle = {
         transition: 'transform 0.3s ease-in-out',
         position: 'sticky',
-        top: isHeaderVisible ? '0' : '-15%',
+        // top: isHeaderVisible ? '0' : '-15%',
         width: '100%',
         zIndex: 40
     };
