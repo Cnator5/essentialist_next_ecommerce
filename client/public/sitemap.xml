@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-  xmlns:product="https://www.esmakeupstore.com/schemas/product">
+  xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
     <url>
         <loc>https://esmakeupstore.com/</loc>
         <changefreq>daily</changefreq>
@@ -352,20 +351,6 @@
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093732/glamourglow/nikirkix2gu1mupu2ili.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Duo Chromatic Illuminating Powder, Snow Rose</product:name>
-            <product:description>Light up your features with NYX Professional Makeup Duo Chromatic Illuminating Powder. Available in frosty, glowing shades, this silky highlighting powder blends like a dream for a fresh-faced look. Our breathtaking formula&apos;s light-catching pearls deliver a luminous finish that looks different from every angle. Brush this illuminating powder wonder along the highest points of the face - like the cheekbones, bridge of the nose and cupid’s bow (upper cheekbones).</product:description>
-            <product:price currency="XAF">6000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">4000.00</product:bulkPrice>
-            <product:stock>109</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093675/glamourglow/up8qrjmbqtjejboplu56.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093707/glamourglow/m1kfv4ibz76tra4emsjg.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748093732/glamourglow/nikirkix2gu1mupu2ili.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-worth-the-hype-volumizing-and-lengthening-mascara-black-6831d20a29361bedb252f0f4</loc>
@@ -374,18 +359,6 @@
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748095049/glamourglow/re7hthymzk3wgt1pk7ox.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Worth The Hype Volumizing &amp; Lengthening Mascara, Black</product:name>
-            <product:description>It&apos;s all in the name really, NYX Professional Makeup Worth The Hype Volumizing &amp; Lengthening Mascara is your jam for long, full eyelashes that last from the office to cocktails. A breeze to apply, and comfortable to wear, this volumizing mascara features a tapered brush tip coating every lash (even the baby ones on the bottom!) in buildable, lengthening color.</product:description>
-            <product:price currency="XAF">6000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">4000.00</product:bulkPrice>
-            <product:stock>1000</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748095049/glamourglow/re7hthymzk3wgt1pk7ox.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/la-girl-glide-eye-liner-pencil-351-very-black-6831d48e46fe00dd6c9e836d</loc>
@@ -397,19 +370,6 @@
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748096749/glamourglow/yqnthfvlrp7y8m91nnqx.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>L.A. Girl Glide Eye Liner Pencil 351 Very Black</product:name>
-            <product:description>&lt;p&gt;Color	351 Very Black&lt;/p&gt;&lt;p&gt;Brand	L.A. Girl&lt;/p&gt;&lt;p&gt;Item Form	Pencil Finish&lt;/p&gt;&lt;p&gt;Type	Semi-Matte Special Feature	Crease Proof, Fade Proof, Double Head, Smudge Resistant About this item High pigment color Smooth application Waterproof for up to 14 hours Country of origin is Germany&lt;/p&gt;</product:description>
-            <product:price currency="XAF">6500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">5000.00</product:bulkPrice>
-            <product:stock>213</product:stock>
-            <product:reviews average="4.75" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748096088/glamourglow/fljz5srxwfblv4tsknur.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748096749/glamourglow/yqnthfvlrp7y8m91nnqx.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-stay-matte-but-not-flat-powder-foundation-natural-6832303c4b5cd28eb829bcad</loc>
@@ -418,27 +378,6 @@
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119522/glamourglow/ifac2ztnb5fwwd5yz10p.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Stay Matte But Not Flat Powder Foundation, Natural</product:name>
-            <product:description>Stay Matte But Not Flat Powder Foundation is a versatile, oil-free powder foundation designed to give your skin a flawless, matte finish without looking dry or cakey. Its lightweight, buildable formula provides smooth, even coverage that helps control shine throughout the day, making it ideal for normal to oily skin types. The powder blends seamlessly into the skin, evening out complexion and minimizing the appearance of pores and imperfections while still allowing your natural radiance to show through. Use it alone for a natural look or layer it over liquid foundation for extra coverage. Available in a wide range of shades to suit different skin tones.
-
-Key Features:
-
-Oil-free, matte finish
-Buildable coverage (from sheer to full)
-Controls shine without feeling heavy
-Can be used alone or over foundation
-Suitable for normal to oily skin
-Available in multiple shades</product:description>
-            <product:price currency="XAF">13000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">10000.00</product:bulkPrice>
-            <product:stock>1002</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119522/glamourglow/ifac2ztnb5fwwd5yz10p.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-stay-matte-but-not-flat-liquid-foundation-ivory-118-ounce-683231fda35e6630b5dcdc0c</loc>
@@ -456,21 +395,6 @@ Available in multiple shades</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119908/glamourglow/eryr1c2tfrrdxfxuie7e.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Stay Matte But Not Flat Liquid Foundation, Ivory, 1.18 Ounce</product:name>
-            <product:description>&lt;p&gt;About this item MATTE LIQUID FOUNDATION: Achieve a flawless complexion with lightweight NYX Professional Makeup Stay Matte But Not Flat Liquid Foundation. Its buildable coverage evens skin tone to cover imperfections, leaving a gorgeous matte makeup finish. &lt;/p&gt;&lt;p&gt;FLAWLESS FINISH: In a variety of shades for all skin tones, this ultimate matte liquid foundation creates the perfect matte finish for more skin tones than ever before. Look flawless with minimal effort and stay matte but never flat! &lt;/p&gt;&lt;p&gt;FACE FROM FOUNDATION TO FINISH: Complete your makeup look with our full line of NYX Professional Makeup face products to aid in color-correction &amp;amp; coverage from blush, bronzer, foundations &amp;amp; contouring concealer to palettes powders &amp;amp; setting sprays. &lt;/p&gt;&lt;p&gt;CRUELTY FREE COSMETICS: We believe animals belong in our arms—not in a lab. All of our makeup is certified &amp;amp; acknowledged by PETA as a cruelty-free brand. We don&apos;t test any of our products on animals. &lt;/p&gt;&lt;p&gt;DISCOVER NYX PROFESSIONAL MAKEUP: Try all of our professional makeup &amp;amp; beauty products today, from eyeshadow, eyeliner, mascara &amp;amp; false lashes to lipstick, foundation, primer, blush, bronzer, brushes &amp;amp; more!&lt;/p&gt;</product:description>
-            <product:price currency="XAF">14000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">12000.00</product:bulkPrice>
-            <product:stock>1221</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119891/glamourglow/rneyfwhrtmhogmfxzwym.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119898/glamourglow/yval0nczhubapskyvkbi.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119903/glamourglow/h4evtlygo47g1tyclmml.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748119908/glamourglow/eryr1c2tfrrdxfxuie7e.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-eyebrow-cake-powder-blackgray-683234ce308cc86035e2c624</loc>
@@ -494,28 +418,6 @@ Available in multiple shades</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120529/glamourglow/nohtzzcmklmeet4jgtxh.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Eyebrow Cake Powder, Black/Gray</product:name>
-            <product:description>About this item
-Eyebrow Cake Powder: This eyebrow filling palette does the work of a brow gel, waxy pomade, brow pencil and brow powder all in one; Including two brushes, two complimentary brow colors to line, fill and shade, plus a waxy pomade to hold them in place
-Complete Brow Powder Kit: Each Eyebrow Cake Powder kit includes an angled brush for precise lining and filling eyebrows and a spoolie wand to comb and tame helping you create fuller more defined eyebrows from scratch
-Line, Fill, Shape and Set: We&apos;ve got everything you need to create beautiful eyebrows, including brow gels, precision brow pencils, pomades, powders, stylers, setters, tinted mascaras and more
-Cruelty Free Cosmetics: We believe animals belong in our arms, not in a lab; All of our makeup is certified and acknowledged by PETA as a cruelty free brand; We don&apos;t test any of our products on animals
-Discover NYX Professional Makeup: Try all of our professional makeup and beauty products today, from eyeshadow, eyeliner, mascara and false lashes to lipstick, foundation, primer, blush, bronzer, brushes and more</product:description>
-            <product:price currency="XAF">4500.00</product:price>
-            <product:discount>1.50</product:discount>
-            <product:bulkPrice currency="XAF">3000.00</product:bulkPrice>
-            <product:stock>1000</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120463/glamourglow/gmvwopnsrmcg1gb2u5wk.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120473/glamourglow/sqdgzheyciyz8gbhgo1a.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120483/glamourglow/hceo4xmcee7vxlddukbk.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120500/glamourglow/ibmum0mbjdvxqlasu78n.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120514/glamourglow/gavggqzgpdpfhwwd6rjv.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748120529/glamourglow/nohtzzcmklmeet4jgtxh.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-mineral-foundation-stick-choose-your-shade-68323792aa1c99871d874dde</loc>
@@ -530,24 +432,6 @@ Discover NYX Professional Makeup: Try all of our professional makeup and beauty 
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896192/essentialist%20makeup%20store/zswows7qypqxxn2vi0c5.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Nyx Mineral Foundation Stick Choose Your Shade</product:name>
-            <product:description>About this item
-Discover NYX Professional Makeup: try all our Pro makeup &amp; Beauty products, from eyeshadow palette, liquid eyeliner &amp; eyeliner pencils, mascara &amp; false lashes to lipstick, lip gloss, foundation, primer, blush, bronzer, highlighters, brushes &amp; more!
-Cruelty Free cosmetics: we believe animals belong in our arms-not in a lab. All of our makeup is PETA certified cruelty-free. We don&apos;t test any of our products on animals.
-Item Condition: 100% authentic, new and unused.
-</product:description>
-            <product:price currency="XAF">10000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">7000.00</product:bulkPrice>
-            <product:stock>1432</product:stock>
-            <product:reviews average="4.75" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896170/essentialist%20makeup%20store/wl1leokucyf4fdrv5trt.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896184/essentialist%20makeup%20store/kgutujebcaimucjc0fce.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896192/essentialist%20makeup%20store/zswows7qypqxxn2vi0c5.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/matte-bronzer-68323ab1308cc86035e2c63a</loc>
@@ -565,22 +449,6 @@ Item Condition: 100% authentic, new and unused.
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122207/glamourglow/l8musn7lqcctw7xkd6tq.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Matte Bronzer</product:name>
-            <product:description>Safety Information
-No specific precautions for use are required for this product under normal or reasonably foreseeable conditions of use.</product:description>
-            <product:price currency="XAF">9000.00</product:price>
-            <product:discount>20.00</product:discount>
-            <product:bulkPrice currency="XAF">7000.00</product:bulkPrice>
-            <product:stock>1233</product:stock>
-            <product:reviews average="4.75" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122173/glamourglow/rkgzeev8s2wycsxplanc.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122181/glamourglow/orvwhuxsa5wdqbakcbsn.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122189/glamourglow/dnw7skxshmzfojnr3dly.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122207/glamourglow/l8musn7lqcctw7xkd6tq.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-born-to-glow-liquid-illuminator-liquid-shimmer-makeup-highlighter-foundation-base-vegan-formula-shade-pure-gold-68323c25aa1c99871d874dfb</loc>
@@ -598,38 +466,6 @@ No specific precautions for use are required for this product under normal or re
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122912/glamourglow/xvnctqufuaugdrt1f8qn.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Professional Makeup Born to Glow Liquid Illuminator, Liquid Shimmer Makeup, Highlighter, Foundation Base, Vegan Formula, Shade: Pure Gold</product:name>
-            <product:description>
-Item form	Drop
-Finish type	Luminous
-Coverage	Lighter
-Brand	NYX PROFESSIONAL MAKEUP
-Colour	03 Pure Gold
-Skin tone	Light
-Product benefits	Gives a luminous, refreshing finish and radiant skin; multifunctional as a foundation highlighter
-Material Type Free	Cruelty free
-Unit count	18.0 millilitre
-Number of items	1
-
-About this item
-Liquid illuminator for an all-over luminous glow, Soft and subtle iridescent effect, Light-catching satiny finish
-Available in 4 flattering shades, Range of peachy to sunkissed pearlescent colours
-Multifunctional formula, Use as foundation base, Apply on top of makeup to accentuate cheekbones, cupid&apos;s bow or decolleté
-Quick drying vegan formula, Lightweight texture
-Contents: 1 NYX Professional Makeup Born to Glow Liquid Illuminator in Pure Gold, 18 mL</product:description>
-            <product:price currency="XAF">9000.00</product:price>
-            <product:discount>20.00</product:discount>
-            <product:bulkPrice currency="XAF">7000.00</product:bulkPrice>
-            <product:stock>2312</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122770/glamourglow/hsto6viqw8irnwijmxsf.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122785/glamourglow/hm4kqwk9i7nzuvy4vl3v.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122821/glamourglow/p2f1wpgvbwn2rcduualz.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748122912/glamourglow/xvnctqufuaugdrt1f8qn.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-away-we-glow-liquid-highlighter-golden-hour-022-fluid-ounce-683260e7ad3c362a575353e3</loc>
@@ -638,28 +474,6 @@ Contents: 1 NYX Professional Makeup Born to Glow Liquid Illuminator in Pure Gold
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1761329524/essentialist%20makeup%20store/xclnjenj2qpr3qgpuras.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Professional Makeup Away We Glow Liquid Highlighter, Golden Hour, 0.22 Fluid Ounce</product:name>
-            <product:description>
-Item Form	Liquid
-Finish Type	Shimmery
-Coverage	Light
-Brand	NYX PROFESSIONAL MAKEUP
-Color	Golden Hour
-About this item
-A liquid highlighter available in nine luminous shades.
-Leaves your complexion with a gorgeous, dewy glow.
-Light in a tube! Brighten up your best features wherever you go.
-Apply directly to the areas of the face you wish to highlight. Blend the creamy color for a fresh highlight.</product:description>
-            <product:price currency="XAF">6000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">4000.00</product:bulkPrice>
-            <product:stock>1322</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1761329524/essentialist%20makeup%20store/xclnjenj2qpr3qgpuras.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/lip-lingerie-xxl-matte-liquid-lipstick-6832746794b23d7bce190111</loc>
@@ -677,44 +491,6 @@ Apply directly to the areas of the face you wish to highlight. Blend the creamy 
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748137049/glamourglow/ezdulnb8o6oesfkiakjm.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Lip Lingerie XXL Matte Liquid Lipstick</product:name>
-            <product:description>DETAILS
-Why We Love It:
-Meet the first liquid shapewear for your lips that gives you a full-bodied, smooth matte look for up to 16 hours. No crack, no transfer, no fade. Available in 31 color-saturated hues, from soft nudes to a bold black liquid lipstick shade, Lip Lingerie XXL Matte Liquid Lipstick is a must-have for all-day matte color.
-
-Benefits:
-Matte liquid lipstick offers up to 16 hours of wear
-Provides a soft, smooth matte finish
-Fade, crack, and transfer-resistant formula
-Comes with a precise applicator for shaping and filling your lips
-Available in 31 color-saturated shades
-This Product Is Also:
-Vegan
-Best-seller
-
-
-HOW TO
-Use the precise applicator to shape and line your lips, starting with the cupid’s bow. Then, fill in your pout for smooth, full-bodied matte color.
-
-Pro Tip: Can’t pick a color? Use our virtual try-on tool to find your best liquid lipstick shade.
-
-
-
-BENEFITS
-No crack, no budge, no fade and NO TRANSFER for up to 16 hours!
-</product:description>
-            <product:price currency="XAF">4500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:stock>2331</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748136344/glamourglow/jnbzwxofynzfr1js6hrb.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748136979/glamourglow/xf7b5ja1u4mop2los8ss.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748137036/glamourglow/bdtizceyalqnny3xtijf.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748137049/glamourglow/ezdulnb8o6oesfkiakjm.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-liquid-suede-cream-lipstick-downtown-beauty-walnut-brown-6832efb533275196a3004bd1</loc>
@@ -735,33 +511,6 @@ No crack, no budge, no fade and NO TRANSFER for up to 16 hours!
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168483/glamourglow/gb5j5myllyeq6ercylzs.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Liquid Suede Cream Lipstick - Downtown Beauty (Walnut Brown)</product:name>
-            <product:description>
-Brand	NYX PROFESSIONAL MAKEUP
-Color	Downtown Beauty
-Skin Type	All
-Item Form	Cream
-Finish Type	Matte
-About this item
-Matte Liquid Lipstick: Doll your lips in high impact color with NYX Professional Makeup Liquid Suede Cream Lipstick; A striking long wearing matte finish is just a swipe away with this plush liquid lipstick
-Long Lasting Creamy Color: Available in bold shades, this super pigmented liquid matte lipstick is velvety soft and infused with nourishing avocado oil and Vitamin E for long wearing, creamy matte lipstick color
-Lip Products For The Perfect Pout: Doll your lips in plush, creamy, perfection; Try our complete line of lip products including lipstick, lip gloss, lip cream, lip liner and butter gloss
-Cruelty Free Cosmetics: We believe animals belong in our arms, not in a lab; All of our makeup is certified and acknowledged by PETA as a cruelty free brand; We don&apos;t test any of our products on animals
-Discover NYX Professional Makeup: Try all of our professional makeup and beauty products today, from eyeshadow, eyeliner, mascara and false lashes to lipstick, foundation, primer, blush, bronzer, brushes and more</product:description>
-            <product:price currency="XAF">3000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">2500.00</product:bulkPrice>
-            <product:stock>1244</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168331/glamourglow/f3bky2xftyvdpypymk56.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168409/glamourglow/deu9t8yvrdyb6pwxocfq.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168426/glamourglow/wknrgliogq0o5hnulqla.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168431/glamourglow/p9xjmfhqnqfyofvx8avy.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748168483/glamourglow/gb5j5myllyeq6ercylzs.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-line-and-load-two-in-one-lippie-6832f65abef660d5991d13e3</loc>
@@ -776,28 +525,6 @@ Discover NYX Professional Makeup: Try all of our professional makeup and beauty 
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170284/glamourglow/hhmym5l47g9tnddndceo.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Line &amp; Load Two-In-One Lippie</product:name>
-            <product:description>The NYX Line &amp; Load Two-In-One Lippie is a versatile lip product that combines a lip liner and a lip color in one sleek package. It features a unique dual-ended design: one side has a precision tip for lining the lips, while the other side offers a creamy, high-pigment lip color.
-
-Key features include:
-
-Long-lasting formula: Provides vibrant color that stays put.
-Easy application: The liner helps define the lips for a polished look.
-Wide range of shades: Available in various colors to suit different preferences and occasions.
-Comfortable wear: Formulated to glide on smoothly without drying out the lips.
-This product is ideal for achieving a defined, full-lip look with minimal effort. Perfect for both everyday wear and special occasions!</product:description>
-            <product:price currency="XAF">4000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">3500.00</product:bulkPrice>
-            <product:stock>1243</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170246/glamourglow/aghexn4kzpihkz0nyuqc.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170275/glamourglow/q8s7fb9vgd0l81b6bcuh.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170284/glamourglow/hhmym5l47g9tnddndceo.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-glitter-goals-liquid-eyeshadow-various-shades-6832f948bef660d5991d13f6</loc>
@@ -812,20 +539,6 @@ This product is ideal for achieving a defined, full-lip look with minimal effort
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170967/glamourglow/mzgljc0dteg2veeo8vn6.avif</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Professional Makeup Glitter Goals Liquid Eyeshadow (Various Shades)</product:name>
-            <product:description>The ultimate tool for effortless party make up and eye-catching eye looks, NYX Professional Makeups Glitter Goals Liquid Eyeshadow will be the star in your make up crown. The lightweight formula is packed with mesmerising sparkle and is available in eight gleaming hues copper with silver Poppy, pink with silver Metropical, champagne with silver Polished Pin Up, gold with silver Industrial Beam, pewter with silver Oui Out, bronze with silver Multiverse, black with silver Imaginarium and purple with silver Retrograde. Each shade glides on seamlessly and sets to a stay-put finish.</product:description>
-            <product:price currency="XAF">5000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">3000.00</product:bulkPrice>
-            <product:stock>1224</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170892/glamourglow/yzvwa7kkfxkf0ttqnd2x.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170959/glamourglow/unf54rv9g6tlut3ujdcw.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748170967/glamourglow/mzgljc0dteg2veeo8vn6.avif</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-dark-circle-concealer-deep-68338b1863dd0ab705d751ca</loc>
@@ -837,40 +550,6 @@ This product is ideal for achieving a defined, full-lip look with minimal effort
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208385/glamourglow/b4zq7zotjm9fxylx0hzy.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Dark Circle Concealer, Deep</product:name>
-            <product:description>
-Item Form	Cream
-Color	Deep
-Skin Type	All
-Finish Type	Natural
-Recommended Uses For Product	Face Makeup
-About this item
-
-DARK CIRCLE CONCEALER: 
-Color correction is just a pot away! Conceal bags and dark circles under your eyes with NYX Professional Makeup Dark Circle Concealer. This creamy color correcting concealer will hide those bags without looking thick or obvious.
-
-ULTIMATE COLOR CORRECTION: 
-A subtle hint of orange in this concealer counteracts the appearance of dark circles under eyes, while natural overtones work to provide the ultimate in creamy concealing coverage.
-
-FACE FROM FOUNDATION TO FINISH: 
-Complete your makeup look with our full line of NYX Professional Makeup face products to aid in color-correction &amp; coverage from blush, bronzer, foundations &amp; contouring concealer to palettes powders &amp; setting sprays.
-
-CRUELTY FREE COSMETICS: 
-We believe animals belong in our arms—not in a lab. All of our makeup is certified &amp; acknowledged by PETA as a cruelty-free brand. We don&apos;t test any of our products on animals.
-
-DISCOVER NYX PROFESSIONAL MAKEUP: 
-Try all of our professional makeup &amp; beauty products today, from eyeshadow, eyeliner, mascara &amp; false lashes to lipstick, foundation, primer, blush, bronzer, brushes &amp; more</product:description>
-            <product:price currency="XAF">7000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">5000.00</product:bulkPrice>
-            <product:stock>1234</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208365/glamourglow/opvu3gguh0slie9p8rxc.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748208385/glamourglow/b4zq7zotjm9fxylx0hzy.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-a-bit-jelly-gel-illuminator-opalescent-6833911863dd0ab705d75232</loc>
@@ -882,33 +561,6 @@ Try all of our professional makeup &amp; beauty products today, from eyeshadow, 
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209863/glamourglow/zybfsoni067lyuwxsum6.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX A Bit Jelly Gel illuminator - (Opalescent)</product:name>
-            <product:description>
-Item form	Gel
-Finish type	Luminous
-Coverage	Light
-Brand	Cosmetics N.X
-Colour	Opalescent
-Skin tone	All
-Product benefits	Adds luminous, sparkly effect
-Unit count	15.00 millilitre
-Number of items	1
-Package information	Palette
-
-About this item
-A sparkly gel illuminator that is water-based and lightweight
-</product:description>
-            <product:price currency="XAF">7000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">5000.00</product:bulkPrice>
-            <product:stock>1233</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209855/glamourglow/eydjjdfd22nc5v2ixbjc.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748209863/glamourglow/zybfsoni067lyuwxsum6.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-high-definition-blush-amber-016-ounce-hdb11-6833939663dd0ab705d75247</loc>
@@ -926,31 +578,6 @@ A sparkly gel illuminator that is water-based and lightweight
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211006/glamourglow/qxmho3dafk4dre3nhgzi.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP High Definition Blush, Amber, 0.16 Ounce (HDB11)</product:name>
-            <product:description>
-Item Form	Powder
-Finish Type	Matte,Satin
-Coverage	Lightweight
-Brand	NYX PROFESSIONAL MAKEUP
-
-About this item
-Deep rose
-A high definition, lightweight blush that blends evenly
-Use a powder or blush brush to apply lightly to the apples of the cheeks
-Item Condition: 100% authentic, new and unused.</product:description>
-            <product:price currency="XAF">8500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">6000.00</product:bulkPrice>
-            <product:stock>1123</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210525/glamourglow/miyqqltyejvjwu3k4sdw.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210966/glamourglow/n3up2i2uuqrvhn23ewvo.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748210986/glamourglow/qlye3txtmavkshu8hzx4.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211006/glamourglow/qxmho3dafk4dre3nhgzi.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-cosmetics-baked-blush-pink-fetish-683395fdb72dd7764122f499</loc>
@@ -959,26 +586,6 @@ Item Condition: 100% authentic, new and unused.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211098/glamourglow/sxl4jisaowsdwg5gasan.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Cosmetics Baked Blush Pink Fetish</product:name>
-            <product:description>
-Item Form	Powder
-Finish Type	Sheer
-Coverage	Medium
-Brand	NYX
-Color	pink fetish
-
-About this item
-Foundation</product:description>
-            <product:price currency="XAF">7500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">5000.00</product:bulkPrice>
-            <product:stock>1231</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211098/glamourglow/sxl4jisaowsdwg5gasan.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/sweet-cheeks-soft-cheek-tint-cream-blush-683397aea4b726225299753b</loc>
@@ -993,35 +600,6 @@ Foundation</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211626/glamourglow/dhkwymdwlflypgbqxl7q.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Sweet Cheeks Soft Cheek Tint Cream Blush</product:name>
-            <product:description>Why We Love It:
-Get a naturally cheeky look with NYX Professional Makeup Sweet Cheeks Soft Cheek Tint. This velvety cream blush comes with a doe-foot applicator for easy application, and the buildable vegan-formula blush tint provides a natural finish with a lightweight feel. For a natural blush look, this creamy cheek tint is totally sweet.
-
-Ingredients:
-Our vegan-formula blush tint contains shea butter and glycerin.
-
-Benefits:
-Buildable-coverage cheek tint provides a natural-looking finish
-Product comes with a doe-foot applicator for easy application
-Available in 6 sweet shades to complement an array of skin tones
-Creamy blush makeup feels lightweight with a second-skin feel
-Pro Tip: If you have a tan to deep skin tone, try using the Bright Peach shade to brighten your complexion and touch up oily areas without adding coverage.
-
-This Product is also:
-Vegan
-Cruelty-Free
-</product:description>
-            <product:price currency="XAF">7504.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:stock>1318</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211405/glamourglow/syt0vrfndhxfiwpsxnzq.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211595/glamourglow/qhtpofp3raqyzomhjwrf.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748211626/glamourglow/dhkwymdwlflypgbqxl7q.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-slip-tease-full-color-lip-lacquer-6834249a28d670958afb465e</loc>
@@ -1039,24 +617,6 @@ Cruelty-Free
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247773/glamourglow/odemdzbu71anqoohdtjq.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Slip tease full color lip lacquer</product:name>
-            <product:description>Put the moves on your pout with our new Slip Tease Full Color Lip Lacquer. From seductive nudes to bold berries and more, this luxurious lippie delivers full coverage in 24 pigment-rich and seriously plush shades that shine. Featuring an hourglass-shaped applicator that makes lining your lips a cinch, each weightless hue slips on comfy-smooth and glossy for a knockout finish. The soft vanilla-mint scent is also pretty irresistible.
-This Product is also:
-Vegan Vegan
-This product is FINAL SALE.</product:description>
-            <product:price currency="XAF">6500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">4500.00</product:bulkPrice>
-            <product:stock>1234</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247638/glamourglow/ycogtxt6k0w8xxp1vbdp.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247736/glamourglow/fzua6rxrq2undbmffalm.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247754/glamourglow/pcbfvwbnvxw8acmc1csv.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748247773/glamourglow/odemdzbu71anqoohdtjq.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-soft-matte-lip-cream-lightweight-liquid-lipstick-cairo-matte-pure-nude-683426b94ab7fc299cc87554</loc>
@@ -1071,33 +631,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248243/glamourglow/evujkqukcx9piwg4lwb4.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Soft Matte Lip Cream, Lightweight Liquid Lipstick - Cairo (Matte Pure Nude)</product:name>
-            <product:description>About this item
-
-Soft Matte Lip Cream: 
-Creamy soft matte coverage that never feels dry, in matte nudes and red lipstick shades inspired by world cities; Slide on a Soft Matte Lip Cream and instantly transport yourself
-Lip Stain Color: Swipe this plush, creamy lightweight matte lipstick on the center of your lips and blend out with your finger or brush for a lip tint look that sets to a smooth matte finish
-
-Lip Products for the Perfect Pout: 
-Doll your lips in creamy, long lasting perfection; Try our complete line of lip makeup including liquid lipstick, lip gloss, lip cream, lip liner and butter gloss
-
-Cruelty Free Cosmetics: 
-We believe animals belong in our arms, not in a lab; All of our makeup is certified and acknowledged by PETA as a cruelty free brand; We don&apos;t test any of our products on animals
-
-Discover NYX Professional Makeup: 
-Try all of our professional makeup products today from eyeshadow, eyeliner, and false lashes to liquid lipstick, lip gloss, primer, concealer, setting sprays and eyebrow makeup</product:description>
-            <product:price currency="XAF">5500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">4000.00</product:bulkPrice>
-            <product:stock>1221</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248106/glamourglow/xyf2eahykifxbw5geks9.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248219/glamourglow/hu0obfoju8jugj74kjv8.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248243/glamourglow/evujkqukcx9piwg4lwb4.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-cosmetics-high-definition-studio-photogenic-foundation-hdf101-nude-683428c2086cde4ab7705f00</loc>
@@ -1112,20 +645,6 @@ Try all of our professional makeup products today from eyeshadow, eyeliner, and 
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896465/essentialist%20makeup%20store/i8o9nwhmva51sdu2mwnf.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Cosmetics High Definition Studio Photogenic Foundation HDF101 - Nude</product:name>
-            <product:description>&lt;p&gt;Item Form: Cream &lt;/p&gt;&lt;p&gt;Color: Nude &lt;/p&gt;&lt;p&gt;Skin Type: All Finish Type	Satin Recommended Uses For Product	Face Makeup &lt;/p&gt;&lt;p&gt;About this item: Brand New in box. The product ships with all relevant accessories&lt;/p&gt;</product:description>
-            <product:price currency="XAF">13000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">8982.00</product:bulkPrice>
-            <product:stock>1232</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248697/glamourglow/rcdoupllgxdxyeajzl8h.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748248740/glamourglow/ywxoufflz0kunwej7xm7.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1756896465/essentialist%20makeup%20store/i8o9nwhmva51sdu2mwnf.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/the-smoky-fume-shadow-palettenyx-cosmeticstss01-68342a204c507b316566ee1f</loc>
@@ -1134,23 +653,6 @@ Try all of our professional makeup products today from eyeshadow, eyeliner, and 
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748249015/glamourglow/c0oatrbak3ghsfyekaih.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>The Smoky Fume Shadow Palette,Nyx Cosmetics,Tss01</product:name>
-            <product:description>
-Color	black
-Item Form	Powder
-Finish Type	Shimmery
-Special Feature	Matte
-Product Benefits	Creating a smoky eye look</product:description>
-            <product:price currency="XAF">6500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">4500.00</product:bulkPrice>
-            <product:stock>1233</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748249015/glamourglow/c0oatrbak3ghsfyekaih.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/total-control-pro-drop-foundation-68344c1e3f5474dcd03e0750</loc>
@@ -1168,41 +670,6 @@ Product Benefits	Creating a smoky eye look</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257746/glamourglow/gdkob4jnjfjbzwsxwwos.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>TOTAL CONTROL PRO DROP FOUNDATION</product:name>
-            <product:description>Skin-true buildable coverage
-
-The lightweight formula gives skin a natural, healthy-looking finish, while minimizing the appearance of imperfections and keeping skin looking hydrated and looking 100% your skin.
-
-Clean formula that is proudly 100% vegan, cruelty-free, and certified by PETA.
-
-No sulfates. No preservatives. No mineral oil. No nasties.
-
-
-More drops = more coverage!
-
-Build your coverage from sheer coverage, to medium coverage or full coverage using the precise and easy-to-use pro dropper. Foundation color stays true and lasts up to 12 hours - with no transfer.
-
-No ashiness. No cakeyness. No greasiness.
-
-100% vegan. 100% clean. 100% your skin.
-
-This Product is also:
-Vegan Vegan
-100% Shade Match Guarantee! 100% Shade Match Guarantee! If you are not happy with the shade you chose, you may return your purchase made on nyxcosmetics.com within 45 days of receipt. Read more about our return policies here.
-This product is FINAL SALE.</product:description>
-            <product:price currency="XAF">12500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">10000.00</product:bulkPrice>
-            <product:stock>1232</product:stock>
-            <product:reviews average="4.75" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257441/glamourglow/jqolpfhiuwlgahhzvmvz.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257618/glamourglow/g8kkljxaz9ja6orgvgyg.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257728/glamourglow/zxppo5vqytjjkcoigsc8.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748257746/glamourglow/gdkob4jnjfjbzwsxwwos.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-cosmetics-tango-with-bronzing-powder-tribal-odyssey-683453eef78c045cbfac0c4e</loc>
@@ -1220,21 +687,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259817/glamourglow/hjvgqgwwumtnp4xbcgkn.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Cosmetics Tango with Bronzing Powder - Tribal Odyssey</product:name>
-            <product:description>&lt;p&gt;Colour	Tribal Odyssey &lt;/p&gt;&lt;p&gt;Brand	NYX PROFESSIONAL MAKEUP &lt;/p&gt;&lt;p&gt;Skin tone	dunkel Item dimensions L x W x H	24 x 76 x 76 millimetres &lt;/p&gt;&lt;p&gt;Unit count	1.00 stück Number of items	1123  &lt;/p&gt;&lt;p&gt;Manufacturer	NYX Cosmetics&lt;/p&gt;</product:description>
-            <product:price currency="XAF">7000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">5000.00</product:bulkPrice>
-            <product:stock>1231</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259640/glamourglow/b4artjg6xxpm7ulucqsr.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259767/glamourglow/wfuvyckirnjmwzcuzphe.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259791/glamourglow/nqsh2dnjb7gfyn58vrdo.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748259817/glamourglow/hjvgqgwwumtnp4xbcgkn.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-ultimate-edit-mini-shadow-palette-eyeshadow-palette-warm-neutrals-683455b993bdbae560b5f479</loc>
@@ -1258,23 +710,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491734/essentialist%20makeup%20store/fxwbdyn99g9s6uuzje7a.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Ultimate Edit Mini Shadow Palette, Eyeshadow Palette - Warm Neutrals</product:name>
-            <product:description>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Size:&amp;nbsp;&lt;strong&gt;1 Count (Pack of 1)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Color: &lt;/strong&gt;Warm Neutrals&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Brand: &lt;/strong&gt;NYX PROFESSIONAL MAKEUP&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Item Form: &lt;/strong&gt;Powder&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Finish Type: &lt;/strong&gt;Matte&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Special Feature: &lt;/strong&gt;Portable&lt;/p&gt;&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;The Perfect Six Shades: The NYX Professional Makeup Ultimate Edit Petit Shadow Palette features six eyeshadow shades in matte and shimmer finishes for the eye makeup looks from natural to editorial; Available in color combinations for all skin tones&lt;/li&gt;&lt;li&gt;Super Portable: These eyeshadow palettes are the perfect, travel friendly size to bring on vacation or to keep in your purse for touch ups; Keep one in your toiletry bag, you never know when you might need to add a dramatic eye to your look&lt;/li&gt;&lt;li&gt;All Eyes On Eye Makeup: Complete your look with our full range of eye makeup products ranging from eyeshadow palettes to false eyelashes, eyeliners, concealers, setting sprays, eyebrow makeup, eyeshadow primer and more&lt;/li&gt;&lt;li&gt;Cruelty Free Cosmetics: We believe animals belong in our arms, not in a lab; All of our makeup is certified and acknowledged by PETA as a cruelty free brand; We don&apos;t test any of our products on animals&lt;/li&gt;&lt;li&gt;Discover NYX Professional Makeup: Try all of our professional makeup products today from eyeshadow, eyeliner, and false lashes to liquid lipstick, lip gloss, primer, concealer, setting sprays and eyebrow makeup&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">8500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">6000.00</product:bulkPrice>
-            <product:stock>1234</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260063/glamourglow/hxulube2dfh0yudpxs22.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260135/glamourglow/jpzogh41h7phhli45ttj.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260159/glamourglow/al2glemfl3yavgevnsbf.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491732/essentialist%20makeup%20store/ytq78polhe4pxef6vsdr.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491733/essentialist%20makeup%20store/rsadbxauaky7utcqvkrj.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753491734/essentialist%20makeup%20store/fxwbdyn99g9s6uuzje7a.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-cosmetics-love-in-rio-3-pan-eyeshadow-palette-no-tan-lines-allowed-6834579793bdbae560b5f48d</loc>
@@ -1295,22 +730,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260641/glamourglow/grebszmdcobpbhmvbgra.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX Cosmetics Love in Rio 3-Pan Eyeshadow Palette - No Tan Lines Allowed</product:name>
-            <product:description>&lt;ul&gt;&lt;li&gt;Size Name: 1 count (Pack of 1) &lt;/li&gt;&lt;li&gt;Colour:	No Tan Lines Allowed &lt;/li&gt;&lt;li&gt;Brand:	NYX PROFESSIONAL MAKEUP &lt;/li&gt;&lt;li&gt;Item form	Powder Finish type	Metallic Special feature	Scented Product benefits	Versatile, Easy to Apply, Metallic Finish Unit count	1 count Coverage	Full Eyelid colour type	Eye Shadow&lt;/li&gt;&lt;/ul&gt;</product:description>
-            <product:price currency="XAF">7000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">5000.00</product:bulkPrice>
-            <product:stock>1234</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260542/glamourglow/jd7w4nhnqiyt25qlozof.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260578/glamourglow/hpukulk9yi8kt1ragxed.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260601/glamourglow/udkt8tjx4olcjmm1lz7e.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260622/glamourglow/bq54morirhv2r3ltm3a2.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748260641/glamourglow/grebszmdcobpbhmvbgra.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/nyx-professional-makeup-pro-lip-cream-palette-the-pinks-0317-ounce-6834593750f8e1fc84405f2e</loc>
@@ -1331,22 +750,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261085/glamourglow/u4qpwdv40semoyu4hern.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>NYX PROFESSIONAL MAKEUP Pro Lip Cream Palette, The Pinks, 0.317 Ounce</product:name>
-            <product:description>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Color: &lt;/strong&gt;The Pinks&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Size&lt;/strong&gt;: 0.31 Ounce (Pack of 1)&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Brand&lt;/strong&gt;: NYX PROFESSIONAL MAKEUP&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Color&lt;/strong&gt;: The Pinks Skin&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Type&lt;/strong&gt;: All Item Form	Cream Finish Type	Cream&lt;/li&gt;&lt;/ul&gt;</product:description>
-            <product:price currency="XAF">6500.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">4985.00</product:bulkPrice>
-            <product:stock>1234</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261003/glamourglow/njcimrtnjtcubbo061th.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261022/glamourglow/crz4zdh43toanvbdfqa2.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261041/glamourglow/wjtxsxk12zpk5hw43e5g.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261075/glamourglow/fski9sf9furrpsyftiul.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1748261085/glamourglow/u4qpwdv40semoyu4hern.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/makeup-kit-makeup-sets-for-teens-makeup-kits-for-women-teenagers-make-up-eyeshadow-palette-foundation-concealer-lipgloss-makeup-kit-for-women-full-kit-6886ac7de0884528591860e1</loc>
@@ -1370,23 +773,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656397/essentialist%20makeup%20store/ipkumdhps6lmwaeurlsn.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Makeup Kit Makeup Sets for Teens Makeup kits for Women Teenagers Make up Eyeshadow Palette Foundation Concealer Lipgloss Makeup Kit for Women Full Kit</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;【All In One Makeup Kit】The makeup kit Gift Set including 18 color eyeshadow palette,foundation,Concealer,Mascara,Lip Gloss,Eyebrow Pencil,Eyeliner,Contour Stick,Powder Puff,Makeup Brushes,Loose Powder,Concealer palette&lt;/li&gt;&lt;li&gt;【Makeup Kit Gifts for Ladies】This professional makeup artist kit is sleek and neat containing everything you need to make a full face look. It is a perfect gift for yourself or your friends, sisters, young girls like teen daughters or niece for Birthday, Valentine&apos;s Day, Christmas and other Festivals&lt;/li&gt;&lt;li&gt;【High Quality Make Up Kit】Cosmetics with pigmented formula are really vibrant and blend well.The Face powder, blush, Lipgloss, eyeshadow are skin-friendly, easy to apply &amp;amp; wash off. There is little fallout and not tested on animals&lt;/li&gt;&lt;li&gt;【Wide Applications】Suitable for different occasions, like casual, salon, party, festival, wedding etc. Its versatile design and multiple colors make it an ideal gift for both makeup professionals and beauty beginners. make up kit for women full kit&lt;/li&gt;&lt;li&gt;【Professionals Beginners Makeup Kit】This makeup set for women contains a complete range of cosmetics, suitable for different occasions makeup kits for teens makeup set for women make up kits for teenager make up set&lt;/li&gt;&lt;/ul&gt;</product:description>
-            <product:price currency="XAF">0.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">0.00</product:bulkPrice>
-            <product:stock>2442</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656288/essentialist%20makeup%20store/jfpxwdrwma2na4ce9spy.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656289/essentialist%20makeup%20store/vfdibdrgsrayjymdlcai.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656290/essentialist%20makeup%20store/vmmhthanfsslftodkroh.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656291/essentialist%20makeup%20store/ig9lryj5zdbvpwkf7w3k.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656292/essentialist%20makeup%20store/ukbbbxmbedisx31thrix.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753656397/essentialist%20makeup%20store/ipkumdhps6lmwaeurlsn.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/elf-power-grip-primer-gel-based-and-hydrating-face-primer-for-smoothing-skin-and-gripping-makeup-moisturizes-and-primes-0811-fl-oz-24-ml-6886afb531c5811a6d69b963</loc>
@@ -1404,21 +790,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657216/essentialist%20makeup%20store/twtsrz1lew52kqrdwwdc.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>E.l.f. Power Grip Primer, Gel-Based &amp; Hydrating Face Primer For Smoothing Skin &amp; Gripping Makeup, Moisturizes &amp; Primes, 0.811 Fl Oz (24 ml.)</product:name>
-            <product:description>&lt;p&gt;&lt;strong&gt;Brand: &lt;/strong&gt;e.l.f.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Product Benefits: &lt;/strong&gt;Hydrating&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Coverage: &lt;/strong&gt;Translucent&lt;strong&gt;Item &lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Form: &lt;/strong&gt;Gel&lt;strong&gt;Skin Type&lt;/strong&gt;All&lt;/p&gt;&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;SKIN-SMOOTHING and GRIPPING PRIMER: Your makeup. It’s not going anywhere. Prep skin with this gel-based face primer that has the power to grip your makeup while giving skin a natural finish for a smoother complexion.&lt;/li&gt;&lt;li&gt;FOR ALL SKIN TYPES: Our Power Grip Primer&apos;s formula goes on clear with a translucent finish for all skin types and skin tones. It is also non-comedogenic (does not clog pores.)&lt;/li&gt;&lt;li&gt;MOISTURIZES WHILE PRIMING: Infused with powerhouse ingredients like Hyaluronic Acid to retain moisture for a plump complexion, this makeup primer moisturizes, preps, and smoothes to perfection, improving the look and feel of your skin.&lt;/li&gt;&lt;li&gt;HOW TO USE: Apply evenly to face before makeup using your fingertips to pat into skin. The warmth of your fingers will help the product melt into skin for even application. Allow 30 seconds to set before applying makeup. Stop use if irritation.&lt;/li&gt;&lt;li&gt;VEGAN &amp;amp; CRUELTY-FREE: e.l.f. stands with every eye, lip, face, paw and fin. Proudly vegan, e.l.f. is double-certified cruelty-free by Leaping Bunny &amp;amp; PETA.&lt;/li&gt;&lt;/ul&gt;</product:description>
-            <product:price currency="XAF">12000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">10000.00</product:bulkPrice>
-            <product:stock>2424</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657212/essentialist%20makeup%20store/niazfnzmgvshnymxpbki.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657213/essentialist%20makeup%20store/ihywu9gh2mwdwfj632tt.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657215/essentialist%20makeup%20store/fux0l8xngwohb8bmmfk8.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753657216/essentialist%20makeup%20store/twtsrz1lew52kqrdwwdc.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/eif-power-grip-dewy-setting-spray-6886b7caa2b7da842299892f</loc>
@@ -1439,21 +810,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659095/essentialist%20makeup%20store/qnv5iibfmker3bpzxsfp.avif</image:loc>
         </image:image>
-        <product:data>
-            <product:name>E.I.F Power Grip Dewy Setting Spray</product:name>
-            <product:description>&lt;p&gt;&lt;strong&gt;What it is:&lt;/strong&gt;&amp;nbsp;A bi-phase makeup setting spray with shockingly fine mist that grips makeup for long-lasting wear with a hydrated, dewy finish.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Why you&apos;ll&amp;nbsp;love it:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Bi-phase setting spray with a makeup-gripping water phase and a moisturizing oil phase. Shake to activate!&lt;/li&gt;&lt;li&gt;Shockingly fine mist&lt;/li&gt;&lt;li&gt;Gives skin a dewy finish&lt;/li&gt;&lt;li&gt;Infused with hydrating 5% aloe plus hyaluronic acid, squalane &amp;amp; green tea seed oil&lt;/li&gt;&lt;li&gt;Non-sticky feel and non-greasy feel&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Key Ingredients:&lt;/strong&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;5% Aloe&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Shake up the way you set makeup! Get major makeup grip plus a dewy finish with this shockingly fine setting spray. Featuring a makeup-gripping water phase and a moisturizing oil phase, the bi-phase formula is boosted with 5% aloe, plus hyaluronic acid, squalane and green tea seed oil. Shake to activate the power of both phases for dewy, long-lasting makeup looks.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">13000.00</product:price>
-            <product:bulkPrice currency="XAF">10000.00</product:bulkPrice>
-            <product:stock>922</product:stock>
-            <product:reviews average="4.50" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659091/essentialist%20makeup%20store/zlt3pldk5i0qelrg4gbg.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659092/essentialist%20makeup%20store/uc7ivi6fyjhgkr9kbutm.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659093/essentialist%20makeup%20store/a6tcm6dxgib6t1pdjy2e.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659094/essentialist%20makeup%20store/dacaoyqaojlamiwjhxpo.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659095/essentialist%20makeup%20store/qnv5iibfmker3bpzxsfp.avif</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/smashbox-always-on-skin-balancing-foundation-with-hyaluronic-acid-or-medium-to-full-coverage-or-hydrating-long-lasting-1-fl-oz-6886b9bea2b7da842299893e</loc>
@@ -1477,22 +833,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659715/essentialist%20makeup%20store/zmwh76v1vxej0jyv02dy.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Smashbox Always On Skin-Balancing Foundation with Hyaluronic Acid | Medium-To-Full Coverage | Hydrating + Long Lasting, 1 Fl Oz</product:name>
-            <product:description>&lt;p&gt;This medium-to-full coverage foundation hydrates, balances, and controls oil for a fresh, long-wearing finish. The lightweight formula flexes with skin, resists sweat and humidity, and stays comfortable all day.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Balance Boost Complex provides instant hydration and oil control. Suitable for all skin types, this formula stays put for 16 hours of wear. Won’t cake, flake or streak and is water, sweat, humidity, crease, settle and transfer resistant.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Suggested use&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Shake well before use. Start with one pump. Build and blend liquid foundation as needed. Apply with fingertips, sponge, or brush. Layer for medium-to-full coverage. For best results, prep with a Smashbox primer.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">35500.00</product:price>
-            <product:bulkPrice currency="XAF">33000.00</product:bulkPrice>
-            <product:stock>252</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659697/essentialist%20makeup%20store/de0lenyhc7d6auunyiz7.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659703/essentialist%20makeup%20store/jcywtoyauyxhopzgobov.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659712/essentialist%20makeup%20store/zkziyvbbhlr4oo1jhwbr.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659713/essentialist%20makeup%20store/xu8xha41pgst7ebv79ak.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659714/essentialist%20makeup%20store/ehae30tbgct8tsabw1zu.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753659715/essentialist%20makeup%20store/zmwh76v1vxej0jyv02dy.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/laura-geller-new-york-the-ideal-fix-concealer-porcelain-buildable-medium-to-full-coverage-liquid-concealer-covers-under-eye-dark-circles-and-blemishes-long-lasting-6886bb62a2b7da8422998955</loc>
@@ -1501,17 +841,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660196/essentialist%20makeup%20store/z8viotb401e0dppiqksh.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>LAURA GELLER NEW YORK The Ideal Fix Concealer - Porcelain - Buildable Medium to Full Coverage Liquid Concealer - Covers Under Eye Dark Circles &amp; Blemishes - Long-Lasting</product:name>
-            <product:description>&lt;p&gt;Size:&amp;nbsp;&lt;strong&gt;0.13 Ounce (Pack of 1)&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Item Form: &lt;/strong&gt;Cream&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Color: &lt;/strong&gt;01 Porcelain&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Skin Type: &lt;/strong&gt;All&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Finish Type: &lt;/strong&gt;Radiant&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Recommended: Uses For Product&lt;/strong&gt;Concealer&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;IDEAL FIX MEDIUM TO FULL COVERAGE CONCEALER: It’s better skin in a bottle! This high-coverage concealer is infused with skincare ingredients, promoting healthier younger looking skin as it covers dark circles and imperfections. The precision applicator makes it easy to cover what you want, when you want. You can even use it as a full-coverage liquid foundation&lt;/li&gt;&lt;li&gt;PORCELAIN: Get this transfer-proof concealer in the perfect shade for pale skin with rosy undertones.&lt;/li&gt;&lt;li&gt;HELPS SMOOTH LINE &amp;amp; WRINKLES: Infused with skincare powerhouse Paracress, this undereye concealer helps to smooth wrinkles and expression lines while promoting lifted skin. Antioxidant-rich Vitamin E promotes a stronger and radiant complexion.&lt;/li&gt;&lt;li&gt;PERFECT FOR: This buildable medium to full coverage concealer color corrects undereye circles, redness, acne blemishes, dark spots and other imperfections, creating a fresh-faced finish.&lt;/li&gt;&lt;li&gt;HOW TO APPLY: Apply a small dot directly over the spot(s) you want to conceal, then gently tap and blend the edges with a concealer brush or finger for seamless results. Repeat for more coverage.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">25498.00</product:price>
-            <product:bulkPrice currency="XAF">23000.00</product:bulkPrice>
-            <product:stock>535</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660196/essentialist%20makeup%20store/z8viotb401e0dppiqksh.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/laura-geller-new-york-always-there-waterproof-lengthening-mascara-in-black-or-long-lasting-mascara-for-volume-and-length-6886bc79a2b7da8422998958</loc>
@@ -1526,19 +855,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660490/essentialist%20makeup%20store/morjd8uhg4rthhdowdtq.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>LAURA GELLER NEW YORK Always There Waterproof Lengthening Mascara in Black | Long-Lasting Mascara for Volume and Length</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;ALWAYS THERE WATERPROOF MASCARA: Long-lasting and 100% waterproof. Laura Geller’s Always There Waterproof Lengthening Mascara is the go-to for intense lashes that won’t quit. The ultra-creamy and rich black mascara formula works to build, lift and lengthen eyelashes in a single swipe, all thanks to an innovative brush and a unique blend of hard and soft waxes. Plus, not only is this volumizing mascara waterproof, it’s smudge-proof and flake-proof too, so you can forget the need for touchups!&lt;/li&gt;&lt;li&gt;LONG LASTING FORMULA: It’s all in the name. Laura Geller’s rich waterproof mascara is the long-lasting solution for volume and length that sticks with you without smudging and flaking.&lt;/li&gt;&lt;li&gt;DEFINES LASHES WITHOUT CLUMPS: The secret to this longwearing mascara is a combination of soft and hard waxes, creating the perfect texture that defines eyelashes without clumps.&lt;/li&gt;&lt;li&gt;PERFECT FOR: This black mascara features an innovative brush that has soft and wavy fibers, ensuring every lash is coated and lifted to their longest and fullest potential.&lt;/li&gt;&lt;li&gt;HOW TO USE: Starting at the base of your lashes, sweep the brush up and through to the tips, coating each lash. For additional volume, wiggle the wand from side-to-side and base to tip. Layer as desired to achieve your big lash look.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">18998.00</product:price>
-            <product:bulkPrice currency="XAF">18000.00</product:bulkPrice>
-            <product:stock>424</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660480/essentialist%20makeup%20store/ivzxbxbwfkvhpu9dog3s.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660488/essentialist%20makeup%20store/turrpzne5cz9gknsg5mz.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753660490/essentialist%20makeup%20store/morjd8uhg4rthhdowdtq.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/smashbox-super-fan-lash-lengthening-mascara-or-lifting-long-lasting-volume-034-fl-oz-black-6886bf09a2b7da842299899c</loc>
@@ -1553,19 +869,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661159/essentialist%20makeup%20store/ivokj6mjow8btla5nl7a.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Smashbox Super Fan Lash Lengthening Mascara | Lifting, Long Lasting + Volume, 0.34 Fl Oz, Black</product:name>
-            <product:description>&lt;h4&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;FALSIES WITHOUT THE HASSLE: Longwearing, lengthening mascara gives you modern, fanned-out volume. Get 12-hour length, lift and volume without any heaviness or clumping. 360° Precision double-bristle brush loads from root-to tip.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;12-hour length and buildable lift with fanned-out volume , no heaviness or clumping. Precision double-bristle brush&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Suggested use&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Starting at lash line, sweep 360° Precision Brush from root to tip. Use brush tip to reach top and bottom lashes. Layer to build length and volume.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">19000.00</product:price>
-            <product:bulkPrice currency="XAF">18000.00</product:bulkPrice>
-            <product:stock>1233</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661152/essentialist%20makeup%20store/dj6xtxhk534sdtfvwpra.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661158/essentialist%20makeup%20store/jhepyvyol5vmljxczd6l.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661159/essentialist%20makeup%20store/ivokj6mjow8btla5nl7a.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/bobbi-brown-creamy-concealer-kit-natural-tan-by-bobbi-brown-for-women-011-ounce-concealer-011-ounce-6886bfc5a2b7da842299899f</loc>
@@ -1580,20 +883,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661324/essentialist%20makeup%20store/o1xvjxpaw9gpzvbodezb.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Bobbi Brown Creamy Concealer Kit - Natural Tan By Bobbi Brown for Women - 0.11 Ounce Concealer, 0.11 Ounce</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;This concealer is dramatically improves a woman&apos;s appearance&lt;/li&gt;&lt;li&gt;Covering darkness under the eyes for a brighter, fresher, and more well-rested look&lt;/li&gt;&lt;li&gt;It is long lasting wear&lt;/li&gt;&lt;li&gt;Country of origin is United States&lt;/li&gt;&lt;/ul&gt;</product:description>
-            <product:price currency="XAF">23000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">22000.00</product:bulkPrice>
-            <product:stock>545</product:stock>
-            <product:reviews average="4.50" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661322/essentialist%20makeup%20store/py0bcnb0qwwu1dkby6zn.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661323/essentialist%20makeup%20store/iwotnxlivz9d7d3tluft.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753661324/essentialist%20makeup%20store/o1xvjxpaw9gpzvbodezb.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/bobbi-brown-weightless-skin-foundation-spf-15-warm-beige-6886c84da2b7da8422998a6d</loc>
@@ -1608,19 +897,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663467/essentialist%20makeup%20store/bveoonvh2mo0d4x1qmlz.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Bobbi Brown Weightless Skin Foundation, SPF 15, Warm Beige</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;A long-wear foundation that delivers 24-hour moisture and 24-hour wear for a natural matte finish that looks like skin, not makeup. Our Tri-Moisture Complex features Hyaluronic Acid, Glycerin, and Honey Extract to help boost skin&apos;s moisture levels for immediate and long-term hydration&lt;/li&gt;&lt;li&gt;SUN PROTECTION: Includes SPF 15 to help protect skin from harmful UV rays while evening out skin tone&lt;/li&gt;&lt;li&gt;SHADE DETAILS: Warm Beige - Light medium beige with yellow undertones; for light to medium skin&lt;/li&gt;&lt;li&gt;Smart Skin-Balancing Technology delivers all-day oil control plus all-day hydration, so skin is left feeling more balanced&lt;/li&gt;&lt;li&gt;APPLICATION: Blends seamlessly into skin using fingers, brush, or makeup sponge for buildable coverage&lt;/li&gt;&lt;li&gt;Paraben-free; phthalate-free; sulfate-free; drying alcohol–free; mineral oil–free; petrolatum-free&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">40000.00</product:price>
-            <product:bulkPrice currency="XAF">38000.00</product:bulkPrice>
-            <product:stock>533</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663458/essentialist%20makeup%20store/pndkuvptofohqyaq11ls.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663463/essentialist%20makeup%20store/atgc32xkpk3mhquzroem.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663467/essentialist%20makeup%20store/bveoonvh2mo0d4x1qmlz.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/too-faced-born-this-way-super-coverage-multi-use-concealer-or-full-coverage-oil-free-long-lasting-hydrating-6886c904a2b7da8422998a7c</loc>
@@ -1638,20 +914,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663714/essentialist%20makeup%20store/s6ulj2swsjescq6o6wdh.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Too Faced Born This Way Super Coverage Multi-Use Concealer | Full Coverage, Oil Free, Long Lasting + Hydrating</product:name>
-            <product:description>&lt;h4&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Conceal, contour, highlight and retouch with our perfecting, natural finish concealer. The ultimate multi-use formula for a modern photo-ready complexion. Fully-loaded pigments provide maximum coverage and an undetectable finish.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This natural finish, full coverage, 12 hour wear concealer is hydrating, oil-free, non-comedogenic &amp;amp; photo friendly&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Suggested use&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;To retouch and conceal under eyes and hide hyperpigmentation or blemishes: Place a dot directly on the area of discoloration and blend with fingers, concealer brush, or sponge in a pressing (stippling) motion until flawless.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">29500.00</product:price>
-            <product:bulkPrice currency="XAF">28000.00</product:bulkPrice>
-            <product:stock>4343</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663711/essentialist%20makeup%20store/vnqy9ipldwsv236j3ztu.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663712/essentialist%20makeup%20store/lcogwvmf63sdtgrtwi4b.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663713/essentialist%20makeup%20store/q5edzb4radeehxw98ann.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663714/essentialist%20makeup%20store/s6ulj2swsjescq6o6wdh.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/too-faced-born-this-way-natural-finish-longwear-liquid-foundation-or-medium-to-full-coverage-or-hydrating-oil-free-6886c99ba2b7da8422998a80</loc>
@@ -1666,19 +928,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663854/essentialist%20makeup%20store/hqjmygtq23fj5bhoqrkv.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Too Faced Born This Way Natural Finish Longwear Liquid Foundation | Medium-To-Full Coverage | Hydrating + Oil Free</product:name>
-            <product:description>&lt;h4&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;This foundation masterfully diffuses the line between makeup and skin for a perfect, natural finish and coverage so undetectable, they will think you were Born This Way. Infused with Coconut Water, Alpine Rose and Hyaluronic Acid.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Oil-free foundation for up to 12 hrs of medium-to-full coverage. It is hydrating, photo-friendly &amp;amp; non-comedogenic.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Suggested use&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Apply with fingertips, a sponge, or brush. Start at the center of the face and work outward. Apply more to achieve desired coverage. For areas of extreme redness or discoloration, stipple on additional coverage.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">39000.00</product:price>
-            <product:bulkPrice currency="XAF">35000.00</product:bulkPrice>
-            <product:stock>4345</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663852/essentialist%20makeup%20store/guzwis5va3gma4auvue7.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663853/essentialist%20makeup%20store/f9owyp67fbbyrhppzsl5.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753663854/essentialist%20makeup%20store/hqjmygtq23fj5bhoqrkv.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/double-wear-stay-in-place-foundation-6886cb1ea2b7da8422998a86</loc>
@@ -1690,18 +939,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664228/essentialist%20makeup%20store/isdudthvt4h86czhcg7q.avif</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Double Wear Stay-in-Place Foundation</product:name>
-            <product:description>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Over 55 shades. 24-hour staying power. The #1 foundation in the US.*&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Wear confidence. Double Wear Makeup is the fresh matte foundation that looks flawless whatever comes your way. 24-hour wear. Oil-free. Controls oil all day. Sweat-, heat- and humidity-resistant. Lifeproof, waterproof foundation. 24-hour color true.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Liquid foundation in a wide range of shades that flatters all. Won&apos;t look grey on deeper skintones.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Unifies uneven skintone and covers imperfections-buildable, medium to full coverage foundation.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Feels lightweight and so comfortable, you won&apos;t believe it&apos;s long wear. No touch ups needed.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Our best foundation for long wear, Double Wear is the makeup that keeps up-no matter where your day takes you. Apply once and don&apos;t think twice.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Find your perfect shade:&lt;/strong&gt;&amp;nbsp;Choose your skin&apos;s intensity level (from light to deep) and undertone (cool, neutral or warm).&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;HOW TO DETERMINE YOUR UNDERTONE&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;Undertone is the way your bare skin looks and behaves. Which one sounds most like you?&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Cool (C) undertones:&lt;/strong&gt;&amp;nbsp;Bare skin has a rosy tone and burns easily in the sun.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Neutral (N) undertones:&lt;/strong&gt;&amp;nbsp;Bare skin is more even toned, not too pink or golden.&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Warm (W) undertones:&lt;/strong&gt;&amp;nbsp;Bare skin has a golden or olive tone and tans easily in the sun.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">41000.00</product:price>
-            <product:bulkPrice currency="XAF">40000.00</product:bulkPrice>
-            <product:stock>2562</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664221/essentialist%20makeup%20store/a4jb7upljfq2qkyu8imw.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664228/essentialist%20makeup%20store/isdudthvt4h86czhcg7q.avif</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/laura-geller-new-york-baked-double-take-powder-foundation-fair-buildable-medium-to-full-coverage-matte-finish-6886ce38d23397cf96998bbe</loc>
@@ -1713,18 +950,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664957/essentialist%20makeup%20store/ai6euvgx0q1lxkzuntjw.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>LAURA GELLER NEW YORK Baked Double Take Powder Foundation - Fair - Buildable Medium to Full Coverage - Matte Finish</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;DOUBLE TAKE BAKED BUILDABLE FULL COVERAGE POWDER FOUNDATION: Get skin that gets a double take. This foundation gives you instant elegance with full coverage, a classic matte finish that&apos;s never cakey, and a long-wear formula that doesn&apos;t fade. Handmade in Italy, the creamy formula feels like a treat for skin.&lt;/li&gt;&lt;li&gt;FAIR: Fair beige with warm yellow undertones&lt;/li&gt;&lt;li&gt;ANTI-AGING INGREDIENTS: With antioxidant-rich Jojoba Seed Oil that softens and soothes skin, Centella Asiatica Extract that hydrates and mitigates sun damage, and anti-aging Camellia Sinensis Leaf Extract, there&apos;s plenty to love about how this foundation looks and feels. Not only will it stay on all day, your skin will be better for it.&lt;/li&gt;&lt;li&gt;PERFECT FOR: This full-coverage foundation is an all-around favorite, but those with mature skin and fine lines and wrinkles will especially love it. Not only does it never get cakey, but it&apos;s made for movement — no cracking or fading with every facial expression.&lt;/li&gt;&lt;li&gt;HOW TO APPLY: You can use this matte foundation makeup wet or dry with the included dual-sided pink and white applicator sponge. For dry application, apply foundation with the pink side of the sponge. Gently dab the powder, pat it on the areas that need the most attention first, then blend outward and upward. For more serious coverage, apply it wet with the white side of the sponge. Dampen the sponge, dab the powder and pat onto face then blend outward and upward until fully blended.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">35000.00</product:price>
-            <product:bulkPrice currency="XAF">33000.00</product:bulkPrice>
-            <product:stock>2525</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664954/essentialist%20makeup%20store/rthpjtbkdnfcwghleubr.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753664957/essentialist%20makeup%20store/ai6euvgx0q1lxkzuntjw.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/estee-lauder-double-wear-stay-in-place-flawless-24-hour-concealer-or-longwear-or-soft-matte-finish-medium-to-full-coverage-or-hydrating-04-fl-oz-6886ceb1d23397cf96998bc1</loc>
@@ -1736,18 +961,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665161/essentialist%20makeup%20store/dalrbddkpr7n1vcq6khe.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Estée Lauder Double Wear Stay-in-Place Flawless 24-Hour Concealer | Longwear | Soft Matte Finish, Medium-to-Full Coverage | Hydrating, 0.4 Fl Oz</product:name>
-            <product:description>&lt;h4&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Multi-use skin perfecting 24-hour concealer. Blurs imperfections for a soft-focus matte finish. Hydrates on contact. Provides powerful oil control immediately and for up to 24 hours. Expertly designed 3D Sculpting Wand.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Conceals. Highlights. Contours. 24H wear. 24H oil control. Instant moisture. Breathable, medium to full coverage.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Suggested use&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Multi-Use Targeted Techniques: MICRO SCULPT: Use micro precision EDGE to accentuate contours. MICRO LIFT: Use micro point TIP to give eyes a lifted appearance. MACRO BLUR: Use macro curved SIDE to conceal &amp;amp; blur imperfections.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">29500.00</product:price>
-            <product:bulkPrice currency="XAF">28000.00</product:bulkPrice>
-            <product:stock>5353</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665160/essentialist%20makeup%20store/taeolmd5to9aue0s81sr.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665161/essentialist%20makeup%20store/dalrbddkpr7n1vcq6khe.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/laura-geller-new-york-modern-classic-cream-lipstick-trio-mauve-majesty-real-rosy-novel-neutral-6886cf61d23397cf96998bc4</loc>
@@ -1762,19 +975,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665309/essentialist%20makeup%20store/fj9ejoixxwr4inqitzqh.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>LAURA GELLER NEW YORK Modern Classic Cream Lipstick Trio - Mauve Majesty, Real Rosy, Novel Neutral</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;MODERN CLASSIC LIPSTICK TRIO: Meet the lipstick of your dreams, now in a perfectly curated trio!&lt;/li&gt;&lt;li&gt;THREE GORGEOUS SHADES: Mauve Majesty, Real Rosy, Novel Neutral&lt;/li&gt;&lt;li&gt;CREAMY HYDRATING TEXTURE: The super-soft texture, infused with synthetic beeswax and Vitamin E, melts onto your mouth and does not seep into lip lines.&lt;/li&gt;&lt;li&gt;NON-DRYING CREAMY FORMULA: Luxurious and lightweight, this cream lipstick delivers color and moisture in a single stroke.&lt;/li&gt;&lt;li&gt;HOW TO APPLY: Apply to clean, bare lips. Start in the middle of your lips and work your way to the corners of your mouth. Blend with a lip brush or fingertips&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">24000.00</product:price>
-            <product:bulkPrice currency="XAF">23000.00</product:bulkPrice>
-            <product:stock>2445</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665308/essentialist%20makeup%20store/ao36nueemgwwhjscy6r2.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665309/essentialist%20makeup%20store/enbtq9d8mtusk10xbrhz.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665309/essentialist%20makeup%20store/fj9ejoixxwr4inqitzqh.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/estee-lauder-advanced-night-repair-eye-concentrate-matrix-synchronized-multi-recovery-complex-to-reduce-puffiness-05-fl-oz-6886d0a9d23397cf96998bc7</loc>
@@ -1789,20 +989,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665563/essentialist%20makeup%20store/to6fddy1vmso2jnmshl7.avif</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Estée Lauder Advanced Night Repair Eye Concentrate Matrix Synchronized Multi-Recovery Complex to Reduce Puffiness, 0.5 Fl Oz</product:name>
-            <product:description>&lt;p&gt;Let your eyes express the beauty of you. Reduce the look of lines in every eye zone.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Infused with our exclusive Night Peptide, this ultra nourishing eye concentrate targets multiple eye area concerns: crow&apos;s feet lines, &quot;11&quot; lines between brows, under eye lines, wrinkles, loss of firmness, puffy eyes and dark circles.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Eyes bounce back-look more youthful, vibrant, healthy.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Reduces the Look of Lines &amp;amp; Wrinkles&lt;/strong&gt;Visible improvement in lines beginning in just 3 weeks.&lt;/li&gt;&lt;li&gt;Reduces the look of &quot;11&quot; lines between brows starting in just 3 weeks&lt;/li&gt;&lt;li&gt;91% of panelists showed a significant improvement in the look of fine lines in the crow&apos;s feet area over time.(1)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Firms&lt;/strong&gt;Skin around the eyes feels firmer in just 3 weeks&lt;/li&gt;&lt;li&gt;20% stronger, more fortified eye skin within hours&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Visibly Reduces Puffiness&lt;/strong&gt;Instantly reduces the look of puffy eyes.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Cushions, Nourishes and Hydrates&lt;/strong&gt;+20% thicker, more fortified eye skin within hours&lt;/li&gt;&lt;li&gt;Drenches eyes with deep, intensive moisture that lasts hour after hour.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Smooths&lt;/strong&gt;In just 1 week, 93% of women said the eye area felt softer and smoother.(2)&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;1-IN-60 MILLION NIGHT PEPTIDE&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Advanced Night Repair Eye, with our exclusive 1-in-60 million Night Peptide, works to help optimize skin&apos;s natural night and day rhythm of repair and protection. With continued use of the formula, lines and wrinkles look reduced. Skin feels firmer and looks renewed.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;360° MESH MATRIX &quot;SHOCK ABSORBER&quot;&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Our fortifying blend of a Visco-Elastic Polymer and multi-molecular weight Hyaluronic Acids. It cushions thin, delicate eye skin to counter visible effects of dynamic expressions like blinking, squinting and smiling. That&apos;s key because these constant eye micromovements-in addition to the stresses of today&apos;s non-stop screentime and staying awake longer-impacts collagen, contributing to lines, wrinkles and other signs of aging.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;COOLING CRYO-STEEL WAND&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;The custom-designed applicator, crafted from stainless steel, cools puffy eyes on contact. Its precision contour tip has a high-polish surface that massages and glides without tugging-vital for thin, fragile eye skin. Provides long-lasting cooling for up to 5 minutes.(3)&lt;strong&gt;&amp;nbsp;Clinically tested: using the wand plus the Eye Matrix reduces the look of undereye puffiness instantly.&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Patented until 2033. Ideal for all ages, all skintones, all skintypes. This next-generation Multi-Recovery formula has the same beloved cushioning, nourishing texture as it had before.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">56000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">54998.00</product:bulkPrice>
-            <product:stock>256</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665554/essentialist%20makeup%20store/k6rmbsdih12n9fv9zob5.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665562/essentialist%20makeup%20store/emdfkmn0gpzktjplqjvl.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753665563/essentialist%20makeup%20store/to6fddy1vmso2jnmshl7.avif</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/estee-lauder-resilience-multi-effect-tri-peptide-face-and-neck-cream-moisturizer-spf-15-or-plumping-and-anti-aging-6886d480d23397cf96998c88</loc>
@@ -1817,19 +1003,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666657/essentialist%20makeup%20store/b2rp7ecmgiharo1fz7r4.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Estée Lauder Resilience Multi-Effect Tri-Peptide Face and Neck Cream Moisturizer SPF 15 | Plumping &amp; Anti-Aging</product:name>
-            <product:description>&lt;h4&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Look as young as you feel. This intensely nourishing, youth-infusing moisturizer with SPF 15 brings out skin that is radiant, plumped, supple-more resilient. Lavishly rich cream includes our advanced Tri-Peptide Complex.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Benefits&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Skin is plumped &amp;amp; radiantly alive. Intensely moisturized all day. Wrinkles appear significantly reduced.&lt;/p&gt;&lt;h4&gt;&lt;strong&gt;Suggested use&lt;/strong&gt;&lt;/h4&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;AM: Apply all over face and neck after your serum. PM: We recommend using Resilience Multi-Effect Night for a 24-hour youth-infusing system—your skin will thank you.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">102000.00</product:price>
-            <product:bulkPrice currency="XAF">100000.00</product:bulkPrice>
-            <product:stock>2450</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666634/essentialist%20makeup%20store/a0dsish9hfzw2zv2gfer.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666656/essentialist%20makeup%20store/nkimlv3kx57tjxx6j5cg.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666657/essentialist%20makeup%20store/b2rp7ecmgiharo1fz7r4.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/mac-studio-fix-fluid-foundation-spf-15-c8-1-ounce-6886d524d23397cf96998c8b</loc>
@@ -1838,17 +1011,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666797/essentialist%20makeup%20store/nuop9cd8kincejlqgyzc.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>M.A.C Studio Fix Fluid Foundation SPF 15 C8, 1 Ounce</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;A foundation that provides hydrating, 24-hour buildable coverage and a natural matte finish&lt;/li&gt;&lt;li&gt;For all skin types, though especially ideal for those with oily skin&lt;/li&gt;&lt;li&gt;This foundation delivers stay-true color that lasts for 24 hours, contains broad-spectrum SPF 15 protection and controls oil and shine for up to six hours&lt;/li&gt;&lt;li&gt;Always apply liquid foundation to well-moisturized and prepped skin, using the 130S Brush (sold separately) for a studio-ready complexion&lt;/li&gt;&lt;li&gt;Apply to the center of the face first (or wherever you want more coverage), then use a brush to blend to the outer regions of your face&lt;/li&gt;&lt;li&gt;Pro tips: Try maixing with your favourite moisturizer or oils to create a more sheer, luminous finish&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">28000.00</product:price>
-            <product:bulkPrice currency="XAF">26000.00</product:bulkPrice>
-            <product:stock>563</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666797/essentialist%20makeup%20store/nuop9cd8kincejlqgyzc.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/mac-studio-fix-powder-plus-foundation-6886d5d5d23397cf96998c8e</loc>
@@ -1860,18 +1022,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666950/essentialist%20makeup%20store/yoluyxo26l1vv9rdrzvl.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>MAC Studio Fix Powder Plus Foundation</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;What it is: MAC Studio Fix Powder Plus Foundation is a one-step powder and foundation that gives skin a smooth, flawless, matte finish. Who it&apos;s for: MAC Studio Fix Powder Plus Foundation is suitable for anyone with any skin type who wants medium-to-full coverage and a matte finish. What it does: This powder wears for up to 12 hours and reduces the appearance of pores while controlling oil and shine. During those 12 hours it won&apos;t dry, fade, streak, cake, settle or crease, and it stays color-t&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">27000.00</product:price>
-            <product:bulkPrice currency="XAF">23998.00</product:bulkPrice>
-            <product:stock>635</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666949/essentialist%20makeup%20store/dii75mudetmeq0rywdp8.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753666950/essentialist%20makeup%20store/yoluyxo26l1vv9rdrzvl.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/moisture-surge-eyetm-96-hour-hydro-filler-concentrate-moisture-surge-eyetm-96-hour-hydro-filler-concentrate-6886d6ebd23397cf96998c91</loc>
@@ -1883,19 +1033,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667232/essentialist%20makeup%20store/hczd2uxlz4qe3lqp9c4f.avif</image:loc>
         </image:image>
-        <product:data>
-            <product:name> Moisture Surge Eye™ 96-Hour Hydro-Filler Concentrate Moisture Surge Eye™ 96-Hour Hydro-Filler Concentrate</product:name>
-            <product:description>&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Ultralight water-gel delivers intense, crease-plumping hydration.&lt;/p&gt;&lt;p&gt;Dermatologist tested. Ophthalmologist tested. Allergy tested. 100% fragrance free.&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Use pea-size amount.&lt;/li&gt;&lt;li&gt;Massage all around eye area.&lt;/li&gt;&lt;li&gt;Can be used alone, under makeup, or as a 3-minute eye mask.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;Moisture Surge Eye™ 96-Hour Hydro-Filler Concentrate is an ultralight, cushiony water-gel delivers 96 hours of intense, crease-plumping hydration.&lt;/p&gt;&lt;p&gt;Instantly re-floods, tightens and works as an undereye brightener.&lt;/p&gt;&lt;p&gt;Hydrates the delicate eye area using Auto-Replenishing Lipid-Sphere Technology, which helps rebuild skin’s lipid barrier to minimize moisture loss.&lt;/p&gt;&lt;p&gt;Use a pea-size amount.&lt;/p&gt;&lt;p&gt;Massage all around the eye area.&lt;/p&gt;&lt;p&gt;Can be used alone, under makeup, or as a 3-minute eye mask.&lt;/p&gt;&lt;p&gt;Formulated with encapsulated antioxidants, it helps break the cycle of environmental stress that can lead to premature visible aging.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Formula Facts&lt;/p&gt;&lt;p&gt;Clinical Expertise&lt;/p&gt;&lt;p&gt;Dermatologist tested&lt;/p&gt;&lt;p&gt;Ophthalmologist tested&lt;/p&gt;&lt;p&gt;Allergy tested&lt;/p&gt;&lt;p&gt;Fragrance free&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Free Of&lt;/p&gt;&lt;p&gt;Fragrance&lt;/p&gt;&lt;p&gt;Parabens&lt;/p&gt;&lt;p&gt;Phthalates&lt;/p&gt;&lt;p&gt;Ingredients: Water\Aqua\Eau, Glycerin, Butylene Glycol, Propanediol, Phenyl Trimethicone, Sucrose, Hydroxyethyl Urea, Camellia Sinensis (Green Tea) Leaf Extract, Hypnea Musciformis (Algae) Extract, Trehalose, Algae Extract, Alteromonas Ferment Extract, Acetyl Glucosamine, Gelidiella Acerosa Extract, Chlorella Vulgaris Extract, Aloe Barbadensis Leaf Water, Sorbitol, Cholesterol, Niacinamide, Pentaerythrityl Tetraethylhexanoate, Sodium Polyaspartate, Aloe Barbadensis Leaf Extract, Cocos Nucifera (Coconut) Oil, Hydrolyzed Rice Extract, Caffeine, Acetyl Hexapeptide-8, Tocopheryl Acetate, Cucumis Sativus (Cucumber) Fruit Extract, Palmitoyl Hexapeptide-12, Glyceryl Acrylate/Acrylic Acid Copolymer, Glyceryl Polymethacrylate, Acrylates/C10-30 Alkyl Acrylate Crosspolymer, Peg-7m, Dextrin Palmitate, Dehydroxanthan Gum, Sodium Hyaluronate, Pentaerythrityl Adipate/Caprate/Caprylate/Heptanoate, Tetrahexyldecyl Ascorbate, Carbomer, Peg-8, Sodium Hydroxide, Citric Acid, Triethoxycaprylylsilane, Disodium Edta, Sodium Citrate, Pentaerythrityl Tetra-Di-T-Butyl Hydroxyhydrocinnamate, Bht, Phenoxyethanol, Chlorphenesin, Blue 1 Lake (Ci 42090), Yellow 5 Lake (Ci 19140), Iron Oxides (Ci 77491)&amp;nbsp;&amp;lt;ILN45861&amp;gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">33000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">31000.00</product:bulkPrice>
-            <product:stock>425</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667228/essentialist%20makeup%20store/wkspe0zq0zab4ji2jwdc.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667232/essentialist%20makeup%20store/hczd2uxlz4qe3lqp9c4f.avif</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/clinique-smart-clinical-repairtm-wrinkle-correcting-eye-cream-6886d877d23397cf96998ce6</loc>
@@ -1907,18 +1044,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667655/essentialist%20makeup%20store/uz5t9wetenh5jfrze4z8.avif</image:loc>
         </image:image>
-        <product:data>
-            <product:name> Clinique Smart Clinical Repair™ Wrinkle Correcting Eye Cream</product:name>
-            <product:description>&lt;p&gt;Our anti-aging eye cream for wrinkles helps strengthen delicate eye-area skin, making it smoother, brighter, and younger-looking. Helps visibly depuff eyes, too. 100% feel a smoother eye area.*&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Dermatologist tested. Safe for sensitive eyes and contact lens wearers. Safe for sensitive skin around eyes. Allergy tested. 100% fragrance free.&lt;/p&gt;&lt;p&gt;*Clinical testing on 32 women after 12 weeks.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Clinique’s best eye cream for wrinkles is engineered to fortify the delicate skin around the eye, making it smoother, brighter, and younger-looking.&lt;/p&gt;&lt;p&gt;Visibly improves overall tear trough, including crepiness and discoloration.&lt;/p&gt;&lt;p&gt;Undereye cream delivers instant and long-lasting hydration.&lt;/p&gt;&lt;p&gt;Brightens the eye area and depuffs by gently massaging into skin.&lt;/p&gt;&lt;p&gt;Silky, fast-absorbing texture.&lt;/p&gt;</product:description>
-            <product:price currency="XAF">41000.00</product:price>
-            <product:bulkPrice currency="XAF">40000.00</product:bulkPrice>
-            <product:stock>5263</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667654/essentialist%20makeup%20store/tjw7u0wmiioj0tky2xuv.avif</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667655/essentialist%20makeup%20store/uz5t9wetenh5jfrze4z8.avif</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/one-size-on-til-dawn-mattifying-waterproof-setting-spray-6886d974d23397cf96998ce9</loc>
@@ -1930,26 +1055,6 @@ This product is FINAL SALE.</product:description>
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667816/essentialist%20makeup%20store/fmmhzo3jbdc3pj4bigml.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>One Size On &apos;Til Dawn Mattifying Waterproof Setting Spray</product:name>
-            <product:description>&lt;h2&gt;Product Details&lt;/h2&gt;&lt;h2&gt;&lt;br&gt;&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;16-HR HOLD:&amp;nbsp;Locks in makeup for up to 16 hours of unstoppable, touchup-free wear.&lt;/li&gt;&lt;li&gt;WATERPROOF &amp;amp; SWEATPROOF:&amp;nbsp;Delivers extreme performance to help makeup withstand water, sweat and humidity.&lt;/li&gt;&lt;li&gt;TRANSFERPROOF &amp;amp; SMUDGEPROOF:&amp;nbsp;Your makeup stays locked in all day - no smudging, no transferring, no worries.&lt;/li&gt;&lt;li&gt;OIL CONTROL:&amp;nbsp;Witch hazel helps absorb oil for a flawless matte finish that lasts.&lt;/li&gt;&lt;li&gt;SMOOTH FINISH:&amp;nbsp;Green tea extract tightens the look of pores for a smooth appearance.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;AWARDS&lt;/p&gt;&lt;ul&gt;&lt;li&gt;Elle First Class Beauty 2024&lt;/li&gt;&lt;li&gt;Nylon Beauty Hit List Awards Winner 2024&lt;/li&gt;&lt;li&gt;BeautyInc Makeup Must-Haves 2024&lt;/li&gt;&lt;li&gt;Glamour Beauty Award 2023&lt;/li&gt;&lt;li&gt;InStyle’s Editors Picks 2023&lt;/li&gt;&lt;/ul&gt;&lt;h2&gt;Ingredients&lt;/h2&gt;&lt;h2&gt;&lt;br&gt;&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;WITCH HAZEL:&amp;nbsp;helps control excess oil and mattify skin.&lt;/li&gt;&lt;li&gt;GREEN TEA EXTRACT:&amp;nbsp;tightens the appearance of pores.&lt;/li&gt;&lt;li&gt;FLEX HOLD POLYMER BLEND:&amp;nbsp;locks in makeup with a breathable, waterproof barrier.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;
-
-One Size On &apos;Til Dawn Mattifying Waterproof Setting Spray
-Size: 3.4 oz / 143 mL
-
-**What it is:** A waterproof setting spray that gives skin an all-day matte finish.
-Highlighted Ingredients: Green Tea 
-
-**Extract:** Helps tighten pores and Witch Hazel: Absorbs oil for a blurred, matte finish.</product:description>
-            <product:price currency="XAF">27000.00</product:price>
-            <product:bulkPrice currency="XAF">25000.00</product:bulkPrice>
-            <product:stock>656</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667815/essentialist%20makeup%20store/rrtmtap0izvakrzfizvj.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753667816/essentialist%20makeup%20store/fmmhzo3jbdc3pj4bigml.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/ultimate-blurring-setting-powder-or-onesize-by-patrick-starrr-6886daddd23397cf96998cf5</loc>
@@ -1961,27 +1066,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668262/essentialist%20makeup%20store/za6qgf1ufdtx61eeya3p.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Ultimate Blurring Setting Powder | ONE/SIZE by Patrick Starrr</product:name>
-            <product:description>&lt;h2&gt;Product Details&lt;/h2&gt;&lt;h2&gt;&lt;br&gt;&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;24-HR SHINE CONTROL:&amp;nbsp;Clinically shown to reduce shine instantly and provide unrivaled shine control for up to 24 hours.&lt;/li&gt;&lt;li&gt;ALL-DAY WEAR:&amp;nbsp;Locks in makeup for up to 12 hours without settling into lines.&lt;/li&gt;&lt;li&gt;BLURRING:&amp;nbsp;Soft-focus powders visibly blur pores and texture for an airbrushed effect.&lt;/li&gt;&lt;li&gt;BRIGHTENING:&amp;nbsp;Instantly brightens skin&apos;s appearance and enhances complexion.&lt;/li&gt;&lt;li&gt;PHOTO READY:&amp;nbsp;Gives you a flashback-free finish with no white cast or cakey vibes.&lt;/li&gt;&lt;li&gt;SKIN FRIENDLY:&amp;nbsp;Dermatologist tested, non-comedogenic and fragrance free - perfect for sensitive skin.&lt;/li&gt;&lt;li&gt;DIVERSE SHADES:&amp;nbsp;Available in 7 shades to complement all skin tones.&lt;/li&gt;&lt;/ul&gt;
-
-One Size On &apos;Til Dawn Mattifying Waterproof Setting Spray
-Size: 3.4 oz / 143 mL
-
-**What it is:** A waterproof setting spray that gives skin an all-day matte finish.
-Highlighted Ingredients: Green Tea 
-
-**Extract:** Helps tighten pores and Witch Hazel: Absorbs oil for a blurred, matte finish.</product:description>
-            <product:price currency="XAF">30000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">27000.00</product:bulkPrice>
-            <product:stock>4553</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668261/essentialist%20makeup%20store/prqqx9zhwgla2qpsiwun.webp</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668262/essentialist%20makeup%20store/za6qgf1ufdtx61eeya3p.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/juvias-place-blushed-liquid-blush-blushlily-dewy-tint-cheeks-makeup-glow-pigment-effortless-beauty-long-lasting-cosmetics-soft-creamy-natural-buildable-all-skin-color-light-flawless-finish-blend-6886dcebd23397cf96998d24</loc>
@@ -1990,17 +1074,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668791/essentialist%20makeup%20store/g6qef2i1qvmtdpzdtlpy.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Juvia&apos;s Place Blushed Liquid Blush BlushLily - Dewy Tint Cheeks Makeup Glow Pigment Effortless Beauty Long Lasting Cosmetics Soft Creamy Natural Buildable All Skin Color Light Flawless Finish Blend</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;EFFORTLESS APPLICATION - Experience the ease of application with our iconic liquid blush. The creamy texture melts into your skin, making it easy to blend and create a seamless look. No need to worry about cakiness or unevenness—just a soft, dewy finish.&lt;/li&gt;&lt;li&gt;RADIANT FINISH - Achieve a radiant and flawless finish with our Blushed Liquid Blush. Our buildable and blendable formulation in complementary hues accentuates your natural features, giving your complexion a fresh and luminous glow.&lt;/li&gt;&lt;li&gt;VERSATILE SHADES - Choose from a wide range of shades to suit any skin tone and occasion. Whether you prefer a natural flush or a bold pop of color, our liquid blush offers the perfect shade for every look, from subtle and understated to bold and trendy.&lt;/li&gt;&lt;li&gt;LONG-LASTING WEAR - Our liquid blush is formulated to stay put all day, ensuring your makeup remains fresh and vibrant. No need for constant touch-ups; this blush is designed to withstand sweat and keep you looking stunning from morning to night.&lt;/li&gt;&lt;li&gt;ELEVATE YOUR BEAUTY - Our pigmented formula allows you to create soft and dewy or bold and matte looks, enhancing your natural beauty and confidence. Enjoy flushed cheeks with long-lasting, smudge-proof coverage that lasts all day. Get ready to turn heads.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">17000.00</product:price>
-            <product:bulkPrice currency="XAF">15000.00</product:bulkPrice>
-            <product:stock>345</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668791/essentialist%20makeup%20store/g6qef2i1qvmtdpzdtlpy.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/juvias-place-warrior-2-eyeshadow-palette-professional-eye-makeup-pigmented-eyeshadow-palette-makeup-palette-for-eye-color-and-shine-pressed-eyeshadow-cosmetics-6886ddb5d23397cf96998d27</loc>
@@ -2012,19 +1085,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668920/essentialist%20makeup%20store/cf7ojqxfr1zyzs0exz4k.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Juvia&apos;s Place Warrior 2 Eyeshadow Palette - Professional Eye Makeup, Pigmented Eyeshadow Palette, Makeup Palette for Eye Color &amp; Shine, Pressed Eyeshadow Cosmetics</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;VIBRANT EYESHADOW PALETTES: Juvia&apos;s Place believes in being fearless, bold, and proud. We created the Juvia&apos;s Place Eyeshadow Palettes to deliver rich, highly pigmented shades that are versatile on all skin tones, from dark to light. We have the colors you need to create vibrant eyeshadow looks, from soft and neutral to bold and dramatic.&lt;/li&gt;&lt;li&gt;RICHLY-PIGMENTED FORMULA: Our luxurious eyeshadow palettes feature a high level of color intensity, resulting in bold, vibrant shades that are easily visible on all skin tones. We provide a mix of mattes, shimmers, metallics, and glitter shades that are easy to blend, delivering a variety of ultra-pigmented eye makeup colors for all-day-every-day wearability.&lt;/li&gt;&lt;li&gt;HOW TO APPLY: Swipe your brush into the eyeshadow pans and tap off any excess product, or pack the brush for more pigmentation. Depending on the look you are going for, you can create a strong-colored lid or a softly blended base. When applying the colors go in a circular motion to blend the needed areas. Apply our Juvia&apos;s Place Eyeshadow Primer before applying your eyeshadow to avoid creasing and maximize wear and vibrancy.&lt;/li&gt;&lt;li&gt;GIFT IDEA: Our eyeshadow palettes are an excellent gift for anyone who enjoys wearing eyeshadow and wants to experiment with a variety of colors and finishes. Whether for a family member or a friend who appreciates beauty, makeup, and cosmetics, this eyeshadow palette will make a great makeup gift.&lt;/li&gt;&lt;li&gt;ABOUT US: Juvia&apos;s Place is a black-owned cosmetics company specializing in rich, colorful, and highly pigmented cosmetics. Chichi Eburu, our founder, designed a makeup collection for the eyes, lips, and face to proudly celebrate the African expression of beauty and honor the African origin of beauty.&lt;/li&gt;&lt;/ul&gt;</product:description>
-            <product:price currency="XAF">18000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">15000.00</product:bulkPrice>
-            <product:stock>526</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668919/essentialist%20makeup%20store/nbetnvgg0vg2tmfrb1ff.jpg</product:image>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753668920/essentialist%20makeup%20store/cf7ojqxfr1zyzs0exz4k.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/juvias-place-loose-highlighter-nubian-royalty-2-illuminating-loose-powder-highlighter-makeup-shimmer-powder-that-gives-radiant-glow-suitable-for-all-skin-tone-6886df05d23397cf96998d59</loc>
@@ -2033,18 +1093,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669357/essentialist%20makeup%20store/m79oo5wpfedx1pjmygvx.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Juvia&apos;s Place Loose Highlighter Nubian Royalty 2 - Illuminating Loose Powder Highlighter Makeup, Shimmer Powder that gives Radiant Glow - Suitable for all Skin Tone</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;SHOW-STOPPING LOOK: Our Loose Highlighters are truly show-stopping; They are made with the best pearls, finely milled to give a supremely silky finish; They are easy to blend - this is one of the smoothest face highlighter formulas!&lt;/li&gt;&lt;li&gt;HOW TO USE: Use sparingly as pearls are intense; A little bit goes a long way; Gentle place pearls on highlight brush and blend with the Highlighter Blending Brush from Juvia&apos;s Place or a highlighter brush gently until you get your desired glow; Can be used wet or dry; For a more intense look wet brush with a setting spray and apply while blending&lt;/li&gt;&lt;li&gt;CRUELTY-FREE AND VEGAN: Vegan and Cruelty Free; Formulated without parabens, sulfates, or mineral oil&lt;/li&gt;&lt;li&gt;WHO WE ARE: Founder, Chichi Eburu created a makeup line to celebrate the rebels, rulers, and queens of the African kingdoms who honored beauty through their innovative and soulful techniques, providing vibrant and highly pigmented colors&lt;/li&gt;&lt;/ul&gt;</product:description>
-            <product:price currency="XAF">13000.00</product:price>
-            <product:discount>2.00</product:discount>
-            <product:bulkPrice currency="XAF">11000.00</product:bulkPrice>
-            <product:stock>535</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753669357/essentialist%20makeup%20store/m79oo5wpfedx1pjmygvx.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/kimchi-chic-beauty-puff-puff-pass-set-and-bake-setting-powder-for-makeup-extra-fluffy-loose-face-powder-poof-soft-natural-face-makeup-for-uneven-skin-tone-03-translucent-6886e36dd23397cf96998e13</loc>
@@ -2053,17 +1101,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670450/essentialist%20makeup%20store/ea8k6pojuzpv8eisdaeh.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Kimchi Chic Beauty Puff Puff Pass Set and Bake Setting Powder for Makeup, Extra Fluffy Loose Face Powder Poof, Soft Natural Face Makeup for Uneven Skin Tone, 03 Translucent</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;Loose Setting Powder: Our Puff Puff Pass Setting Powder helps minimize the appearance of fine lines, pores, and unwanted shine for a flawless mattifying airbrush finish; Translucent loose powder makeup is perfect for fair to medium skin tones with a neutral undertone&lt;/li&gt;&lt;li&gt;Set &amp;amp; Bake: This setting powder makeup is formulated with nourishing Vitamin E and oil-absorbing Rice Powder to help soothe and protect your skin while reducing excess shine; One dose of this translucent powder keeps your masterpiece intact all day long&lt;/li&gt;&lt;li&gt;Long-Lasting Matte Finish: Our fine milled loose powder comes with a luxurious velour powder puff to help expertly set freshly applied makeup; The lightweight powder adheres to skin for hours for a long-lasting mattifying finish&lt;/li&gt;&lt;li&gt;How To Apply: Lightly press our Puff Puff Pass Powder on the skin with the velour puff and let it set for 1-5 minutes; Dust off excess powder for an all-day glam look&lt;/li&gt;&lt;li&gt;Vegan and Cruelty-Free Makeup: We offer PETA-certified, vegan and cruelty-free cosmetics that are free of harsh chemicals, including parabens, phthalates, sulfates, synthetic fragrances, and PEGs&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">30000.00</product:price>
-            <product:bulkPrice currency="XAF">27000.00</product:bulkPrice>
-            <product:stock>2524</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670450/essentialist%20makeup%20store/ea8k6pojuzpv8eisdaeh.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/one-size-ultimate-blurring-setting-powder-travel-size-translucent-for-fair-to-medium-dark-skin-6886e3c3d23397cf96998e16</loc>
@@ -2072,17 +1109,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670570/essentialist%20makeup%20store/mofalocxvpuywpd1jsr3.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>One Size Ultimate Blurring Setting Powder Travel Size - Translucent - for Fair to Medium Dark Skin</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;24-HOUR SHINE CONTROL: Keep your makeup looking fresh and shine-free with this setting powder that offers 24-hour shine control, ideal for long wear and a flawless matte finish.&lt;/li&gt;&lt;li&gt;ENHANCED BLURRING TECHNOLOGY: Formulated with soft-focus powders, this setting powder visibly blurs pores, fine lines, and textured skin for a smooth, even complexion.&lt;/li&gt;&lt;li&gt;SWEAT-PROOF AND NO FLASHBACK: Perfect for any occasion, this sweat-proof formula provides a natural look without flashback, ensuring a camera-ready finish in any lighting.&lt;/li&gt;&lt;li&gt;SILKY-SMOOTH TEXTURE: With Performance Powder Microspheres and Surface-Treated Pigments, this powder feels weightless on the skin while creating a soft, silky texture that adheres beautifully.&lt;/li&gt;&lt;li&gt;7 VERSATILE SHADE: From Ultra Peach to Rich Peach and Marigold, the expanded shade range offers options for all skin tones, delivering a seamless finish for everyone.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">30000.00</product:price>
-            <product:bulkPrice currency="XAF">27000.00</product:bulkPrice>
-            <product:stock>536</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670570/essentialist%20makeup%20store/mofalocxvpuywpd1jsr3.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/one-size-ultimate-blurring-setting-powder-travel-size-ultra-pink-for-fair-to-medium-skin-tones-6886e427d23397cf96998e20</loc>
@@ -2091,18 +1117,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670647/essentialist%20makeup%20store/keqdkvwfl5dmr47dhao2.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>One Size Ultimate Blurring Setting Powder Travel Size Ultra Pink for Fair to Medium Skin Tones</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;24-HOUR SHINE CONTROL: Keep your makeup looking fresh and shine-free with this setting powder that offers 24-hour shine control, ideal for long wear and a flawless matte finish.&lt;/li&gt;&lt;li&gt;ENHANCE BLURRING TECHNOLOGY: Formulated with soft-focus powders, this setting powder visibly blurs pores, fine lines, and textured skin for a smooth, even complexion.&lt;/li&gt;&lt;li&gt;SWEAT-PROOF AND NO FLASHBACK: Perfect for any occasion, this sweat-proof formula provides a natural look without flashback, ensuring a camera-ready finish in any lighting.&lt;/li&gt;&lt;li&gt;SILKY-SMOOTH TEXTURE: With Performance Powder Microspheres and Surface-Treated Pigments, this powder feels weightless on the skin while creating a soft, silky texture that adheres beautifully.&lt;/li&gt;&lt;li&gt;7 VERSATIL SHADE: From Ultra Peach to Rich Peach and Marigold, the expanded shade range offers options for all skin tones, delivering a seamless finish for everyone.&lt;/li&gt;&lt;/ul&gt;</product:description>
-            <product:price currency="XAF">30000.00</product:price>
-            <product:discount>0.00</product:discount>
-            <product:bulkPrice currency="XAF">27000.00</product:bulkPrice>
-            <product:stock>525</product:stock>
-            <product:reviews average="5.00" ratingCount="2" reviewCount="2"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670647/essentialist%20makeup%20store/keqdkvwfl5dmr47dhao2.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/makeup-kit-for-women-full-kit-makeup-kits-for-teens-teenager-makeup-gift-set-for-teens-women-eyeshadow-foundationteen-makeup-kit-makeup-sets-6886e547d23397cf96998e2e</loc>
@@ -2111,17 +1125,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670835/essentialist%20makeup%20store/xbzze6kq3rsmcfestfh6.webp</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Makeup Kit for Women Full Kit Makeup Kits for Teens Teenager Makeup Gift Set for Teens Women Eyeshadow FoundationTeen Makeup Kit Makeup Sets</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;【All in One Makeup Kit】This KAVCENT Makeup Gift Set including eyeshadow palette, face foundation makeup, concealer, powder puff, lip gloss, eyeliner, eyebrow pencil, marscara, cosmetic brush and Gift Box&lt;/li&gt;&lt;li&gt;【High Quality Make up Kit】Cosmetics with pigmented formula are really vibrant and blend well.The Face foundation, concealer, Lipgloss, eyeshadow are skin-friendly, easy to apply &amp;amp; wash off&lt;/li&gt;&lt;li&gt;【Makeup Gift Set for Women Teens】Makeup gift set for beginners and professionals of all ages, include everything you need to make a full face look. It is a perfect gift for yourself or your friends, sisters, Teens girls like daughters or niece for Birthday, Valentine&apos;s Day, Christmas and other Festivals&lt;/li&gt;&lt;li&gt;【Special For Any Occasion】KAVCENT Makeup kit suitable for different occasions, like casual, salon, party, festival, wedding etc. Its versatile design and multiple colors make it an ideal gift for both makeup professionals and beauty beginners. make up kit for women full kit&lt;/li&gt;&lt;li&gt;【Professionals Beginners Makeup Kit】This makeup set for women contains a complete range of cosmetics, suitable for different occasions makeup kits for teens makeup set for women make up kits for teenager makeup set for teenager 14-16&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">12000.00</product:price>
-            <product:bulkPrice currency="XAF">10000.00</product:bulkPrice>
-            <product:stock>345</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753670835/essentialist%20makeup%20store/xbzze6kq3rsmcfestfh6.webp</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/product/makeup-sets-for-teens-makeup-kit-for-women-full-kit-makeup-set-makeup-kit-eyeshadow-palette-foundation-makeup-gift-set-for-teenager-girls-6886e5c7d23397cf96998e31</loc>
@@ -2130,17 +1133,6 @@ Highlighted Ingredients: Green Tea
         <image:image>
             <image:loc>http://res.cloudinary.com/dvpweiur3/image/upload/v1753671063/essentialist%20makeup%20store/fau6tkpyptiknnlbmwa7.jpg</image:loc>
         </image:image>
-        <product:data>
-            <product:name>Makeup Sets for Teens Makeup Kit for Women Full Kit Makeup set Makeup Kit Eyeshadow Palette Foundation Makeup Gift Set for Teenager Girls</product:name>
-            <product:description>&lt;h1&gt;&lt;strong&gt;About this item&lt;/strong&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;All in one makeup sets : kavcent makeup kits that includes eyeshadow palette, foundation,face primer,lipstick palette,lip gloss,lipstick,concealer palette,contour stick,eyeliner,mascara,makeup bag&lt;/li&gt;&lt;li&gt;Perfect makeup kits gifts : a great make up gifts and multipurpose makeup kit for girls teens and women, it can also be used as a Christmas gift, wedding gift, birthday gift, Valentine&apos;s Day&lt;/li&gt;&lt;li&gt;Make up for many occasions : kavcent makeup kit suitable for a variety of skin tones, creating clear and brilliant three-dimensional face makeup finish.Suitable for different makeup kits for teens&lt;/li&gt;&lt;li&gt;Makeup kits for teens : makeup sets for party makeup/ casual makeup/ wedding makeup etc. It contains all the necessary and basic makeup tools that every girls and women need&lt;/li&gt;&lt;li&gt;Professionals beginners makeup kit : this makeup set for women contains a complete range of cosmetics. makeup kits for teens makeup set for women makeup kits for teenager 14-16&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;</product:description>
-            <product:price currency="XAF">15000.00</product:price>
-            <product:bulkPrice currency="XAF">12000.00</product:bulkPrice>
-            <product:stock>450</product:stock>
-            <product:reviews average="5.00" ratingCount="1" reviewCount="1"></product:reviews>
-            <product:images>
-                <product:image>http://res.cloudinary.com/dvpweiur3/image/upload/v1753671063/essentialist%20makeup%20store/fau6tkpyptiknnlbmwa7.jpg</product:image>
-            </product:images>
-        </product:data>
     </url>
     <url>
         <loc>https://esmakeupstore.com/blog/top-10-makeup-essentials-every-beginner-in-cameroon-needs</loc>
