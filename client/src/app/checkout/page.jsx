@@ -1272,7 +1272,7 @@ const CheckoutPage = () => {
       setLoadingBtn((prev) => ({ ...prev, mtn: true }));
       const loadingToast = toast.loading("Redirecting to MTN MoMo...");
 
-      const endpoint = isAuthenticated ? "/payments/mtn" : "/payments/guest-mtn";
+      const endpoint = isAuthenticated ? "/api/payments/mtn" : "/api/payments/guest-mtn";
 
       const response = await Axios.post(
         endpoint,
@@ -1323,8 +1323,8 @@ const CheckoutPage = () => {
       const loadingToast = toast.loading("Redirecting to Orange Money...");
 
       const endpoint = isAuthenticated
-        ? "/payments/orange"
-        : "/payments/guest-orange";
+        ? "/api/payments/orange"
+        : "/api/payments/guest-orange";
 
       const response = await Axios.post(
         endpoint,
