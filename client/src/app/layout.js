@@ -1,6 +1,6 @@
 // app/layout.js
 import { Inter } from 'next/font/google'
-import { Suspense } from 'react' // Added Suspense import
+import { Suspense } from 'react'
 import './globals.css'
 
 import ClientLayoutShell from './partials/ClientLayoutShell'
@@ -121,8 +121,11 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={inter.className}>
-        {/* Suspense is required here to prevent async data leaks during static generation of error pages */}
-        <Suspense fallback={null}>
+        {/* This Suspense boundary is required in Next.js 16 to allow 
+          static prerendering of the internal /_not-found route 
+          while the layout performs async data fetching.
+        */}
+        <Suspense fallback={<div className="min-h-screen bg-white" />}>
           <ClientLayoutShell initialNavData={initialNavData}>
             {children}
           </ClientLayoutShell>
