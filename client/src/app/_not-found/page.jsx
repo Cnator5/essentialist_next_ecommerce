@@ -40,8 +40,6 @@
 
 
 import Link from 'next/link'
-import { Suspense } from 'react'
-import { cacheLife, cacheTag } from 'next/cache'
 
 const SITE_NAME = 'Essentialist Makeup Store'
 const CONTACT_EMAIL = 'info@esmakeupstore.com'
@@ -55,33 +53,10 @@ const FALLBACK_LINKS = [
   { href: '/collections/eyes', label: 'Eye Makeup' }
 ]
 
-async function loadHelpfulLinks() {
-  'use cache'
-  cacheTag('not-found-links')
-  cacheLife('hours')
-  return FALLBACK_LINKS
-}
-
-async function loadSupportMessage() {
-  'use cache'
-  cacheTag('not-found-support')
-  cacheLife('hours')
-  return `Need help finding a product? Email us at ${CONTACT_EMAIL} and our team will assist you.`
-}
-
 export default function NotFoundPage() {
-  return (
-    <Suspense fallback={<NotFoundSkeleton />}>
-      <NotFoundContent />
-    </Suspense>
-  )
-}
-
-async function NotFoundContent() {
-  const [links, supportMessage] = await Promise.all([
-    loadHelpfulLinks(),
-    loadSupportMessage()
-  ])
+  // Use the constants directly
+  const links = FALLBACK_LINKS;
+  const supportMessage = `Need help finding a product? Email us at ${CONTACT_EMAIL} and our team will assist you.`;
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-pink-50 to-white py-16 px-4 text-gray-800">
@@ -107,19 +82,12 @@ async function NotFoundContent() {
               <span className="inline-flex items-center justify-center gap-2">
                 {link.label}
                 <svg
-                  aria-hidden="true"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
+                  aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"
                   className="transition-transform group-hover:translate-x-1"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.8"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
+                  fill="none" stroke="currentColor" strokeWidth="1.8"
+                  strokeLinecap="round" strokeLinejoin="round"
                 >
-                  <path d="M7 17 17 7" />
-                  <path d="m8 7 9 0 0 9" />
+                  <path d="M7 17 17 7" /><path d="m8 7 9 0 0 9" />
                 </svg>
               </span>
             </Link>
@@ -132,30 +100,11 @@ async function NotFoundContent() {
 
         <Link
           href="/"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-pink-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-pink-600 focus:outline-none focus:ring-2 focus:ring-pink-300 focus:ring-offset-2"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-pink-500 px-6 py-3 text-sm font-semibold text-white shadow-lg transition hover:bg-pink-600"
         >
           Return to Home
         </Link>
       </section>
     </main>
-  )
-}
-
-function NotFoundSkeleton() {
-  return (
-    <main className="min-h-screen bg-gradient-to-b from-pink-50 to-white py-16 px-4">
-      <section className="mx-auto max-w-3xl animate-pulse rounded-3xl bg-white/80 p-10 shadow-2xl">
-        <div className="mx-auto h-4 w-24 rounded-full bg-pink-200" />
-        <div className="mt-4 h-10 w-3/4 rounded-full bg-pink-300" />
-        <div className="mt-6 h-16 w-full rounded-xl bg-pink-100" />
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {Array.from({ length: 6 }).map((_, index) => (
-            <div key={index} className="h-12 rounded-xl bg-pink-100" />
-          ))}
-        </div>
-        <div className="mt-12 h-12 rounded-2xl bg-pink-100" />
-        <div className="mt-8 h-10 w-40 rounded-full bg-pink-200" />
-      </section>
-    </main>
-  )
+  );
 }
