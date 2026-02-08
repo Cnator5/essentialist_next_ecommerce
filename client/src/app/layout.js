@@ -1,11 +1,9 @@
-// app/layout.js
+// client/src/app/layout.js
 import { Inter } from 'next/font/google'
 import { Suspense } from 'react'
 import './globals.css'
 
 import ClientLayoutShell from './partials/ClientLayoutShell'
-import { callSummaryApi } from '../common/SummaryApi'
-import SummaryApi from '../common/SummaryApi'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -96,35 +94,17 @@ export const viewport = {
   viewportFit: 'cover',
 }
 
-export default async function RootLayout({ children }) {
-  // Fetch navigation data on the server
-  let categories = []
-  let subCategories = []
-  try {
-    const [catRes, subCatRes] = await Promise.all([
-      callSummaryApi(SummaryApi.getCategory, { cache: 'force-cache' }),
-      callSummaryApi(SummaryApi.getSubCategory, { cache: 'force-cache' })
-    ])
-    categories = Array.isArray(catRes?.data) ? catRes.data : (Array.isArray(catRes?.data?.data) ? catRes.data.data : [])
-    subCategories = Array.isArray(subCatRes?.data) ? subCatRes.data : (Array.isArray(subCatRes?.data?.data) ? subCatRes.data.data : [])
-  } catch (e) {
-    categories = []
-    subCategories = []
-  }
-
-  // Always provide serializable defaults
+export default function RootLayout({ children }) {
+  // Provide serializable defaults for client hydration
   const initialNavData = {
-    categories: Array.isArray(categories) ? categories : [],
-    subCategories: Array.isArray(subCategories) ? subCategories : []
+    categories: [],
+    subCategories: [],
   }
 
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={inter.className}>
-        {/* This Suspense boundary is required in Next.js 16 to allow 
-          static prerendering of the internal /_not-found route 
-          while the layout performs async data fetching.
-        */}
+        {/* Suspense boundary remains for ClientLayoutShell */}
         <Suspense fallback={<div className="min-h-screen bg-white" />}>
           <ClientLayoutShell initialNavData={initialNavData}>
             {children}
