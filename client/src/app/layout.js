@@ -1,5 +1,6 @@
 // app/layout.js
 import { Inter } from 'next/font/google'
+import { Suspense } from 'react' // Added Suspense import
 import './globals.css'
 
 import ClientLayoutShell from './partials/ClientLayoutShell'
@@ -53,7 +54,7 @@ export const metadata = {
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
-    siteName: 'Essentialist Makeup Store', // Maintains brand visibility as the SERP site name.
+    siteName: 'Essentialist Makeup Store',
     url: 'https://www.esmakeupstore.com/',
     title: 'Cameroon Makeup Shop | Setting Powders, Makeup Kits & Beauty Deals',
     description:
@@ -95,7 +96,6 @@ export const viewport = {
   viewportFit: 'cover',
 }
 
-
 export default async function RootLayout({ children }) {
   // Fetch navigation data on the server
   let categories = []
@@ -111,15 +111,22 @@ export default async function RootLayout({ children }) {
     categories = []
     subCategories = []
   }
+
   // Always provide serializable defaults
   const initialNavData = {
     categories: Array.isArray(categories) ? categories : [],
     subCategories: Array.isArray(subCategories) ? subCategories : []
   }
+
   return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={inter.className}>
-        <ClientLayoutShell initialNavData={initialNavData}>{children}</ClientLayoutShell>
+        {/* Suspense is required here to prevent async data leaks during static generation of error pages */}
+        <Suspense fallback={null}>
+          <ClientLayoutShell initialNavData={initialNavData}>
+            {children}
+          </ClientLayoutShell>
+        </Suspense>
       </body>
     </html>
   )
