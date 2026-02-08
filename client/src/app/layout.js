@@ -1,45 +1,25 @@
-// client/src/app/layout.js
+// app/layout.js
 import { Inter } from 'next/font/google'
 import { Suspense } from 'react'
 import './globals.css'
 
 import ClientLayoutShell from './partials/ClientLayoutShell'
+import { callSummaryApi } from '../common/SummaryApi'
+import SummaryApi from '../common/SummaryApi'
 
 const inter = Inter({ subsets: ['latin'] })
 
+// --- Metadata Configuration ---
 export const metadata = {
   metadataBase: new URL('https://www.esmakeupstore.com'),
   title: 'Cameroon Makeup Shop | Setting Powders, Makeup Kits & Beauty Deals',
   description:
-    'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more. Shop top makeup brands, enjoy exclusive deals, and experience free shipping & cash on delivery!',
+    'Explore the best selection of authentic makeup products and cosmetics in Cameroon at Essentialist Makeup Store. Find foundations, lipsticks, eyeshadows, and more.',
   keywords: [
-    'Cameroon makeup shop',
-    'Douala makeup store',
-    'setting powder Cameroon',
-    'makeup kits for teens Douala',
-    'NYX foundation price Cameroon',
-    'matte bronzer Cameroon',
-    'liquid lipstick Douala',
-    'waterproof mascara Cameroon',
-    'blush for melanin skin',
-    'face makeup Cameroon',
-    'eye makeup Douala',
-    'lip makeup Cameroon',
-    'makeup brushes Douala',
-    'beauty blender Cameroon',
-    'primer for oily skin Cameroon',
-    'bridal makeup Cameroon',
-    'cash on delivery makeup Cameroon',
-    'affordable makeup Bonamoussadi',
-    'highlighter for dark skin Cameroon',
-    'makeup removers Douala',
-    'skincare Cameroon',
-    'beauty supply Douala',
-    'authentic cosmetics Cameroon',
-    'trending makeup Cameroon',
-    'professional makeup Douala',
-    'makeup sale Cameroon',
-    'exclusive makeup deals Douala',
+    'Cameroon makeup shop', 'Douala makeup store', 'setting powder Cameroon',
+    'makeup kits for teens Douala', 'NYX foundation price Cameroon',
+    'matte bronzer Cameroon', 'liquid lipstick Douala',
+    'waterproof mascara Cameroon', 'blush for melanin skin',
     'Essentialist Makeup Store',
   ],
   robots: {
@@ -55,23 +35,14 @@ export const metadata = {
     siteName: 'Essentialist Makeup Store',
     url: 'https://www.esmakeupstore.com/',
     title: 'Cameroon Makeup Shop | Setting Powders, Makeup Kits & Beauty Deals',
-    description:
-      'Explore authentic makeup and cosmetics in Cameroon. Shop foundations, lipsticks, eyeshadows, and more with free shipping & cash on delivery.',
-    images: [
-      {
-        url: 'https://www.esmakeupstore.com/assets/logo.jpg',
-        width: 1200,
-        height: 630,
-        alt: 'Essentialist Makeup Store Product Preview',
-      },
-    ],
+    description: 'Explore authentic makeup and cosmetics in Cameroon.',
+    images: [{ url: 'https://www.esmakeupstore.com/assets/logo.jpg', width: 1200, height: 630, alt: 'Essentialist Makeup Store Product Preview' }],
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'Cameroon Makeup Shop | Setting Powders, Makeup Kits & Beauty Deals',
-    description:
-      'Explore authentic makeup and cosmetics in Cameroon. Shop foundations, lipsticks, eyeshadows, and more with free shipping & cash on delivery.',
+    description: 'Explore authentic makeup and cosmetics in Cameroon.',
     images: ['https://www.esmakeupstore.com/assets/staymattebutnotflatpowderfoundationmain.jpg'],
     creator: '@essentialistmakeupstore',
   },
@@ -94,21 +65,59 @@ export const viewport = {
   viewportFit: 'cover',
 }
 
-export default function RootLayout({ children }) {
-  // Provide serializable defaults for client hydration
+// --- 1. Create a "Wrapper" Component for Data Fetching ---
+// This component performs the async fetch. Because it is nested inside Suspense 
+// in the RootLayout, the build worker can "skip" it for static pages like 404.
+async function LayoutContent({ children }) {
+  let categories = []
+  let subCategories = []
+  
+  try {
+    // Attempt to fetch data
+    const [catRes, subCatRes] = await Promise.all([
+      callSummaryApi(SummaryApi.getCategory, { cache: 'force-cache' }),
+      callSummaryApi(SummaryApi.getSubCategory, { cache: 'force-cache' })
+    ])
+    
+    // Safety check: Ensure data structure is valid
+    categories = Array.isArray(catRes?.data) 
+      ? catRes.data 
+      : (Array.isArray(catRes?.data?.data) ? catRes.data.data : [])
+      
+    subCategories = Array.isArray(subCatRes?.data) 
+      ? subCatRes.data 
+      : (Array.isArray(subCatRes?.data?.data) ? subCatRes.data.data : [])
+      
+  } catch (e) {
+    console.error("Layout data fetch failed:", e)
+    // If fetch fails (e.g. during build), default to empty to prevent crash
+    categories = []
+    subCategories = []
+  }
+
   const initialNavData = {
-    categories: [],
-    subCategories: [],
+    categories: Array.isArray(categories) ? categories : [],
+    subCategories: Array.isArray(subCategories) ? subCategories : []
   }
 
   return (
+    <ClientLayoutShell initialNavData={initialNavData}>
+      {children}
+    </ClientLayoutShell>
+  )
+}
+
+// --- 2. The Main Root Layout (Synchronous) ---
+// Notice this function is NOT async. This satisfies the build worker.
+export default function RootLayout({ children }) {
+  return (
     <html lang="en" data-scroll-behavior="smooth">
       <body className={inter.className}>
-        {/* Suspense boundary remains for ClientLayoutShell */}
+        {/* The Suspense boundary isolates the async fetching below */}
         <Suspense fallback={<div className="min-h-screen bg-white" />}>
-          <ClientLayoutShell initialNavData={initialNavData}>
+          <LayoutContent>
             {children}
-          </ClientLayoutShell>
+          </LayoutContent>
         </Suspense>
       </body>
     </html>
