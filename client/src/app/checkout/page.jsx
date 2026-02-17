@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect, useMemo } from "react";
-// import { useGlobalContext } from "../../providers/GlobalProvider";
 import { DisplayPriceInRupees } from "../../utils/DisplayPriceInRupees";
 import { useSelector, useDispatch } from "react-redux";
 import AxiosToastError from "../../utils/AxiosToastError";
@@ -38,6 +37,30 @@ const buildSuccessUrl = (orderId, token, text = "Order") => {
   return url;
 };
 
+const emptyFormValues = {
+  name: "",
+  email: "",
+  addressline: "",
+  city: "",
+  state: "",
+  pincode: "",
+  country: "",
+  mobile: "",
+};
+
+const mapAddressToForm = (address) => ({
+  name: address?.name ?? "",
+  email: address?.customer_email ?? address?.email ?? "",
+  addressline:
+    address?.address_line ?? address?.addressLine ?? address?.street ?? "",
+  city: address?.city ?? "",
+  state: address?.state ?? "",
+  pincode:
+    address?.pincode ?? address?.postalCode ?? address?.zip ?? address?.pinCode ?? "",
+  country: address?.country ?? "",
+  mobile: address?.mobile ?? address?.phone ?? "",
+});
+
 const CheckoutPage = () => {
   const {
     notDiscountTotalPrice,
@@ -57,13 +80,14 @@ const CheckoutPage = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({ defaultValues: emptyFormValues });
   const [isAddressLoaded, setIsAddressLoaded] = useState(false);
   const user = useSelector((state) => state?.user);
   const isAuthenticated = !!user?.email;
 
   const [guestAddress, setGuestAddress] = useState(null);
   const [showAddressForm, setShowAddressForm] = useState(false);
+  const [editingAddressId, setEditingAddressId] = useState(null);
 
   const [loadingBtn, setLoadingBtn] = useState({
     cod: false,
@@ -150,6 +174,18 @@ const CheckoutPage = () => {
     }
   }, [addressList, isAddressLoaded, isAuthenticated, selectAddress]);
 
+  const openAddAddress = () => {
+    setEditingAddressId(null);
+    reset(emptyFormValues);
+    setShowAddressForm(true);
+  };
+
+  const openEditAddress = (address) => {
+    setEditingAddressId(address?._id ?? null);
+    reset(mapAddressToForm(address));
+    setShowAddressForm(true);
+  };
+
   const requireAddress = () => {
     if (isAuthenticated) {
       if (!addressList.length) {
@@ -173,6 +209,68 @@ const CheckoutPage = () => {
       return false;
     }
     return true;
+  };
+
+  const onSubmitAddress = async (formData) => {
+    const payload = {
+      name: formData.name?.trim(),
+      customer_email: formData.email?.trim()?.toLowerCase(),
+      address_line: formData.addressline?.trim(),
+      city: formData.city?.trim(),
+      state: formData.state?.trim(),
+      pincode: formData.pincode?.trim(),
+      country: formData.country?.trim(),
+      mobile: formData.mobile?.trim(),
+    };
+
+    try {
+      if (isAuthenticated) {
+        const endpoint = editingAddressId
+          ? SummaryApi.updateAddress
+          : SummaryApi.createAddress;
+
+        const response = await Axios({
+          ...endpoint,
+          data: editingAddressId
+            ? { ...payload, addressId: editingAddressId, _id: editingAddressId }
+            : payload,
+        });
+
+        if (response.data?.success) {
+          toast.success(
+            editingAddressId
+              ? "Address updated successfully"
+              : "Address saved successfully"
+          );
+
+          setShowAddressForm(false);
+          setEditingAddressId(null);
+
+          if (fetchAddress) {
+            await fetchAddress();
+          } else {
+            const addressResponse = await Axios({
+              ...SummaryApi.getAddress,
+            });
+            if (addressResponse.data.success) {
+              dispatch({
+                type: "SET_ADDRESS_LIST",
+                payload: addressResponse.data.addresses,
+              });
+            }
+          }
+        }
+      } else {
+        setGuestAddress(payload);
+        if (typeof window !== "undefined") {
+          localStorage.setItem("guestAddress", JSON.stringify(payload));
+        }
+        toast.success("Delivery information saved");
+        setShowAddressForm(false);
+      }
+    } catch (error) {
+      AxiosToastError(error);
+    }
   };
 
   const handleCashOnDelivery = async () => {
@@ -577,61 +675,74 @@ const CheckoutPage = () => {
         <div className="w-full lg:w-3/5">
           {renderGuestLoginButton()}
           <div className="mb-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex justify-between items-center mb-4 flex-wrap gap-2">
               <h3 className="text-xl font-semibold text-gray-800">
                 {isAuthenticated
                   ? "Your Delivery Address"
                   : "Delivery Information"}
               </h3>
-              {isAddressLoaded &&
-                ((isAuthenticated && addressList.length > 0) ||
-                  (!isAuthenticated && guestAddress)) &&
-                !showAddressForm && (
-                  <button
-                    onClick={() => setShowAddressForm(true)}
-                    className="text-pink-500 hover:text-pink-700 text-sm font-medium flex items-center gap-1 bg-white py-1 px-3 rounded-full shadow-sm"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+              <div className="flex items-center gap-2 flex-wrap">
+                {isAuthenticated &&
+                  addressList.length > 0 &&
+                  selectedAddress?._id &&
+                  !showAddressForm && (
+                    <button
+                      onClick={() => openEditAddress(selectedAddress)}
+                      className="text-blue-600 hover:text-blue-800 text-sm font-medium flex items-center gap-1 bg-white py-1 px-3 rounded-full shadow-sm"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 4v16m8-8H4"
-                      />
-                    </svg>
-                    {isAuthenticated ? "Add New Address" : "Update Information"}
-                  </button>
-                )}
-              {showAddressForm &&
-                ((isAuthenticated && addressList.length > 0) ||
-                  (!isAuthenticated && guestAddress)) && (
-                  <button
-                    onClick={() => setShowAddressForm(false)}
-                    className="text-pink-500 hover:text-pink-700 text-sm font-medium flex items-center gap-1 bg-white py-1 px-3 rounded-full shadow-sm"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-4 w-4"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
+                      Edit Selected
+                    </button>
+                  )}
+                {isAddressLoaded &&
+                  ((isAuthenticated && addressList.length > 0) ||
+                    (!isAuthenticated && guestAddress)) &&
+                  !showAddressForm && (
+                    <button
+                      onClick={openAddAddress}
+                      className="text-pink-500 hover:text-pink-700 text-sm font-medium flex items-center gap-1 bg-white py-1 px-3 rounded-full shadow-sm"
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                    Hide Form
-                  </button>
-                )}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M12 4v16m8-8H4"
+                        />
+                      </svg>
+                      {isAuthenticated ? "Add New Address" : "Update Information"}
+                    </button>
+                  )}
+                {showAddressForm &&
+                  ((isAuthenticated && addressList.length > 0) ||
+                    (!isAuthenticated && guestAddress)) && (
+                    <button
+                      onClick={() => setShowAddressForm(false)}
+                      className="text-pink-500 hover:text-pink-700 text-sm font-medium flex items-center gap-1 bg-white py-1 px-3 rounded-full shadow-sm"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-4 w-4"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M6 18L18 6M6 6l12 12"
+                        />
+                      </svg>
+                      Hide Form
+                    </button>
+                  )}
+              </div>
             </div>
 
             {!isAddressLoaded && (
@@ -648,6 +759,8 @@ const CheckoutPage = () => {
                     {isAuthenticated
                       ? addressList.length === 0
                         ? "Add Your First Address"
+                        : editingAddressId
+                        ? "Edit Address"
                         : "Add New Address"
                       : guestAddress
                       ? "Update Delivery Information"
@@ -711,7 +824,7 @@ const CheckoutPage = () => {
                       No delivery {isAuthenticated ? "addresses" : "information"} found.
                     </p>
                     <button
-                      onClick={() => setShowAddressForm(true)}
+                      onClick={openAddAddress}
                       className="text-blue-600 underline text-sm mt-1 font-normal"
                     >
                       Click here to{" "}
@@ -735,7 +848,7 @@ const CheckoutPage = () => {
                     <div className="p-3 bg-blue-50 text-blue-700 rounded-md">
                       <p>All your addresses are currently inactive.</p>
                       <button
-                        onClick={() => setShowAddressForm(true)}
+                        onClick={openAddAddress}
                         className="text-blue-600 underline text-sm mt-1"
                       >
                         Add a new address
@@ -827,7 +940,7 @@ const CheckoutPage = () => {
                       {guestAddress.mobile}
                     </p>
                     <button
-                      onClick={() => setShowAddressForm(true)}
+                      onClick={() => openEditAddress(guestAddress)}
                       className="mt-3 text-blue-600 text-sm hover:underline"
                     >
                       Edit information

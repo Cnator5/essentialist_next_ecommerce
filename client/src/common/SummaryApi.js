@@ -243,6 +243,16 @@ const SummaryApi = {
     url: `/api/payments/status/${transactionId}`,
     method: 'get',
   }),
+  payunitOrderStatus: (orderId) => ({
+    url: `/api/payments/order-status/${orderId}`,
+    method: 'get',
+  }),
+  payunitGuestOrderStatus: (orderId, token) => ({
+    url: `/api/payments/guest-order-status/${orderId}${
+      token ? `?token=${encodeURIComponent(token)}` : ''
+    }`,
+    method: 'get',
+  }),
   getOrderItems: { url: '/api/order/order-list', method: 'get' },
   verifyReceipt: { url: '/api/order/verify-receipt', method: 'post' },
   downloadReceipt: (orderId) => ({
