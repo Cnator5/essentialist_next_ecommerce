@@ -21,6 +21,11 @@ const nextConfig = {
         port: "",
         pathname: "/dvpweiur3/**",
       },
+      {
+        protocol: 'https',
+        hostname: 'd2ati23fc66y9j.cloudfront.net', // Corrected from .js to .net
+        pathname: '**',
+      },
     ],
   },
 };

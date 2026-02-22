@@ -1,22 +1,16 @@
 "use client";
 
 import { useMemo } from "react";
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
+import dynamic from "next/dynamic";
 
 import Divider from "../../../components/Divider";
 import AddToCartButton from "../../../components/AddToCartButton";
 import { DisplayPriceInRupees } from "../../../utils/DisplayPriceInRupees";
 import { pricewithDiscount } from "../../../utils/PriceWithDiscount";
-import {
-  productQueryOptions,
-  ratingQueryOptions,
-} from "./queries";
-
-const ProductGallery = dynamic(() => import("./ProductGallery.client"), {
-  loading: () => <ImageSkeleton />,
-});
+import { productQueryOptions, ratingQueryOptions } from "./queries";
+import ProductGallery from "./ProductGallery.client";
 
 const RatingBlock = dynamic(() => import("./RatingBlock.client"), {
   loading: () => <RatingSkeleton />,
@@ -31,156 +25,128 @@ export default function ProductDisplayClient({ productId }) {
     ...productQueryOptions(productId),
   });
 
-  const {
-    data: ratingSnapshot,
-    isLoading: isRatingLoading,
-  } = useQuery({
+  const { data: ratingSnapshot, isLoading: isRatingLoading } = useQuery({
     ...ratingQueryOptions(productId),
   });
 
-  if (isProductLoading) {
-    return <PageSkeleton />;
-  }
+  if (isProductLoading) return <PageSkeleton />;
 
   if (isProductError || !productData) {
     return (
       <section className="container mx-auto p-6 text-center">
-        <p className="text-lg font-semibold text-rose-600">
-          Unable to load this product. Please refresh the page.
-        </p>
+        <p className="text-lg font-semibold text-rose-600">Unable to load product. Please refresh.</p>
       </section>
     );
   }
 
   const images = useMemo(() => {
-    if (Array.isArray(productData.image)) {
-      return productData.image.filter(Boolean);
-    }
+    if (Array.isArray(productData.image)) return productData.image.filter(Boolean);
     return [productData.image].filter(Boolean);
   }, [productData.image]);
 
   return (
-    <section className="container mx-auto grid gap-6 p-4 text-slate-900 font-medium lg:grid-cols-[minmax(0,1fr),minmax(0,1fr)] lg:gap-10">
-      <div>
-        <ProductGallery images={images} productName={productData.name} />
+    <main className="container mx-auto p-4 text-slate-900 font-medium">
+      {/* UBUY BREADCRUMBS */}
+      <nav className="mb-4 flex flex-wrap items-center gap-2 text-[11px] text-slate-500 uppercase">
+        <span className="cursor-pointer hover:text-amber-600">
+          {typeof productData.brand === 'object' ? productData.brand?.name : productData.brand}
+        </span>
+        <span>/</span>
+        <span className="cursor-pointer hover:text-amber-600">
+          {typeof productData.category === 'object' ? productData.category?.name : productData.category}
+        </span>
+        <span>/</span>
+        <span className="font-bold text-slate-900">
+          {productData.name?.substring(0, 30)}...
+        </span>
+      </nav>
 
-        <article className="my-4 hidden gap-3 rounded-lg border border-slate-200 p-4 shadow-sm transition-shadow hover:shadow-md lg:grid">
-          <DescriptionBlock product={productData} />
-        </article>
+      {/* TOP SECTION: 2-Column Layout for Image and Info */}
+      <div className="grid gap-6 lg:grid-cols-2 lg:gap-12">
+        
+        {/* LEFT: Image Gallery with Bestseller Badge */}
+        <div className="relative min-w-0">
+          <div className="absolute left-2 top-2 z-10">
+            <span className="bg-amber-500 text-white text-[10px] font-bold px-2 py-1 rounded shadow-sm uppercase">
+              Bestseller
+            </span>
+          </div>
+          <ProductGallery images={images} productName={productData.name} />
+        </div>
+
+        {/* RIGHT: Product Sidebar */}
+        <aside className="space-y-6">
+          <Badge />
+          <header>
+            <h1 className="text-xl font-bold lg:text-3xl leading-tight">{productData.name}</h1>
+          </header>
+
+          <RatingSummary
+            ratingSnapshot={isRatingLoading ? { average: 0, count: 0 } : (ratingSnapshot ?? { average: 0, count: 0 })}
+            productId={productId}
+          />
+
+          <Divider />
+
+          <div className="flex flex-wrap items-end justify-between gap-y-4 gap-x-2">
+            <div className="flex-1 min-w-[120px]">
+              <PriceBlock
+                label="Bulk Price"
+                amount={pricewithDiscount(productData.bulkPrice ?? productData.price, productData.discount ?? 0)}
+                baseAmount={productData.price}
+                discount={productData.discount}
+              />
+            </div>
+
+            <div className="flex-1 min-w-[120px]">
+              <PriceBlock
+                label="Price"
+                amount={pricewithDiscount(productData.price, productData.discount ?? 0)}
+                baseAmount={productData.price}
+                discount={productData.discount}
+              />
+            </div>
+
+            <div className="flex-none">
+              <div className="rounded-lg shadow-[0_0_12px_rgba(236,72,153,0.3)] transform transition hover:scale-105">
+                <AddToCartButton data={productData} />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 bg-slate-50 p-2 rounded text-[11px] text-slate-600">
+              <img src="https://d3ulwu8fab47va.cloudfront.net/skin/frontend/default/ubuycom-v1/images/countries-flag/us-store.svg" alt="USA" className="w-4" />
+              <span>Imported from USA store</span>
+          </div>
+
+          <Divider />
+          <WhyShopWithUs />
+        </aside>
       </div>
 
-      <aside className="space-y-6 rounded-lg bg-white p-4 shadow-sm lg:pl-7">
-        <Badge />
-        <header>
-          <h1 className="">
-            {productData.name}
-          </h1>
-          <p className="text-sm text-slate-600">{productData.unit}</p>
-        </header>
-
-        <RatingSummary
-          ratingSnapshot={
-            isRatingLoading
-              ? { average: 0, count: 0 }
-              : ratingSnapshot ?? { average: 0, count: 0 }
-          }
-          productId={productId}
-        />
-
-        <Divider />
-
-        {/* <PriceBlock
-          label="Bulk Price"
-          amount={pricewithDiscount(
-            productData.bulkPrice ?? productData.price,
-            productData.discount ?? 0
-          )}
-          baseAmount={productData.price}
-          discount={productData.discount}
-        />
-
-        <PriceBlock
-          label="Price"
-          amount={pricewithDiscount(
-            productData.price,
-            productData.discount ?? 0
-          )}
-          baseAmount={productData.price}
-          discount={productData.discount}
-        />
-
-        {productData.stock === 0 ? (
-          <p className="text-lg font-semibold text-rose-600">Out of stock</p>
-        ) : (
-          <div className="pt-2">
-            <AddToCartButton data={productData} />
-          </div>
-        )} */}
-
-        <div className="flex flex-wrap justify-between items-end gap-4 w-full">
-  <PriceBlock
-    label="Bulk Price"
-    amount={pricewithDiscount(
-      productData.bulkPrice ?? productData.price,
-      productData.discount ?? 0
-    )}
-    baseAmount={productData.price}
-    discount={productData.discount}
-  />
-
-  <PriceBlock
-    label="Price"
-    amount={pricewithDiscount(
-      productData.price,
-      productData.discount ?? 0
-    )}
-    baseAmount={productData.price}
-    discount={productData.discount}
-  />
-
-  {productData.stock === 0 ? (
-    <p className="text-lg font-semibold text-rose-600">
-      Out of stock
-    </p>
-  ) : (
-    <div className="pb-2">
-      <AddToCartButton data={productData} />
-    </div>
-  )}
-</div>
-
-
-        <WhyShopWithUs />
-
-        <article className="grid gap-3 lg:hidden">
-          <DescriptionBlock product={productData} />
-        </article>
-      </aside>
-    </section>
+      {/* FULL WIDTH DESCRIPTION SECTION */}
+      <div className="mt-16 w-full border-t border-slate-200 pt-12">
+        <DescriptionBlock product={productData} />
+      </div>
+    </main>
   );
 }
 
 function Badge() {
   return (
-    <span className="inline-flex rounded-full bg-emerald-200 px-3 py-1 text-xs
-      font-semibold uppercase tracking-wide text-emerald-800">
-      10 Minutes
+    <span className="inline-flex rounded-full bg-emerald-100 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-emerald-700">
+      10 Minutes Delivery
     </span>
   );
 }
 
 function RatingSummary({ ratingSnapshot, productId }) {
-  const average = Number(ratingSnapshot?.average ?? 0).toFixed(2);
-  const count = ratingSnapshot?.count ?? 0;
-
+  const average = Number(ratingSnapshot?.average ?? 0).toFixed(1);
   return (
-    <div>
-      <div className="flex items-center gap-2 text-sm text-slate-700">
-        <span className="text-lg font-semibold text-slate-900">{average}</span>
-        <span>/ 5</span>
-        <span className="text-slate-500">
-          ({count} {count === 1 ? "rating" : "ratings"})
-        </span>
+    <div className="space-y-1">
+      <div className="flex items-center gap-2 text-sm">
+        <span className="text-xl font-bold">{average}</span>
+        <span className="text-slate-400">/ 5.0</span>
       </div>
       <RatingBlock productId={productId} />
     </div>
@@ -188,165 +154,108 @@ function RatingSummary({ ratingSnapshot, productId }) {
 }
 
 function PriceBlock({ label, amount, baseAmount, discount }) {
-  const formattedAmount = DisplayPriceInRupees(amount);
-  const formattedBase = DisplayPriceInRupees(baseAmount);
-
   return (
-    <section className="space-y-2">
-      <h2 className="text-sm font-semibold uppercase tracking-wide text-slate-500">
-        {label}
-      </h2>
-      <div className="flex flex-wrap items-center gap-3">
-        <span className="rounded border border-emerald-600 bg-emerald-50 px-4 py-2 text-lg font-semibold text-emerald-900 lg:text-xl">
-          {formattedAmount}
+    <div className="flex flex-col gap-1">
+      <h2 className="text-[10px] font-extrabold uppercase text-slate-400 tracking-widest">{label}</h2>
+      <div className="flex flex-col">
+        <span className="text-xl font-bold text-slate-900 sm:text-2xl">
+          {DisplayPriceInRupees(amount)}
         </span>
         {discount > 0 && (
-          <>
-            <span className="text-base text-slate-500 line-through">
-              {formattedBase}
-            </span>
-            <span className="text-lg font-bold text-emerald-600 lg:text-2xl">
-              {discount}%{" "}
-              <span className="text-base font-medium text-slate-900">
-                Discount
-              </span>
-            </span>
-          </>
+          <div className="flex items-center gap-1 text-[10px]">
+            <span className="text-slate-400 line-through">{DisplayPriceInRupees(baseAmount)}</span>
+            <span className="text-rose-500 font-bold">-{discount}%</span>
+          </div>
         )}
       </div>
-    </section>
+    </div>
   );
 }
 
 function DescriptionBlock({ product }) {
   return (
-    <>
+    <div className="space-y-16">
       <section>
-        <h3 className="font-semibold">Description</h3>
+        <div className="mb-8 inline-block border-b-4 border-amber-500 pb-1">
+          <h3 className="text-2xl font-bold">What Stands Out</h3>
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {["Deep Cleansing", "Heartleaf Extract", "Korean Formula"].map((title) => (
+            <div key={title} className="p-6 rounded-xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition">
+              <h4 className="font-bold mb-2">{title}</h4>
+              <p className="text-sm text-slate-600 leading-relaxed">High-quality ingredients designed to enhance skin wellness and achieve a radiant appearance.</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section>
+        <div className="mb-6 inline-block border-b-4 border-amber-500 pb-1">
+          <h3 className="text-2xl font-bold">Product Description</h3>
+        </div>
         <div
-          className="product-description-content text-justify text-base text-slate-900"
-          dangerouslySetInnerHTML={{
-            __html: product.description ?? "",
-          }}
+          className="prose prose-slate max-w-none text-base leading-relaxed text-slate-700 text-justify"
+          dangerouslySetInnerHTML={{ __html: product.description ?? "" }}
         />
       </section>
 
-      {product.specifications && (
-        <section>
-          <h3 className="font-semibold">Product Specifications</h3>
-          <div className="tabular-content">{product.specifications}</div>
-        </section>
-      )}
-
-      {product.unit && (
-        <section>
-          <h3 className="font-semibold">Unit</h3>
-          <p className="text-base text-slate-800">{product.unit}</p>
-        </section>
-      )}
-
-      {product?.more_details &&
-        typeof product.more_details === "object" &&
-        Object.entries(product.more_details).map(([key, value]) => (
-          <section key={key}>
-            <h3 className="font-semibold">{key}</h3>
-            <p className="text-base text-slate-800">{value}</p>
-          </section>
-        ))}
-    </>
+      <section className="space-y-6">
+        <div className="mb-4 inline-block border-b-4 border-amber-500 pb-1">
+          <h3 className="text-2xl font-bold text-slate-900">Product Details</h3>
+        </div>
+        <div className="grid gap-4 text-sm text-slate-700">
+          {[product.specifications, product.unit].filter(Boolean).map((detail, i) => (
+            <div key={i} className="flex items-start gap-3">
+              <div className="mt-1 h-5 w-5 flex-shrink-0 rounded bg-amber-500 flex items-center justify-center text-white font-bold text-[10px]">U</div>
+              <div>
+                {/* Fallback for objects in details list */}
+                {typeof detail === 'object' ? JSON.stringify(detail) : detail}
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
   );
 }
 
 function WhyShopWithUs() {
   const perks = [
-    {
-      title: "Super-fast Delivery",
-      description:
-        "Get your order delivered from dark stores near you in record time.",
-      icon: "/assets/minute_delivery.jpeg",
-    },
-    {
-      title: "Best Prices and Offers",
-      description:
-        "Enjoy manufacturer-direct savings across thousands of beauty essentials.",
-      icon: "/assets/Best_Prices_Offers.png",
-    },
-    {
-      title: "Wide Assortment",
-      description:
-        "Browse over five thousand products spanning foundation, lipstick, eyes, and more.",
-      icon: "/assets/Wide_Assortment.avif",
+    { title: "Super-fast Delivery", description: "From dark stores near you.", icon: "/assets/minute_delivery.jpeg" },
+    { title: "Best Prices", description: "Direct savings on essentials.", icon: "/assets/Best_Prices_Offers.png" },
+    { 
+      title: "Authentic Products", 
+      description: "Guaranteed authentic products.", 
+      icon: "https://d2ati23fc66y9j.cloudfront.net/ubuycom-v1/images/ubuy-seal-authentic.png.webp" 
     },
   ];
 
   return (
-    <section className="space-y-5">
-      <h2 className="text-lg font-semibold">
-        Why shop from Essentialist Makeup Store?
-      </h2>
+    <div className="grid gap-3">
       {perks.map((perk) => (
-        <div key={perk.title} className="flex items-center gap-4">
-          <Image
-            src={perk.icon}
-            alt={perk.title}
-            width={80}
-            height={80}
-            loading="lazy"
-            decoding="async"
-            className="h-20 w-20 rounded-lg object-cover"
-          />
-          <div className="text-sm text-slate-700">
-            <h3 className="font-semibold text-slate-900">{perk.title}</h3>
-            <p>{perk.description}</p>
+        <div key={perk.title} className="flex items-center gap-3 p-2 rounded-lg border border-slate-50">
+          <div className="relative h-10 w-10 flex-shrink-0">
+            {/* Standard <img> tag avoids hostname configuration errors */}
+            <img 
+              src={perk.icon} 
+              alt={perk.title} 
+              className="h-full w-full object-cover rounded" 
+            />
+          </div>
+          <div className="text-[11px]">
+            <h3 className="font-bold">{perk.title}</h3>
+            <p className="text-slate-500">{perk.description}</p>
           </div>
         </div>
       ))}
-    </section>
+    </div>
   );
 }
 
 function PageSkeleton() {
-  return (
-    <section className="container mx-auto grid gap-6 p-4 lg:grid-cols-2">
-      <div className="space-y-4">
-        <ImageSkeleton />
-        <div className="hidden rounded-lg border border-slate-200 p-4 lg:block">
-          <TextSkeleton width="50%" />
-          <TextSkeleton width="80%" />
-          <TextSkeleton width="90%" />
-        </div>
-      </div>
-      <div className="space-y-4 rounded-lg border border-slate-200 p-4">
-        <TextSkeleton width="40%" height="h-5" />
-        <TextSkeleton width="70%" />
-        <TextSkeleton width="60%" />
-        <TextSkeleton width="50%" />
-        <TextSkeleton width="100%" height="h-12" />
-      </div>
-    </section>
-  );
-}
-
-function ImageSkeleton() {
-  return (
-    <div className="aspect-square w-full rounded-lg bg-slate-200 animate-pulse" />
-  );
-}
-
-function TextSkeleton({ width = "100%", height = "h-4" }) {
-  return (
-    <div
-      className={`bg-slate-200/80 rounded ${height} animate-pulse`}
-      style={{ width }}
-    />
-  );
+  return <div className="container mx-auto p-10 animate-pulse bg-slate-50 h-screen rounded-xl" />;
 }
 
 function RatingSkeleton() {
-  return (
-    <div className="mt-2 flex items-center gap-3">
-      <div className="h-4 w-24 rounded bg-slate-200 animate-pulse" />
-      <div className="h-3 w-16 rounded bg-slate-200 animate-pulse" />
-    </div>
-  );
+  return <div className="h-6 w-32 bg-slate-200 rounded animate-pulse" />;
 }
