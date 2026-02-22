@@ -1,3 +1,4 @@
+// client\src\app\product\[slug]\queries.js
 import SummaryApi, { apiFetch } from "../../../common/SummaryApi";
 
 export const productQueryKey = (productId) => ["product-details", productId];
