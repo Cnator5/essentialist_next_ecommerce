@@ -137,11 +137,14 @@ function valideURLConvert(str) {
 }
 
 async function fetchJSON(path) {
-  const res = await fetch(`${API_URL}${path}`, {
-    next: { revalidate: 86400 } // 86400 seconds = 24 hours caching
+  const url = `${API_URL}${path}`;
+  
+  // Notice we kept the 24 hour cache!
+  const res = await fetch(url, {
+    next: { revalidate: 86400 } 
   });
   
-  if (!res.ok) throw new Error(`Failed to fetch: ${path}`);
+  if (!res.ok) throw new Error(`Failed to fetch: ${url}`);
   return res.json();
 }
 
@@ -180,8 +183,8 @@ export default async function sitemap() {
   ];
 
   let categories = [];
-  let subcategories = [];
   let products = [];
+  let blogs = [];
 
   const fallbackCategories = [
     { _id: '1', name: 'SETTING POWDER', updatedAt: new Date().toISOString() },
@@ -200,15 +203,12 @@ export default async function sitemap() {
   ];
 
   try {
-    const [catRes, subRes, prodRes] = await Promise.all([
-      fetchJSON('/api/category'),
-      fetchJSON('/api/subcategory'),
-      fetchJSON('/api/product?publish=true'),
-    ]);
+    // 🔥 THE FIX: Fetching from our new, fast endpoint!
+    const data = await fetchJSON('/api/sitemap-data');
     
-    categories = (catRes?.data || catRes || fallbackCategories);
-    subcategories = (subRes?.data || subRes || []);
-    products = (prodRes?.data || prodRes || fallbackProducts).filter(p => p.publish);
+    categories = data.categories || fallbackCategories;
+    products = data.products || fallbackProducts;
+    blogs = data.blogs || [];
   } catch (err) {
     console.error('Failed to fetch sitemap data:', err);
     categories = fallbackCategories;
@@ -225,21 +225,6 @@ export default async function sitemap() {
     });
   }
 
-  for (const sub of subcategories) {
-    const parentCat = categories.find(
-      c => String(c._id) === String(Array.isArray(sub.category) ? sub.category[0] : sub.category)
-    );
-    if (!parentCat) continue;
-    
-    const subUrl = `https://www.esmakeupstore.com/${valideURLConvert(parentCat.name)}-${parentCat._id}/${valideURLConvert(sub.name)}-${sub._id}`;
-    items.push({
-      url: subUrl,
-      lastModified: sub.updatedAt || new Date().toISOString(),
-      changeFrequency: 'weekly',
-      priority: 0.6,
-    });
-  }
-
   for (const prod of products) {
     const prodUrl = `https://www.esmakeupstore.com/product/${valideURLConvert(prod.name)}-${prod._id}`;
     items.push({
@@ -247,6 +232,16 @@ export default async function sitemap() {
       lastModified: prod.updatedAt || new Date().toISOString(),
       changeFrequency: 'weekly',
       priority: 0.5,
+    });
+  }
+
+  for (const blog of blogs) {
+    const blogUrl = `https://www.esmakeupstore.com/blog/${blog.slug}`;
+    items.push({
+      url: blogUrl,
+      lastModified: blog.updatedAt || new Date().toISOString(),
+      changeFrequency: 'weekly',
+      priority: 0.6,
     });
   }
 
