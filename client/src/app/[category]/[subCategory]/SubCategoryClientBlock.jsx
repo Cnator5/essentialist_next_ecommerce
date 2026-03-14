@@ -468,22 +468,22 @@
 // client/src/app/[category]/[subCategory]/SubCategoryClientBlock.jsx
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useEffect, useRef } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useInfiniteQuery } from "@tanstack/react-query";
 import CardProduct from "../../../components/CardProduct";
 import { valideURLConvert } from "../../../utils/valideURLConvert";
 import SummaryApi, { callSummaryApi } from "@/common/SummaryApi";
 
-const PAGE_SIZE = 12; // Adjusted for better grid layout
+const PAGE_SIZE = 12;
 
 const subCategoryBestTitles = {
   Foundation: "Transfer Proof Foundation For Masks",
   "Foundation Makeup": "Foundation Shade Finder Kit",
   "Liquid Foundation": "Lightweight Liquid Foundation For Acne Prone Skin",
   "Powder Foundation": "Buildable Powder Foundation For Mature Skin",
-  "Stick foundation": "Stick Foundation For Oily Skin",
+  "Stick foundation": "Stick Foundation For oily Skin",
   "Total Control Drop Foundation": "Drop Foundation Full Coverage Adjustable",
   "Foundation Primers": "Gripping Primer For Long Wear Makeup",
   "Face Primer": "Pore Blurring Primer For Oily Skin",
@@ -550,23 +550,9 @@ async function fetchSubCategoriesForCategory(categoryId) {
   }
 }
 
-async function fetchProductsForSubCategory({ categoryId, subCategoryId, page }) {
-  try {
-    const response = await callSummaryApi(SummaryApi.getProductByCategoryAndSubCategory, {
-      payload: { categoryId, subCategoryId, page, limit: PAGE_SIZE },
-    });
-    if (!response?.success) return { products: [], totalCount: 0 };
-    return {
-      products: safeArray(response.data),
-      totalCount: Number(response.totalCount || 0),
-    };
-  } catch (error) {
-    throw new Error("Unable to load products.");
-  }
-}
-
 function StructuredData({ categorySlug, subCategorySlug, subCategoryName, products }) {
   const url = `https://www.esmakeupstore.com/${categorySlug}/${subCategorySlug}`;
+
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -576,11 +562,50 @@ function StructuredData({ categorySlug, subCategorySlug, subCategoryName, produc
       { "@type": "ListItem", position: 3, name: subCategoryName, item: url },
     ],
   };
+
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    name: `${subCategoryName} - Essentialist Makeup Store`,
+    description: `Shop authentic ${subCategoryName} online in Cameroon. Fast delivery to Douala and Yaoundé with transparent FCFA pricing.`,
+    url,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "Essentialist Makeup Store",
+      url: "https://www.esmakeupstore.com/",
+    },
+  };
+
+  const itemListJsonLd = products.length > 0 ? {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `${subCategoryName} Products`,
+    numberOfItems: products.length,
+    itemListElement: products.map((product, idx) => ({
+      "@type": "ListItem",
+      position: idx + 1,
+      item: {
+        "@type": "Product",
+        name: product?.name,
+        image: Array.isArray(product?.image) ? product.image[0] : product?.image,
+        brand: product?.brand ? { "@type": "Brand", name: product.brand } : { "@type": "Brand", name: "Essentialist" },
+        offers: {
+          "@type": "Offer",
+          price: String(product?.price || ""),
+          priceCurrency: "XAF",
+          availability: Number(product?.stock) > 0 ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+          seller: { "@type": "Organization", name: "Essentialist Makeup Store" }
+        },
+      },
+    })),
+  } : null;
+
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
-    />
+    <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }} />
+      {itemListJsonLd && <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />}
+    </>
   );
 }
 
@@ -593,33 +618,68 @@ export default function SubCategoryClientBlock({
   categoryNameFromSlug,
   subCategoryNameFromSlug,
 }) {
-  // SITE SPEED: Subcategories cached for 5 minutes
-  const { data: subCategories = [], isLoading: isSubCategoriesLoading } = useQuery({
+  const mobileContentRef = useRef(null);
+
+  useEffect(() => {
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(0, 0);
+    document.documentElement.style.scrollBehavior = 'smooth';
+  }, []);
+
+  useEffect(() => {
+    if (mobileContentRef.current) {
+      mobileContentRef.current.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }, [subCategoryId]);
+
+  const { 
+    data: subCategories = [], 
+    isLoading: isSubCategoriesLoading, 
+    isError: isSubCategoriesError, 
+    error: subCategoriesError, 
+    refetch: refetchSubCategories 
+  } = useQuery({
     queryKey: ["subcategories-by-category", categoryId],
     queryFn: () => fetchSubCategoriesForCategory(categoryId),
     enabled: Boolean(categoryId),
     staleTime: 5 * 60_000,
+    refetchOnWindowFocus: false,
   });
 
-  // SITE SPEED: Products cached for 2 minutes
   const {
-    data: productsPayload,
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
     isLoading: isProductsLoading,
-    isFetching: isProductsFetching,
     isError: isProductsError,
+    error: productsError,
     refetch: refetchProducts,
-  } = useQuery({
-    queryKey: ["products-by-category-subcategory", categoryId, subCategoryId, page],
-    queryFn: () => fetchProductsForSubCategory({ categoryId, subCategoryId, page }),
+  } = useInfiniteQuery({
+    queryKey: ["products-infinite", categoryId, subCategoryId],
+    queryFn: async ({ pageParam = 1 }) => {
+      const response = await callSummaryApi(SummaryApi.getProductByCategoryAndSubCategory, {
+        payload: { categoryId, subCategoryId, page: pageParam, limit: PAGE_SIZE },
+      });
+      if (!response?.success) return { data: [], totalCount: 0, nextPage: null };
+      const totalPages = Math.ceil((response.totalCount || 0) / PAGE_SIZE);
+      return {
+        data: safeArray(response.data),
+        totalCount: Number(response.totalCount || 0),
+        nextPage: pageParam < totalPages ? pageParam + 1 : null,
+      };
+    },
+    initialPageParam: 1,
+    getNextPageParam: (lastPage) => lastPage.nextPage,
     enabled: Boolean(categoryId && subCategoryId),
     staleTime: 120_000,
-    keepPreviousData: true,
   });
 
-  const products = productsPayload?.products ?? [];
-  const totalCount = Number(productsPayload?.totalCount || 0);
-  const totalPages = Math.max(1, Math.ceil(totalCount / PAGE_SIZE));
-  const hasMore = page < totalPages;
+  const allProducts = useMemo(() => {
+    return data?.pages.flatMap((page) => page.data) || [];
+  }, [data]);
+
+  const totalCount = data?.pages[0]?.totalCount || 0;
 
   const activeSubCategory = useMemo(
     () => subCategories.find((item) => String(item?._id) === String(subCategoryId)) || null,
@@ -627,36 +687,127 @@ export default function SubCategoryClientBlock({
   );
 
   const resolvedSubCategoryName = activeSubCategory?.name || subCategoryNameFromSlug || "Subcategory";
+  const resolvedCategoryName = (Array.isArray(activeSubCategory?.category) ? activeSubCategory?.category?.[0]?.name : undefined) || categoryNameFromSlug || "Category";
   const h1Commercial = bestSeoTitleForSubcategory(resolvedSubCategoryName);
-  const basePath = `/${categorySlug}/${subCategorySlug}`;
-  const nextHref = hasMore ? `${basePath}?page=${page + 1}` : null;
+  
+  const combinedErrorMessage = productsError?.message || subCategoriesError?.message || "Something went wrong while loading this collection.";
 
   return (
     <>
-      <StructuredData
-        categorySlug={categorySlug}
-        subCategorySlug={subCategorySlug}
-        subCategoryName={resolvedSubCategoryName}
-        products={products}
-      />
+      <StructuredData categorySlug={categorySlug} subCategorySlug={subCategorySlug} subCategoryName={resolvedSubCategoryName} products={allProducts} />
 
       <style dangerouslySetInnerHTML={{ __html: `
-        .scrollbarCustom::-webkit-scrollbar { width: 5px; }
-        .scrollbarCustom::-webkit-scrollbar-thumb { background: #fce7f3; border-radius: 10px; }
-        .active-pill { background: #be123c; color: white; border-color: #be123c; }
+        .scrollbarCustom { scrollbar-width: thin; scrollbar-color: #cbd5e1 transparent; }
+        .scrollbarCustom::-webkit-scrollbar { height: 8px; width: 8px; }
+        .scrollbarCustom::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 8px; }
+        .scrollbarCustom::-webkit-scrollbar-track { background: transparent; }
       `}} />
 
-      <main className="flex flex-col lg:flex-row container mx-auto px-4 gap-8 pb-20">
-        
-        {/* SIDEBAR: Styled for Beauty Branding */}
-        <aside className="w-full lg:w-72 flex-shrink-0 pt-8">
+      {/* ======================================================== */}
+      {/* MOBILE UI */}
+      {/* ======================================================== */}
+      <main className="sticky top-20 block lg:hidden bg-white">
+        <section className="container mx-auto grid grid-cols-[90px,1fr] md:grid-cols-[200px,1fr]">
+          <aside className="min-h-[88vh] max-h-[88vh] overflow-y-scroll grid gap-1 shadow-md scrollbarCustom bg-white py-2 border-r border-slate-100 z-20" aria-label="Subcategories">
+            {isSubCategoriesLoading ? (
+              <div className="p-4 text-center text-xs text-gray-500">Loading...</div>
+            ) : isSubCategoriesError ? (
+              <div className="p-4 text-center text-xs text-red-500"><button onClick={() => refetchSubCategories()}>Retry</button></div>
+            ) : subCategories.length > 0 ? (
+              subCategories.map((sub) => {
+                const isActive = String(sub?._id) === String(subCategoryId);
+                return (
+                  <Link
+                    key={sub?._id}
+                    href={`/${categorySlug}/${valideURLConvert(sub?.name)}-${sub?._id}`}
+                    scroll={false} 
+                    prefetch={true} 
+                    className={`group relative w-full p-2 flex flex-col items-center md:flex-row md:h-16 box-border md:gap-4 border-b transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-500 focus-visible:ring-offset-2 focus-visible:ring-offset-white ${
+                      isActive ? "bg-pink-50 text-pink-600 border-pink-200" : "hover:bg-pink-50/50 text-gray-600"
+                    }`}
+                  >
+                    <div className="relative flex h-12 w-full items-center justify-center md:h-full md:w-12">
+                      <Image src={sub?.image || "/placeholder.png"} alt={sub?.name || "Subcategory"} className="w-10 h-10 md:w-12 md:h-12 object-scale-down" loading="lazy" width={48} height={48} />
+                    </div>
+                    <p className={`text-[10px] text-center md:text-left md:text-sm font-semibold mt-1 md:mt-0 transition-colors duration-200 ${isActive ? "text-pink-600" : "text-slate-600"}`}>
+                      {sub?.name}
+                    </p>
+                    {!isActive && <span className="pointer-events-none absolute inset-y-2 left-0 w-1 rounded-full bg-transparent group-focus-visible:bg-pink-500 group-hover:bg-pink-300/40 transition-colors" />}
+                    {isActive && <span className="pointer-events-none absolute inset-y-2 left-0 w-1 rounded-full bg-pink-500" />}
+                  </Link>
+                );
+              })
+            ) : (
+              <div className="p-4 text-center text-gray-500 text-sm">No subcategories found</div>
+            )}
+          </aside>
+
+          <section ref={mobileContentRef} className="min-h-[88vh] max-h-[88vh] overflow-y-auto scrollbarCustom bg-slate-50/30">
+            <header className="bg-white shadow-sm p-4 sticky top-0 z-10 border-b border-slate-100">
+              <div className="flex items-center justify-between gap-2">
+                <h1 className="font-bold text-gray-900 text-sm sm:text-base leading-tight">{h1Commercial}</h1>
+              </div>
+              <p className="text-xs text-gray-500 mt-1">{totalCount} Items</p>
+            </header>
+
+            <div className="p-3">
+              {isProductsLoading && allProducts.length === 0 ? (
+                // PROPER MOBILE SKELETON (ZERO CLS)
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3" role="list">
+                  {[...Array(4)].map((_, i) => (
+                    <li key={i}><CardProduct isLoading={true} /></li>
+                  ))}
+                </ul>
+              ) : isProductsError ? (
+                <div className="text-center p-8"><p className="text-red-500 text-sm mb-2">Error loading products.</p><button onClick={() => refetchProducts()} className="bg-pink-500 text-white px-4 py-2 rounded text-xs font-bold">Retry</button></div>
+              ) : allProducts.length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-full p-8 text-center">
+                  <h2 className="text-base font-medium text-gray-900 mb-2">No products found</h2>
+                  <p className="text-gray-500 text-xs">There are no products in this category yet.</p>
+                </div>
+              ) : (
+                <>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3" role="list">
+                    {allProducts.map((product, index) => (
+                      <li key={product?._id}>
+                        <CardProduct data={product} priority={index < 4} />
+                      </li>
+                    ))}
+                  </ul>
+
+                  {hasNextPage && (
+                    <nav className="p-4 text-center pb-24" aria-label="Pagination">
+                      <button
+                        onClick={() => fetchNextPage()}
+                        disabled={isFetchingNextPage}
+                        className="inline-flex items-center justify-center px-6 py-2 bg-pink-600 text-white rounded-lg hover:bg-pink-700 transition-colors duration-200 font-medium focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-pink-300 focus-visible:ring-offset-2 focus-visible:ring-offset-white disabled:opacity-50 text-sm"
+                      >
+                        {isFetchingNextPage ? (
+                           <span className="flex items-center gap-2">
+                             <svg className="animate-spin h-4 w-4 text-white" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                             Loading...
+                           </span>
+                        ) : "Load More Products"}
+                      </button>
+                    </nav>
+                  )}
+                </>
+              )}
+            </div>
+          </section>
+        </section>
+      </main>
+
+      {/* ======================================================== */}
+      {/* DESKTOP UI */}
+      {/* ======================================================== */}
+      <main className="hidden lg:flex flex-row container mx-auto px-4 gap-8 pb-20 pt-8">
+        <aside className="w-72 flex-shrink-0">
           <div className="sticky top-24 space-y-6">
             <h2 className="text-xs font-black uppercase tracking-widest text-pink-400">Collections</h2>
             <nav className="flex flex-col gap-1 max-h-[70vh] overflow-y-auto scrollbarCustom pr-2" aria-label="Subcategories">
               {isSubCategoriesLoading ? (
-                <div className="animate-pulse space-y-2">
-                  {[...Array(6)].map((_, i) => <div key={i} className="h-10 bg-slate-100 rounded-lg" />)}
-                </div>
+                <div className="animate-pulse space-y-2">{[...Array(6)].map((_, i) => <div key={i} className="h-10 bg-slate-100 rounded-lg" />)}</div>
               ) : (
                 subCategories.map((sub) => {
                   const isActive = String(sub?._id) === String(subCategoryId);
@@ -664,10 +815,10 @@ export default function SubCategoryClientBlock({
                     <Link
                       key={sub._id}
                       href={`/${categorySlug}/${valideURLConvert(sub.name)}-${sub._id}`}
+                      scroll={false} 
+                      prefetch={true} 
                       className={`flex items-center gap-3 p-3 rounded-xl transition-all duration-200 border ${
-                        isActive 
-                        ? "bg-pink-300  text-white shadow-lg shadow-pink-100 font-bold" 
-                        : "bg-white border-transparent text-slate-600 hover:bg-pink-50 hover:text-pink-400"
+                        isActive ? "bg-pink-50 text-pink-600 border-pink-200 font-bold shadow-sm" : "bg-white border-transparent text-slate-600 hover:bg-pink-50 hover:text-pink-600"
                       }`}
                     >
                       <div className="w-8 h-8 rounded-full bg-slate-50 overflow-hidden flex-shrink-0 border border-slate-100">
@@ -682,55 +833,51 @@ export default function SubCategoryClientBlock({
           </div>
         </aside>
 
-        {/* CONTENT AREA */}
-        <section className="flex-grow pt-8">
-          <header className="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-100 pb-8">
+        <section className="flex-grow">
+          <header className="mb-10 flex items-end justify-between gap-4 border-b border-slate-100 pb-8">
             <div className="space-y-1">
-              <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 tracking-tight">{h1Commercial}</h1>
+              <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">{h1Commercial}</h1>
               <p className="text-slate-500 font-medium">{resolvedSubCategoryName} in {categoryNameFromSlug}</p>
             </div>
             <div className="flex items-center gap-3">
-              {isProductsFetching && products.length > 0 && <span className="text-xs text-pink-500 animate-pulse font-bold uppercase tracking-tighter">Updating Price List...</span>}
-              <span className="bg-pink-50 text-pink-400 text-xs font-black px-4 py-2 rounded-full border border-pink-100 uppercase">
-                {totalCount} Items Found
-              </span>
+              <span className="bg-pink-50 text-pink-600 text-xs font-black px-4 py-2 rounded-full border border-pink-100 uppercase">{totalCount} Items</span>
             </div>
           </header>
 
-          {/* PRODUCT GRID */}
-          {isProductsLoading && products.length === 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {[...Array(6)].map((_, i) => <div key={i} className="aspect-[3/4] bg-slate-50 rounded-3xl animate-pulse" />)}
-            </div>
+          {isProductsLoading && allProducts.length === 0 ? (
+            // PROPER DESKTOP SKELETON (ZERO CLS)
+            <ul className="grid grid-cols-3 xl:grid-cols-4 gap-8" role="list">
+              {[...Array(8)].map((_, i) => (
+                <li key={i}><CardProduct isLoading={true} /></li>
+              ))}
+            </ul>
           ) : isProductsError ? (
-            <div className="text-center py-20 bg-rose-50 rounded-3xl border border-rose-100">
-              <p className="text-rose-600 font-bold mb-4">Unable to reach inventory server.</p>
-              <button onClick={() => refetchProducts()} className="bg-rose-600 text-white px-8 py-3 rounded-full font-bold">Try Again</button>
-            </div>
-          ) : products.length === 0 ? (
-            <div className="text-center py-24 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200">
-              <p className="text-slate-500">No products listed in {resolvedSubCategoryName} yet.</p>
-            </div>
+            <div className="text-center py-20 bg-rose-50 rounded-3xl border border-rose-100"><p className="text-rose-600 font-bold mb-4">Error loading products.</p><button onClick={() => refetchProducts()} className="bg-rose-600 text-white px-8 py-3 rounded-full font-bold">Try Again</button></div>
+          ) : allProducts.length === 0 ? (
+            <div className="text-center py-24 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200"><p className="text-slate-500">No products found.</p></div>
           ) : (
             <>
-              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
-                {products.map((p) => (
+              <ul className="grid grid-cols-3 xl:grid-cols-4 gap-8" role="list">
+                {allProducts.map((p, index) => (
                   <li key={p._id} className="transition-transform hover:-translate-y-1 duration-300">
-                    <CardProduct data={p} />
+                    <CardProduct data={p} priority={index < 4} />
                   </li>
                 ))}
               </ul>
-
-              {/* PAGINATION: Styled like a high-end CTA */}
-              {hasMore && (
-                <nav className="mt-16 text-center" aria-label="Pagination">
-                  <Link
-                    href={nextHref}
-                    className="inline-flex items-center px-12 py-4 bg-pink-400 text-white font-black rounded-full hover:bg-pink-400 hover:scale-105 transition-all shadow-xl shadow-pink-200 uppercase tracking-widest text-xs"
-                    scroll={true}
+              {hasNextPage && (
+                <nav className="mt-16 text-center">
+                  <button 
+                    onClick={() => fetchNextPage()} 
+                    disabled={isFetchingNextPage}
+                    className="inline-flex items-center px-12 py-4 bg-pink-600 text-white font-black rounded-full hover:bg-pink-700 transition-all shadow-xl shadow-pink-200 uppercase text-xs disabled:opacity-50"
                   >
-                    View More Products
-                  </Link>
+                    {isFetchingNextPage ? (
+                      <span className="flex items-center gap-2">
+                        <svg className="animate-spin h-5 w-5 text-white" viewBox="0 0 24 24" fill="none"><circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle><path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+                        Loading...
+                      </span>
+                    ) : "Load More Products"}
+                  </button>
                 </nav>
               )}
             </>

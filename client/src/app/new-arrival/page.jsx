@@ -257,9 +257,8 @@ export const metadata = {
 };
 
 async function loadProducts() {
-  // Logic: Fetch products by descending creation date
   const basePayload = {
-    limit: 100, // Fetch a larger pool to filter down
+    limit: 100, 
     page: 1,
     sortBy: "createdAt", 
     sortOrder: "desc",
@@ -289,7 +288,6 @@ async function loadProducts() {
     
     const allFetched = payload.data?.products || payload.data?.items || payload.data || payload.products || [];
     
-    // NEW ARRIVAL FILTER: Only keep products added in the last 30 days
     if (applyCutoff) {
       const ninetyDaysAgo = new Date();
       ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
@@ -304,7 +302,6 @@ async function loadProducts() {
   };
 
   return {
-    // We apply the strict 30-day cutoff to the main feed
     feedProducts: extractProducts(allRes, true), 
     newCategoryProducts: extractProducts(newRes),
     hotCategoryProducts: extractProducts(hotRes),
