@@ -13,13 +13,13 @@ const nextConfig = {
         protocol: "https",
         hostname: "res.cloudinary.com",
         port: "",
-        pathname: "/dvpweiur3/**",
+        pathname: "/**", // Changed this to allow all paths
       },
       {
         protocol: "http", // 👈 add this one too
         hostname: "res.cloudinary.com",
         port: "",
-        pathname: "/dvpweiur3/**",
+        pathname: "/**", // Changed this to allow all paths
       },
       {
         protocol: 'https',

@@ -1,3 +1,4 @@
+//D:\essentialist_next_ecommerce\client\src\app\dashboard\brands\page.jsx
 'use client';
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
