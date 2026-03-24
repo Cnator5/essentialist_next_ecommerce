@@ -8,6 +8,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   images: {
+    unoptimized: true, // 👈 THIS IS THE FIX! It stops Vercel from using your quota.
     remotePatterns: [
       {
         protocol: "https",
