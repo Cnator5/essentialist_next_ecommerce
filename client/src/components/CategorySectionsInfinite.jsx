@@ -43,8 +43,8 @@ export default function CategorySectionsInfinite({
   categoryProducts = [],
   subCategoryData = [],
 }) {
-  const INITIAL_COUNT = 2
-  const BATCH_SIZE = 2
+  const INITIAL_COUNT = 4
+  const BATCH_SIZE = 4
 
   const total = Array.isArray(categoryProducts) ? categoryProducts.length : 0
   const [visibleCount, setVisibleCount] = useState(
@@ -80,7 +80,7 @@ export default function CategorySectionsInfinite({
           lockRef.current = false
         }, 150)
       },
-      { rootMargin: '200px 0px' }
+      { rootMargin: '100px 0px' }
     )
 
     observer.observe(node)
