@@ -328,24 +328,6 @@ const CardProduct = React.memo(({ data, isLoading = false, priority = false }) =
       prefetch={true}
       // style prop removed because it is now safely handled by Tailwind in `cardClasses`
     >
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'Product',
-            name: data.name,
-            image: imageSrc,
-            offers: {
-              '@type': 'Offer',
-              price: data.price,
-              priceCurrency: 'XAF',
-              availability: availabilityHref
-            }
-          })
-        }}
-      />
-      
       <div className="relative overflow-hidden rounded-lg aspect-square mb-3">
         <Image
           src={imageSrc}

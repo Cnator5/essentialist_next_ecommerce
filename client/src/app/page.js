@@ -1,4 +1,3 @@
-
 // // src/app/page.js
 // import Image from 'next/image'
 // import Link from 'next/link'
@@ -256,17 +255,17 @@
 //                   sizes="100vw"
 //                 />
 //               </div>
-              
+
 //               {/* On-Page SEO Section: Using your real search keywords naturally */}
 //               <div className="max-w-4xl mx-auto text-center mt-6 mb-8 px-2">
 //                 <h1 className="font-bold text-[24px] md:text-[36px] mb-3 text-gray-900">
 //                   Welcome to the Essentialist Makeup Store
 //                 </h1>
 //                 <p className="text-gray-600 text-[15px] md:text-[16px] leading-relaxed">
-//                   Your premier destination for authentic <strong>cosmetic products</strong> and <strong>professional makeup</strong>. 
-//                   Shop our curated collection of high-quality <strong>face makeup</strong>, blurring <strong>setting powders</strong>, 
-//                   <strong> contouring makeup</strong>, and radiant <strong>lip gloss</strong>. Whether you are looking for everyday 
-//                   <strong> skin essentials</strong>, complete <strong>makeup kits</strong>, or top brands like <strong>NYX Cosmetics</strong> 
+//                   Your premier destination for authentic <strong>cosmetic products</strong> and <strong>professional makeup</strong>.
+//                   Shop our curated collection of high-quality <strong>face makeup</strong>, blurring <strong>setting powders</strong>,
+//                   <strong> contouring makeup</strong>, and radiant <strong>lip gloss</strong>. Whether you are looking for everyday
+//                   <strong> skin essentials</strong>, complete <strong>makeup kits</strong>, or top brands like <strong>NYX Cosmetics</strong>
 //                   and <strong>Maybelline</strong>, we have everything you need for flawless beauty.
 //                 </p>
 //               </div>
@@ -381,105 +380,102 @@
 //   }
 // }
 
-
-
-
-
-
 // src/app/page.js
 /**
  * 2026 SEO/GEO/AEO Optimized Home Page
  */
 
-import Image from 'next/image'
-import Link from 'next/link'
-import { Suspense } from 'react'
-import { cacheLife } from 'next/cache'
+import Image from "next/image";
+import Link from "next/link";
+import { Suspense } from "react";
+import { cacheLife } from "next/cache";
 
-import ProductRecommendations from '../components/ProductRecommendations'
-import TikTokGallery from '../components/TikTokGallery'
-import CategorySectionsInfinite from '../components/CategorySectionsInfinite'
-import { valideURLConvert } from '../utils/valideURLConvert'
+import ProductRecommendations from "../components/ProductRecommendations";
+import TikTokGallery from "../components/TikTokGallery";
+import CategorySectionsInfinite from "../components/CategorySectionsInfinite";
+import { valideURLConvert } from "../utils/valideURLConvert";
 import {
   getCategories,
   getSubCategories,
   getTopCategoryBundles,
-} from '../server/catalog'
+} from "../server/catalog";
 
 // --- SEO Constants ---
 const BUSINESS_CONFIG = {
-  name: 'Essentialist Makeup Store',
-  url: 'https://www.esmakeupstore.com',
-  phone: '+237655225569',
-  email: 'contact@esmakeupstore.com',
-  whatsapp: '237655225569',
+  name: "Essentialist Makeup Store",
+  url: "https://www.esmakeupstore.com",
+  phone: "+237655225569",
+  email: "contact@esmakeupstore.com",
+  whatsapp: "237655225569",
   address: {
-    street: 'Bonamoussadi, Carrefour Maçon',
-    city: 'Douala',
-    region: 'Littoral',
-    country: 'Cameroon',
-    countryCode: 'CM',
+    street: "Bonamoussadi, Carrefour Maçon",
+    city: "Douala",
+    region: "Littoral",
+    country: "Cameroon",
+    countryCode: "CM",
     coordinates: { lat: 4.0511, lng: 9.7679 },
   },
   hours: {
-    monday: '08:00-18:00',
-    tuesday: '08:00-18:00',
-    wednesday: '08:00-18:00',
-    thursday: '08:00-18:00',
-    friday: '08:00-18:00',
-    saturday: '10:00-16:00',
-    sunday: 'closed',
+    monday: "08:00-18:00",
+    tuesday: "08:00-18:00",
+    wednesday: "08:00-18:00",
+    thursday: "08:00-18:00",
+    friday: "08:00-18:00",
+    saturday: "10:00-16:00",
+    sunday: "closed",
   },
-  deliveryAreas: ['Douala', 'Yaoundé', 'Cameroon'],
-  currency: 'XAF',
-}
+  deliveryAreas: ["Douala", "Yaoundé", "Cameroon"],
+  currency: "XAF",
+};
 
 const CONTENT_KEYWORDS = {
   primary: [
-    'makeup store Cameroon',
-    'cosmetic products Cameroon',
-    'buy makeup online Douala',
-    'professional makeup Cameroon',
+    "makeup store Cameroon",
+    "cosmetic products Cameroon",
+    "buy makeup online Douala",
+    "professional makeup Cameroon",
   ],
   secondary: [
-    'setting powder Cameroon',
-    'foundation makeup Cameroon',
-    'eyeshadow palette Douala',
-    'lipstick Cameroon',
-    'makeup kits Cameroon',
-    'beauty products Douala',
+    "setting powder Cameroon",
+    "foundation makeup Cameroon",
+    "eyeshadow palette Douala",
+    "lipstick Cameroon",
+    "makeup kits Cameroon",
+    "beauty products Douala",
   ],
-}
+};
 
-const DEFAULT_TITLE = 'Essentialist Makeup Store | Best Cosmetics & Makeup in Douala, Cameroon'
-const DEFAULT_DESC = 'Shop authentic makeup and cosmetic products in Cameroon. Professional makeup, setting powders, foundations, and more. Fast delivery to Douala and nationwide. Premium brands at affordable prices.'
-const OG_IMAGE = 'https://www.esmakeupstore.com/assets/logo.jpg'
+const DEFAULT_TITLE =
+  "Best Makeup Store in Cameroon | Essentialist — Shop NYX, Smashbox, Bobbi Brown in Douala";
+const DEFAULT_DESC =
+  "Shop authentic makeup and cosmetic products in Cameroon. Professional makeup, setting powders, foundations, and more. Fast delivery to Douala and nationwide. Premium brands at affordable prices.";
+const OG_IMAGE = "https://www.esmakeupstore.com/assets/logo.jpg";
 
 export async function generateMetadata() {
-  'use cache'
-  cacheLife('minutes', 5)
+  "use cache";
+  cacheLife("minutes", 5);
 
-  const categories = await getCategories()
+  const categories = await getCategories();
   const categoryNames = Array.isArray(categories)
     ? categories
         .slice(0, 5)
         .map((c) => c?.name)
         .filter(Boolean)
-    : []
+    : [];
 
-  const topCategories = categoryNames.join(', ')
+  const topCategories = categoryNames.join(", ");
   const dynTitle = topCategories
-    ? `${BUSINESS_CONFIG.name} | Shop ${topCategories} & More in Douala, Cameroon`
-    : DEFAULT_TITLE
+    ? `Best Makeup Store in Cameroon | Shop ${topCategories} & More — Essentialist Douala`
+    : DEFAULT_TITLE;
 
   const dynDesc = topCategories
     ? `Discover premium ${topCategories.toLowerCase()} and more at ${BUSINESS_CONFIG.name}. ${DEFAULT_DESC}`
-    : DEFAULT_DESC
+    : DEFAULT_DESC;
 
   const allKeywords = [
     ...CONTENT_KEYWORDS.primary,
     ...CONTENT_KEYWORDS.secondary.slice(0, 3),
-  ]
+  ];
 
   return {
     metadataBase: BUSINESS_CONFIG.url,
@@ -489,37 +485,39 @@ export async function generateMetadata() {
     robots: {
       index: true,
       follow: true,
-      'max-snippet': -1,
-      'max-image-preview': 'large',
-      'max-video-preview': -1,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
     },
     alternates: {
-      canonical: '/',
-      languages: { en: '/', fr: '/fr' },
+      canonical: "/",
+      languages: { en: "/", fr: "/fr" },
     },
     openGraph: {
-      type: 'website',
+      type: "website",
       siteName: BUSINESS_CONFIG.name,
       url: BUSINESS_CONFIG.url,
       title: dynTitle,
       description: dynDesc,
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: BUSINESS_CONFIG.name }],
-      locale: 'en_US',
+      images: [
+        { url: OG_IMAGE, width: 1200, height: 630, alt: BUSINESS_CONFIG.name },
+      ],
+      locale: "en_US",
     },
     twitter: {
-      card: 'summary_large_image',
+      card: "summary_large_image",
       title: dynTitle,
       description: dynDesc,
       images: [OG_IMAGE],
-      creator: '@essentialistmakeup',
+      creator: "@essentialistmakeup",
     },
     other: {
-      'geo:placename': BUSINESS_CONFIG.address.city,
-      'geo:position': `${BUSINESS_CONFIG.address.coordinates.lat};${BUSINESS_CONFIG.address.coordinates.lng}`,
-      'geo:region': `CM-${BUSINESS_CONFIG.address.region}`,
-      'msvalidate.01': '1D7D3FCABB171743A8EB32440530AC76',
+      "geo:placename": BUSINESS_CONFIG.address.city,
+      "geo:position": `${BUSINESS_CONFIG.address.coordinates.lat};${BUSINESS_CONFIG.address.coordinates.lng}`,
+      "geo:region": `CM-${BUSINESS_CONFIG.address.region}`,
+      "msvalidate.01": "1D7D3FCABB171743A8EB32440530AC76",
     },
-  }
+  };
 }
 
 /**
@@ -527,71 +525,136 @@ export async function generateMetadata() {
  */
 function StructuredData({ categoryProducts = [] }) {
   const productList = categoryProducts
-    .flatMap(({ products }) => (Array.isArray(products) ? products.slice(0, 8) : []))
-    .filter(p => p && p._id)
+    .flatMap(({ products }) =>
+      Array.isArray(products) ? products.slice(0, 8) : [],
+    )
+    .filter((p) => p && p._id);
 
   const localBusinessSchema = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    '@id': `${BUSINESS_CONFIG.url}/#business`,
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": `${BUSINESS_CONFIG.url}/#business`,
     name: BUSINESS_CONFIG.name,
     image: OG_IMAGE,
     telephone: BUSINESS_CONFIG.phone,
     address: {
-      '@type': 'PostalAddress',
+      "@type": "PostalAddress",
       streetAddress: BUSINESS_CONFIG.address.street,
       addressLocality: BUSINESS_CONFIG.address.city,
       addressCountry: BUSINESS_CONFIG.address.countryCode,
     },
     geo: {
-      '@type': 'GeoCoordinates',
+      "@type": "GeoCoordinates",
       latitude: BUSINESS_CONFIG.address.coordinates.lat,
       longitude: BUSINESS_CONFIG.address.coordinates.lng,
     },
-    priceRange: '$$',
+    priceRange: "$$",
     aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.8',
-      reviewCount: '285',
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      reviewCount: "285",
     },
-  }
+  };
+
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "Where can I buy makeup in Cameroon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "You can buy authentic makeup at Essentialist Makeup Store in Bonamoussadi, Douala. We also offer delivery nationwide across Cameroon. Shop NYX, Smashbox, Bobbi Brown, e.l.f., Laura Geller, MAC, and more at esmakeupstore.com.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What is the best makeup store in Cameroon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Essentialist Makeup Store is the leading cosmetics shop in Douala, Cameroon, offering authentic professional makeup, setting powders, foundations, eyeshadow palettes, and lipsticks from top international brands.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where can I buy NYX cosmetics in Cameroon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "NYX Professional Makeup products are available at Essentialist Makeup Store in Douala, Cameroon. Browse online at esmakeupstore.com or visit us in Bonamoussadi.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where can I buy Smashbox mascara in Cameroon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Smashbox Super Fan mascara and other Smashbox products are in stock at Essentialist Makeup Store, Douala. Order online at esmakeupstore.com or via WhatsApp at +237 655 225 569.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Do you deliver makeup in Cameroon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes. Essentialist Makeup Store delivers to Douala, Yaoundé, and nationwide across Cameroon. Order via WhatsApp at +237 655 225 569 or shop online at esmakeupstore.com.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where can I find cosmetic shops in Cameroon?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Essentialist Makeup Store is located in Bonamoussadi, Douala, Cameroon. We carry a wide range of professional cosmetics and beauty products with fast delivery across the country.",
+        },
+      },
+    ],
+  };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(localBusinessSchema),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(faqSchema),
+        }}
+      />
     </>
-  )
+  );
 }
 
 function buildCategoryUrl(catId, catName, subCategory) {
-  if (!catId || !catName || !subCategory) return '#'
-  return `/${valideURLConvert(catName)}-${catId}/${valideURLConvert(subCategory.name)}-${subCategory._id}`
+  if (!catId || !catName || !subCategory) return "#";
+  return `/${valideURLConvert(catName)}-${catId}/${valideURLConvert(subCategory.name)}-${subCategory._id}`;
 }
 
 export default async function Home() {
-  'use cache'
-  cacheLife('minutes', 5)
+  "use cache";
+  cacheLife("minutes", 5);
 
   try {
-    const [categoryData, subCategoryData, categoryProducts] = await Promise.all([
-      getCategories(),
-      getSubCategories(),
-      getTopCategoryBundles(8),
-    ])
+    const [categoryData, subCategoryData, categoryProducts] = await Promise.all(
+      [getCategories(), getSubCategories(), getTopCategoryBundles(8)],
+    );
 
     const topCategories = Array.isArray(categoryData)
       ? categoryData
           .slice(0, 5)
           .map((c) => c?.name)
           .filter(Boolean)
-      : []
+      : [];
 
     return (
       <>
         <StructuredData categoryProducts={categoryProducts} />
 
         <section className="bg-white">
-          
           {/* FIX 1: HERO MOVED TO THE TOP (STRUCTURAL PRIORITY) */}
           <div className="container mx-auto px-4 pt-4">
             <div className="w-full h-full min-h-48 rounded overflow-hidden">
@@ -624,15 +687,16 @@ export default async function Home() {
                 />
               </div>
 
-              {/* Text SEO Content */}
-              <div className="max-w-4xl mx-auto mt-6 mb-8 px-2 text-center md:text-left">
+              <div className="max-w-4xl mx-auto mt-6 mb-8 px-4 flex flex-col items-center text-center">
                 <h1 className="font-bold text-2xl md:text-3xl lg:text-4xl mb-3 text-gray-900 leading-tight">
-                  Welcome to Essentialist Makeup Store - Your Premier{' '}
-                  <span className="text-pink-600">Makeup & Cosmetics Shop in Cameroon</span>
+                  <span className="text-pink-600">Best Makeup Store in Cameroon</span>{" "}
+                  — Essentialist Makeup Store Douala
                 </h1>
                 <p className="text-gray-600 text-base md:text-lg leading-relaxed">
-                  Discover authentic <strong>cosmetic products</strong> and professional makeup in{' '}
-                  <strong>Douala, Cameroon</strong>. Fast delivery nationwide.
+                  Where to buy authentic <strong>makeup &amp; cosmetics in Cameroon</strong>.
+                  Shop <strong>NYX</strong>, <strong>Smashbox</strong>, <strong>Bobbi Brown</strong>,{" "}
+                  <strong>e.l.f.</strong>, <strong>Laura Geller</strong>, <strong>MAC</strong> &amp; more.
+                  Fast delivery to <strong>Douala</strong> and nationwide.
                 </p>
               </div>
             </div>
@@ -643,27 +707,34 @@ export default async function Home() {
 
           {/* Category Grid */}
           <div className="container mx-auto px-4 my-8 grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4">
-            {Array.isArray(categoryData) && categoryData.slice(0, 16).map((cat) => {
-              if (!cat?._id) return null
-              const subcategory = subCategoryData?.find((sub) => sub.category?.some((c) => c._id === cat._id))
-              const href = buildCategoryUrl(cat._id, cat.name, subcategory)
-              return (
-                <Link key={cat._id} href={href} className="block text-center transition-transform hover:scale-105">
-                  <div className="relative w-full aspect-square bg-gray-100 rounded-xl overflow-hidden">
-                    <Image
-                      src={cat.image || '/placeholder.png'}
-                      alt={cat.name}
-                      fill
-                      unoptimized={true}
-                      className="object-contain p-2"
-                    />
-                  </div>
-                  <div className="text-[10px] sm:text-xs font-bold text-gray-700 mt-2 truncate uppercase tracking-tighter">
-                    {cat.name}
-                  </div>
-                </Link>
-              )
-            })}
+            {Array.isArray(categoryData) &&
+              categoryData.slice(0, 16).map((cat) => {
+                if (!cat?._id) return null;
+                const subcategory = subCategoryData?.find((sub) =>
+                  sub.category?.some((c) => c._id === cat._id),
+                );
+                const href = buildCategoryUrl(cat._id, cat.name, subcategory);
+                return (
+                  <Link
+                    key={cat._id}
+                    href={href}
+                    className="block text-center transition-transform hover:scale-105"
+                  >
+                    <div className="relative w-full aspect-square bg-gray-100 rounded-xl overflow-hidden">
+                      <Image
+                        src={cat.image || "/placeholder.png"}
+                        alt={cat.name}
+                        fill
+                        unoptimized={true}
+                        className="object-contain p-2"
+                      />
+                    </div>
+                    <div className="text-[10px] sm:text-xs font-bold text-gray-700 mt-2 truncate uppercase tracking-tighter">
+                      {cat.name}
+                    </div>
+                  </Link>
+                );
+              })}
           </div>
 
           <CategorySectionsInfinite
@@ -671,7 +742,9 @@ export default async function Home() {
             subCategoryData={subCategoryData || []}
           />
 
-          <Suspense fallback={<div className="h-20" />}><TikTokGallery /></Suspense>
+          <Suspense fallback={<div className="h-20" />}>
+            <TikTokGallery />
+          </Suspense>
 
           {/* Floating WhatsApp */}
           <a
@@ -679,13 +752,15 @@ export default async function Home() {
             target="_blank"
             className="fixed z-50 bottom-20 right-4 flex items-center justify-center w-14 h-14 rounded-full bg-green-500 shadow-lg hover:scale-110 transition-transform"
           >
-            <svg className="w-8 h-8 fill-white" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.47-.148-.669.15-.198.297-.767.966-.941 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.61-.916-2.206-.242-.58-.487-.5-.669-.51-.173-.006-.372-.007-.571-.007s-.521.075-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.214 3.074.149.198 2.1 3.205 5.077 4.372.71.306 1.263.489 1.695.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.075-.123-.272-.198-.57-.347zm-5.421 7.617c-1.191 0-2.381-.195-3.509-.577l-3.909 1.024 1.04-3.814c-.673-1.045-1.205-2.181-1.498-3.377C1.212 14.271 0 12.211 0 9.999 0 4.477 5.373 0 12 0c3.185 0 6.187 1.24 8.438 3.488C22.687 5.737 24 8.741 24 12c0 6.627-5.373 12-12 12zm0-22C6.486 2 2 6.486 2 12c0 2.083 1.04 4.166 2.888 5.833l-.96 3.521 3.624-.948C9.834 21.001 10.912 21.2 12 21.2c5.514 0 10-4.486 10-10S17.514 2 12 2z" /></svg>
+            <svg className="w-8 h-8 fill-white" viewBox="0 0 24 24">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.031-.967-.273-.099-.47-.148-.669.15-.198.297-.767.966-.941 1.164-.173.198-.347.223-.644.074-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.372-.025-.521-.075-.149-.669-1.61-.916-2.206-.242-.58-.487-.5-.669-.51-.173-.006-.372-.007-.571-.007s-.521.075-.792.372c-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.214 3.074.149.198 2.1 3.205 5.077 4.372.71.306 1.263.489 1.695.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.075-.123-.272-.198-.57-.347zm-5.421 7.617c-1.191 0-2.381-.195-3.509-.577l-3.909 1.024 1.04-3.814c-.673-1.045-1.205-2.181-1.498-3.377C1.212 14.271 0 12.211 0 9.999 0 4.477 5.373 0 12 0c3.185 0 6.187 1.24 8.438 3.488C22.687 5.737 24 8.741 24 12c0 6.627-5.373 12-12 12zm0-22C6.486 2 2 6.486 2 12c0 2.083 1.04 4.166 2.888 5.833l-.96 3.521 3.624-.948C9.834 21.001 10.912 21.2 12 21.2c5.514 0 10-4.486 10-10S17.514 2 12 2z" />
+            </svg>
           </a>
         </section>
       </>
-    )
+    );
   } catch (error) {
-    console.error('Error rendering Home page:', error)
-    return <div>Welcome to Essentialist Makeup Store</div>
+    console.error("Error rendering Home page:", error);
+    return <div>Welcome to Essentialist Makeup Store</div>;
   }
 }

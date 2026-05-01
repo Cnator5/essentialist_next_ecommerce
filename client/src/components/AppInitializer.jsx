@@ -2,7 +2,6 @@
 
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import toast from 'react-hot-toast';
 import fetchUserDetails from '../utils/fetchUserDetails';
 import { setUserDetails } from '../store/userSlice';
 import { setAllCategory, setAllSubCategory, setLoadingCategory } from '../store/productSlice';
@@ -16,49 +15,37 @@ export default function AppInitializer() {
     let isMounted = true;
 
     (async () => {
-      // Fetch User
-      try {
-        const userData = await fetchUserDetails();
-        if (userData?.data && isMounted) {
-          dispatch(setUserDetails(userData.data));
-        }
-      } catch (error) {
-        console.error("User fetch failed:", error);
-        toast.error("Failed to fetch user details");
+      dispatch(setLoadingCategory(true));
+
+      const [userResult, catResult, subCatResult] = await Promise.allSettled([
+        fetchUserDetails(),
+        Axios(SummaryApi.getCategory),
+        Axios(SummaryApi.getSubCategory),
+      ]);
+
+      if (!isMounted) return;
+
+      if (userResult.status === 'fulfilled' && userResult.value?.data) {
+        dispatch(setUserDetails(userResult.value.data));
       }
 
-      // Fetch Categories
-      try {
-        dispatch(setLoadingCategory(true));
-        const categoryResponse = await Axios(SummaryApi.getCategory);
-        if (categoryResponse.data.success && isMounted) {
-          dispatch(
-            setAllCategory(
-              categoryResponse.data.data.sort((a, b) => a.name.localeCompare(b.name))
-            )
-          );
-        }
-      } catch (error) {
-        console.error("Category fetch failed:", error);
-        toast.error("Failed to fetch categories");
-      } finally {
-        if (isMounted) dispatch(setLoadingCategory(false));
+      if (catResult.status === 'fulfilled' && catResult.value?.data?.success) {
+        dispatch(
+          setAllCategory(
+            catResult.value.data.data.sort((a, b) => a.name.localeCompare(b.name))
+          )
+        );
       }
 
-      // Fetch Sub-Categories
-      try {
-        const subCategoryResponse = await Axios(SummaryApi.getSubCategory);
-        if (subCategoryResponse.data.success && isMounted) {
-          dispatch(
-            setAllSubCategory(
-              subCategoryResponse.data.data.sort((a, b) => a.name.localeCompare(b.name))
-            )
-          );
-        }
-      } catch (error) {
-        console.error("Sub-category fetch failed:", error);
-        toast.error("Failed to fetch sub-categories");
+      if (subCatResult.status === 'fulfilled' && subCatResult.value?.data?.success) {
+        dispatch(
+          setAllSubCategory(
+            subCatResult.value.data.data.sort((a, b) => a.name.localeCompare(b.name))
+          )
+        );
       }
+
+      if (isMounted) dispatch(setLoadingCategory(false));
     })();
 
     return () => {
